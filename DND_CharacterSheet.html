@@ -1,304 +1,320 @@
 <!doctype html>
 <html>
-    <head>
-      <link rel="stylesheet" href="./DND_Image.css">
-      <!-- <script> src = "https://code.jquery.com/jquery-latest.js" </script> -->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-      <title>DND Character Sheet Demo</title>
+
+<head>
+  <link rel="stylesheet" href="./DND_Image.css">
+  <!-- <script> src = "https://code.jquery.com/jquery-latest.js" </script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <title>DND Character Sheet Demo</title>
 </head>
 
 <body>
   <script src="./DND_Code.js"></script>
-  <div class = "header">
+  <div class="header">
     <h1>Character Builder</h1>
     <p>D&D 5 Character Creator/Generator</p>
   </div>
   <a href="#" id="previous_round">&#8249;</a>
   <a href="#" id="next_round">&#8250;</a>
-  <br/>
+  <br />
   <script>
     //var pages = document.getElementById("page_1").querySelectorAll(".access");
     var current = 0;
     //var current = document.querySelector(".page 1");
-    
-    $(document).ready(function() {
-      $("#next_round").click(function() {
-       // console.log(pages);
+
+    $(document).ready(function () {
+      $("#next_round").click(function () {
+        // console.log(pages);
         current++;
-        $("#page_"+current).css("display", "block");
+        $("#page_" + current).css("display", "block");
         console.log("clicking next");
-        console.log("Next "+ current);
+        console.log("Next " + current);
         //current++;
       });
-      $("#previous_round").click(function() {
+      $("#previous_round").click(function () {
         current--;
-        $("#page_"+current).css("display", "none");
+        $("#page_" + current).css("display", "none");
         console.log("clicking pervious");
-        console.log("Pervious "+ current);
+        console.log("Pervious " + current);
       });
     });
   </script>
 
   <!------------------Races------------------------->
-  <div id = "page_1" class = "access" style="display:none">
-    <h2>Race:</h2> 
-    <br/>
-    <p>Chose your character race from below</p>
-    <input id = "race" value = ""> </input>
-    <br/>
-    <button id = "submit">submit</button>
-    <br/>
-    <div id = "info_1" class = "section" style="border-style:solid">
-      <p>Race Description:</p>
-      <label id ="des">Des </label>
-      <br/>
-      <p>Amount of Traits:</p>
-      <label id ="count">Counts </label>
-      <br/>
-      <p>Trait Names:</p>
-      <label id="results">Results </label>
-      <br/>
-      <p>Race Size:</p>
-      <label id ="size">Des </label>
-      <!-- <br/>
-      <p>Ability Description:</p>
-      <label id="des">Info </label> -->
+  <div id="page_1">
+    <div class="access" style="display:none">
+      <h2>Race:</h2>
+      <br />
+      <p>Chose your character race from below</p>
+      <input id="race" value=""> </input>
+      <br />
+      <button id="submit">submit</button>
+      <br />
+      <div id="info_1" class="section" style="border-style:solid">
+        <p>Race Description:</p>
+        <label id="des">Des </label>
+        <br />
+        <p>Amount of Traits:</p>
+        <label id="count">Counts </label>
+        <br />
+        <p>Trait Names:</p>
+        <label id="results">Results </label>
+        <br />
+        <p>Race Size:</p>
+        <label id="size">Des </label>
+        <!-- <br/>
+        <p>Ability Description:</p>
+        <label id="des">Info </label> -->
+      </div>
     </div>
   </div>
 
-<!------------------Classes------------------------->
+  <!------------------Classes------------------------->
 
-  <div id = "page_2" class = "access" style="display:none">
-    <h2>Class:</h2> 
-    <br/>
-    <p>Chose your character class from below</p>
-    <p class = "des_class"> A character class is a fundamental part of the identity and 
-      nature of characters in the Dungeons & Dragons role-playing game. A character's capabilities, 
-      strengths, and weaknesses are largely defined by its class. A character's class affects a character's 
-      available skills and abilities</p>
-    <input id = "class" value = ""> </input>
-    <br/>
-    <button id = "submit2">submit</button>
-    <br/>
-    <div id = "info_2" class = "section" style="border-style:solid">
-      <p>Required Skills:</p>
-      <p>Skills to Choice From:</p>
-      <br/>
-      <label id = "skills"></label>
-      <p>Recommended Weapons:</p>
-      <label id = "weapons"></label>
-      <br/>
-      <p>Armor Type:</p>
-      <label id = "armor"></label>
-      <br/>
-      <p>Starting Spells:</p>
-      <label id="spells">Results </label>
-      <br/>
-      <p>Level Updates:</p>
-      <label id="levels">Results </label>
-      <br/>
-      <p>Possible Subclasses:</p>
-      <label id="subclasses">Results </label>
+  <div id="page_2">
+    <div class="access" style="display:none">
+      <h2>Class:</h2>
+      <br />
+      <p>Chose your character class from below</p>
+      <p class="des_class"> A character class is a fundamental part of the identity and
+        nature of characters in the Dungeons & Dragons role-playing game. A character's capabilities,
+        strengths, and weaknesses are largely defined by its class. A character's class affects a character's
+        available skills and abilities</p>
+      <input id="class" value=""> </input>
+      <br />
+      <button id="submit2">submit</button>
+      <br />
+      <div id="info_2" class="section" style="border-style:solid">
+        <p>Required Skills:</p>
+        <p>Skills to Choice From:</p>
+        <br />
+        <label id="skills"></label>
+        <p>Recommended Weapons:</p>
+        <label id="weapons"></label>
+        <br />
+        <p>Armor Type:</p>
+        <label id="armor"></label>
+        <br />
+        <p>Starting Spells:</p>
+        <label id="spells">Results </label>
+        <br />
+        <p>Level Updates:</p>
+        <label id="levels">Results </label>
+        <br />
+        <p>Possible Subclasses:</p>
+        <label id="subclasses">Results </label>
+      </div>
     </div>
   </div>
 
   <!------------------Background------------------------->
-  <div id = "page_3" class = "access" style="display:none">
-    <h2>Background:</h2> 
-    <br/>
-    <p>Chose your character background from below</p>
-    <input id = "background" value = ""> </input>
-    <br/>
-    <p>Choose your character personality:</p>
-    <input id = "person" value = ""> </input>
-    <p class = "person_info"> Give your character two personality traits. Personality
-      traits are small, simple ways to help you set your character apart from every other character</p>
-    <br/>
-    <p>Describe your character bonds</p>
-    <input id = "bonds" value = ""> </input>
-    <p class = "bonds_info"> Bonds represent a
-      character’s connections to people, places, and events in
-      the world. They tie you to things from your background.
-      They might inspire you to heights of heroism, or lead
-      you to act against your own best interests if they are threatened.</p>
-    <br/>
-    <p>Describe your character ideals:</p>
-    <input id = "ideals" value = ""> </input>
-    <p class = "ideals_info"> Describe one ideal that drives your character. Your ideals
-      are the things that you believe in most strongly, the fundamental moral and 
-      ethical principles that compel you to act as you do. Ideals encompass everything from your life
-      goals to your core belief system.</p>
-    <br/>
-    <p>Describe your character flaws</p>
-    <input id = "flaws" value = ""> </input>
-    <p class = "flaws_info"> Your character’s
-      flaw represents some vice, compulsion, fear, or weakness—in particular, anything that 
-      someone else could exploit to bring you to ruin or cause you to act against
-      your best interests.</p>
-    <br/>
-    <p>Choose your character Alignment</p>
-    <input id = "alignment" value = ""> </input>
-    <p class = "alignment_info"> Alignment is a combination of
-      two factors: one identifies morality (good, evil, or neutral),
-      and the other describes attitudes toward society and order (lawful, chaotic, or neutral)</p>
-    <br/>
-    <button id = "submit3">submit</button>
+  <div id="page_3">
+    <div class="access" style="display:none">
+      <h2>Background:</h2>
+      <br />
+      <p>Chose your character background from below</p>
+      <input id="background" value=""> </input>
+      <br />
+      <p>Choose your character personality:</p>
+      <input id="person" value=""> </input>
+      <p class="person_info"> Give your character two personality traits. Personality
+        traits are small, simple ways to help you set your character apart from every other character</p>
+      <br />
+      <p>Describe your character bonds</p>
+      <input id="bonds" value=""> </input>
+      <p class="bonds_info"> Bonds represent a
+        character’s connections to people, places, and events in
+        the world. They tie you to things from your background.
+        They might inspire you to heights of heroism, or lead
+        you to act against your own best interests if they are threatened.</p>
+      <br />
+      <p>Describe your character ideals:</p>
+      <input id="ideals" value=""> </input>
+      <p class="ideals_info"> Describe one ideal that drives your character. Your ideals
+        are the things that you believe in most strongly, the fundamental moral and
+        ethical principles that compel you to act as you do. Ideals encompass everything from your life
+        goals to your core belief system.</p>
+      <br />
+      <p>Describe your character flaws</p>
+      <input id="flaws" value=""> </input>
+      <p class="flaws_info"> Your character’s
+        flaw represents some vice, compulsion, fear, or weakness—in particular, anything that
+        someone else could exploit to bring you to ruin or cause you to act against
+        your best interests.</p>
+      <br />
+      <p>Choose your character Alignment</p>
+      <input id="alignment" value=""> </input>
+      <p class="alignment_info"> Alignment is a combination of
+        two factors: one identifies morality (good, evil, or neutral),
+        and the other describes attitudes toward society and order (lawful, chaotic, or neutral)</p>
+      <br />
+      <button id="submit3">submit</button>
 
-    <div id = "info_3" class = "section" style="border-style:solid">
-      <p>Required Skills:</p>
-      <label id = "skills"></label>
-      <br/>
-      <p>Languages to Choice From:</p>
-      <label id = "languages"></label>
-      <p>Preffer Weapons:</p>
-      <label id = "weapons"></label>
-      <br/>
-      <p>Alignment:</p>
-      <label id="alignment">Results </label>
+      <div id="info_3" class="section" style="border-style:solid">
+        <p>Required Skills:</p>
+        <label id="skills"></label>
+        <br />
+        <p>Languages to Choice From:</p>
+        <label id="languages"></label>
+        <p>Preffer Weapons:</p>
+        <label id="weapons"></label>
+        <br />
+        <p>Alignment:</p>
+        <label id="alignment">Results </label>
+      </div>
     </div>
   </div>
-    
- <!------------------Ability Scores------------------------->
-  <div id = "page_4" class = "access" style="display:none">
-    <h2>Level:</h2> 
-    <br/>
-    <p>1</p>
-    <p>All beginner players begin at level 1.</p>
-    <h2>Ability Score:</h2> 
-    <br/>
-    <p>STR:</p>
-    <input id = "STR" value = ""> </input>
-    <br/>
-    <p>DEX:</p>
-    <input id = "DEX" value = ""> </input>
-    <br/>
-    <p>CON:</p>
-    <input id = "CON" value = ""> </input>
-    <br/>
-    <p>INT:</p>
-    <input id = "INT" value = ""> </input>
-    <br/>
-    <p>WIS:</p>
-    <input id = "WIS" value = ""> </input>
-    <br/>
-    <p>CHA:</p>
-    <input id = "CHA" value = ""> </input>
-    <br/>
-    <button id = "roll">roll</button>
 
-    <div id = "info_4" class = "section" style="border-style:solid">
-      <p>STR -> Strength:</p>
-      <label id = "STR_des"></label>
-      <p>Strength Important for:</p>
-      <label id = "STR_info"></label>
-      <br/>
-      <p>CON -> Constitution:</p>
-      <label id = "CON_des"></label>
-      <p>Constitution Important for:</p>
-      <label id = "CON_info"></label>
-      <br/>
-      <p>INT -> Intelligence:</p>
-      <label id = "INT_des"></label>
-      <p>Intelligence Important for:</p>
-      <label id = "INT_info"></label>
-      <br/>
-      <p>WIS -> Wisdom:</p>
-      <label id = "WIS_des"></label>
-      <p>Wisdom Important for:</p>
-      <label id = "WIS_info"></label>
-      <br/>
-      <p>CHA -> Charisma:</p>
-      <label id = "CHA_des"></label>
-      <p>Charisma Important for:</p>
-      <label id = "CHA_info"></label>
-      <br/>
+  <!------------------Ability Scores------------------------->
+  <div id="page_4">
+    <div class="access" style="display:none">
+      <h2>Level:</h2>
+      <br />
+      <p>1</p>
+      <p>All beginner players begin at level 1.</p>
+      <h2>Ability Score:</h2>
+      <br />
+      <p>STR:</p>
+      <input id="STR" value=""> </input>
+      <br />
+      <p>DEX:</p>
+      <input id="DEX" value=""> </input>
+      <br />
+      <p>CON:</p>
+      <input id="CON" value=""> </input>
+      <br />
+      <p>INT:</p>
+      <input id="INT" value=""> </input>
+      <br />
+      <p>WIS:</p>
+      <input id="WIS" value=""> </input>
+      <br />
+      <p>CHA:</p>
+      <input id="CHA" value=""> </input>
+      <br />
+      <button id="roll">roll</button>
+
+      <div id="info_4" class="section" style="border-style:solid">
+        <p>STR -> Strength:</p>
+        <label id="STR_des"></label>
+        <p>Strength Important for:</p>
+        <label id="STR_info"></label>
+        <br />
+        <p>CON -> Constitution:</p>
+        <label id="CON_des"></label>
+        <p>Constitution Important for:</p>
+        <label id="CON_info"></label>
+        <br />
+        <p>INT -> Intelligence:</p>
+        <label id="INT_des"></label>
+        <p>Intelligence Important for:</p>
+        <label id="INT_info"></label>
+        <br />
+        <p>WIS -> Wisdom:</p>
+        <label id="WIS_des"></label>
+        <p>Wisdom Important for:</p>
+        <label id="WIS_info"></label>
+        <br />
+        <p>CHA -> Charisma:</p>
+        <label id="CHA_des"></label>
+        <p>Charisma Important for:</p>
+        <label id="CHA_info"></label>
+        <br />
+      </div>
     </div>
   </div>
-  
 
-<!------------------Skills------------------------->
-  <div id = "page_5" class = "access" style="display:none">
-    <h2>Proficiencies:</h2>
-    <p>Choose the character's skills and languages.</p>
-    <br/>
-    <p>Pick your character's language from below</p>
-    <input id = "speech" value = ""> </input>
-    <br/>
-    <p>Pick your character's language from below</p>
-    <input id = "speech" value = ""> </input>
-    <input id = "speech2" value = ""> </input>
-    <br/>
-    <p>Pick your character's class skills from below</p>
-    <input id = "skill_1" value = ""> </input>
-    <input id = "skill_2" value = ""> </input>
-    <br/>
-    <p>Pick your character's background skills from below</p>
-    <input id = "skill_3" value = ""> </input>
-    <input id = "skill_4" value = ""> </input>
-    <br/>
-    <p>Pick your character's fighing style from below</p>
-    <input id = "fight" value = ""> </input>
 
-    <div id = "info_5" class = "section" style="border-style:solid">
-      <p>Fighting Style:</p>
-      <label id = "style_des"></label>
-      <br/>
-      <p>Skills:</p>
-      <label id = "Pro_info"></label>
+  <!------------------Skills------------------------->
+  <div id="page_5">
+    <div class="access" style="display:none">
+      <h2>Proficiencies:</h2>
+      <p>Choose the character's skills and languages.</p>
+      <br />
+      <p>Pick your character's language from below</p>
+      <input id="speech" value=""> </input>
+      <br />
+      <p>Pick your character's language from below</p>
+      <input id="speech" value=""> </input>
+      <input id="speech2" value=""> </input>
+      <br />
+      <p>Pick your character's class skills from below</p>
+      <input id="skill_1" value=""> </input>
+      <input id="skill_2" value=""> </input>
+      <br />
+      <p>Pick your character's background skills from below</p>
+      <input id="skill_3" value=""> </input>
+      <input id="skill_4" value=""> </input>
+      <br />
+      <p>Pick your character's fighing style from below</p>
+      <input id="fight" value=""> </input>
+
+      <div id="info_5" class="section" style="border-style:solid">
+        <p>Fighting Style:</p>
+        <label id="style_des"></label>
+        <br />
+        <p>Skills:</p>
+        <label id="Pro_info"></label>
+      </div>
     </div>
   </div>
 
   <!------------------Spells------------------------->
-  <div id = "page_6" class = "access" style="display:none">
-    <h2>Known Spells:</h2>
-    <p>Choose the character's weapons, aromor, and pack.</p>
-    <br/>
-    <p>Pick your character's spells from below</p>
-    <input id = "spell_1" value = ""> </input>
-    <input id = "spell_2" value = ""> </input>
-    <input id = "spell_3" value = ""> </input>>
+  <div id="page_6">
+    <div class="access" style="display:none">
+      <h2>Known Spells:</h2>
+      <p>Choose the character's weapons, aromor, and pack.</p>
+      <br />
+      <p>Pick your character's spells from below</p>
+      <input id="spell_1" value=""> </input>
+      <input id="spell_2" value=""> </input>
+      <input id="spell_3" value=""> </input>>
 
-    <div id = "info_6" class = "section" style="border-style:solid">
-      <p>Spell Information:</p>
-      <label id = "spell_info"></label>
-      <br/>
+      <div id="info_6" class="section" style="border-style:solid">
+        <p>Spell Information:</p>
+        <label id="spell_info"></label>
+        <br />
+      </div>
     </div>
   </div>
 
   <!------------------Fighting------------------------->
-  <div id = "page_7" class = "access" style="display:none"> 
-    <h2>Equiment:</h2>
-    <p>Choose the character's weapons, aromor, and pack.</p>
-    <br/>
-    <p>Set your character's allowance below</p>
-    <input id = "money" value = ""> </input>
-    <br/>
-    <p>Pick your character's weapon from below</p>
-    <input id = "weapon" value = ""> </input>
-    <input id = "weapon_2" value = ""> </input>
-    <br/>
-    <p>Pick your character's armor from below</p>
-    <input id = "armor" value = ""> </input>
-    <input id = "sheild" value = ""> </input>
-    <br/>
-    <p>Pick your character's pack from below</p>
-    <input id = "pack" value = ""> </input>>
-    <br/>
-    <p>Extra Tools:</p>
-    <input id = "tool_1" value = ""> </input>>
-    <input id = "tool_2" value = ""> </input>>
+  <div id="page_7">
+    <div class="access" style="display:none">
+      <h2>Equiment:</h2>
+      <p>Choose the character's weapons, aromor, and pack.</p>
+      <br />
+      <p>Set your character's allowance below</p>
+      <input id="money" value=""> </input>
+      <br />
+      <p>Pick your character's weapon from below</p>
+      <input id="weapon" value=""> </input>
+      <input id="weapon_2" value=""> </input>
+      <br />
+      <p>Pick your character's armor from below</p>
+      <input id="armor" value=""> </input>
+      <input id="sheild" value=""> </input>
+      <br />
+      <p>Pick your character's pack from below</p>
+      <input id="pack" value=""> </input>>
+      <br />
+      <p>Extra Tools:</p>
+      <input id="tool_1" value=""> </input>>
+      <input id="tool_2" value=""> </input>>
 
-    <div id = "info_7" class = "section" style="border-style:solid">
-      <p>Weapon:</p>
-      <label id = "weapon_info"></label>
-      <br/>
-      <p>Armor:</p>
-      <label id = "armor_info"></label>
-      <br/>
-      <p>Package:</p>
-      <label id = "pack_info"></label>
+      <div id="info_7" class="section" style="border-style:solid">
+        <p>Weapon:</p>
+        <label id="weapon_info"></label>
+        <br />
+        <p>Armor:</p>
+        <label id="armor_info"></label>
+        <br />
+        <p>Package:</p>
+        <label id="pack_info"></label>
+      </div>
     </div>
   </div>
 
 </body>
+
 </html>
