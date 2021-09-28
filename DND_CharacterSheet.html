@@ -17,31 +17,7 @@
   <a href="#" id="previous_round">&#8249;</a>
   <a href="#" id="next_round">&#8250;</a>
   <br />
-  <script>
-    var pages = document.querySelectorAll(".access");
-    var pagesArr = Array.from(pages);
-    console.log(pages);
-    var current = 0;
-    //var current = document.querySelector(".page 1");
-
-    $(document).ready(function () {
-      $("#next_round").click(function () {
-        // console.log(pages);
-        $(pagesArr[current]).css("display", "block");
-        console.log("clicking next");
-        current++;
-        console.log("Next " + current);
-        //current++;
-      });
-      $("#previous_round").click(function () {
-        current--;
-        $(pagesArr[current]).css("display", "none");
-        console.log("clicking pervious");
-        console.log("Pervious " + current);
-      });
-    });
-  </script>
-
+  
   <!------------------Races------------------------->
   <div id="page_1">
     <div class="access" style="display:none">
@@ -52,6 +28,7 @@
       <br />
       <button id="submit">submit</button>
       <br />
+
       <div id="info_1" class="section" style="border-style:solid">
         <p>Race Description:</p>
         <label id="des">Des </label>
@@ -316,6 +293,31 @@
       </div>
     </div>
   </div>
+
+  <script>
+    var pages = document.querySelectorAll("div.access");
+    var pagesArr = Array.from(pages);
+    console.log(pagesArr);
+    var current = 0;
+    //var current = document.querySelector(".page 1");
+
+    $(document).ready(function () {
+      $("#next_round").click(function () {
+        // console.log(pages);
+        $(pagesArr[current]).css("display", "block");
+        console.log("clicking next");
+        current++;
+        console.log("Next " + current);
+        //current++;
+      });
+      $("#previous_round").click(function () {
+        current--;
+        $(pagesArr[current]).css("display", "none");
+        console.log("clicking pervious");
+        console.log("Pervious " + current);
+      });
+    });
+  </script>
 
 </body>
 
