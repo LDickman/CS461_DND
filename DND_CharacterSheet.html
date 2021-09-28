@@ -299,13 +299,9 @@
     var pagesArr = Array.from(pages);
     console.log(pagesArr);
     var current = -1;
-    var next = 0;
-    var prev = 0;
-    //var current = document.querySelector(".page 1");
 
     $(document).ready(function () {
       $("#next_round").click(function () {
-        // console.log(pages);
         $(pagesArr[current]).css("display", "block");
         if (current < 0) {
           $(pagesArr[0]).css("display", "none");
