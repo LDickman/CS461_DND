@@ -1,6 +1,6 @@
 //import { async } from "regenerator-runtime";
 
-var races; 
+var races;
 
 var api = 'https://www.dnd5eapi.co/api/races/';
 //var race = 'human'
@@ -8,18 +8,44 @@ var apiKey = '/traits'
 var input;
 
 window.addEventListener('load', (event) => {
-    console.log("page is loaded"); 
+    console.log("page is loaded");
     setup();
-  });
+});
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function (event) {
+    if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    } else if (event.target.matches('.dropbtn')) {
+        getInfo();
+    }
+}
+
+async function getInfo() {
+    console.log("starting");
+    var option = document.querySelector('.dropdown-content ul li');
+    console.log(input);
+    option.addEventListener('click', (event) => {
+        raceAsk(document.querySelector('.dropdown-content ul li').value);
+    });
+
+}
 
 async function setup() {
     console.log("starting");
     var button = document.querySelector('#submit');
     console.log(input);
     button.addEventListener('click', (event) => {
-        raceAsk(document.querySelector('#race').value); 
-      });
-    
+        raceAsk(document.querySelector('#race').value);
+    });
+
 }
 
 async function raceAsk(input) {
@@ -47,15 +73,15 @@ async function raceAsk(input) {
 
 async function printData(data) {
     console.log(data);
-    const {count, results} = data;
-    console.log("Count: "+ count);
-    console.log("Results: "+ results);
+    const { count, results } = data;
+    console.log("Count: " + count);
+    console.log("Results: " + results);
     // const resultArray = Object.values(results);
     //document.querySelector("#results").textContent = results.toString();
-    var String_Array = results.map( function( el ) {
+    var String_Array = results.map(function (el) {
         return el.name;
     });
-    var url_Array = results.map( function( el ) {
+    var url_Array = results.map(function (el) {
         return el.url;
     });
     console.log(url_Array);
@@ -68,7 +94,7 @@ async function printData(data) {
     document.querySelector("#results").textContent = String_Array.join(',     ');
     //document.querySelector("#des").textContent = des_Array.join(',     ');
     document.querySelector('#count').textContent = count;
-    console.log("printing"); 
+    console.log("printing");
 }
 
 // async function askTraits(url) {
@@ -98,8 +124,7 @@ async function printData(data) {
 //     document.getElementById('size_description').textContent = size;
 // }
 
-function getOneAbilityScores() {    
+function getOneAbilityScores() {
     return Math.floor(Math.random() * 15);
-  }
+}
 
-  
