@@ -12,6 +12,12 @@ window.addEventListener('load', (event) => {
     setup();
 });
 
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function raceSelect() {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+
 // Close the dropdown menu if the user clicks outside of it
 window.onclick = function (event) {
     if (!event.target.matches('.dropbtn')) {
@@ -29,9 +35,9 @@ window.onclick = function (event) {
 }
 
 async function getInfo() {
-    console.log("starting");
+    console.log("Get result for dropdown bar");
     var option = document.querySelector('.dropdown-content ul li');
-    console.log(input);
+    console.log("dropdown bar list "+ option);
     option.addEventListener('click', (event) => {
         raceAsk(document.querySelector('.dropdown-content ul li').value);
     });
