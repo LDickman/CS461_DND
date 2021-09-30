@@ -30,19 +30,21 @@ window.onclick = function (event) {
             }
         }
     } else if (event.target.matches('.dropbtn')) {
-        getInfo();
+        var text = dropdowns.getElementByName('race');
+        raceAsk(text.value);
     }
 }
 
-async function getInfo() {
-    console.log("Get result for dropdown bar");
-    var option = document.querySelector('.dropdown-content ul li');
-    console.log("dropdown bar list "+ option);
-    option.addEventListener('click', (event) => {
-        raceAsk(document.querySelector('.dropdown-content ul li').value);
-    });
+// async function getInfo(eve) {
+//     console.log("Get result for dropdown bar");
+//     var text = document.getElementsByName('race');
+//     console.log("dropdown bar list "+ text);
 
-}
+//     text.addEventListener('click', (event) => {
+//         raceAsk(document.querySelector('.dropdown-content ul li').value);
+//     });
+
+// }
 
 async function setup() {
     console.log("starting");
