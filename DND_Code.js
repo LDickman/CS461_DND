@@ -30,7 +30,7 @@ window.onclick = function (event) {
             }
         }
     } else if (event.target.matches('.dropbtn')) {
-        var text = dropdowns.getElementByName('race');
+        var text = dropdowns.getElementsByTagName('li');
         raceAsk(text.value);
     }
 }
