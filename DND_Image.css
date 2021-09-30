@@ -21,11 +21,19 @@ a {
     border-radius: 50%;
   }
   
-/* The dropdown container */
-.dropdown {
-  float: left;
-  overflow: hidden;  
-  /* need to figure away to  get rid of */
+/* Dropdown Button */
+.dropbtn {
+  background-color: #3498DB;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
 }
 
 /* The container <div> - needed to position the dropdown content */
@@ -37,7 +45,6 @@ a {
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
   display: none;
-  /* need to figure to show the options */
   position: absolute;
   background-color: #f1f1f1;
   min-width: 160px;
@@ -46,7 +53,7 @@ a {
 }
 
 /* Links inside the dropdown */
-.dropdown-content li {
+.dropdown-content a {
   color: black;
   padding: 12px 16px;
   text-decoration: none;
@@ -54,7 +61,7 @@ a {
 }
 
 /* Change color of dropdown links on hover */
-.dropdown-content li:hover {background-color: #ddd}
+.dropdown-content a:hover {background-color: #ddd}
 
 /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
 .show {display:block;}
