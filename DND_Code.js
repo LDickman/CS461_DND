@@ -97,3 +97,9 @@ async function printData(data) {
 //     const {size} = data;
 //     document.getElementById('size_description').textContent = size;
 // }
+
+function getOneAbilityScores() {    
+    return Math.floor(Math.random() * 15);
+  }
+
+  
