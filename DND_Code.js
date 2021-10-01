@@ -20,7 +20,6 @@ function raceSelect() {
 
 // Close the dropdown menu if the user clicks outside of it
 window.onclick = function (event) {
-    console.log(event);
     if (!event.target.matches('.dropbtn')) {
         var dropdowns = document.getElementsByClassName("dropdown-content");
         var i;
@@ -34,14 +33,16 @@ window.onclick = function (event) {
 }
 
 function raceChoice() {
-    var ul = document.getElementById("raceList");
-    console.log("UL; " + ul);
-    var items = ul.getElementsByTagName("li");
+    var ul = document.getElementById('raceList');
+    console.log(ul);
+    var items = ul.getElementsByTagName('li');
+    console.log(items);
+    console.log(items[0].textContent);   // knows that textcontext works
     ul.addEventListener("click", function (e) {
-        for (i = 0; i < items.length; i++) {
-            if (e.target.matchesmatches(items[i])) {
-                console.log(text[i].value);
-                raceAsk(text[i].value);
+        for (i = 0; i < items.length -1; i++) {
+            if (e.target == items[i]) {
+                console.log(items[i].textContent);
+                raceAsk(items[i].textContent);
             }
         }
     });
