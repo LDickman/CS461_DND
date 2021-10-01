@@ -16,7 +16,7 @@ window.addEventListener('load', (event) => {
 toggle between hiding and showing the dropdown content */
 function raceSelect() {
     document.getElementById("raceDropdown").classList.toggle("show");
-  }
+}
 
 // Close the dropdown menu if the user clicks outside of it
 window.onclick = function (event) {
@@ -30,7 +30,14 @@ window.onclick = function (event) {
             }
         }
     } else if (event.target.matches('.dropbtn')) {
-        var text = dropdowns.getElementsByTagName('li');
+        var ul = document.getElementById("raceList");
+        var items = ul.getElementsByTagName("li");
+        for (var i = 0; i < items.length; ++i) {
+            if (event.target.matches(items[i])) {
+                
+            }
+
+        }
         raceAsk(text.value);
     }
 }
