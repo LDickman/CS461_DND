@@ -34,11 +34,10 @@ window.onclick = function (event) {
         var items = ul.getElementsByTagName("li");
         for (var i = 0; i < items.length; ++i) {
             if (event.target.matches(items[i])) {
-                
+                console.log(text[i].value);
+                raceAsk(text[i].value);
             }
-
         }
-        raceAsk(text.value);
     }
 }
 
