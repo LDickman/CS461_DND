@@ -20,6 +20,7 @@ function raceSelect() {
 
 // Close the dropdown menu if the user clicks outside of it
 window.onclick = function (event) {
+    console.log(event);
     if (!event.target.matches('.dropbtn')) {
         var dropdowns = document.getElementsByClassName("dropdown-content");
         var i;
@@ -29,16 +30,19 @@ window.onclick = function (event) {
                 openDropdown.classList.remove('show');
             }
         }
-    } else if (event.target.matches('.dropbtn')) {
-        var ul = document.getElementById("raceList");
-        var items = ul.getElementsByTagName("li");
-        for (var i = 0; i < items.length; ++i) {
-            if (event.target.matches(items[i])) {
-                console.log(text[i].value);
-                raceAsk(text[i].value);
-            }
+    } 
+}
+
+function raceChoice(){
+    var ul = document.getElementById("raceList");
+    console.log("UL; "+ul);
+    var items = ul.getElementsByTagName("li");
+    ul.addEventListener("click", function(e) {
+        if(e.target.matchesmatches(items[i])) {
+            console.log(text[i].value);
+            raceAsk(text[i].value);
         }
-    }
+    });
 }
 
 // async function getInfo(eve) {
@@ -59,7 +63,7 @@ async function setup() {
     button.addEventListener('click', (event) => {
         raceAsk(document.querySelector('#race').value);
     });
-
+    raceChoice();
 }
 
 async function raceAsk(input) {
