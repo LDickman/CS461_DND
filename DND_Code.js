@@ -30,17 +30,19 @@ window.onclick = function (event) {
                 openDropdown.classList.remove('show');
             }
         }
-    } 
+    }
 }
 
-function raceChoice(){
+function raceChoice() {
     var ul = document.getElementById("raceList");
-    console.log("UL; "+ul);
+    console.log("UL; " + ul);
     var items = ul.getElementsByTagName("li");
-    ul.addEventListener("click", function(e) {
-        if(e.target.matchesmatches(items[i])) {
-            console.log(text[i].value);
-            raceAsk(text[i].value);
+    ul.addEventListener("click", function (e) {
+        for (i = 0; i < items.length; i++) {
+            if (e.target.matchesmatches(items[i])) {
+                console.log(text[i].value);
+                raceAsk(text[i].value);
+            }
         }
     });
 }
