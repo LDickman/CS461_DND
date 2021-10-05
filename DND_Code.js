@@ -48,7 +48,6 @@ function raceChoice() {
     });
 }
 
-
 async function setup() {
     console.log("starting");
     var button = document.querySelector('#submit');
