@@ -1,8 +1,6 @@
 //import { async } from "regenerator-runtime";
 
-var races;
-
-var api = 'https://www.dnd5eapi.co/api/races/';
+const api_race = 'https://www.dnd5eapi.co/api/races/';
 //var race = 'human'
 var apiKey = '/traits'
 var input;
@@ -60,7 +58,7 @@ async function setup() {
 
 async function raceAsk(input) {
     console.log("Race: " + input);
-    const url = api + input + apiKey;
+    const url = api_race + input;
     console.log(url);
     const response = await fetch(url);
     const data = await response.json();
@@ -70,7 +68,8 @@ async function raceAsk(input) {
 
 async function printData(data) {
     console.log(data);
-    const { count, results } = data;
+    const { name, speed, ability_bonuses, alignment, age, size_description, starting_proficiencies,
+        starting_proficiency_options, language_desc, traits, subraces} = data;
     console.log("Count: " + count);
     console.log("Results: " + results);
     var String_Array = results.map(function (el) {
@@ -79,9 +78,13 @@ async function printData(data) {
     var url_Array = results.map(function (el) {
         return el.url;
     });
+    var url_Array = results.map(function (el) {
+        return el.url;
+    });
     console.log(url_Array);
     document.querySelector("#results").textContent = String_Array.join(',     ');
     document.querySelector('#count').textContent = count;
+    document.querySelector('#des').textContent = count;
     console.log("printing");
 }
 
