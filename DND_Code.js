@@ -72,6 +72,9 @@ async function printData(data) {
         starting_proficiency_options, language_desc, traits, subraces} = data;
     console.log("Name: " + name);
     console.log("speed: " + speed);
+    console.log("size: " + size_description);
+    console.log("age: " + age);
+    console.log("alignment: " + alignment);
     var bonuses_Array = ability_bonuses.map(function (el) {
         return el.bonus;
     });
@@ -84,24 +87,27 @@ async function printData(data) {
     var subraces_Array = subraces.map(function (el) {
         return el.name;
     });
-    var skills_Array = starting_proficiency_options.map(function (el) {
-        return el.name;
-    });
-    console.log(url_Array);
+    // var skills_Array = starting_proficiency_options.map(function (el) {
+    //     return el.from;
+    // });
+    console.log(bonuses_Array);
+    console.log(proficiences_Array);
+    console.log(traits_Array);
+    console.log(subraces_Array);
+    //console.log(skills_Array);
     document.querySelector("#results").textContent = traits_Array.join(',     ');
     document.querySelector('#name').textContent = name;
     document.querySelector('#speed_race').textContent = speed;
     document.querySelector('#size').textContent = size_description;
     document.querySelector('#race-age').textContent = age;
     document.querySelector('#race-alignment').textContent = alignment;
-    document.querySelector('#speed_race').textContent = speed;
     document.querySelector('#language').textContent = language_desc;
     document.querySelector("#weapon").textContent = proficiences_Array.join(',     ');
     document.querySelector('#race-age').textContent = age;
     document.querySelector('#race-alignment').textContent = alignment;
     document.querySelector("#subraces").textContent = subraces_Array.join(',     ');
     document.querySelector("#bonuses").textContent = bonuses_Array.join(',     ');
-    document.querySelector("#race-skill").textContent = skills_Array.join(',     ');
+//    document.querySelector("#race-skill").textContent = skills_Array.join(',     ');
     console.log("printing");
 }
 
