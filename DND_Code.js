@@ -67,48 +67,41 @@ async function raceAsk(input) {
 
 
 async function printData(data) {
-    console.log(data);
     const { name, speed, ability_bonuses, alignment, age, size_description, starting_proficiencies,
         starting_proficiency_options, language_desc, traits, subraces} = data;
-    console.log("Name: " + name);
-    console.log("speed: " + speed);
-    console.log("size: " + size_description);
-    console.log("age: " + age);
-    console.log("alignment: " + alignment);
-    var bonuses_Array = ability_bonuses.map(function (el) {
-        return el.bonus;
-    });
-    var proficiences_Array = starting_proficiencies.map(function (el) {
+
+    var skills_Array = starting_proficiency_options.from.map(function (el) {
         return el.name;
     });
-    var traits_Array = traits.map(function (el) {
-        return el.name;
-    });
-    var subraces_Array = subraces.map(function (el) {
-        return el.name;
-    });
-    // var skills_Array = starting_proficiency_options.map(function (el) {
-    //     return el.from;
-    // });
-    console.log(bonuses_Array);
-    console.log(proficiences_Array);
-    console.log(traits_Array);
-    console.log(subraces_Array);
-    //console.log(skills_Array);
-    document.querySelector("#results").textContent = traits_Array.join(',     ');
+
+    document.querySelector("#results").textContent = getNames(traits);
     document.querySelector('#name').textContent = name;
     document.querySelector('#speed_race').textContent = speed;
     document.querySelector('#size').textContent = size_description;
     document.querySelector('#race-age').textContent = age;
     document.querySelector('#race-alignment').textContent = alignment;
     document.querySelector('#language').textContent = language_desc;
-    document.querySelector("#weapon").textContent = proficiences_Array.join(',     ');
+    document.querySelector("#weapon").textContent = getNames(starting_proficiencies);
     document.querySelector('#race-age').textContent = age;
     document.querySelector('#race-alignment').textContent = alignment;
-    document.querySelector("#subraces").textContent = subraces_Array.join(',     ');
-    document.querySelector("#bonuses").textContent = bonuses_Array.join(',     ');
-//    document.querySelector("#race-skill").textContent = skills_Array.join(',     ');
+    document.querySelector("#subraces").textContent = getNames(subraces);
+    document.querySelector("#bonuses").textContent = getNumberBonuses(ability_bonuses);//bonuses_Array.join(',     ');
+    document.querySelector("#race-skill").textContent = skills_Array.join(',     ');
     console.log("printing");
+}
+
+function getNames(link) {
+    var array = link.map(function (el) {
+        return el.name;
+    });
+    return array.join(',     ');
+}
+
+function getNumberBonuses(link) {
+    var array = link.map(function (el) {
+        return el.bonus;
+    });
+    return array.join(',     ');
 }
 
 function getOneAbilityScores() {
