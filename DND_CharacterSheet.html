@@ -26,10 +26,10 @@
       <input id="race" value=""> </input>
       <br />
       <div class="dropdown">
-        <button onclick="raceSelect()" class="dropbtn">Race
+        <button onclick="Select()" class="dropbtn">Race
           <i class="fa fa-caret-down"></i>
         </button>
-        <div id="raceDropdown" class="dropdown-content">
+        <div id="Dropdown" class="dropdown-content">
           <ul id="raceList">
             <li value = "dragonborn">dragonborn</li>
             <li value = "dwarf">dwarf</li>
@@ -99,19 +99,60 @@
       <br />
       <button id="submit2">submit</button>
       <br />
+      <div class="dropdown">
+        <button onclick="Select()" class="dropbtn">Class
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <br/>
+        <div id="Dropdown" class="dropdown-content">
+          <ul id="classList">
+            <li value = "barbarian">barbarian</li>
+            <li value = "bard">bard</li>
+            <li value = "cleric">cleric</li>
+            <li value = "druid">druid</li>
+            <li value = "fighter">fighter</li>
+            <li value = "monk">monk</li>
+            <li value = "paladin">paladin</li>
+            <li value = "ranger">ranger</li>
+            <li value = "rogue">rogue</li>
+            <li value = "sorcerer">sorcerer</li>
+            <li value = "warlock">warlock</li>
+            <li value = "wizard">wizard</li>
+          </ul>
+        </div>
+      </div>
+      <br />
       <div id="info_2" class="section" style="border-style:solid">
-        <p>Required Skills:</p>
+        <p>Class:</p>
+        <label id=" class_name"> </label>
+        <br/>
+        <p>Hit Die:</p>
+        <label id=" hit"> </label>
+        <br/>
+        <p>Saving Throw:</p>
+        <label id=" throws"> </label>
+        <br/>
+        <p>Features:</p>
+        <label id=" class_feats"> </label>
+        <p>Starting Skills:</p>
+        <label id=" start_skills"> </label>
         <p>Skills to Choice From:</p>
-        <br />
         <label id="skills"></label>
-        <p>Recommended Weapons:</p>
-        <label id="weapons"></label>
+        <br/>
+        <p>Starter Equiment:</p>
+        <label id="equiment"></label>
         <br />
-        <p>Armor Type:</p>
-        <label id="armor"></label>
+        <p>Recommended Equiment:</p>
+        <label id="preffer_equiment"></label>
+        <br />
+        <p>Equiment Options:</p>
+        <label id="equiment_option"></label>
         <br />
         <p>Starting Spells:</p>
         <label id="spells">Results </label>
+        <br />
+        <p>Spellcasting:</p>
+        <label id="spellscasting">Results </label>
         <br />
         <p>Level Updates:</p>
         <label id="levels">Results </label>
