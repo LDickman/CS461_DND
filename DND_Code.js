@@ -115,7 +115,7 @@ async function printRaceData(data) {
     const { name, speed, ability_bonuses, alignment, age, size_description, starting_proficiencies,
         starting_proficiency_options, language_desc, traits, subraces} = data;
 
-    var proficiency_options_Array
+    //var proficiency_options_Array
     console.log("starting_proficiency_options"+ starting_proficiency_options);
     console.log("starting_proficiencies"+ starting_proficiencies);
 
@@ -138,6 +138,7 @@ async function printRaceData(data) {
     document.querySelector("#weapon").textContent = getNames(starting_proficiencies);
     document.querySelector("#subraces").textContent = getNames(subraces);
     document.querySelector("#bonuses").textContent = getNumberBonuses(ability_bonuses);
+    //document.querySelector("#race-skill").textContent = inDepthSearch(starting_proficiency_options);
     console.log("printing");
 }
 
@@ -146,14 +147,28 @@ async function printClassData(data) {
     const { name, hit_die, proficiency_choices, starting_equipment_options, proficiencies, saving_throws, starting_equipment,
         class_levels, multi_classing, subclasses, spellcasting, spells} = data;
     
-    var skills_Array = proficiency_choices.from.map(function (el) {
-        return el.name;
-    });
-    console.log(skills_Array);
+    var skills_Array
 
-    var equiment_Array = starting_equipment_options.from.map(function (el) {
-        return el.name;
-    });
+    if (proficiency_choices == undefined) {
+        document.querySelector("#skill").textContent = "None";
+    } else {
+        skills_Array = proficiency_choices.from.map(function (el) {
+            return el.name;
+        });
+        document.querySelector("#skill").textContent = skills_Array.join(',     ');
+    }
+    
+    var equiment_Array
+
+    if (starting_equipment_options == undefined) {
+        document.querySelector("#equiment_option").textContent = "None";
+    } else {
+        equiment_Array = starting_equipment_options.from.map(function (el) {
+            return el.name;
+        });
+        document.querySelector("#equiment_option").textContent = equiment_Array.join(',     ');
+    }
+
     console.log(equiment_Array);
     console.log(name);
     console.log(hit_die);
@@ -170,8 +185,8 @@ async function printClassData(data) {
     document.querySelector('#spellscasting').textContent = getNames(spellcasting);
     document.querySelector("#subclasses").textContent = getNames(subclasses);
 
-    document.querySelector("#skill").textContent = skills_Array.join(',     ');
-    document.querySelector("#equiment_option").textContent = equiment_Array.join(',     ');
+   //document.querySelector("#skill").textContent = skills_Array.join(',     ');
+    //document.querySelector("#equiment_option").textContent = equiment_Array.join(',     ');
     console.log("printing page 2");
 
   
@@ -194,20 +209,49 @@ async function printClassData(data) {
 }
 
 function getNames(link) {
-    var array = link.map(function (el) {
-        return el.name;
-    });
-    return array.join(',     ');
+    var empty = "None"
+    if (dataValid(link)) {
+        var array = link.map(function (el) {
+            return el.name;
+        });
+        return array.join(',     ');
+    } else {
+        return empty;
+    }
 }
 
 function getNumberBonuses(link) {
-    var array = link.map(function (el) {
-        return el.bonus;
-    });
-    return array.join(',     ');
+    var empty = "None"
+    if (dataValid(link)) {
+        var array = link.map(function (el) {
+            return el.bonus;
+        });
+        return array.join(',     '); 
+    } else {
+        return empty;
+    }
+}
+
+function inDepthSearch(link) {
+    var empty = "None"
+    if (dataValid(link)) {
+        var array = link.from.map(function (el) {
+            return el.bonus;
+        });
+        return array.join(',     '); 
+    } else {
+        return empty;
+    }
 }
 
 function getOneAbilityScores() {
     return Math.floor(Math.random() * 15);
 }
 
+function dataValid(data) {
+    if (data == undefined) {
+        return false;
+    } else {
+       return true;
+    }
+}
