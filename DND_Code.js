@@ -13,8 +13,13 @@ window.addEventListener('load', (event) => {
 
 /* When the user clicks on the button,
 toggle between hiding and showing the dropdown content */
-function Select() {
-    document.getElementById("Dropdown").classList.toggle("show");
+function raceSelect() {
+    document.getElementById("raceDropdown").classList.toggle("show");
+    console.log("at the dropdowm bar");
+}
+
+function classSelect() {
+    document.getElementById("classDropdown").classList.toggle("show");
     console.log("at the dropdowm bar");
 }
 
@@ -106,12 +111,22 @@ async function classAsk(input) {
 
 
 async function printRaceData(data) {
+    console.log(data);
     const { name, speed, ability_bonuses, alignment, age, size_description, starting_proficiencies,
         starting_proficiency_options, language_desc, traits, subraces} = data;
 
-    var skills_Array = starting_proficiency_options.from.map(function (el) {
-        return el.name;
-    });
+    var proficiency_options_Array
+    console.log("starting_proficiency_options"+ starting_proficiency_options);
+    console.log("starting_proficiencies"+ starting_proficiencies);
+
+    if (starting_proficiency_options == undefined) {
+        document.querySelector("#race-skill").textContent = "None";
+    } else {
+        proficiency_options_Array = starting_proficiency_options.from.map(function (el) {
+            return el.name;
+        });
+        document.querySelector("#race-skill").textContent = proficiency_options_Array.join(',     ');
+    }
 
     document.querySelector("#results").textContent = getNames(traits);
     document.querySelector('#name').textContent = name;
@@ -121,11 +136,8 @@ async function printRaceData(data) {
     document.querySelector('#race-alignment').textContent = alignment;
     document.querySelector('#language').textContent = language_desc;
     document.querySelector("#weapon").textContent = getNames(starting_proficiencies);
-    document.querySelector('#race-age').textContent = age;
-    document.querySelector('#race-alignment').textContent = alignment;
     document.querySelector("#subraces").textContent = getNames(subraces);
-    document.querySelector("#bonuses").textContent = getNumberBonuses(ability_bonuses);//bonuses_Array.join(',     ');
-    document.querySelector("#race-skill").textContent = skills_Array.join(',     ');
+    document.querySelector("#bonuses").textContent = getNumberBonuses(ability_bonuses);
     console.log("printing");
 }
 
@@ -134,12 +146,12 @@ async function printClassData(data) {
     const { name, hit_die, proficiency_choices, starting_equipment_options, proficiencies, saving_throws, starting_equipment,
         class_levels, multi_classing, subclasses, spellcasting, spells} = data;
     
-    var skills_Array = proficiency_choices.map(function (el) {
+    var skills_Array = proficiency_choices.from.map(function (el) {
         return el.name;
     });
     console.log(skills_Array);
 
-    var equiment_Array = starting_equipment_options.map(function (el) {
+    var equiment_Array = starting_equipment_options.from.map(function (el) {
         return el.name;
     });
     console.log(equiment_Array);
