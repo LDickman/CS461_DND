@@ -1,14 +1,15 @@
-//import { async } from "regenerator-runtime";
-
 const api_race = 'https://www.dnd5eapi.co/api/races/';
 const api_classes = 'https://www.dnd5eapi.co/api/classes/';
-//var race = 'human'
+const api_spells =  '/levels/1/spells';
+const api_scores = 'https://www.dnd5eapi.co/api/ability-scores/';
+
 var input;
 
 window.addEventListener('load', (event) => {
     console.log("page is loaded");
     setupPage1();
-   // setupPage2();
+    setupPage2();
+    setupPage4();
 });
 
 /* When the user clicks on the button,
@@ -20,6 +21,16 @@ function raceSelect() {
 
 function classSelect() {
     document.getElementById("classDropdown").classList.toggle("show");
+    console.log("at the dropdowm bar");
+}
+
+function backgroundSelect() {
+    document.getElementById("backgroundDropdown").classList.toggle("show");
+    console.log("at the dropdowm bar");
+}
+
+function alignmentSelect() {
+    document.getElementById("alignmentDropdown").classList.toggle("show");
     console.log("at the dropdowm bar");
 }
 
@@ -39,23 +50,25 @@ window.onclick = function (event) {
 
 async function setupPage1() {
     console.log("starting");
-    var button = document.querySelector('#submit');
-    console.log(input);
-    button.addEventListener('click', (event) => {
-        raceAsk(document.querySelector('#race').value);
-    });
     raceChoice();
-    classChoice();
 }
 
 async function setupPage2() {
     console.log("starting 2");
-    var button = document.querySelector('#submit2');
-    console.log(input);
-    button.addEventListener('click', (event) => {
-        classAsk(document.querySelector('#class').value);
-    });
     classChoice();
+}
+
+async function setupPage4() {
+    console.log("starting 4");
+    var url = api_scores;
+    console.log(url);
+    const response = await fetch(url);
+    const data = await response.json();
+    var button = document.querySelector('#roll');
+    console.log(input);
+    button.addEventListener('click', (event) => { 
+        printAblityScoreData(data);
+    });
 }
 
 function raceChoice() {
@@ -65,7 +78,7 @@ function raceChoice() {
     console.log(items);
     console.log(items[0].textContent);   // knows that textcontext works
     ul.addEventListener("click", function (e) {
-        for (i = 0; i < items.length -1; i++) {
+        for (i = 0; i < items.length - 1; i++) {
             if (e.target == items[i]) {
                 console.log(items[i].textContent);
                 raceAsk(items[i].textContent);
@@ -81,7 +94,7 @@ function classChoice() {
     console.log(items);
     console.log(items[0].textContent);   // knows that textcontext works
     ul.addEventListener("click", function (e) {
-        for (i = 0; i < items.length -1; i++) {
+        for (i = 0; i < items.length - 1; i++) {
             if (e.target == items[i]) {
                 console.log(items[i].textContent);
                 classAsk(items[i].textContent);
@@ -97,7 +110,7 @@ async function raceAsk(input) {
     console.log(url);
     const response = await fetch(url);
     const data = await response.json();
-    printRaceData(data);   
+    printRaceData(data);
 }
 
 async function classAsk(input) {
@@ -106,18 +119,27 @@ async function classAsk(input) {
     console.log(url);
     const response = await fetch(url);
     const data = await response.json();
-    printClassData(data);   
+    printClassData(data);
+    spellsAsk(input);
 }
 
+async function spellsAsk(input) {
+    console.log("Spells for: " + input);
+    var url = api_classes + input + api_spells;
+    console.log(url);
+    const response = await fetch(url);
+    const data = await response.json();
+    printSpellsData(input);
+}
 
 async function printRaceData(data) {
     console.log(data);
     const { name, speed, ability_bonuses, alignment, age, size_description, starting_proficiencies,
-        starting_proficiency_options, language_desc, traits, subraces} = data;
+        starting_proficiency_options, language_desc, traits, subraces } = data;
 
     //var proficiency_options_Array
-    console.log("starting_proficiency_options"+ starting_proficiency_options);
-    console.log("starting_proficiencies"+ starting_proficiencies);
+    console.log("starting_proficiency_options" + starting_proficiency_options);
+    console.log("starting_proficiencies" + starting_proficiencies);
 
     if (starting_proficiency_options == undefined) {
         document.querySelector("#race-skill").textContent = "None";
@@ -144,68 +166,73 @@ async function printRaceData(data) {
 
 async function printClassData(data) {
     console.log(data);
-    const { name, hit_die, proficiency_choices, starting_equipment_options, proficiencies, saving_throws, starting_equipment,
-        class_levels, multi_classing, subclasses, spellcasting, spells} = data;
-    
-    var skills_Array
+    const { name, hit_die, proficiency_choices, starting_equipment_options, proficiencies, saving_throws, starting_equipment, 
+        class_levels, multi_classing, subclasses, spellcasting, spells } = data;
 
-    if (proficiency_choices == undefined) {
-        document.querySelector("#skill").textContent = "None";
-    } else {
-        skills_Array = proficiency_choices.from.map(function (el) {
-            return el.name;
-        });
-        document.querySelector("#skill").textContent = skills_Array.join(',     ');
-    }
-    
-    var equiment_Array
-
-    if (starting_equipment_options == undefined) {
-        document.querySelector("#equiment_option").textContent = "None";
-    } else {
-        equiment_Array = starting_equipment_options.from.map(function (el) {
-            return el.name;
-        });
-        document.querySelector("#equiment_option").textContent = equiment_Array.join(',     ');
-    }
-
-    console.log(equiment_Array);
+    console.log(proficiency_choices);
     console.log(name);
     console.log(hit_die);
 
+    var className = document.getElementById("class_name");
+    var die = document.getElementById('hit');
+    var throwHits = document.getElementById('throws');
+    var startEquiment = document.getElementById('equiment');
+    var wantedEquiment = document.getElementById("preffer_equiment")
+    var casting = document.getElementById('spellscasting');
+    var otherClasses = document.getElementById("subclasses");
+    var skillsNum = document.getElementById("skills");
+    //var equiment_Array;
 
-    document.querySelector('#class_name').textContent = name;
-    document.querySelector('#hit').textContent = hit_die;
-    document.querySelector('#throws').textContent = getNames(saving_throws);
-    
-    document.querySelector('#equiment').textContent = getNames(starting_equipment);;
-   
-    document.querySelector("#preffer_equiment").textContent = getNames(proficiencies);
-    document.querySelector('#spells').textContent = getNames(spells);
-    document.querySelector('#spellscasting').textContent = getNames(spellcasting);
-    document.querySelector("#subclasses").textContent = getNames(subclasses);
+    // if (starting_equipment_options == undefined) {
+    //     document.getElementById("equiment_option").textContent = "None";
+    // } else {
+    //     console.log(starting_equipment_options);
+    //     equiment_Array = starting_equipment_options.from.map(function (el) {
+    //         return el.name;
+    //     });
+    //     document.getElementById("equiment_option").textContent = equiment_Array.join(',     ');
+    // }
 
-   //document.querySelector("#skill").textContent = skills_Array.join(',     ');
-    //document.querySelector("#equiment_option").textContent = equiment_Array.join(',     ');
+    className.textContent = name;
+    die.textContent = hit_die;
+    throwHits.textContent = getNames(saving_throws);
+    startEquiment.textContent = getNames(starting_equipment);
+    console.log(getNumberChoose(proficiency_choices));
+    skillsNum.textContent = getNumberChoose(proficiency_choices);
+    wantedEquiment.textContent = getNames(proficiencies);
+    casting.textContent = getNames(spellcasting);
+    otherClasses.textContent = getNames(subclasses);
+
     console.log("printing page 2");
+}
 
-  
-    // <p>Features:</p>
-    // <label id=" class_feats"> </label>
-    // <p>Starting Skills:</p>
-    // <label id=" start_skills"> </label>
-   
-    // <p>Starting Spells:</p>
-    // <label id="spells">Results </label>
-    // <br />
-    // <p>Starting Spells:</p>
-    // <label id="spells">Results </label>
-    // <br />
-    // <p>Level Updates:</p>
-    // <label id="levels">Results </label>
-    // <br />
-    // <p>Possible Subclasses:</p>
-    // <label id="subclasses">Results </label>
+async function printSpellsData(data) {
+    console.log(data);
+    const { count, results } = data;
+
+    var spellsAllowed = document.getElementById('spells');
+    
+    spellsAllowed.textContent = getNames(results);
+    
+    console.log("printing page 2");
+}
+
+
+async function printAblityScoreData(data) {
+    console.log(data);
+    const { results } = data;
+
+    var url_Array = getNames(results)
+
+    console.log("score: " + rollsForScore());
+    document.getElementById("STR").textContent = rollsForScore();
+    document.getElementById('INT').textContent = rollsForScore();
+    document.getElementById('WIS').textContent = rollsForScore();
+    document.getElementById('CON').textContent = rollsForScore();
+    document.getElementById("DEX").textContent =rollsForScore();
+    document.getElementById('CHAR').textContent = rollsForScore();
+
+    console.log("results");
 }
 
 function getNames(link) {
@@ -220,13 +247,37 @@ function getNames(link) {
     }
 }
 
+function getNames(link) {
+    var empty = "None"
+    if (dataValid(link)) {
+        var array = link.map(function (el) {
+            return el.name;
+        });
+        return array.join(',     ');
+    } else {
+        return empty;
+    }
+}
+
+function getNumberChoose(link) {
+    var empty = "None"
+    if (dataValid(link)) {
+        var array = link.map(function (el) {
+            return el.choose;
+        });
+        return array.join(',     ');
+    } else {
+        return empty;
+    }
+}
+
 function getNumberBonuses(link) {
     var empty = "None"
     if (dataValid(link)) {
         var array = link.map(function (el) {
             return el.bonus;
         });
-        return array.join(',     '); 
+        return array.join(',     ');
     } else {
         return empty;
     }
@@ -238,20 +289,31 @@ function inDepthSearch(link) {
         var array = link.from.map(function (el) {
             return el.bonus;
         });
-        return array.join(',     '); 
+        return array.join(',     ');
     } else {
         return empty;
     }
 }
 
-function getOneAbilityScores() {
-    return Math.floor(Math.random() * 15);
+function rollOneDice() {
+    min = Math.ceil(1);
+    max = Math.floor(6);
+    return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function rollsForScore() {
+    var totalRolls = [];
+    for (var i = 0; i <= 4; i++) {
+        totalRolls.push(rollOneDice())
+    }
+    var sum = totalRolls.reduce((a,b) => a + b, 0)
+    return (sum -1);
 }
 
 function dataValid(data) {
     if (data == undefined) {
         return false;
-    } else {
-       return true;
+    } else if (data != undefined) {
+        return true;
     }
 }

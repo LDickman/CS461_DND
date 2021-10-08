@@ -8,7 +8,6 @@
 </head>
 
 <body>
-  <script src="./DND_Code.js"></script>
   <div class="header">
     <h1>Character Builder</h1>
     <p>D&D 5 Character Creator/Generator</p>
@@ -23,23 +22,21 @@
       <h2>Race:</h2>
       <br />
       <p>Chose your character race from below</p>
-      <input id="race" value=""> </input>
-      <br />
       <div class="dropdown">
         <button onclick="raceSelect()" class="dropbtn">Race
           <i class="fa fa-caret-down"></i>
         </button>
         <div id="raceDropdown" class="dropdown-content">
           <ul id="raceList">
-            <li value = "dragonborn">dragonborn</li>
-            <li value = "dwarf">dwarf</li>
-            <li value = "elf">elf</li>
-            <li value = "gnome">gnome</li>
-            <li value = "half-elf">half-elf</li>
-            <li value = "half-orc">half-orc</li>
-            <li value = "halfling">halfling</li>
-            <li value = "human">human</li>
-            <li value = "tiefling">tiefling</li>
+            <li value="dragonborn">dragonborn</li>
+            <li value="dwarf">dwarf</li>
+            <li value="elf">elf</li>
+            <li value="gnome">gnome</li>
+            <li value="half-elf">half-elf</li>
+            <li value="half-orc">half-orc</li>
+            <li value="halfling">halfling</li>
+            <li value="human">human</li>
+            <li value="tiefling">tiefling</li>
           </ul>
         </div>
       </div>
@@ -56,7 +53,7 @@
         <br />
         <p>Race Description:</p>
         <label id="race-age"> </label>
-        <br/>
+        <br />
         <p>Race Alignment:</p>
         <label id="race-alignment"> </label>
         <br />
@@ -70,14 +67,14 @@
         <label id="language"> </label>
         <br />
         <p>Race Weapons:</p>
-        <label id="weapon"> </label>
+        <label id="weapon"> None </label>
         <br />
         <p>Race Skills:</p>
         <label id="race-skill"> </label>
         <br />
         <p>Race Ability Bonuses:</p>
         <label id="bonuses"> </label>
-        <br/>
+        <br />
         <p>Subraces:</p>
         <label id="subraces"> </label>
       </div>
@@ -95,70 +92,62 @@
         nature of characters in the Dungeons & Dragons role-playing game. A character's capabilities,
         strengths, and weaknesses are largely defined by its class. A character's class affects a character's
         available skills and abilities</p>
-      <input id="class" value=""> </input>
-      <br />
-      <button id="submit2">submit</button>
-      <br />
       <div class="dropdown">
         <button onclick="classSelect()" class="dropbtn">Class
           <i class="fa fa-caret-down"></i>
         </button>
-        <br/>
+        <br />
         <div id="classDropdown" class="dropdown-content">
           <ul id="classList">
-            <li value = "barbarian">barbarian</li>
-            <li value = "bard">bard</li>
-            <li value = "cleric">cleric</li>
-            <li value = "druid">druid</li>
-            <li value = "fighter">fighter</li>
-            <li value = "monk">monk</li>
-            <li value = "paladin">paladin</li>
-            <li value = "ranger">ranger</li>
-            <li value = "rogue">rogue</li>
-            <li value = "sorcerer">sorcerer</li>
-            <li value = "warlock">warlock</li>
-            <li value = "wizard">wizard</li>
+            <li value="barbarian">barbarian</li>
+            <li value="bard">bard</li>
+            <li value="cleric">cleric</li>
+            <li value="druid">druid</li>
+            <li value="fighter">fighter</li>
+            <li value="monk">monk</li>
+            <li value="paladin">paladin</li>
+            <li value="ranger">ranger</li>
+            <li value="rogue">rogue</li>
+            <li value="sorcerer">sorcerer</li>
+            <li value="warlock">warlock</li>
+            <li value="wizard">wizard</li>
           </ul>
         </div>
       </div>
       <br />
       <div id="info_2" class="section" style="border-style:solid">
         <p>Class:</p>
-        <label id=" class_name"> </label>
-        <br/>
+        <label id="class_name"></label>
+        <br />
         <p>Hit Die:</p>
-        <label id=" hit"> </label>
-        <br/>
+        <label id="hit"></label>
+        <br />
         <p>Saving Throw:</p>
-        <label id=" throws"> </label>
-        <br/>
-        <p>Features:</p>
-        <label id=" class_feats"> </label>
+        <label id="throws"></label>
+        <br />
         <p>Starting Skills:</p>
-        <label id=" start_skills"> </label>
-        <p>Skills to Choice From:</p>
-        <label id="skills"></label>
-        <br/>
+        <label id="start_skills"> </label>
+        <p>Number of Skills One can Have:</p>
+        <label id="skills">  </label>
+        <br />
         <p>Starter Equiment:</p>
-        <label id="equiment"></label>
+        <label id="equiment">  </label>
         <br />
         <p>Recommended Equiment:</p>
-        <label id="preffer_equiment"></label>
+        <label id="preffer_equiment">  </label>
         <br />
         <p>Equiment Options:</p>
-        <label id="equiment_option"></label>
+        <label id="equiment_option">  </label>
         <br />
         <p>Starting Spells:</p>
-        <label id="spells">Results </label>
+        <label id="spells"> </label>
         <br />
         <p>Spellcasting:</p>
-        <label id="spellscasting">Results </label>
+        <label id="spellscasting"> </label>
         <br />
-        <p>Level Updates:</p>
-        <label id="levels">Results </label>
+        <p>Subclasses:</p>
+        <label id="subclasses"> </label>
         <br />
-        <p>Possible Subclasses:</p>
-        <label id="subclasses">Results </label>
       </div>
     </div>
   </div>
@@ -169,9 +158,48 @@
       <h2>Background:</h2>
       <br />
       <p>Chose your character background from below</p>
-      <input id="background" value=""> </input>
+      <div class="dropdown">
+        <button onclick="backgroundSelect()" class="dropbtn">Background
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <br />
+        <div id="backgroundDropdown" class="dropdown-content">
+          <ul id="backgroundList">
+            <li value="acolyte">acolyte</li>
+            <li value="criminal">criminal</li>
+            <li value="folk-hero">folk-hero</li>
+            <li value="noble">noble</li>
+            <li value="sage">sage</li>
+            <li value="soldier">soldier</li>
+          </ul>
+        </div>
+      </div>
       <br />
-      <p>Choose your character personality:</p>
+      <p>Choose your character Alignment</p>
+      <p class="alignment_info"> Alignment is a combination of
+        two factors: one identifies morality (good, evil, or neutral),
+        and the other describes attitudes toward society and order (lawful, chaotic, or neutral)</p>
+      <br />
+      <div class="dropdown">
+        <button onclick="alignmentSelect()" class="dropbtn">Alignment
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <br />
+        <div id="alignmentDropdown" class="dropdown-content">
+          <ul id="alignmentList">
+            <li value="chaotic-evil">chaotic-evil</li>
+            <li value="chaotic-good">chaotic-good</li>
+            <li value="chaotic-neutral">chaotic-neutral</li>
+            <li value="lawful-evil">lawful-evil</li>
+            <li value="lawful-good">lawful-good</li>
+            <li value="lawful-neutral">lawful-neutral</li>
+            <li value="neutral">neutral</li>
+            <li value="neutral-evil">neutral-evil</li>
+            <li value="neutral-good">neutral-good</li>
+          </ul>
+        </div>
+      </div>
+      <!-- <p>Choose your character personality:</p>
       <input id="person" value=""> </input>
       <p class="person_info"> Give your character two personality traits. Personality
         traits are small, simple ways to help you set your character apart from every other character</p>
@@ -197,26 +225,18 @@
         flaw represents some vice, compulsion, fear, or weakness—in particular, anything that
         someone else could exploit to bring you to ruin or cause you to act against
         your best interests.</p>
-      <br />
-      <p>Choose your character Alignment</p>
-      <input id="alignment" value=""> </input>
-      <p class="alignment_info"> Alignment is a combination of
-        two factors: one identifies morality (good, evil, or neutral),
-        and the other describes attitudes toward society and order (lawful, chaotic, or neutral)</p>
-      <br />
-      <button id="submit3">submit</button>
-
+      <br /> -->
       <div id="info_3" class="section" style="border-style:solid">
         <p>Required Skills:</p>
-        <label id="skills"></label>
+        <label id="skills_needed"></label>
         <br />
         <p>Languages to Choice From:</p>
-        <label id="languages"></label>
+        <label id="languages_options"></label>
         <p>Preffer Weapons:</p>
-        <label id="weapons"></label>
+        <label id="weapons_options"></label>
         <br />
         <p>Alignment:</p>
-        <label id="alignment">Results </label>
+        <label id="alignment_choice">Results </label>
       </div>
     </div>
   </div>
@@ -245,8 +265,7 @@
       <p>WIS:</p>
       <label id="WIS" value=""> </label>
       <br />
-      <p>CHA:</p>
-      <label id="CHA" value=""> </label>
+      <p>CHA:    <label id="CHA" value=""> </label> </p>
       <br />
       <button id="roll">Roll</button>
 
@@ -288,15 +307,80 @@
       <p>Choose the character's skills and languages.</p>
       <br />
       <p>Pick your character's language from below</p>
-      <input id="speech" value=""> </input>
-      <br />
-      <p>Pick your character's language from below</p>
-      <input id="speech" value=""> </input>
-      <input id="speech2" value=""> </input>
+      <div id="speech_options">
+        <input type="checkbox" id="language1" name="language1" value="">
+        <label for="language1"> I have a bike</label><br>
+        <input type="checkbox" id="language2" name="language2" value="">
+        <label for="language2"> I have a bike</label><br>
+        <input type="checkbox" id="language3" name="language3" value="">
+        <label for="language3"> I have a bike</label><br>
+        <input type="checkbox" id="language4" name="language4" value="">
+        <label for="language4"> I have a bike</label><br>
+        <input type="checkbox" id="language5" name="language5" value="">
+        <label for="language5"> I have a bike</label><br>
+        <input type="checkbox" id="language6" name="language6" value="">
+        <label for="language6"> I have a bike</label><br>
+        <input type="checkbox" id="language7" name="language7" value="">
+        <label for="language7"> I have a bike</label><br>
+        <input type="checkbox" id="language8" name="language8" value="">
+        <label for="language8"> I have a bike</label><br>
+        <input type="checkbox" id="language9" name="language9" value="">
+        <label for="language9"> I have a bike</label><br>
+        <input type="checkbox" id="language10" name="language10" value="">
+        <label for="language10"> I have a bike</label><br>
+        <input type="checkbox" id="language11" name="language11" value="">
+        <label for="language11"> I have a bike</label><br>
+        <input type="checkbox" id="language12" name="language12" value="">
+        <label for="language12"> I have a bike</label><br>
+        <input type="checkbox" id="language13" name="language13" value="">
+        <label for="language13"> I have a bike</label><br>
+        <input type="checkbox" id="language14" name="language14" value="">
+        <label for="language14"> I have a bike</label><br>
+        <input type="checkbox" id="language15" name="language15" value="">
+        <label for="language15"> I have a bike</label><br>
+        <input type="checkbox" id="language16" name="language16" value="">
+        <label for="language16"> I have a bike</label><br>
+      </div>
       <br />
       <p>Pick your character's class skills from below</p>
-      <input id="skill_1" value=""> </input>
-      <input id="skill_2" value=""> </input>
+      <div id="speech_options">
+        <input type="checkbox" id="skill_1" name="skill_1" value="">
+        <label for="skill_1"> I have a bike</label><br>
+        <input type="checkbox" id="skill_2" name="skill_2" value="">
+        <label for="skill_2"> I have a bike</label><br>
+        <input type="checkbox" id="skill_3" name="skill_3" value="">
+        <label for="skill_3"> I have a bike</label><br>
+        <input type="checkbox" id="skill_4" name="skill_4" value="">
+        <label for="skill_4"> I have a bike</label><br>
+        <input type="checkbox" id="skill5" name="skill5" value="">
+        <label for="skill5"> I have a bike</label><br>
+        <input type="checkbox" id="skill_6" name="skill_6" value="">
+        <label for="skill_6"> I have a bike</label><br>
+        <input type="checkbox" id="skill_7" name="skill_7" value="">
+        <label for="skill_7"> I have a bike</label><br>
+        <input type="checkbox" id="skill_8" name="skill_8" value="">
+        <label for="skill_8"> I have a bike</label><br>
+        <input type="checkbox" id="skill_9" name="skill_9" value="">
+        <label for="skill_9"> I have a bike</label><br>
+        <input type="checkbox" id="skill_10" name="skill_10" value="">
+        <label for="skill_10"> I have a bike</label><br>
+        <input type="checkbox" id="skill_11" name="skill_11" value="">
+        <label for="skill_11"> I have a bike</label><br>
+        <input type="checkbox" id="skill_12" name="skill_12" value="">
+        <label for="skill_12"> I have a bike</label><br>
+        <input type="checkbox" id="skill_13" name="skill_13" value="">
+        <label for="skill_13"> I have a bike</label><br>
+        <input type="checkbox" id="skill_14" name="skill_14" value="">
+        <label for="skill_14"> I have a bike</label><br>
+        <input type="checkbox" id="skill_15" name="skill_15" value="">
+        <label for="skill_15"> I have a bike</label><br>
+        <input type="checkbox" id="skill_16" name="skill_16" value="">
+        <label for="skill_16"> I have a bike</label><br>
+        <input type="checkbox" id="skill_17" name="skill_17" value="">
+        <label for="skill_17"> I have a bike</label><br>
+        <input type="checkbox" id="skill_18" name="skill_18" value="">
+        <label for="skill_18"> I have a bike</label><br>
+      </div>
       <br />
       <p>Pick your character's background skills from below</p>
       <input id="skill_3" value=""> </input>
@@ -350,13 +434,13 @@
       <p>Pick your character's armor from below</p>
       <input id="armor" value=""> </input>
       <input id="sheild" value=""> </input>
-      <br />
+      <!-- <br />
       <p>Pick your character's pack from below</p>
       <input id="pack" value=""> </input>>
       <br />
       <p>Extra Tools:</p>
       <input id="tool_1" value=""> </input>>
-      <input id="tool_2" value=""> </input>>
+      <input id="tool_2" value=""> </input>> -->
 
       <div id="info_7" class="section" style="border-style:solid">
         <p>Weapon:</p>
@@ -365,12 +449,13 @@
         <p>Armor:</p>
         <label id="armor_info"></label>
         <br />
-        <p>Package:</p>
-        <label id="pack_info"></label>
+        <!-- <p>Package:</p>
+        <label id="pack_info"></label> -->
       </div>
     </div>
   </div>
 
+  <script src="./DND_Code.js"></script>
   <script>
     var pages = document.querySelectorAll("div.access");
     var pagesArr = Array.from(pages);
@@ -409,7 +494,6 @@
       });
     });
   </script>
-
 </body>
 
 </html>
