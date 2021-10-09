@@ -2,6 +2,7 @@ const api_race = 'https://www.dnd5eapi.co/api/races/';
 const api_classes = 'https://www.dnd5eapi.co/api/classes/';
 const api_spells =  '/levels/1/spells';
 const api_scores = 'https://www.dnd5eapi.co/api/ability-scores/';
+const api_alignment = 'https://www.dnd5eapi.co/api/alignment';
 
 var input;
 
@@ -129,7 +130,7 @@ async function spellsAsk(input) {
     console.log(url);
     const response = await fetch(url);
     const data = await response.json();
-    printSpellsData(input);
+    printSpellsData(data);
 }
 
 async function printRaceData(data) {
@@ -137,9 +138,6 @@ async function printRaceData(data) {
     const { name, speed, ability_bonuses, alignment, age, size_description, starting_proficiencies,
         starting_proficiency_options, language_desc, traits, subraces } = data;
 
-    //var proficiency_options_Array
-    console.log("starting_proficiency_options" + starting_proficiency_options);
-    console.log("starting_proficiencies" + starting_proficiencies);
 
     if (starting_proficiency_options == undefined) {
         document.querySelector("#race-skill").textContent = "None";
@@ -160,23 +158,22 @@ async function printRaceData(data) {
     document.querySelector("#weapon").textContent = getNames(starting_proficiencies);
     document.querySelector("#subraces").textContent = getNames(subraces);
     document.querySelector("#bonuses").textContent = getNumberBonuses(ability_bonuses);
-    //document.querySelector("#race-skill").textContent = inDepthSearch(starting_proficiency_options);
     console.log("printing");
 }
 
 async function printClassData(data) {
     console.log(data);
-    const { name, hit_die, proficiency_choices, starting_equipment_options, proficiencies, saving_throws, starting_equipment, 
+    const { index, name, hit_die, proficiency_choices, starting_equipment_options, proficiencies, saving_throws, starting_equipment, 
         class_levels, multi_classing, subclasses, spellcasting, spells } = data;
 
     console.log(proficiency_choices);
     console.log(name);
     console.log(hit_die);
-
+    
     var className = document.getElementById("class_name");
     var die = document.getElementById('hit');
     var throwHits = document.getElementById('throws');
-    var startEquiment = document.getElementById('equiment');
+    // var startEquiment = document.getElementById('equiment');
     var wantedEquiment = document.getElementById("preffer_equiment")
     var casting = document.getElementById('spellscasting');
     var otherClasses = document.getElementById("subclasses");
@@ -196,25 +193,25 @@ async function printClassData(data) {
     className.textContent = name;
     die.textContent = hit_die;
     throwHits.textContent = getNames(saving_throws);
-    startEquiment.textContent = getNames(starting_equipment);
+    // startEquiment.textContent = getNames(starting_equipment);
     console.log(getNumberChoose(proficiency_choices));
     skillsNum.textContent = getNumberChoose(proficiency_choices);
     wantedEquiment.textContent = getNames(proficiencies);
-    casting.textContent = getNames(spellcasting);
+    console.log(spellcasting);
+    casting.textContent = getInfoNames(spellcasting);
     otherClasses.textContent = getNames(subclasses);
 
     console.log("printing page 2");
 }
 
 async function printSpellsData(data) {
-    console.log(data);
     const { count, results } = data;
 
     var spellsAllowed = document.getElementById('spells');
     
     spellsAllowed.textContent = getNames(results);
     
-    console.log("printing page 2");
+    console.log("printing page 2 in print spells");
 }
 
 
@@ -222,15 +219,15 @@ async function printAblityScoreData(data) {
     console.log(data);
     const { results } = data;
 
-    var url_Array = getNames(results)
+    var Str_des = document.getElementById('STR_des');
+    Str_des = getNames(results);
 
-    console.log("score: " + rollsForScore());
     document.getElementById("STR").textContent = rollsForScore();
     document.getElementById('INT').textContent = rollsForScore();
     document.getElementById('WIS').textContent = rollsForScore();
     document.getElementById('CON').textContent = rollsForScore();
-    document.getElementById("DEX").textContent =rollsForScore();
-    document.getElementById('CHAR').textContent = rollsForScore();
+    document.getElementById("DEX").textContent = rollsForScore();
+    document.getElementById('CHA').textContent = rollsForScore();
 
     console.log("results");
 }
@@ -247,10 +244,10 @@ function getNames(link) {
     }
 }
 
-function getNames(link) {
+function getInfoNames(link) {
     var empty = "None"
     if (dataValid(link)) {
-        var array = link.map(function (el) {
+        var array = link.info.map(function (el) {
             return el.name;
         });
         return array.join(',     ');
@@ -283,18 +280,6 @@ function getNumberBonuses(link) {
     }
 }
 
-function inDepthSearch(link) {
-    var empty = "None"
-    if (dataValid(link)) {
-        var array = link.from.map(function (el) {
-            return el.bonus;
-        });
-        return array.join(',     ');
-    } else {
-        return empty;
-    }
-}
-
 function rollOneDice() {
     min = Math.ceil(1);
     max = Math.floor(6);
@@ -303,11 +288,15 @@ function rollOneDice() {
 
 function rollsForScore() {
     var totalRolls = [];
-    for (var i = 0; i <= 4; i++) {
+    for (var i = 0; i <= 3; i++) {
         totalRolls.push(rollOneDice())
     }
+    
     var sum = totalRolls.reduce((a,b) => a + b, 0)
-    return (sum -1);
+    if (sum > 18) {
+        sum = 18;
+    }
+    return (sum);
 }
 
 function dataValid(data) {
