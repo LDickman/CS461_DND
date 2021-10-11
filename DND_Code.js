@@ -3,7 +3,8 @@ const api_classes = 'https://www.dnd5eapi.co/api/classes/';
 const api_spells = '/levels/1/spells';
 const api_scores = 'https://www.dnd5eapi.co/api/ability-scores/';
 const api_alignment = 'https://www.dnd5eapi.co/api/alignments/';
-const api_background = 'https://www.dnd5eapi.co/api/backgrounds/'
+const api_background = 'https://www.dnd5eapi.co/api/backgrounds/';
+const api_language = 'https://www.dnd5eapi.co/api/languages';
 
 // const race_input;
 // const background_input;
@@ -211,6 +212,25 @@ async function abilityAsk(input) {
     getAblityScore(data);
 }
 
+async function languageAsk(input) {
+    console.log("lanage: " + input);
+    //race_input = input;
+    var url = api_language +'/'+ input;
+    console.log(url);
+    const response = await fetch(url);
+    const data = await response.json();
+    printLanguageData(data);
+}
+
+// async function setLanguageList() {
+//     //race_input = input;
+//     var url = api_language;
+//     console.log(url);
+//     const response = await fetch(url);
+//     const data = await response.json();
+//     selectLanguageOptions(data);
+// }
+
 async function printRaceData(data) {
     console.log(data);
     const { name, speed, ability_bonuses, alignment, age, size_description, starting_proficiencies,
@@ -244,7 +264,7 @@ async function printClassData(data) {
     const { index, name, hit_die, proficiency_choices, starting_equipment_options, proficiencies, saving_throws, starting_equipment,
         class_levels, multi_classing, subclasses, spellcasting, spells } = data;
 
-    console.log(proficiency_choices);
+    //selectSkillsOptions(proficiency_choices); //// Having issues with 
     console.log(name);
     console.log(hit_die);
 
@@ -410,9 +430,9 @@ async function printAblityScoreInfo() {
 }
 
 async function getAblityScore(data) {
-    console.log(data);
+    //console.log(data);
     const { desc, skills } = data;
-    console.log(desc);
+    //console.log(desc);
     // var text = desc.toString();
     // console.log(text);
     return desc;
@@ -427,6 +447,11 @@ async function getAblityScore(data) {
     // }, 5000);
 }
 
+async function printLanguageData(data) {
+    const {typical_speakers} = data
+    document.getElementById("lang_des").textContent = typical_speakers;
+}
+
 function getNames(link) {
     var empty = "None"
     if (dataValid(link)) {
@@ -437,6 +462,27 @@ function getNames(link) {
     } else {
         return empty;
     }
+}
+
+function selectSkillsOptions(link){
+    //proficiency_choices
+    console.log(link);
+    var array = link.includes('from');
+    console.log(array);
+    var proficiency_options_Array = link.from.map(function (el) {
+        return el.name;
+    });
+    // var array = proficiency_options_Array.map(function (el) {
+    //     return el.name;
+    // });
+    console.log(proficiency_options_Array);
+    //console.log("Choices "+ proficiency_options_Array); 
+    let list = document.getElementById("skilsList");
+    link.forEach((item) => {
+        let  = document.createElement("li");
+        li.innerText = item;
+        list.appendChild(li);
+      });
 }
 
 function getInfoNames(link) {
