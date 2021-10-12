@@ -456,13 +456,26 @@ async function printLanguageData(data) {
 
 async function printBonusData(data) {
     console.log(data);
-    var array = getNames(getNameBonuses(data));
-    console.log("Bonus " + array);
-    for (var i = 0; i < array.length; i++) {
-        if (array[i] == "CON") {
-
-        } else if (array[i] == "CON"){
-            
+    var array = getNameBonuses(data);
+    console.log(array[0]);
+    var array_BounusName = getArray(array);
+    console.log(array_BounusName[0]);
+    var array_Bounus = getArrayOfNumberBonuses(data);
+    console.log("Bonus " + array_BounusName);
+    console.log("Number Bonus " + array_Bounus);
+    for (var i = 0; i < array_BounusName.length; i++) {
+        if (array_BounusName[i] == "CON") {
+            document.getElementById("CON_bonus").textContent = array_Bounus[i];
+        } else if (array_BounusName[i] == "CHA"){
+            document.getElementById("CHA_bonus").textContent = array_Bounus[i];
+        } else if (array_BounusName[i] == "DEX"){
+            document.getElementById("DEX_bonus").textContent = array_Bounus[i];
+        } else if (array_BounusName[i] == "STR"){
+            document.getElementById("STR_bonus").textContent = array_Bounus[i];
+        } else if (array_BounusName[i] == "INT"){
+            document.getElementById("INT_bonus").textContent = array_Bounus[i];
+        } else if (array_BounusName[i] == "WIS"){
+            document.getElementById("WIS_bonus").textContent = array_Bounus[i];
         }
     }
     
@@ -477,6 +490,18 @@ function getNames(link) {
             return el.name;
         });
         return array.join(',     ');
+    } else {
+        return empty;
+    }
+}
+
+function getArray(link) {
+    var empty = "None"
+    if (dataValid(link)) {
+        var array = link.map(function (el) {
+            return el.name;
+        });
+        return array;//.join(',     ');
     } else {
         return empty;
     }
@@ -539,13 +564,25 @@ function getNumberBonuses(link) {
     }
 }
 
+function getArrayOfNumberBonuses(link) {
+    var empty = "None"
+    if (dataValid(link)) {
+        var array = link.map(function (el) {
+            return el.bonus;
+        });
+        return array;//.join(',     ');
+    } else {
+        return empty;
+    }
+}
+
 function getNameBonuses(link) {
     var empty = "None"
     if (dataValid(link)) {
         var array = link.map(function (el) {
             return el.ability_score;
         });
-        return array.join(',     ');
+        return array;//.join(',     ');
     } else {
         return empty;
     }
