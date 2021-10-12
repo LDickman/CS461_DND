@@ -256,6 +256,7 @@ async function printRaceData(data) {
     document.querySelector("#weapon").textContent = getNames(starting_proficiencies);
     document.querySelector("#subraces").textContent = getNames(subraces);
     document.querySelector("#bonuses").textContent = getNumberBonuses(ability_bonuses);
+    printBonusData(ability_bonuses);
     console.log("printing");
 }
 
@@ -399,7 +400,7 @@ async function printAblityScoreInfo() {
 
     setTimeout(function () {
         str_des.textContent = str_output.toString();
-        console.log(str_output.toString());
+        console.log(str_output.toString());          //// DON"T UNDERSTAND WHY IT WON'T WORK
         wis_des.textContent = wis_output.toString();
         cha_des.textContent = cha_output.toString();
         con_des.textContent = con_output.toString();
@@ -451,6 +452,23 @@ async function printLanguageData(data) {
     const {typical_speakers} = data
     document.getElementById("lang_des").textContent = typical_speakers;
 }
+
+
+async function printBonusData(data) {
+    console.log(data);
+    var array = getNames(getNameBonuses(data));
+    console.log("Bonus " + array);
+    for (var i = 0; i < array.length; i++) {
+        if (array[i] == "CON") {
+
+        } else if (array[i] == "CON"){
+            
+        }
+    }
+    
+    //document.getElementById("CHA_bonus").textContent = typical_speakers;
+}
+
 
 function getNames(link) {
     var empty = "None"
@@ -514,6 +532,18 @@ function getNumberBonuses(link) {
     if (dataValid(link)) {
         var array = link.map(function (el) {
             return el.bonus;
+        });
+        return array.join(',     ');
+    } else {
+        return empty;
+    }
+}
+
+function getNameBonuses(link) {
+    var empty = "None"
+    if (dataValid(link)) {
+        var array = link.map(function (el) {
+            return el.ability_score;
         });
         return array.join(',     ');
     } else {
