@@ -5,6 +5,8 @@ const api_scores = 'https://www.dnd5eapi.co/api/ability-scores/';
 const api_alignment = 'https://www.dnd5eapi.co/api/alignments/';
 const api_background = 'https://www.dnd5eapi.co/api/backgrounds/';
 const api_language = 'https://www.dnd5eapi.co/api/languages';
+const api_OneSpell = 'https://www.dnd5eapi.co/api/spells/';
+const api_equiment = 'https://www.dnd5eapi.co/api/equipment-categories/'
 
 // const race_input;
 // const background_input;
@@ -18,6 +20,8 @@ window.addEventListener('load', (event) => {
     setupPage2();
     setupPage3();
     setupPage4();
+    setupPage6();
+    setupPage7();
 });
 
 /* When the user clicks on the button,
@@ -39,6 +43,16 @@ function backgroundSelect() {
 
 function alignmentSelect() {
     document.getElementById("alignmentDropdown").classList.toggle("show");
+    console.log("at the dropdowm bar");
+}
+
+function weaponSelect() {
+    document.getElementById("weaponDropdown").classList.toggle("show");
+    console.log("at the dropdowm bar");
+}
+
+function spellSelect() {
+    document.getElementById("spellDropdown").classList.toggle("show");
     console.log("at the dropdowm bar");
 }
 
@@ -78,6 +92,16 @@ async function setupPage4() {
         printAblityScoreData();
     });
     printAblityScoreInfo();
+}
+
+async function setupPage6() {
+    console.log("starting 6");
+    spellChoice();
+}
+
+async function setupPage7() {
+    console.log("starting 7");
+    weaponChoice();
 }
 
 function raceChoice() {
@@ -144,6 +168,35 @@ function alignmentChoice() {
     });
 }
 
+function weaponChoice() {
+    var ul = document.getElementById('weaponList');
+    console.log(ul);
+    var items = ul.getElementsByTagName('li');
+    console.log(items);
+    ul.addEventListener("click", function (e) {
+        for (i = 0; i < items.length; i++) {
+            if (e.target == items[i]) {
+                console.log(items[i].textContent);
+                equimentAsk(items[i].textContent);
+            }
+        }
+    });
+}
+
+function spellChoice() {
+    var ul = document.getElementById('spellList');
+    console.log(ul);
+    var items = ul.getElementsByTagName('li');
+    console.log(items);
+    ul.addEventListener("click", function (e) {
+        for (i = 0; i < items.length; i++) {
+            if (e.target == items[i]) {
+                console.log(items[i].textContent);
+                certianSpellsAsk(items[i].textContent);
+            }
+        }
+    });
+}
 
 async function raceAsk(input) {
     console.log("Race: " + input);
@@ -203,6 +256,33 @@ async function spellsAsk(input) {
     printSpellsData(data);
 }
 
+async function certianSpellsAsk(input) {
+    console.log("Spells: " + input);
+    var url = api_OneSpell + input;
+    console.log(url);
+    const response = await fetch(url);
+    const data = await response.json();
+    printInfo_One_Spell(data);
+}
+
+// async function proficienciesAsk(input) {
+//     console.log("Proficiencies for: " + input);
+//     var url = api_classes + input + api_proficiencies;
+//     console.log(url);
+//     const response = await fetch(url);
+//     const data = await response.json();
+//     printListOfEquimentOptions(data);
+// }
+
+async function equimentAsk(input) {
+    console.log("Equiment for: " + input);
+    var url = api_equiment + input;
+    console.log(url);
+    const response = await fetch(url);
+    const data = await response.json();
+    printEquimentData(data);
+}
+
 async function abilityAsk(input) {
     console.log("Ability for: " + input);
     var url = api_scores + input;
@@ -215,7 +295,7 @@ async function abilityAsk(input) {
 async function languageAsk(input) {
     console.log("lanage: " + input);
     //race_input = input;
-    var url = api_language +'/'+ input;
+    var url = api_language + '/' + input;
     console.log(url);
     const response = await fetch(url);
     const data = await response.json();
@@ -268,6 +348,9 @@ async function printClassData(data) {
     //selectSkillsOptions(proficiency_choices); //// Having issues with 
     console.log(name);
     console.log(hit_die);
+    // if (spells != undefined) {
+    //     spellsAsk(spells);
+    // }
 
     var className = document.getElementById("class_name");
     var die = document.getElementById('hit');
@@ -296,6 +379,7 @@ async function printClassData(data) {
     console.log(getNumberChoose(proficiency_choices));
     skillsNum.textContent = getNumberChoose(proficiency_choices);
     wantedEquiment.textContent = getNames(proficiencies);
+    createListOfEquimentOptions(proficiencies);
     console.log(spellcasting);
     casting.textContent = getInfoNames(spellcasting);
     otherClasses.textContent = getNames(subclasses);
@@ -310,7 +394,32 @@ async function printSpellsData(data) {
 
     spellsAllowed.textContent = getNames(results);
 
+    var spellRange = document.getElementById('spell_range');
+    var spellInfo = document.getElementById('spell_info');
+    var spellName = document.getElementById('spell_name');
+
+    if (count != 0) {
+        createListOfSpellOptions(results);
+    } else {
+        spellName.textContent = "None";
+        spellInfo.textContent = "None";
+        spellRange.textContent = "None";
+    }
     console.log("printing page 2 in print spells");
+}
+
+async function printInfo_One_Spell(data) {
+    console.log(data);
+    const { name, desc, range } = data;
+
+    console.log(name);
+    var spellRange = document.getElementById('spell_range');
+    var spellInfo = document.getElementById('spell_info');
+    var spellName = document.getElementById('spell_name');
+
+    spellName.textContent = name;
+    spellInfo.textContent = desc;
+    spellRange.textContent = range;
 }
 
 async function printAlignmentData(data) {
@@ -449,7 +558,7 @@ async function getAblityScore(data) {
 }
 
 async function printLanguageData(data) {
-    const {typical_speakers} = data
+    const { typical_speakers } = data
     document.getElementById("lang_des").textContent = typical_speakers;
 }
 
@@ -458,7 +567,7 @@ async function printBonusData(data) {
     console.log(data);
     var array = getNameBonuses(data);
     console.log(array[0]);
-    var array_BounusName = getArray(array);
+    var array_BounusName = getArrayOfNames(array);
     console.log(array_BounusName[0]);
     var array_Bounus = getArrayOfNumberBonuses(data);
     console.log("Bonus " + array_BounusName);
@@ -466,22 +575,53 @@ async function printBonusData(data) {
     for (var i = 0; i < array_BounusName.length; i++) {
         if (array_BounusName[i] == "CON") {
             document.getElementById("CON_bonus").textContent = array_Bounus[i];
-        } else if (array_BounusName[i] == "CHA"){
+        } else if (array_BounusName[i] == "CHA") {
             document.getElementById("CHA_bonus").textContent = array_Bounus[i];
-        } else if (array_BounusName[i] == "DEX"){
+        } else if (array_BounusName[i] == "DEX") {
             document.getElementById("DEX_bonus").textContent = array_Bounus[i];
-        } else if (array_BounusName[i] == "STR"){
+        } else if (array_BounusName[i] == "STR") {
             document.getElementById("STR_bonus").textContent = array_Bounus[i];
-        } else if (array_BounusName[i] == "INT"){
+        } else if (array_BounusName[i] == "INT") {
             document.getElementById("INT_bonus").textContent = array_Bounus[i];
-        } else if (array_BounusName[i] == "WIS"){
+        } else if (array_BounusName[i] == "WIS") {
             document.getElementById("WIS_bonus").textContent = array_Bounus[i];
         }
     }
-    
-    //document.getElementById("CHA_bonus").textContent = typical_speakers;
+
 }
 
+
+async function createListOfEquimentOptions(data) {
+    console.log(data);
+    var array_weapons = getArrayOfIndexs(data);
+    console.log("array_weapons " + array_weapons)
+    // var array_certain_weapons;
+    // console.log(array_weapons[0]);
+    // var url;
+    // for (var i = 0; i < array_weapons.length; i++) {
+    //     url = equimentAsk(array_weapons[i]);
+    //     console.log(url);
+    //     array_certain_weapons.push(url); 
+    // }
+    let list = document.getElementById("weaponList");
+    array_weapons.forEach((item) => {
+        let li = document.createElement("li");
+        li.innerText = item;
+        list.appendChild(li);
+    })
+}
+
+async function createListOfSpellOptions(data) {
+    console.log(data);
+    var array_spells = getArrayOfIndexs(data);
+    console.log("array_spells " + array_spells)
+    let list = document.getElementById("spellList");
+    array_spells.forEach((item) => {
+        let li = document.createElement("li");
+        li.innerText = item;
+        list.appendChild(li);
+    })
+}
 
 function getNames(link) {
     var empty = "None"
@@ -495,7 +635,7 @@ function getNames(link) {
     }
 }
 
-function getArray(link) {
+function getArrayOfNames(link) {
     var empty = "None"
     if (dataValid(link)) {
         var array = link.map(function (el) {
@@ -507,7 +647,19 @@ function getArray(link) {
     }
 }
 
-function selectSkillsOptions(link){
+function getArrayOfIndexs(link) {
+    var empty = "None"
+    if (dataValid(link)) {
+        var array = link.map(function (el) {
+            return el.index;
+        });
+        return array;//.join(',     ');
+    } else {
+        return empty;
+    }
+}
+
+function selectSkillsOptions(link) {
     //proficiency_choices
     console.log(link);
     var array = link.includes('from');
@@ -522,10 +674,10 @@ function selectSkillsOptions(link){
     //console.log("Choices "+ proficiency_options_Array); 
     let list = document.getElementById("skilsList");
     link.forEach((item) => {
-        let  = document.createElement("li");
+        let = document.createElement("li");
         li.innerText = item;
         list.appendChild(li);
-      });
+    });
 }
 
 function getInfoNames(link) {

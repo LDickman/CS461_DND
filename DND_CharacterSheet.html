@@ -425,16 +425,29 @@
   <div id="page_6">
     <div class="access" style="display:none">
       <h2>Known Spells:</h2>
-      <p>Choose the character's weapons, aromor, and pack.</p>
+      <p>Choose your Character's Spells. 
+          (If any.)</p>
       <br />
       <p>Pick your character's spells from below</p>
-      <input id="spell_1" value=""> </input>
-      <input id="spell_2" value=""> </input>
-      <input id="spell_3" value=""> </input>>
+      <div class="dropdown">
+        <button onclick="spellSelect()" class="dropbtn">Spell
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <br />
+        <div id="spellDropdown" class="dropdown-content">
+          <ul id="spellList"> </ul>
+        </div>
+      </div>
 
       <div id="info_6" class="section" style="border-style:solid">
+        <p>Spell:</p>
+        <label id="spell_name"></label>
+        <br/>
         <p>Spell Information:</p>
         <label id="spell_info"></label>
+        <br/>
+        <p>Spell Range:</p>
+        <label id="spell_range"></label>
         <br />
       </div>
     </div>
@@ -450,9 +463,16 @@
       <input id="money" value=""> </input>
       <br />
       <p>Pick your character's weapon from below</p>
-      <input id="weapon" value=""> </input>
-      <input id="weapon_2" value=""> </input>
-      <br />
+      <div class="dropdown">
+        <button onclick="weaponSelect()" class="dropbtn">Weapon
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <br />
+        <div id="weaponDropdown" class="dropdown-content">
+          <ul id="weaponList"> </ul>
+        </div>
+      </div>
+      <br/>
       <p>Pick your character's armor from below</p>
       <input id="armor" value=""> </input>
       <input id="sheild" value=""> </input>
