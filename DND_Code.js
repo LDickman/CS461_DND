@@ -6,7 +6,8 @@ const api_alignment = 'https://www.dnd5eapi.co/api/alignments/';
 const api_background = 'https://www.dnd5eapi.co/api/backgrounds/';
 const api_language = 'https://www.dnd5eapi.co/api/languages';
 const api_OneSpell = 'https://www.dnd5eapi.co/api/spells/';
-const api_equiment = 'https://www.dnd5eapi.co/api/equipment-categories/'
+const api_equiment = 'https://www.dnd5eapi.co/api/equipment-categories/';
+const api_skill = 'https://www.dnd5eapi.co/api/skills/';
 
 // const race_input;
 // const background_input;
@@ -56,6 +57,11 @@ function spellSelect() {
     console.log("at the dropdowm bar");
 }
 
+function skillSelect() {
+    document.getElementById("skillDropdown").classList.toggle("show");
+    console.log("at the dropdowm bar");
+}
+
 // Close the dropdown menu if the user clicks outside of it
 window.onclick = function (event) {
     if (!event.target.matches('.dropbtn')) {
@@ -87,11 +93,16 @@ async function setupPage3() {
 }
 
 async function setupPage4() {
+    printAblityScoreInfo();
     var button = document.querySelector('#roll');
     button.addEventListener('click', (event) => {
         printAblityScoreData();
     });
-    printAblityScoreInfo();
+}
+
+async function setupPage5() {
+    console.log("starting 5");
+    skillChoice();
 }
 
 async function setupPage6() {
@@ -183,6 +194,21 @@ function weaponChoice() {
     });
 }
 
+function skillChoice() {
+    var ul = document.getElementById('skillList');
+    console.log(ul);
+    var items = ul.getElementsByTagName('li');
+    console.log(items);
+    ul.addEventListener("click", function (e) {
+        for (i = 0; i < items.length; i++) {
+            if (e.target == items[i]) {
+                console.log(items[i].textContent);
+                skillAsk(items[i].textContent);
+            }
+        }
+    });
+}
+
 function spellChoice() {
     var ul = document.getElementById('spellList');
     console.log(ul);
@@ -198,23 +224,26 @@ function spellChoice() {
     });
 }
 
-async function raceAsk(input) {
-    console.log("Race: " + input);
-    //race_input = input;
-    var url = api_race + input;
-    console.log(url);
+/// Function that returns the from API
+async function fetchDataFromAPI(url) {
     const response = await fetch(url);
     const data = await response.json();
+    console.log(data);
+    return data;
+}
+
+async function raceAsk(input) {
+    console.log("Race: " + input);
+    var url = api_race + input;
+    console.log(url);
+    const data = await fetchDataFromAPI(url);
     printRaceData(data);
 }
 
 async function classAsk(input) {
     console.log("Class: " + input);
     var url = api_classes + input;
-    // class_input = input;
-    console.log(url);
-    const response = await fetch(url);
-    const data = await response.json();
+    const data = await fetchDataFromAPI(url);
     printClassData(data);
     spellsAsk(input);
 }
@@ -225,24 +254,19 @@ async function backgroundAsk(input) {
     } else {
         console.log("Class: " + input);
         var url = api_background + input;
-        // background_input = input;
         console.log(url);
-        const response = await fetch(url);
-        const data = await response.json();
+        const data = await fetchDataFromAPI(url);
         printBackgroundData(data);
     }
 }
 
 async function alignmentAsk(input) {
+    console.log("alignment: " + input);
     if (input == "None") {
         document.getElementById("alignment_choice").textContent = "None";
     } else {
-        console.log("alignment: " + input);
         var url = api_alignment + input;
-        //aligemnt_input = input;
-        console.log(url);
-        const response = await fetch(url);
-        const data = await response.json();
+        const data = await fetchDataFromAPI(url);
         printAlignmentData(data);
     }
 }
@@ -250,19 +274,22 @@ async function alignmentAsk(input) {
 async function spellsAsk(input) {
     console.log("Spells for: " + input);
     var url = api_classes + input + api_spells;
-    console.log(url);
-    const response = await fetch(url);
-    const data = await response.json();
+    const data = await fetchDataFromAPI(url);
     printSpellsData(data);
 }
 
 async function certianSpellsAsk(input) {
     console.log("Spells: " + input);
     var url = api_OneSpell + input;
-    console.log(url);
-    const response = await fetch(url);
-    const data = await response.json();
+    const data = await fetchDataFromAPI(url);
     printInfo_One_Spell(data);
+}
+
+async function skillAsk(input) {
+    console.log("Skill: " + input);
+    var url = api_skill + input;
+    const data = await fetchDataFromAPI(url);
+    printSkillsData(data);
 }
 
 // async function proficienciesAsk(input) {
@@ -277,33 +304,25 @@ async function certianSpellsAsk(input) {
 async function equimentAsk(input) {
     console.log("Equiment for: " + input);
     var url = api_equiment + input;
-    console.log(url);
-    const response = await fetch(url);
-    const data = await response.json();
+    const data = await fetchDataFromAPI(url);
     printEquimentData(data);
 }
 
 async function abilityAsk(input) {
     console.log("Ability for: " + input);
     var url = api_scores + input;
-    //console.log(url);
-    const response = await fetch(url);
-    const data = await response.json();
-    getAblityScore(data);
+    const data = await fetchDataFromAPI(url);
+    getAblityScore(data, input);
 }
 
 async function languageAsk(input) {
     console.log("lanage: " + input);
-    //race_input = input;
     var url = api_language + '/' + input;
-    console.log(url);
-    const response = await fetch(url);
-    const data = await response.json();
+    const data = await fetchDataFromAPI(url);
     printLanguageData(data);
 }
 
 // async function setLanguageList() {
-//     //race_input = input;
 //     var url = api_language;
 //     console.log(url);
 //     const response = await fetch(url);
@@ -325,6 +344,8 @@ async function printRaceData(data) {
         });
         document.querySelector("#race-skill").textContent = proficiency_options_Array.join(',     ');
     }
+
+    console.log("Name " + name);
 
     document.querySelector("#results").textContent = getNames(traits);
     document.querySelector('#name').textContent = name;
@@ -348,34 +369,36 @@ async function printClassData(data) {
     //selectSkillsOptions(proficiency_choices); //// Having issues with 
     console.log(name);
     console.log(hit_die);
-    // if (spells != undefined) {
-    //     spellsAsk(spells);
-    // }
+   
+    console.log(proficiency_choices);
+    var array_skills = proficiency_choices.map(function (el) {
+        return el.from;
+    });
+    console.log("array_skills ");
+    console.log(array_skills);
+    var array_Skill_Names = new Array;
+    for (var i = 0; i < array_skills.length; i++) {
+        array_Skill_Names.push(getArrayOfIndexs(array_skills[i]));
+        //console.log(array_skills[i]);
+        console.log(getArrayOfIndexs(array_skills[i]));
+    }
+    console.log("array_Skill_Names");
+    console.log(array_Skill_Names);
 
+    createListOfProficiencyOptions(array_Skill_Names);
     var className = document.getElementById("class_name");
     var die = document.getElementById('hit');
     var throwHits = document.getElementById('throws');
-    // var startEquiment = document.getElementById('equiment');
+
     var wantedEquiment = document.getElementById("preffer_equiment")
     var casting = document.getElementById('spellscasting');
     var otherClasses = document.getElementById("subclasses");
     var skillsNum = document.getElementById("skills");
-    //var equiment_Array;
-
-    // if (starting_equipment_options == undefined) {
-    //     document.getElementById("equiment_option").textContent = "None";
-    // } else {
-    //     console.log(starting_equipment_options);
-    //     equiment_Array = starting_equipment_options.from.map(function (el) {
-    //         return el.name;
-    //     });
-    //     document.getElementById("equiment_option").textContent = equiment_Array.join(',     ');
-    // }
-
+    
     className.textContent = name;
     die.textContent = hit_die;
     throwHits.textContent = getNames(saving_throws);
-    // startEquiment.textContent = getNames(starting_equipment);
+
     console.log(getNumberChoose(proficiency_choices));
     skillsNum.textContent = getNumberChoose(proficiency_choices);
     wantedEquiment.textContent = getNames(proficiencies);
@@ -401,11 +424,22 @@ async function printSpellsData(data) {
     if (count != 0) {
         createListOfSpellOptions(results);
     } else {
+        createListOfSpellOptions("None");
         spellName.textContent = "None";
         spellInfo.textContent = "None";
         spellRange.textContent = "None";
     }
     console.log("printing page 2 in print spells");
+}
+
+async function printSkillsData(data) {
+    const { name, desc } = data;
+
+    var skill_info = document.getElementById('Pro_info');
+    var skill_name = document.getElementById('Pro_name');
+    skill_name.textContent = name
+    skill_info.textContent = desc;
+
 }
 
 async function printInfo_One_Spell(data) {
@@ -473,14 +507,6 @@ async function printAblityScoreData() {
 }
 
 async function printAblityScoreInfo() {
-
-    var str_des = document.getElementById('STR_des');
-    var wis_des = document.getElementById('WIS_des');
-    var cha_des = document.getElementById('CHA_des');
-    var con_des = document.getElementById('CON_des');
-    var int_des = document.getElementById('INT_des');
-    var dex_des = document.getElementById('DEX_des');
-
     var wis_output
     var cha_output;
     var con_output;
@@ -488,73 +514,37 @@ async function printAblityScoreInfo() {
     var dex_output;
     var str_output;
 
-    setTimeout(function () {
-        str_output = abilityAsk('str');
-    }, 1000);
-    setTimeout(function () {
-        wis_output = abilityAsk('wis');
-    }, 1000);
-    setTimeout(function () {
-        cha_output = abilityAsk('cha');
-    }, 1000);
-    setTimeout(function () {
-        con_output = abilityAsk('con');
-    }, 1000);
-    setTimeout(function () {
-        int_output = abilityAsk('int');
-    }, 1000);
-    setTimeout(function () {
-        dex_output = abilityAsk('dex');
-    }, 1000);
-
-    setTimeout(function () {
-        str_des.textContent = str_output.toString();
-        console.log(str_output.toString());          //// DON"T UNDERSTAND WHY IT WON'T WORK
-        wis_des.textContent = wis_output.toString();
-        cha_des.textContent = cha_output.toString();
-        con_des.textContent = con_output.toString();
-        int_des.textContent = int_output.toString();
-        dex_des.textContent = dex_output.toString();
-    }, 3000);
-
-    //console.log(getAblityScore('str'));
-
-    // setTimeout(function () {
-    //     cha_des.textContent = getAblityScore('cha');
-    // }, 5000);
-    // setTimeout(function () {
-    //     wis_des.textContent = getAblityScore('wis');
-    // }, 5000);
-    // setTimeout(function () {
-    //     str_des.textContent = getAblityScore('str');
-    // }, 5000);
-    // setTimeout(function () {
-    //     con_des.textContent = getAblityScore('con');
-    // }, 5000);
-    // setTimeout(function () {
-    //     int_des.textContent = getAblityScore('int');
-    // }, 5000);
-    // setTimeout(function () {
-    //     dex_des.textContent = getAblityScore('dex');
-    // }, 5000);
+    str_output = await abilityAsk('str');
+    wis_output = await abilityAsk('wis');
+    cha_output = await abilityAsk('cha');
+    int_output = await abilityAsk('int');
+    dex_output = await abilityAsk('dex');
+    con_output = await abilityAsk('con');
 }
 
-async function getAblityScore(data) {
-    //console.log(data);
+async function getAblityScore(data, input) {
     const { desc, skills } = data;
-    //console.log(desc);
-    // var text = desc.toString();
-    // console.log(text);
-    return desc;
-    // console.log(data);
-    // const { desc, skills } = data;
-    // return desc;
-    // setTimeout(function () {
-    //     console.log(data);
-    //     const { desc, skills } = data;
-    //     console.log(desc);
-    //     return desc;
-    // }, 5000);
+
+    var str_des = document.getElementById('STR_des');
+    var wis_des = document.getElementById('WIS_des');
+    var cha_des = document.getElementById('CHA_des');
+    var con_des = document.getElementById('CON_des');
+    var int_des = document.getElementById('INT_des');
+    var dex_des = document.getElementById('DEX_des');
+    
+    if (input == 'str') {
+        str_des.textContent = desc;
+    } else if (input == 'wis') {
+        wis_des.textContent = desc;
+    } else if (input == 'int') {
+        int_des.textContent = desc;
+    } else if (input == 'cha') {
+        cha_des.textContent = desc;
+    } else if (input == 'dex') {
+        dex_des.textContent = desc;
+    } else if (input == 'con') {
+        con_des.textContent = desc;
+    }  
 }
 
 async function printLanguageData(data) {
@@ -590,19 +580,12 @@ async function printBonusData(data) {
 
 }
 
-
+/// Instead of having a long listed created in HTML, this generates the list in 
+/// JavaScript of the Spells options, depending on the class selected
 async function createListOfEquimentOptions(data) {
     console.log(data);
     var array_weapons = getArrayOfIndexs(data);
     console.log("array_weapons " + array_weapons)
-    // var array_certain_weapons;
-    // console.log(array_weapons[0]);
-    // var url;
-    // for (var i = 0; i < array_weapons.length; i++) {
-    //     url = equimentAsk(array_weapons[i]);
-    //     console.log(url);
-    //     array_certain_weapons.push(url); 
-    // }
     let list = document.getElementById("weaponList");
     array_weapons.forEach((item) => {
         let li = document.createElement("li");
@@ -611,9 +594,16 @@ async function createListOfEquimentOptions(data) {
     })
 }
 
+/// Instead of having a long listed created in HTML, this generates the list in 
+/// JavaScript of the Spells options, depending on the class selected
 async function createListOfSpellOptions(data) {
     console.log(data);
-    var array_spells = getArrayOfIndexs(data);
+    var array_spells;
+    if (data == "None") {
+        array_spells = ["None"];
+    } else {
+        array_spells = getArrayOfIndexs(data);
+    }
     console.log("array_spells " + array_spells)
     let list = document.getElementById("spellList");
     array_spells.forEach((item) => {
@@ -623,8 +613,57 @@ async function createListOfSpellOptions(data) {
     })
 }
 
+/// Instead of having a long listed created in HTML, this generates the list in 
+/// JavaScript of the skill options
+async function createListOfProficiencyOptions(array) {
+    //proficiency_choices
+    //console.log(data);
+    // var array_skills = data.from.map(function (el) {
+    //     return el.index;
+    // });
+    // //var array_skills = getArrayOfIndexsInFromArray(data);
+    // console.log("array_skills " + array_skills)
+    var skill_name = new Array;
+    var new_name;
+    for (var i = 0; i < array.length; i++) {
+        console.log(array[i]);
+        console.log(i);
+        // array[i].toString()
+        //new_name = array[i].getText().toString();
+        new_name = array[i].toString();
+        console.log(new_name.replace("skill-", ""));
+        skill_name.push(new_name.replace("skill-", ""));
+    }
+
+    ///skill_name = array.replace("skill-","");
+    console.log("skill_name");
+    console.log(skill_name);
+
+    let list = document.getElementById("skillList");
+    skill_name.forEach((item) => {
+        let li = document.createElement("li");
+        li.innerText = item;
+        list.appendChild(li);
+    })
+}
+
+// function getArrayOfIndexsInFromArray(link) {
+//     console.log("Pro Array" + link);
+//     var empty = "None"
+//     if (dataValid(link)) {
+//         var array = link.from.map(function (el) {
+//             return el.index;
+//         });
+//         return array;//.join(',     ');
+//     } else {
+//         return empty;
+//     }
+// }
+
+/// Function that gets the names within the object Array 
+/// within the free API access DND e5 documentation and have it converted to a string
 function getNames(link) {
-    var empty = "None"
+    var empty = "None";
     if (dataValid(link)) {
         var array = link.map(function (el) {
             return el.name;
@@ -635,8 +674,11 @@ function getNames(link) {
     }
 }
 
+/// Function that gets the names within the object Array 
+/// within the free API access DND e5 documentation and have it converted to a Array, 
+// This function is to help to create the list of options with JS instead within the HTML section
 function getArrayOfNames(link) {
-    var empty = "None"
+    var empty = "None";
     if (dataValid(link)) {
         var array = link.map(function (el) {
             return el.name;
@@ -647,8 +689,11 @@ function getArrayOfNames(link) {
     }
 }
 
+/// Function that gets the index within the object Array 
+/// within the free API access DND e5 documentation and have it converted to a Array, 
+// This function is to help to create the list of options with JS instead within the HTML section
 function getArrayOfIndexs(link) {
-    var empty = "None"
+    var empty = "None";
     if (dataValid(link)) {
         var array = link.map(function (el) {
             return el.index;
@@ -659,8 +704,10 @@ function getArrayOfIndexs(link) {
     }
 }
 
+/// Instead of having a long listed created in HTML, this generates the list in 
+/// JavaScript of the Spells options, depending on the class selected
+/// Having Issues with
 function selectSkillsOptions(link) {
-    //proficiency_choices
     console.log(link);
     var array = link.includes('from');
     console.log(array);
@@ -680,8 +727,10 @@ function selectSkillsOptions(link) {
     });
 }
 
+/// Function that gets the name within the object Array called info
+/// within the free API access DND e5 documentation and have it converted to a string 
 function getInfoNames(link) {
-    var empty = "None"
+    var empty = "None";
     if (dataValid(link)) {
         var array = link.info.map(function (el) {
             return el.name;
@@ -692,8 +741,11 @@ function getInfoNames(link) {
     }
 }
 
+
+/// Function that gets the chooses within the object Array
+/// within the free API access DND e5 documentation and have it converted to a String 
 function getNumberChoose(link) {
-    var empty = "None"
+    var empty = "None";
     if (dataValid(link)) {
         var array = link.map(function (el) {
             return el.choose;
@@ -704,8 +756,10 @@ function getNumberChoose(link) {
     }
 }
 
+/// Function that gets the bonus within the object Array called info
+/// within the free API access DND e5 documentation and have it converted to a string 
 function getNumberBonuses(link) {
-    var empty = "None"
+    var empty = "None";
     if (dataValid(link)) {
         var array = link.map(function (el) {
             return el.bonus;
@@ -716,36 +770,50 @@ function getNumberBonuses(link) {
     }
 }
 
+/// Function that gets the bonuses within the object Array 
+/// within the free API access DND e5 documentation and have it converted to a Array, 
+// This function is to help to create the list of options with JS instead within the HTML section
 function getArrayOfNumberBonuses(link) {
-    var empty = "None"
+    var empty = "None";
+    var emptyArray = new Array;
     if (dataValid(link)) {
         var array = link.map(function (el) {
             return el.bonus;
         });
         return array;//.join(',     ');
     } else {
-        return empty;
+        emptyArray.push(empty);
+        return emptyArray;
     }
 }
 
+/// Function that gets the ability_score within the object Array 
+/// within the free API access DND e5 documentation and have it converted to a Array, 
+// This function is to help to create the list of options with JS instead within the HTML section
 function getNameBonuses(link) {
-    var empty = "None"
+    var empty = "None";
+    var emptyArray = new Array;
     if (dataValid(link)) {
         var array = link.map(function (el) {
             return el.ability_score;
         });
         return array;//.join(',     ');
     } else {
-        return empty;
+        emptyArray.push(empty);
+        return emptyArray;
     }
 }
 
+// This generates 1 roll for the 6 sided dice that has possible to roll from numbers 1 - 6
 function rollOneDice() {
     min = Math.ceil(1);
     max = Math.floor(6);
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+// This generates all 4 rolls of 1 ability score
+// EX: rolls: 1, 3, 4, 5   Ability score is 13
+// BUT ability score can not be over 18 on a roll
 function rollsForScore() {
     var totalRolls = [];
     for (var i = 0; i <= 3; i++) {
@@ -759,6 +827,8 @@ function rollsForScore() {
     return (sum);
 }
 
+/// This function checks if the link or data provided from the data is 
+// undefined or not
 function dataValid(data) {
     if (data == undefined) {
         return false;
