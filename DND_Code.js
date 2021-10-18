@@ -493,19 +493,32 @@ async function getAblityScore(data, input) {
     var con_des = document.getElementById('CON_des');
     var int_des = document.getElementById('INT_des');
     var dex_des = document.getElementById('DEX_des');
+
+    var str_info = document.getElementById('STR_info');
+    var wis_info = document.getElementById('WIS_info');
+    var cha_info = document.getElementById('CHA_info');
+    var con_info = document.getElementById('CON_info');
+    var int_info = document.getElementById('INT_info');
+    var dex_info = document.getElementById('DEX_info');
     
     if (input == 'str') {
         str_des.textContent = desc;
+        str_info.textContent = getNames(skills);
     } else if (input == 'wis') {
         wis_des.textContent = desc;
+        wis_info.textContent = getNames(skills);
     } else if (input == 'int') {
         int_des.textContent = desc;
+        int_info.textContent = getNames(skills);
     } else if (input == 'cha') {
         cha_des.textContent = desc;
+        cha_info.textContent = getNames(skills);
     } else if (input == 'dex') {
         dex_des.textContent = desc;
+        dex_info.textContent = getNames(skills);
     } else if (input == 'con') {
         con_des.textContent = desc;
+        con_info.textContent = getNames(skills);
     }  
 }
 
@@ -591,16 +604,15 @@ async function createListOfProficiencyOptions(array) {
     })
 }
 
-// function getArrayOfIndexsInFromArray(link) {
-//     console.log("Pro Array" + link);
-//     var empty = "None"
+// function getListOfNamesInArray(link) {
+//     var empty_Array = "None";
 //     if (dataValid(link)) {
 //         var array = link.from.map(function (el) {
-//             return el.index;
+//             return el.name;
 //         });
-//         return array;//.join(',     ');
+//         return array.join(',     ');
 //     } else {
-//         return empty;
+//         return empty_Array;
 //     }
 // }
 
