@@ -115,113 +115,69 @@ async function setupPage7() {
     weaponChoice();
 }
 
-function raceChoice() {
-    var ul = document.getElementById('raceList');
-    console.log(ul);
+function clickOnDropDownMenu(ul, func, button) {
     var items = ul.getElementsByTagName('li');
+    console.log(button.textContent);
     console.log(items);
-    console.log(items[0].textContent);   // knows that textcontext works
+    //console.log(items[0].textContent);   // knows that textcontext works
     ul.addEventListener("click", function (e) {
         for (i = 0; i < items.length; i++) {
             if (e.target == items[i]) {
                 console.log(items[i].textContent);
-                raceAsk(items[i].textContent);
+                func(items[i].textContent);
+                button.textContent = items[i].textContent;
             }
         }
     });
+}
+
+function raceChoice() {
+    var ul = document.getElementById('raceList');
+    var button = document.getElementById('race_option');
+    console.log(ul);
+    clickOnDropDownMenu(ul, raceAsk, button);
 }
 
 function classChoice() {
     var ul = document.getElementById('classList');
+    var button = document.getElementById('class_option');
     console.log(ul);
-    var items = ul.getElementsByTagName('li');
-    console.log(items);
-    console.log(items[0].textContent);   // knows that textcontext works
-    ul.addEventListener("click", function (e) {
-        for (i = 0; i < items.length; i++) {
-            if (e.target == items[i]) {
-                console.log(items[i].textContent);
-                classAsk(items[i].textContent);
-            }
-        }
-    });
+    clickOnDropDownMenu(ul, classAsk, button);
 }
 
 function backgroundChoice() {
     var ul = document.getElementById('backgroundList');
+    var button = document.getElementById('background_option');
     console.log(ul);
-    var items = ul.getElementsByTagName('li');
-    console.log(items);
-    console.log(items[0].textContent);   // knows that textcontext works
-    ul.addEventListener("click", function (e) {
-        for (i = 0; i < items.length; i++) {
-            if (e.target == items[i]) {
-                console.log(items[i].textContent);
-                backgroundAsk(items[i].textContent);
-            }
-        }
-    });
+    clickOnDropDownMenu(ul, backgroundAsk, button);
 }
 
 function alignmentChoice() {
     var ul = document.getElementById('alignmentList');
+    var button = document.getElementById('alignment_option');
     console.log(ul);
-    var items = ul.getElementsByTagName('li');
-    console.log(items);
-    console.log(items[0].textContent);   // knows that textcontext works
-    ul.addEventListener("click", function (e) {
-        for (i = 0; i < items.length; i++) {
-            if (e.target == items[i]) {
-                console.log(items[i].textContent);
-                alignmentAsk(items[i].textContent);
-            }
-        }
-    });
+    clickOnDropDownMenu(ul, alignmentAsk, button);
 }
 
 function weaponChoice() {
     var ul = document.getElementById('weaponList');
+    var button = document.getElementById('weapon_option');
     console.log(ul);
-    var items = ul.getElementsByTagName('li');
-    console.log(items);
-    ul.addEventListener("click", function (e) {
-        for (i = 0; i < items.length; i++) {
-            if (e.target == items[i]) {
-                console.log(items[i].textContent);
-                equimentAsk(items[i].textContent);
-            }
-        }
-    });
+    clickOnDropDownMenu(ul, equimentAsk, button);
 }
 
 function skillChoice() {
     var ul = document.getElementById('skillList');
+    var button = document.getElementById('skill_option');
     console.log(ul);
-    var items = ul.getElementsByTagName('li');
-    console.log(items);
-    ul.addEventListener("click", function (e) {
-        for (i = 0; i < items.length; i++) {
-            if (e.target == items[i]) {
-                console.log(items[i].textContent);
-                skillAsk(items[i].textContent);
-            }
-        }
-    });
+    clickOnDropDownMenu(ul, skillAsk, button);
 }
 
 function spellChoice() {
     var ul = document.getElementById('spellList');
+    var button = document.getElementById('spell_option');
     console.log(ul);
-    var items = ul.getElementsByTagName('li');
-    console.log(items);
-    ul.addEventListener("click", function (e) {
-        for (i = 0; i < items.length; i++) {
-            if (e.target == items[i]) {
-                console.log(items[i].textContent);
-                certianSpellsAsk(items[i].textContent);
-            }
-        }
-    });
+    clickOnDropDownMenu(ul, certianSpellsAsk, button);
 }
 
 /// Function that returns the from API

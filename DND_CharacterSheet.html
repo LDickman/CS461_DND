@@ -23,7 +23,7 @@
       <br />
       <p>Chose your character race from below</p>
       <div class="dropdown">
-        <button onclick="raceSelect()" class="dropbtn">Race
+        <button onclick="raceSelect()" id ='race_option' class="dropbtn">Race
           <i class="fa fa-caret-down"></i>
         </button>
         <div id="raceDropdown" class="dropdown-content">
@@ -93,7 +93,7 @@
         strengths, and weaknesses are largely defined by its class. A character's class affects a character's
         available skills and abilities</p>
       <div class="dropdown">
-        <button onclick="classSelect()" class="dropbtn">Class
+        <button onclick="classSelect()" id='class_option' class="dropbtn">Class
           <i class="fa fa-caret-down"></i>
         </button>
         <br />
@@ -159,7 +159,7 @@
       <br />
       <p>Chose your character background from below</p>
       <div class="dropdown">
-        <button onclick="backgroundSelect()" class="dropbtn">Background
+        <button onclick="backgroundSelect()" id='background_option' class="dropbtn">Background
           <i class="fa fa-caret-down"></i>
         </button>
         <br />
@@ -181,7 +181,7 @@
         and the other describes attitudes toward society and order (lawful, chaotic, or neutral)</p>
       <br />
       <div class="dropdown">
-        <button onclick="alignmentSelect()" class="dropbtn">Alignment
+        <button onclick="alignmentSelect()" id='alignment_option' class="dropbtn">Alignment
           <i class="fa fa-caret-down"></i>
         </button>
         <br />
@@ -438,7 +438,7 @@
       <br />
       <p>Pick your character's spells from below</p>
       <div class="dropdown">
-        <button onclick="spellSelect()" class="dropbtn">Spell
+        <button onclick="spellSelect()" id='spell_option' class="dropbtn">Spell
           <i class="fa fa-caret-down"></i>
         </button>
         <br />
@@ -472,7 +472,7 @@
       <br />
       <p>Pick your character's weapon from below</p>
       <div class="dropdown">
-        <button onclick="weaponSelect()" class="dropbtn">Weapon
+        <button onclick="weaponSelect()" id='weapon_option' class="dropbtn">Weapon
           <i class="fa fa-caret-down"></i>
         </button>
         <br />
@@ -519,7 +519,7 @@
           $(pagesArr[0]).css("display", "none");
           current = 0;
           $(pagesArr[current]).css("display", "block");
-        } else if (current > 7) {
+        } else if (current >= 7) {
           $(pagesArr[6]).css("display", "block");
           current = 6;
         } else {
