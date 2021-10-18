@@ -21,6 +21,7 @@ window.addEventListener('load', (event) => {
     setupPage2();
     setupPage3();
     setupPage4();
+   // setupPage5();
     setupPage6();
     setupPage7();
 });
@@ -100,10 +101,10 @@ async function setupPage4() {
     });
 }
 
-async function setupPage5() {
-    console.log("starting 5");
-    skillChoice();
-}
+// async function setupPage5() {
+//     console.log("starting 5");
+//     skillChoice();
+// }
 
 async function setupPage6() {
     console.log("starting 6");
@@ -168,7 +169,7 @@ function weaponChoice() {
 
 function skillChoice() {
     var ul = document.getElementById('skillList');
-    var button = document.getElementById('skill_option');
+    var button = document.getElementById('skill_option'); 
     console.log(ul);
     clickOnDropDownMenu(ul, skillAsk, button);
 }
@@ -202,6 +203,7 @@ async function classAsk(input) {
     const data = await fetchDataFromAPI(url);
     printClassData(data);
     spellsAsk(input);
+    skillChoice();
 }
 
 async function backgroundAsk(input) {
@@ -244,6 +246,7 @@ async function certianSpellsAsk(input) {
 async function skillAsk(input) {
     console.log("Skill: " + input);
     var url = api_skill + input;
+    console.log(url);
     const data = await fetchDataFromAPI(url);
     printSkillsData(data);
 }
@@ -330,18 +333,15 @@ async function printClassData(data) {
     var array_skills = proficiency_choices.map(function (el) {
         return el.from;
     });
-    console.log("array_skills ");
-    console.log(array_skills);
+    
+    
     var array_Skill_Names = new Array;
     for (var i = 0; i < array_skills.length; i++) {
         array_Skill_Names.push(getArrayOfIndexs(array_skills[i]));
-        //console.log(array_skills[i]);
-        console.log(getArrayOfIndexs(array_skills[i]));
     }
-    console.log("array_Skill_Names");
-    console.log(array_Skill_Names);
 
     createListOfProficiencyOptions(array_Skill_Names);
+
     var className = document.getElementById("class_name");
     var die = document.getElementById('hit');
     var throwHits = document.getElementById('throws');
@@ -355,7 +355,7 @@ async function printClassData(data) {
     die.textContent = hit_die;
     throwHits.textContent = getNames(saving_throws);
 
-    console.log(getNumberChoose(proficiency_choices));
+    //console.log(getNumberChoose(proficiency_choices));
     skillsNum.textContent = getNumberChoose(proficiency_choices);
     wantedEquiment.textContent = getNames(proficiencies);
     createListOfEquimentOptions(proficiencies);
@@ -385,10 +385,10 @@ async function printSpellsData(data) {
         spellInfo.textContent = "None";
         spellRange.textContent = "None";
     }
-    console.log("printing page 2 in print spells");
 }
 
 async function printSkillsData(data) {
+    console.log(data);
     const { name, desc } = data;
 
     var skill_info = document.getElementById('Pro_info');
@@ -440,14 +440,20 @@ async function printBackgroundData(data) {
         wantedLanguages.textContent = language_Array.join(',     ');
     }
 
-    // var background_Array = feature.map(function (el) {
-    //     return el.desc;
-    // });
-    // background_info.textContent = background_Array.join(',     ');
-
     background_info.textContent = feature.desc;
     beginnerSkills.textContent = getNames(starting_proficiencies);
     console.log("printing page 3");
+}
+
+async function printEquimentData(data){
+    const {index, name, equipment} = data;
+    console.log(equipment);
+    var equipmentList = document.getElementById('weapon_info');
+    
+    equiment_options_Array = equipment.map(function (el) {
+        return el.name;
+    });
+    equipmentList.textContent = equiment_options_Array.join(',     ');
 }
 
 async function printAblityScoreData() {
@@ -553,7 +559,6 @@ async function createListOfEquimentOptions(data) {
 /// Instead of having a long listed created in HTML, this generates the list in 
 /// JavaScript of the Spells options, depending on the class selected
 async function createListOfSpellOptions(data) {
-    console.log(data);
     var array_spells;
     if (data == "None") {
         array_spells = ["None"];
@@ -572,31 +577,14 @@ async function createListOfSpellOptions(data) {
 /// Instead of having a long listed created in HTML, this generates the list in 
 /// JavaScript of the skill options
 async function createListOfProficiencyOptions(array) {
-    //proficiency_choices
-    //console.log(data);
-    // var array_skills = data.from.map(function (el) {
-    //     return el.index;
-    // });
-    // //var array_skills = getArrayOfIndexsInFromArray(data);
-    // console.log("array_skills " + array_skills)
-    var skill_name = new Array;
-    var new_name;
-    for (var i = 0; i < array.length; i++) {
-        console.log(array[i]);
-        console.log(i);
-        // array[i].toString()
-        //new_name = array[i].getText().toString();
-        new_name = array[i].toString();
-        console.log(new_name.replace("skill-", ""));
-        skill_name.push(new_name.replace("skill-", ""));
+    var items = array.toString().split(",");
+    var skill_names = new Array;
+    for (var i = 0, j = items.length; i < j; i++) {
+        skill_names.push(items[i].replace("skill-", ""));
     }
 
-    ///skill_name = array.replace("skill-","");
-    console.log("skill_name");
-    console.log(skill_name);
-
     let list = document.getElementById("skillList");
-    skill_name.forEach((item) => {
+    skill_names.forEach((item) => {
         let li = document.createElement("li");
         li.innerText = item;
         list.appendChild(li);
