@@ -21,7 +21,7 @@ window.addEventListener('load', (event) => {
     setupPage2();
     setupPage3();
     setupPage4();
-   // setupPage5();
+    // setupPage5();
     setupPage6();
     setupPage7();
 });
@@ -169,7 +169,7 @@ function weaponChoice() {
 
 function skillChoice() {
     var ul = document.getElementById('skillList');
-    var button = document.getElementById('skill_option'); 
+    var button = document.getElementById('skill_option');
     console.log(ul);
     clickOnDropDownMenu(ul, skillAsk, button);
 }
@@ -290,6 +290,7 @@ async function languageAsk(input) {
 // }
 
 async function printRaceData(data) {
+    clearAbilityScoreBonuses();
     console.log(data);
     const { name, speed, ability_bonuses, alignment, age, size_description, starting_proficiencies,
         starting_proficiency_options, language_desc, traits, subraces } = data;
@@ -328,13 +329,13 @@ async function printClassData(data) {
     //selectSkillsOptions(proficiency_choices); //// Having issues with 
     console.log(name);
     console.log(hit_die);
-   
+
     console.log(proficiency_choices);
     var array_skills = proficiency_choices.map(function (el) {
         return el.from;
     });
-    
-    
+
+
     var array_Skill_Names = new Array;
     for (var i = 0; i < array_skills.length; i++) {
         array_Skill_Names.push(getArrayOfIndexs(array_skills[i]));
@@ -350,7 +351,7 @@ async function printClassData(data) {
     var casting = document.getElementById('spellscasting');
     var otherClasses = document.getElementById("subclasses");
     var skillsNum = document.getElementById("skills");
-    
+
     className.textContent = name;
     die.textContent = hit_die;
     throwHits.textContent = getNames(saving_throws);
@@ -445,11 +446,11 @@ async function printBackgroundData(data) {
     console.log("printing page 3");
 }
 
-async function printEquimentData(data){
-    const {index, name, equipment} = data;
+async function printEquimentData(data) {
+    const { index, name, equipment } = data;
     console.log(equipment);
     var equipmentList = document.getElementById('weapon_info');
-    
+
     equiment_options_Array = equipment.map(function (el) {
         return el.name;
     });
@@ -500,7 +501,7 @@ async function getAblityScore(data, input) {
     var con_info = document.getElementById('CON_info');
     var int_info = document.getElementById('INT_info');
     var dex_info = document.getElementById('DEX_info');
-    
+
     if (input == 'str') {
         str_des.textContent = desc;
         str_info.textContent = getNames(skills);
@@ -519,7 +520,7 @@ async function getAblityScore(data, input) {
     } else if (input == 'con') {
         con_des.textContent = desc;
         con_info.textContent = getNames(skills);
-    }  
+    }
 }
 
 async function printLanguageData(data) {
@@ -553,6 +554,15 @@ async function printBonusData(data) {
         }
     }
 
+}
+
+function clearAbilityScoreBonuses() {
+    document.getElementById("CON_bonus").textContent = 0;
+    document.getElementById("CHA_bonus").textContent = 0;
+    document.getElementById("DEX_bonus").textContent = 0;
+    document.getElementById("STR_bonus").textContent = 0;
+    document.getElementById("INT_bonus").textContent = 0;
+    document.getElementById("WIS_bonus").textContent = 0;
 }
 
 /// Instead of having a long listed created in HTML, this generates the list in 
