@@ -534,6 +534,8 @@ async function getAblityScore(data, input) {
 }
 
 async function printLanguageData(data) {
+    console.log("language");
+    console.log(data);
     const { typical_speakers } = data
     document.getElementById("lang_des").textContent = typical_speakers;
 }
