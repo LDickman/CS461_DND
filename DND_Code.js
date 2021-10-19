@@ -170,8 +170,10 @@ function weaponChoice() {
 function skillChoice() {
     var ul = document.getElementById('skillList');
     var button = document.getElementById('skill_option');
+    var button2 = document.getElementById('skill_option2');
     console.log(ul);
     clickOnDropDownMenu(ul, skillAsk, button);
+    clickOnDropDownMenu(ul, skillAsk, button2);
 }
 
 function spellChoice() {
@@ -662,8 +664,15 @@ async function createListOfSpellOptions(data) {
 /// Instead of having a long listed created in HTML, this generates the list in 
 /// JavaScript of the skill options
 async function createListOfProficiencyOptions(array) {
+    // array.filter(checkAdult);
+    // function checkAdult(age) {
+    //     return age >= 18;
+    //   }
+
     var items = array.toString().split(",");
     var skill_names = new Array;
+
+        // Returns [32, 33, 40]
     for (var i = 0, j = items.length; i < j; i++) {
         skill_names.push(items[i].replace("skill-", ""));
     }
