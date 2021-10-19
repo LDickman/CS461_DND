@@ -428,6 +428,7 @@ async function printBackgroundData(data) {
     var beginnerSkills = document.getElementById('skills_needed');
     var wantedLanguages = document.getElementById("languages_options")
     var background_info = document.getElementById('background_des');
+    var background_Skill_info = document.getElementById('background_Skill_info')
 
     var language_Array;
 
@@ -441,8 +442,17 @@ async function printBackgroundData(data) {
         wantedLanguages.textContent = language_Array.join(',     ');
     }
 
+    var Skill_array =  getNames(starting_proficiencies);
     background_info.textContent = feature.desc;
-    beginnerSkills.textContent = getNames(starting_proficiencies);
+    beginnerSkills.textContent = Skill_array;
+
+    var items = Skill_array.toString().split(",");
+    var skill_names = new Array;
+    for (var i = 0, j = items.length; i < j; i++) {
+        skill_names.push(items[i].replace("Skill:", ""));
+    }
+
+    background_Skill_info.textContent = skill_names;
     console.log("printing page 3");
 }
 
@@ -675,16 +685,10 @@ function getArrayOfIndexs(link) {
 /// Having Issues with
 function selectSkillsOptions(link) {
     console.log(link);
-    var array = link.includes('from');
-    console.log(array);
     var proficiency_options_Array = link.from.map(function (el) {
         return el.name;
     });
-    // var array = proficiency_options_Array.map(function (el) {
-    //     return el.name;
-    // });
     console.log(proficiency_options_Array);
-    //console.log("Choices "+ proficiency_options_Array); 
     let list = document.getElementById("skilsList");
     link.forEach((item) => {
         let = document.createElement("li");
