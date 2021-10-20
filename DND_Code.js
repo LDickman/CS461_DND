@@ -63,6 +63,11 @@ function skillSelect() {
     console.log("at the dropdowm bar");
 }
 
+function skill2Select() {
+    document.getElementById("skill2Dropdown").classList.toggle("show");
+    console.log("at the dropdowm bar");
+}
+
 // Close the dropdown menu if the user clicks outside of it
 window.onclick = function (event) {
     if (!event.target.matches('.dropbtn')) {
@@ -169,11 +174,12 @@ function weaponChoice() {
 
 function skillChoice() {
     var ul = document.getElementById('skillList');
+    var ul2 = document.getElementById('skill2List');
     var button = document.getElementById('skill_option');
     var button2 = document.getElementById('skill_option2');
     console.log(ul);
+    clickOnDropDownMenu(ul2, skillAsk, button2);
     clickOnDropDownMenu(ul, skillAsk, button);
-    clickOnDropDownMenu(ul, skillAsk, button2);
 }
 
 function spellChoice() {
@@ -324,11 +330,18 @@ async function printRaceData(data) {
 }
 
 async function printClassData(data) {
+    let spell_list = document.getElementById("spellList")
+    let weapon_list = document.getElementById("weaponList");
+    let skill_list_1 = document.getElementById("skillList");
+    let skill_list_2 = document.getElementById("skill2List");
+    clearAllFromList(spell_list);
+    clearAllFromList(weapon_list);
+    clearAllFromList(skill_list_1);
+    clearAllFromList(skill_list_2);
     console.log(data);
     const { index, name, hit_die, proficiency_choices, starting_equipment_options, proficiencies, saving_throws, starting_equipment,
         class_levels, multi_classing, subclasses, spellcasting, spells } = data;
 
-    //selectSkillsOptions(proficiency_choices); //// Having issues with 
     console.log(name);
     console.log(hit_die);
 
@@ -343,7 +356,8 @@ async function printClassData(data) {
         array_Skill_Names.push(getArrayOfIndexs(array_skills[i]));
     }
 
-    createListOfProficiencyOptions(array_Skill_Names);
+    createListOfProficiencyOptions(array_Skill_Names, skill_list_1);
+    createListOfProficiencyOptions(array_Skill_Names, skill_list_2);
 
     var className = document.getElementById("class_name");
     var die = document.getElementById('hit');
@@ -361,7 +375,7 @@ async function printClassData(data) {
     //console.log(getNumberChoose(proficiency_choices));
     skillsNum.textContent = getNumberChoose(proficiency_choices);
     wantedEquiment.textContent = getNames(proficiencies);
-    createListOfEquimentOptions(proficiencies);
+    createListOfEquimentOptions(proficiencies, weapon_list);
     console.log(spellcasting);
     casting.textContent = getInfoNames(spellcasting);
     otherClasses.textContent = getNames(subclasses);
@@ -370,6 +384,7 @@ async function printClassData(data) {
 }
 
 async function printSpellsData(data) {
+    var list = document.getElementById("spellList");
     const { count, results } = data;
 
     var spellsAllowed = document.getElementById('spells');
@@ -381,9 +396,9 @@ async function printSpellsData(data) {
     var spellName = document.getElementById('spell_name');
 
     if (count != 0) {
-        createListOfSpellOptions(results);
+        createListOfSpellOptions(results, list);
     } else {
-        createListOfSpellOptions("None");
+        createListOfSpellOptions("None", list);
         spellName.textContent = "None";
         spellInfo.textContent = "None";
         spellRange.textContent = "None";
@@ -620,6 +635,7 @@ async function printBonusData(data) {
 
 }
 
+/// Clears all the ability score, so that the pervious scores are not still taken into effect
 function clearAbilityScoreBonuses() {
     document.getElementById("CON_bonus").textContent = 0;
     document.getElementById("CHA_bonus").textContent = 0;
@@ -629,13 +645,17 @@ function clearAbilityScoreBonuses() {
     document.getElementById("WIS_bonus").textContent = 0;
 }
 
+/// Used to clear the list from pervious selection
+function clearAllFromList(ul) {
+    while(ul.firstChild) ul.removeChild(ul.firstChild);
+}
+
 /// Instead of having a long listed created in HTML, this generates the list in 
 /// JavaScript of the Spells options, depending on the class selected
-async function createListOfEquimentOptions(data) {
+async function createListOfEquimentOptions(data, list) {
     console.log(data);
     var array_weapons = getArrayOfIndexs(data);
     console.log("array_weapons " + array_weapons)
-    let list = document.getElementById("weaponList");
     array_weapons.forEach((item) => {
         let li = document.createElement("li");
         li.innerText = item;
@@ -645,7 +665,7 @@ async function createListOfEquimentOptions(data) {
 
 /// Instead of having a long listed created in HTML, this generates the list in 
 /// JavaScript of the Spells options, depending on the class selected
-async function createListOfSpellOptions(data) {
+async function createListOfSpellOptions(data, list) {
     var array_spells;
     if (data == "None") {
         array_spells = ["None"];
@@ -653,7 +673,6 @@ async function createListOfSpellOptions(data) {
         array_spells = getArrayOfIndexs(data);
     }
     console.log("array_spells " + array_spells)
-    let list = document.getElementById("spellList");
     array_spells.forEach((item) => {
         let li = document.createElement("li");
         li.innerText = item;
@@ -663,21 +682,16 @@ async function createListOfSpellOptions(data) {
 
 /// Instead of having a long listed created in HTML, this generates the list in 
 /// JavaScript of the skill options
-async function createListOfProficiencyOptions(array) {
-    // array.filter(checkAdult);
-    // function checkAdult(age) {
-    //     return age >= 18;
-    //   }
-
+async function createListOfProficiencyOptions(array, list) {
     var items = array.toString().split(",");
     var skill_names = new Array;
 
-        // Returns [32, 33, 40]
     for (var i = 0, j = items.length; i < j; i++) {
-        skill_names.push(items[i].replace("skill-", ""));
+        if (items[i].includes("skill-")) {
+            skill_names.push(items[i].replace("skill-", ""));   
+        }
     }
 
-    let list = document.getElementById("skillList");
     skill_names.forEach((item) => {
         let li = document.createElement("li");
         li.innerText = item;
@@ -741,22 +755,6 @@ function getArrayOfIndexs(link) {
     }
 }
 
-/// Instead of having a long listed created in HTML, this generates the list in 
-/// JavaScript of the Spells options, depending on the class selected
-/// Having Issues with
-function selectSkillsOptions(link) {
-    console.log(link);
-    var proficiency_options_Array = link.from.map(function (el) {
-        return el.name;
-    });
-    console.log(proficiency_options_Array);
-    let list = document.getElementById("skilsList");
-    link.forEach((item) => {
-        let = document.createElement("li");
-        li.innerText = item;
-        list.appendChild(li);
-    });
-}
 
 /// Function that gets the name within the object Array called info
 /// within the free API access DND e5 documentation and have it converted to a string 
