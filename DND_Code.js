@@ -597,7 +597,7 @@ async function getAblityScore(data, input) {
         dex_info.textContent = getNames(skills);
     } else if (input == 'con') {
         con_des.textContent = desc;
-        con_info.textContent = getNames(skills);
+        con_info.textContent = "For Everything";
     }
 }
 
