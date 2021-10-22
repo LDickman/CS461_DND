@@ -460,7 +460,7 @@ async function printBackgroundData(data) {
         wantedLanguages.textContent = language_Array.join(',     ');
     }
 
-    var Skill_array =  getNames(starting_proficiencies);
+    var Skill_array = getNames(starting_proficiencies);
     background_info.textContent = feature.desc;
     beginnerSkills.textContent = Skill_array;
 
@@ -476,7 +476,7 @@ async function printBackgroundData(data) {
 
 async function printExtraBackgroundData(input) {
     console.log("background" + input);
-    
+
     var beginnerSkills = document.getElementById('skills_needed');
     var wantedLanguages = document.getElementById("languages_options")
     var background_info = document.getElementById('background_des');
@@ -485,19 +485,19 @@ async function printExtraBackgroundData(input) {
     if (input == "criminal") {
         beginnerSkills.textContent = "Deception, Stealth";
         wantedLanguages.textContent = "None";
-        background_info.textContent = 'You are an experienced criminal with a history of'+
-                                        ' breaking the law. You have spent a lot of time among '+
-                                        'other criminals and still have contacts within the' +
-                                        'criminal underworld. You’re far closer than most people ' +
-                                        'to the world of murder, theft, and violence that pervades ' +
-                                        'the underbelly of civilization, and you have survived up to '+
-                                        'this point by flouting the rules and regulations of society ' +
-                                        'You have a reliable and trustworthy contact who acts as '+
-                                        'your liaison to a network of other criminals. You know '+ 
-                                        'how to get messages to and from your contact, even over '+
-                                        'great distances; specifically, you know ' + 
-                                        'the local messengers, corrupt caravan masters, '+ 
-                                        'and seedy sailors who can deliver messages for you.';
+        background_info.textContent = 'You are an experienced criminal with a history of' +
+            ' breaking the law. You have spent a lot of time among ' +
+            'other criminals and still have contacts within the' +
+            'criminal underworld. You’re far closer than most people ' +
+            'to the world of murder, theft, and violence that pervades ' +
+            'the underbelly of civilization, and you have survived up to ' +
+            'this point by flouting the rules and regulations of society ' +
+            'You have a reliable and trustworthy contact who acts as ' +
+            'your liaison to a network of other criminals. You know ' +
+            'how to get messages to and from your contact, even over ' +
+            'great distances; specifically, you know ' +
+            'the local messengers, corrupt caravan masters, ' +
+            'and seedy sailors who can deliver messages for you.';
 
         background_Skill_info.textContent = "Deception, Stealth";
     } else if (input == "folk-hero") {
@@ -509,12 +509,12 @@ async function printExtraBackgroundData(input) {
         beginnerSkills.textContent = "History, Persuasion";
         wantedLanguages.textContent = "One extra lanuage to select from";
         background_info.textContent = "Thanks to your noble birth, people are inclined to think the best of you. You are welcome in high society, and people assume you have the right to be wherever you are. The common folk make every effort to accommodate you and avoid your displeasure, and other people of high birth treat you as a member of the same social sphere. You can secure an audience with a local noble if you need to.";
-        background_Skill_info.textContent = "History, Persuasion"; 
+        background_Skill_info.textContent = "History, Persuasion";
     } else if (input == "sage") {
         beginnerSkills.textContent = "Arcana, History"
         wantedLanguages.textContent = "Any";
         background_info.textContent = "When you attempt to learn or recall a piece of lore, if you do not know that information, you often know where and from whom you can obtain it. Usually, this information comes from a library, scriptorium, university, or a sage or other learned person or creature. Your DM might rule that the knowledge you seek is secreted away in an almost inaccessible place, or that it simply cannot be found. Unearthing the deepest secrets of the multiverse can require an adventure or even a whole campaign";
-        background_Skill_info.textContent ="Arcana, History";
+        background_Skill_info.textContent = "Arcana, History";
     } else if (input == "soldier") {
         beginnerSkills.textContent = "Athletics, Intimidation";
         wantedLanguages.textContent = "None"
@@ -543,7 +543,7 @@ async function printAblityScoreData() {
     document.getElementById('CON').textContent = rollsForScore();
     document.getElementById("DEX").textContent = rollsForScore();
     document.getElementById('CHA').textContent = rollsForScore();
-
+    addTotalForAbilityScore();
     console.log("results");
 }
 
@@ -633,7 +633,23 @@ async function printBonusData(data) {
             document.getElementById("WIS_bonus").textContent = array_Bounus[i];
         }
     }
+    addTotalForAbilityScore();
+}
 
+function addTotalForAbilityScore() {
+    var str_total = document.getElementById('STR_total');
+    var wis_total = document.getElementById('WIS_total');
+    var cha_total = document.getElementById('CHA_total');
+    var con_total = document.getElementById('CON_total');
+    var int_total = document.getElementById('INT_total');
+    var dex_total = document.getElementById('DEX_total');
+
+    str_total.textContent = (parseInt(document.getElementById("STR_bonus").textContent) + parseInt(document.getElementById("STR").textContent))
+    wis_total.textContent = (parseInt(document.getElementById("WIS_bonus").textContent) + parseInt(document.getElementById("WIS").textContent))
+    cha_total.textContent = (parseInt(document.getElementById("CHA_bonus").textContent) + parseInt(document.getElementById("CHA").textContent))
+    con_total.textContent = (parseInt(document.getElementById("CON_bonus").textContent) + parseInt(document.getElementById("CON").textContent)) 
+    int_total.textContent = (parseInt(document.getElementById("INT_bonus").textContent) + parseInt(document.getElementById("INT").textContent)) 
+    dex_total.textContent = (parseInt(document.getElementById("DEX_bonus").textContent) + parseInt(document.getElementById("DEX").textContent)) 
 }
 
 /// Clears all the ability score, so that the pervious scores are not still taken into effect
@@ -648,7 +664,7 @@ function clearAbilityScoreBonuses() {
 
 /// Used to clear the list from pervious selection
 function clearAllFromList(ul) {
-    while(ul.firstChild) ul.removeChild(ul.firstChild);
+    while (ul.firstChild) ul.removeChild(ul.firstChild);
 }
 
 /// Instead of having a long listed created in HTML, this generates the list in 
@@ -689,7 +705,7 @@ async function createListOfProficiencyOptions(array, list) {
 
     for (var i = 0, j = items.length; i < j; i++) {
         if (items[i].includes("skill-")) {
-            skill_names.push(items[i].replace("skill-", ""));   
+            skill_names.push(items[i].replace("skill-", ""));
         }
     }
 
