@@ -12,18 +12,29 @@
     <h1>Character Builder</h1>
     <p>D&D 5 Character Creator/Generator</p>
   </div>
-  <a href="#" id="previous_round">&#8249;</a>
-  <a href="#" id="next_round">&#8250;</a>
+  <!-- <a href="#" id="previous_round">&#8249;</a>
+  <a href="#" id="next_round">&#8250;</a> -->
   <br />
 
+  <!-- Tab links -->
+  <div class="tab">
+    <button class="tablinks" onclick="openPage(event, 'page_1')">Race</button>
+    <button class="tablinks" onclick="openPage(event, 'page_2')">Class</button>
+    <button class="tablinks" onclick="openPage(event, 'page_3')">Background</button>
+    <button class="tablinks" onclick="openPage(event, 'page_4')">Ability Score</button>
+    <button class="tablinks" onclick="openPage(event, 'page_5')">Class</button>
+    <button class="tablinks" onclick="openPage(event, 'page_6')">Proficiencies</button>
+    <button class="tablinks" onclick="openPage(event, 'page_7')">Equiment</button>
+  </div>
+
   <!------------------Races------------------------->
-  <div id="page_1">
-    <div class="access" style="display:none">
+  <div id="page_1" class="tabcontent">
+    <!-- <div class="access" style="display:none"> -->
       <h2>Race:</h2>
       <br />
       <p>Chose your character race from below</p>
       <div class="dropdown">
-        <button onclick="raceSelect()" id ='race_option' class="dropbtn">Race
+        <button onclick="raceSelect()" id='race_option' class="dropbtn">Race
           <i class="fa fa-caret-down"></i>
         </button>
         <div id="raceDropdown" class="dropdown-content">
@@ -77,13 +88,13 @@
         <p>Subraces:</p>
         <label id="subraces"> </label>
       </div>
-    </div>
+    <!-- </div> -->
   </div>
 
   <!------------------Classes------------------------->
 
-  <div id="page_2">
-    <div class="access" style="display:none">
+  <div id="page_2" class="tabcontent">
+    <!-- <div class="access" style="display:none"> -->
       <h2>Class:</h2>
       <br />
       <p>Chose your character class from below</p>
@@ -127,13 +138,13 @@
         <!-- <p>Starting Skills:</p>
         <label id="start_skills"> </label> -->
         <p>Number of Skills One can Have:</p>
-        <label id="skills">  </label>
+        <label id="skills"> </label>
         <br />
         <!-- <p>Starter Equiment:</p>
         <label id="equiment">  </label>
         <br /> -->
         <p>Recommended Equiment:</p>
-        <label id="preffer_equiment">  </label>
+        <label id="preffer_equiment"> </label>
         <br />
         <!-- <p>Equiment Options:</p>
         <label id="equiment_option">  </label>
@@ -148,12 +159,12 @@
         <label id="subclasses"> </label>
         <br />
       </div>
-    </div>
+    <!-- </div> -->
   </div>
 
   <!------------------Background------------------------->
-  <div id="page_3">
-    <div class="access" style="display:none">
+  <div id="page_3" class="tabcontent">
+      <!-- <div class="access" style="display:none"> -->
       <h2>Background:</h2>
       <br />
       <p>Chose your character background from below</p>
@@ -195,7 +206,7 @@
             <li value="neutral">neutral</li>
             <li value="neutral-evil">neutral-evil</li>
             <li value="neutral-good">neutral-good</li>
-            <li value ="none">None</li>
+            <li value="none">None</li>
           </ul>
         </div>
       </div>
@@ -238,12 +249,12 @@
         <p>Alignment:</p>
         <label id="alignment_choice"> </label>
       </div>
-    </div>
+    <!-- </div> -->
   </div>
 
   <!------------------Ability Scores------------------------->
-  <div id="page_4">
-    <div class="access" style="display:none">
+  <div id="page_4" class="tabcontent">
+      <!-- <div class="access" style="display:none"> -->
       <h2>Level:</h2>
       <br />
       <p>1</p>
@@ -251,34 +262,34 @@
       <h2>Ability Score:</h2>
       <br />
       <p>STR:</p>
-      <label id="STR" > </label>
+      <label id="STR"> </label>
       <p>Bonus:</p>
-      <label id="STR_bonus" > </label>
+      <label id="STR_bonus"> </label>
       <br />
       <p>DEX:</p>
-      <label id="DEX" > </label>
+      <label id="DEX"> </label>
       <p>Bonus:</p>
-      <label id="DEX_bonus" > </label>
+      <label id="DEX_bonus"> </label>
       <br />
       <p>CON:</p>
-      <label id="CON" > </label>
+      <label id="CON"> </label>
       <p>Bonus:</p>
-      <label id="CON_bonus" > </label>
+      <label id="CON_bonus"> </label>
       <br />
       <p>INT:</p>
-      <label id="INT" > </label>
+      <label id="INT"> </label>
       <p>Bonus:</p>
-      <label id="INT_bonus" > </label>
+      <label id="INT_bonus"> </label>
       <br />
       <p>WIS:</p>
-      <label id="WIS" > </label>
+      <label id="WIS"> </label>
       <p>Bonus:</p>
-      <label id="WIS_bonus" > </label>
+      <label id="WIS_bonus"> </label>
       <br />
       <p>CHA: </p>
-      <label id="CHA" > </label>
+      <label id="CHA"> </label>
       <p>Bonus:</p>
-      <label id="CHA_bonus" > </label>
+      <label id="CHA_bonus"> </label>
       <br />
       <button id="roll">Roll</button>
 
@@ -314,13 +325,13 @@
         <label id="DEX_info"></label>
         <br />
       </div>
-    </div>
+    <!-- </div> -->
   </div>
 
 
   <!------------------Skills------------------------->
-  <div id="page_5">
-    <div class="access" style="display:none">
+  <div id="page_5" class="tabcontent">
+    <!-- <div class="access" style="display:none"> -->
       <h2>Proficiencies:</h2>
       <p>Choose the character's skills and languages.</p>
       <br />
@@ -362,7 +373,7 @@
       <br />
       <p>Pick your character's class skills from below</p>
       <div class="dropdown">
-        <button onclick="skillSelect()" id = 'skill_option' class="dropbtn"> Skill
+        <button onclick="skillSelect()" id='skill_option' class="dropbtn"> Skill
           <i class="fa fa-caret-down"></i>
         </button>
         <br />
@@ -372,7 +383,7 @@
       </div>
 
       <div class="dropdown">
-        <button onclick="skill2Select()" id = 'skill_option2' class="dropbtn"> Skill
+        <button onclick="skill2Select()" id='skill_option2' class="dropbtn"> Skill
           <i class="fa fa-caret-down"></i>
         </button>
         <br />
@@ -386,21 +397,21 @@
         <br />
         <p>Skill Name:</p>
         <label id="Pro_name"></label>
-        <br/>
+        <br />
         <p>Skill Information:</p>
         <label id="Pro_info"></label>
         <p>Skill Required Based on Background:</p>
         <label id="background_Skill_info"></label>
       </div>
-    </div>
+    <!-- </div> -->
   </div>
 
   <!------------------Spells------------------------->
-  <div id="page_6">
-    <div class="access" style="display:none">
+  <div id="page_6" class="tabcontent">
+    <!-- <div class="access" style="display:none"> -->
       <h2>Known Spells:</h2>
-      <p>Choose your Character's Spells. 
-          (If any.)</p>
+      <p>Choose your Character's Spells.
+        (If any.)</p>
       <br />
       <p>Pick your character's spells from below</p>
       <div class="dropdown">
@@ -416,20 +427,20 @@
       <div id="info_6" class="section" style="border-style:solid">
         <p>Spell:</p>
         <label id="spell_name"></label>
-        <br/>
+        <br />
         <p>Spell Information:</p>
         <label id="spell_info"></label>
-        <br/>
+        <br />
         <p>Spell Range:</p>
         <label id="spell_range"></label>
         <br />
       </div>
-    </div>
+    <!-- </div> -->
   </div>
 
   <!------------------Fighting------------------------->
-  <div id="page_7">
-    <div class="access" style="display:none">
+  <div id="page_7" class="tabcontent">
+    <!-- <div class="access" style="display:none"> -->
       <h2>Equiment:</h2>
       <p>Choose the character's weapons, aromor, and pack.</p>
       <br />
@@ -446,7 +457,7 @@
           <ul id="weaponList"> </ul>
         </div>
       </div>
-      <br/>
+      <br />
       <!-- <p>Pick your character's armor from below</p>
       <input id="armor" value=""> </input>
       <input id="sheild" value=""> </input> -->
@@ -468,47 +479,67 @@
         <!-- <p>Package:</p>
         <label id="pack_info"></label> -->
       </div>
-    </div>
+    <!-- </div> -->
   </div>
 
   <script src="./DND_Code.js"></script>
   <script>
-    var pages = document.querySelectorAll("div.access");
-    var pagesArr = Array.from(pages);
-    console.log(pagesArr);
-    var current = -1;
+    function openPage(evt, pageName) {
+      // Declare all variables
+      var i, tabcontent, tablinks;
 
-    $(document).ready(function () {
-      $("#next_round").click(function () {
-        $(pagesArr[current]).css("display", "block");
-        if (current < 0) {
-          $(pagesArr[0]).css("display", "none");
-          current = 0;
-          $(pagesArr[current]).css("display", "block");
-        } else if (current >= 7) {
-          $(pagesArr[6]).css("display", "block");
-          current = 6;
-        } else {
-          $(pagesArr[current]).css("display", "none");
-          console.log("Current num " + current);
-          current++;
-          $(pagesArr[current]).css("display", "block");
-          console.log("Adding Current " + current);
-        }
-      });
-      $("#previous_round").click(function () {
-        if (current < 0) {
-          $(pagesArr[0]).css("display", "none");
-          current = 0;
-        } else {
-          console.log("Current num " + current);
-          $(pagesArr[current]).css("display", "none");
-          current--;
-          console.log("Subtracting Current " + current);
-          $(pagesArr[current]).css("display", "block");
-        }
-      });
-    });
+      // Get all elements with class="tabcontent" and hide them
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+
+      // Get all elements with class="tablinks" and remove the class "active"
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+
+      // Show the current tab, and add an "active" class to the button that opened the tab
+      document.getElementById(pageName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+    // var pages = document.querySelectorAll("div.access");
+    // var pagesArr = Array.from(pages);
+    // console.log(pagesArr);
+    // var current = -1;
+    // //// This allows for the next and pevious buttons to work
+    // $(document).ready(function () {
+    //   $("#next_round").click(function () {
+    //     $(pagesArr[current]).css("display", "block");
+    //     if (current < 0) {
+    //       $(pagesArr[0]).css("display", "none");
+    //       current = 0;
+    //       $(pagesArr[current]).css("display", "block");
+    //     } else if (current >= 7) {
+    //       $(pagesArr[6]).css("display", "block");
+    //       current = 6;
+    //     } else {
+    //       $(pagesArr[current]).css("display", "none");
+    //       console.log("Current num " + current);
+    //       current++;
+    //       $(pagesArr[current]).css("display", "block");
+    //       console.log("Adding Current " + current);
+    //     }
+    //   });
+    //   $("#previous_round").click(function () {
+    //     if (current < 0) {
+    //       $(pagesArr[0]).css("display", "none");
+    //       current = 0;
+    //     } else {
+    //       console.log("Current num " + current);
+    //       $(pagesArr[current]).css("display", "none");
+    //       current--;
+    //       console.log("Subtracting Current " + current);
+    //       $(pagesArr[current]).css("display", "block");
+    //     }
+    //   });
+    // });
   </script>
 </body>
 
