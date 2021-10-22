@@ -841,19 +841,15 @@ function rollOneDice() {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-// This generates all 4 rolls of 1 ability score
-// EX: rolls: 1, 3, 4, 5   Ability score is 13
-// BUT ability score can not be over 18 on a roll
+// This generates all 3 rolls of a 6-sided dice for 1 ability score
+// EX: rolls: 1, 3, 4   Ability score is 8
 function rollsForScore() {
     var totalRolls = [];
-    for (var i = 0; i <= 3; i++) {
+    for (var i = 0; i <= 2; i++) {
         totalRolls.push(rollOneDice())
     }
 
     var sum = totalRolls.reduce((a, b) => a + b, 0)
-    if (sum > 18) {
-        sum = 18;
-    }
     return (sum);
 }
 
