@@ -1,6 +1,7 @@
 const api_race = 'https://www.dnd5eapi.co/api/races/';
 const api_classes = 'https://www.dnd5eapi.co/api/classes/';
 const api_spells = '/levels/1/spells';
+const api_proficiencies = '/proficiencies/'
 const api_scores = 'https://www.dnd5eapi.co/api/ability-scores/';
 const api_alignment = 'https://www.dnd5eapi.co/api/alignments/';
 const api_background = 'https://www.dnd5eapi.co/api/backgrounds/';
@@ -8,6 +9,7 @@ const api_language = 'https://www.dnd5eapi.co/api/languages';
 const api_OneSpell = 'https://www.dnd5eapi.co/api/spells/';
 const api_equiment = 'https://www.dnd5eapi.co/api/equipment-categories/';
 const api_skill = 'https://www.dnd5eapi.co/api/skills/';
+const api_OneEquiment = 'https://www.dnd5eapi.co/api/equipment/' 
 
 // const race_input;
 // const background_input;
@@ -51,6 +53,21 @@ function alignmentSelect() {
 
 function weaponSelect() {
     document.getElementById("weaponDropdown").classList.toggle("show");
+    console.log("at the dropdowm bar");
+}
+
+function armorSelect() {
+    document.getElementById("armorDropdown").classList.toggle("show");
+    console.log("at the dropdowm bar");
+}
+
+function shieldSelect() {
+    document.getElementById("shieldDropdown").classList.toggle("show");
+    console.log("at the dropdowm bar");
+}
+
+function kitSelect() {
+    document.getElementById("kitDropdown").classList.toggle("show");
     console.log("at the dropdowm bar");
 }
 
@@ -120,6 +137,7 @@ async function setupPage6() {
 async function setupPage7() {
     console.log("starting 7");
     weaponChoice();
+   // armorChoice();
 }
 
 function clickOnDropDownMenu(ul, func, button) {
@@ -169,9 +187,26 @@ function alignmentChoice() {
 function weaponChoice() {
     var ul = document.getElementById('weaponList');
     var button = document.getElementById('weapon_option');
+    var ul2 = document.getElementById('armorList');
+    var button2 = document.getElementById('armor_option');
+    var ul3 = document.getElementById('shieldList');
+    var button3 = document.getElementById('shield_option');
+    var ul4 = document.getElementById('kitList');
+    var button4 = document.getElementById('kit_option');
     console.log(ul);
-    clickOnDropDownMenu(ul, equimentAsk, button);
+    clickOnDropDownMenu(ul, certianEquimentsAsk, button);
+    //clickOnDropDownMenu(ul2, equimentCategoryAsk, button2);
+    clickOnDropDownMenu(ul2, certianEquimentsAsk, button2);
+    clickOnDropDownMenu(ul3, certianEquimentsAsk, button3);
+    clickOnDropDownMenu(ul4, certianEquimentsAsk, button4);
 }
+
+// function armorChoice() {
+//     var ul = document.getElementById('armorList');
+//     var button = document.getElementById('armor_option');
+//     console.log(ul);
+//     clickOnDropDownMenu(ul, armorAsk, button);
+// }
 
 function skillChoice() {
     var ul = document.getElementById('skillList');
@@ -212,6 +247,7 @@ async function classAsk(input) {
     const data = await fetchDataFromAPI(url);
     printClassData(data);
     spellsAsk(input);
+    proficiencyAsk(input);
     skillChoice();
 }
 
@@ -245,6 +281,14 @@ async function spellsAsk(input) {
     printSpellsData(data);
 }
 
+async function proficiencyAsk(input) {
+    var url = api_classes + input + api_proficiencies;
+    const data = await fetchDataFromAPI(url);
+    console.log("proficiencies for: " + input);
+    console.log(data);
+    getProficiencyData(data);
+}
+
 async function certianSpellsAsk(input) {
     console.log("Spells: " + input);
     var url = api_OneSpell + input;
@@ -260,21 +304,29 @@ async function skillAsk(input) {
     printSkillsData(data);
 }
 
-// async function proficienciesAsk(input) {
-//     console.log("Proficiencies for: " + input);
-//     var url = api_classes + input + api_proficiencies;
-//     console.log(url);
-//     const response = await fetch(url);
-//     const data = await response.json();
-//     printListOfEquimentOptions(data);
+async function equimentCategoryAsk(input) {
+    ///console.log("Equiment for: " + input);
+    var url = api_equiment + input;
+    //var url = api_OneEquiment + input;
+    const data = await fetchDataFromAPI(url);
+    return await getEquimentListData(data);
+    //getListofEquimentCategory(data)
+}
+
+async function certianEquimentsAsk(input) {
+    console.log("Equiment for: " + input);
+    var url = api_OneEquiment + input;
+    const data = await fetchDataFromAPI(url);
+    printInfo_One_Equiment(data);
+}
+
+// async function armorAsk(input) {
+//     console.log("Equiment for: " + input);
+//     var url = api_OneEquiment + input;
+//     const data = await fetchDataFromAPI(url);
+//     printInfo_One_Equiment(data);
 // }
 
-async function equimentAsk(input) {
-    console.log("Equiment for: " + input);
-    var url = api_equiment + input;
-    const data = await fetchDataFromAPI(url);
-    printEquimentData(data);
-}
 
 async function abilityAsk(input) {
     console.log("Ability for: " + input);
@@ -283,20 +335,6 @@ async function abilityAsk(input) {
     getAblityScore(data, input);
 }
 
-async function languageAsk(input) {
-    console.log("lanage: " + input);
-    var url = api_language + '/' + input;
-    const data = await fetchDataFromAPI(url);
-    printLanguageData(data);
-}
-
-// async function setLanguageList() {
-//     var url = api_language;
-//     console.log(url);
-//     const response = await fetch(url);
-//     const data = await response.json();
-//     selectLanguageOptions(data);
-// }
 
 async function printRaceData(data) {
     clearAbilityScoreBonuses();
@@ -333,10 +371,16 @@ async function printRaceData(data) {
 async function printClassData(data) {
     let spell_list = document.getElementById("spellList")
     let weapon_list = document.getElementById("weaponList");
+    let armor_list = document.getElementById("armorList");
+    let shield_list = document.getElementById("shieldList");
+    let kit_list = document.getElementById("kitList");
     let skill_list_1 = document.getElementById("skillList");
     let skill_list_2 = document.getElementById("skill2List");
     clearAllFromList(spell_list);
     clearAllFromList(weapon_list);
+    clearAllFromList(armor_list);
+    clearAllFromList(shield_list);
+    clearAllFromList(kit_list);
     clearAllFromList(skill_list_1);
     clearAllFromList(skill_list_2);
     console.log(data);
@@ -373,10 +417,9 @@ async function printClassData(data) {
     die.textContent = hit_die;
     throwHits.textContent = getNames(saving_throws);
 
-    //console.log(getNumberChoose(proficiency_choices));
     skillsNum.textContent = getNumberChoose(proficiency_choices);
     wantedEquiment.textContent = getNames(proficiencies);
-    createListOfEquimentOptions(proficiencies, weapon_list);
+    //createListOfEquimentOptions(proficiencies, weapon_list, armor_list, shield_list);
     console.log(spellcasting);
     casting.textContent = getInfoNames(spellcasting);
     otherClasses.textContent = getNames(subclasses);
@@ -404,6 +447,16 @@ async function printSpellsData(data) {
         spellInfo.textContent = "None";
         spellRange.textContent = "None";
     }
+}
+
+async function getProficiencyData(data) {
+    let weapon_list = document.getElementById("weaponList");
+    let armor_list = document.getElementById("armorList");
+    let shield_list = document.getElementById("shieldList");
+    let kit_list = document.getElementById("kitList");
+    const { count, results } = data;
+    
+    createListOfEquimentOptions(results, weapon_list, armor_list, shield_list, kit_list);
 }
 
 async function printSkillsData(data) {
@@ -524,16 +577,41 @@ async function printExtraBackgroundData(input) {
     console.log("printing page 3");
 }
 
-async function printEquimentData(data) {
+async function getEquimentListData(data) {
     const { index, name, equipment } = data;
-    console.log(equipment);
-    var equipmentList = document.getElementById('weapon_info');
+    console.log("Within getEquimentListData")
+    //var weaponList = document.getElementById('weaponList');
 
-    equiment_options_Array = equipment.map(function (el) {
-        return el.name;
+    let equiment_options_Array = equipment.map(function (el) {
+        return el.index;
     });
-    equipmentList.textContent = equiment_options_Array.join(',     ');
+    console.log("equiment_options_Array");
+    console.log(equiment_options_Array);
+    return equiment_options_Array;
 }
+
+async function printInfo_One_Equiment(data) {
+    const { name, index, equipment_category} = data;
+    let category = getNames(equipment_category);
+    if (category == "Armor") {
+
+    } else if (category == "Weapon") {
+
+    } else if (category == "Shield") {
+        
+    }
+    var weaponInfo = document.getElementById('weapon_info');
+    var armorInfo = document.getElementById('armor_info');
+    var sheildInfo = document.getElementById('shield_info');
+    var kitInfo = document.getElementById('kit_info');
+
+    // weaponInfo.textContent = "None";
+    // armorInfo.textContent = "None";
+    // sheildInfo.textContent = "None"; 
+    // kitInfo.textContent = "None"; 
+    console.log(armor_category);
+}
+
 
 async function printAblityScoreData() {
 
@@ -601,14 +679,6 @@ async function getAblityScore(data, input) {
     }
 }
 
-async function printLanguageData(data) {
-    console.log("language");
-    console.log(data);
-    const { typical_speakers } = data
-    document.getElementById("lang_des").textContent = typical_speakers;
-}
-
-
 async function printBonusData(data) {
     console.log(data);
     var array = getNameBonuses(data);
@@ -669,17 +739,97 @@ function clearAllFromList(ul) {
 
 /// Instead of having a long listed created in HTML, this generates the list in 
 /// JavaScript of the Spells options, depending on the class selected
-async function createListOfEquimentOptions(data, list) {
+async function createListOfEquimentOptions(data, list, list_2, list_3, list_4) {
+    console.log("Equiment");
     console.log(data);
-    var array_weapons = getArrayOfIndexs(data);
-    console.log("array_weapons " + array_weapons)
-    array_weapons.forEach((item) => {
-        let li = document.createElement("li");
-        li.innerText = item;
-        list.appendChild(li);
-    })
+    var array_equiment = getArrayOfIndexs(data);
+    let array_armor = new Array;
+    let array_weapon = new Array;
+    let All_weapon_indexs = new Array
+    let array_shield = new Array;
+    let array_kit = new Array;
+    for (var i = 0; i < array_equiment.length; i++) {
+        if (array_equiment[i].includes("armor")) {
+            array_armor.push(array_equiment[i]);
+        } else if (array_equiment[i].includes("shields")) {
+            array_shield.push(array_equiment[i]);
+        } else if (array_equiment[i].includes("kit")) {
+            array_kit.push(array_equiment[i]);
+        } else {
+            array_weapon.push(array_equiment[i]);
+        }
+    }
+
+    for (var i = 0; i < array_weapon.length; i++) {
+        if (array_weapon[i].includes("weapon")) {
+            await equimentCategoryAsk(array_weapon[i]);
+            console.log("data in getEquiment");
+            console.log(data);
+            All_weapon_indexs.push(data);
+            array_weapon.slice(i, 1);
+        }
+    }
+    console.log("All_weapon_indexs");
+    console.log(All_weapon_indexs);
+    All_weapon_indexs.push(array_weapon);
+    console.log("All_weapon_indexs")
+    console.log(All_weapon_indexs);
+
+    var items = All_weapon_indexs.toString().split(",");
+    console.log("All_weapon_indexs.toString().split(",")");
+    console.log(All_weapon_indexs.toString().split(","));
+    var weapon_names = new Array;
+
+    for (var i = 0, j = items.length; i < j; i++) {
+        weapon_names.push(items[i]);
+    }
+    console.log("weapon_Names")
+    console.log(weapon_names);
+
+    let armor_names = new Array;
+    // for (var i = 0; i < array_armor.length; i++) {
+    //     console.log("armor Array index: "+array_armor[i]);
+    //     let data = await equimentCategoryAsk(array_armor[i]);
+    //     console.log(data);
+    //     console.log("In creating HTML");
+    //     armor_names.push(data);
+    // }
+
+    console.log("array_armor");
+    console.log(array_armor);
+    armor_names = await creatingListofArrayForEquiment(array_armor);
+    console.log("armor names");
+    console.log(armor_names);
+    let shield_names = await creatingListofArrayForEquiment(array_shield);
+    let kit_names = await creatingListofArrayForEquiment(array_kit);
+
+    //console.log("array_weapons " + array_weapon)
+    getListToHTML(weapon_names, list);
+    getListToHTML(armor_names, list_2);
+    //getListToHTML(array_armor, list_2);
+    getListToHTML(shield_names, list_3);
+    getListToHTML(kit_names, list_4);
 }
 
+async function creatingListofArrayForEquiment(array) {
+    let new_array = new Array;
+    for (var i = 0; i < array.length; i++) {
+        console.log("armor Array index: "+array[i]);
+        let data = await equimentCategoryAsk(array[i]);
+        console.log("creatingListofArrayForEquiment");
+        //console.log(array);
+        //console.log(data);
+        new_array.push(data);
+    }
+
+    var items = new_array.toString().split(",");
+    var equiment_names = new Array;
+
+    for (var i = 0, j = items.length; i < j; i++) {
+        equiment_names.push(items[i]);
+    }
+    return equiment_names;
+}
 /// Instead of having a long listed created in HTML, this generates the list in 
 /// JavaScript of the Spells options, depending on the class selected
 async function createListOfSpellOptions(data, list) {
@@ -690,11 +840,7 @@ async function createListOfSpellOptions(data, list) {
         array_spells = getArrayOfIndexs(data);
     }
     console.log("array_spells " + array_spells)
-    array_spells.forEach((item) => {
-        let li = document.createElement("li");
-        li.innerText = item;
-        list.appendChild(li);
-    })
+    getListToHTML(array_spells, list);
 }
 
 /// Instead of having a long listed created in HTML, this generates the list in 
@@ -708,25 +854,17 @@ async function createListOfProficiencyOptions(array, list) {
             skill_names.push(items[i].replace("skill-", ""));
         }
     }
+    getListToHTML(skill_names, list);
+}
 
-    skill_names.forEach((item) => {
+/// Creates the list for the dropdown menue in the HTML
+function getListToHTML(array, list) {
+    array.forEach((item) => {
         let li = document.createElement("li");
         li.innerText = item;
         list.appendChild(li);
     })
 }
-
-// function getListOfNamesInArray(link) {
-//     var empty_Array = "None";
-//     if (dataValid(link)) {
-//         var array = link.from.map(function (el) {
-//             return el.name;
-//         });
-//         return array.join(',     ');
-//     } else {
-//         return empty_Array;
-//     }
-// }
 
 /// Function that gets the names within the object Array 
 /// within the free API access DND e5 documentation and have it converted to a string

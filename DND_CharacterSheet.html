@@ -22,8 +22,8 @@
     <button class="tablinks" onclick="openPage(event, 'page_2')">Class</button>
     <button class="tablinks" onclick="openPage(event, 'page_3')">Background</button>
     <button class="tablinks" onclick="openPage(event, 'page_4')">Ability Score</button>
-    <button class="tablinks" onclick="openPage(event, 'page_5')">Class</button>
-    <button class="tablinks" onclick="openPage(event, 'page_6')">Proficiencies</button>
+    <button class="tablinks" onclick="openPage(event, 'page_5')">Skills</button>
+    <button class="tablinks" onclick="openPage(event, 'page_6')">Spells</button>
     <button class="tablinks" onclick="openPage(event, 'page_7')">Equiment</button>
   </div>
 
@@ -388,9 +388,6 @@
         </div>
       </div>
       <div id="info_5" class="section" style="border-style:solid">
-        <p>Language Information:</p>
-        <label id="lang_des"></label>
-        <br />
         <p>Skill Name:</p>
         <label id="Pro_name"></label>
         <br />
@@ -454,6 +451,39 @@
         </div>
       </div>
       <br />
+      <p>Pick your character's Armor from below</p>
+      <div class="dropdown">
+        <button onclick="armorSelect()" id='armor_option' class="dropbtn">Armor
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <br />
+        <div id="armorDropdown" class="dropdown-content">
+          <ul id="armorList"> </ul>
+        </div>
+      </div>
+      <br />
+      <p>Pick your character's shield from below</p>
+      <div class="dropdown">
+        <button onclick="shieldSelect()" id='shield_option' class="dropbtn">Shields
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <br />
+        <div id="shieldDropdown" class="dropdown-content">
+          <ul id="shieldList"> </ul>
+        </div>
+      </div>
+      <br />
+      <p>Pick your character's kit from below</p>
+      <div class="dropdown">
+        <button onclick="kitSelect()" id='kit_option' class="dropbtn">Kits
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <br />
+        <div id="kitDropdown" class="dropdown-content">
+          <ul id="kitList"> </ul>
+        </div>
+      </div>
+      <br />
       <!-- <p>Pick your character's armor from below</p>
       <input id="armor" value=""> </input>
       <input id="sheild" value=""> </input> -->
@@ -466,11 +496,17 @@
       <input id="tool_2" value=""> </input>> -->
 
       <div id="info_7" class="section" style="border-style:solid">
-        <p>Equiment Options:</p>
+        <p>Weapon:</p>
         <label id="weapon_info"></label>
         <br />
         <p>Armor:</p>
         <label id="armor_info"></label>
+        <br />
+        <p>Shield:</p>
+        <label id="shield_info"></label>
+        <br />
+        <p>Kit Info:</p>
+        <label id="kit_info"></label>
         <br />
         <!-- <p>Package:</p>
         <label id="pack_info"></label> -->
