@@ -613,6 +613,7 @@ async function printArmorInfo(data) {
     var equimentINfo = document.getElementById('equiment_info');
     var stealth_info = document.getElementById('stealth_info');
     var str_needed = document.getElementById('musle_info');
+    var damageRoll =  document.getElementById('damage_roll');
 
     equimentInfo.textContent = name;
     weightInfo.textContent = weight;
@@ -622,6 +623,7 @@ async function printArmorInfo(data) {
     equimentINfo.textContent = "None";
     stealth_info.textContent = stealth_disadvantage;
     str_needed.textContent = str_minimum;
+    damageRoll.textContent = "None";
 }
 
 async function printSheildInfo(data) {
@@ -636,6 +638,7 @@ async function printSheildInfo(data) {
     var equimentINfo = document.getElementById('equiment_info');
     var stealth_info = document.getElementById('stealth_info');
     var str_needed = document.getElementById('musle_info');
+    var damageRoll =  document.getElementById('damage_roll');
 
     equimentInfo.textContent = name;
     weightInfo.textContent = weight;
@@ -645,6 +648,7 @@ async function printSheildInfo(data) {
     equimentINfo.textContent = "None";
     stealth_info.textContent = stealth_disadvantage;
     str_needed.textContent = str_minimum;
+    damageRoll.textContent = "None";
 }
 
 async function printWeaponInfo(data) {
@@ -657,6 +661,7 @@ async function printWeaponInfo(data) {
     var danageInfo = document.getElementById('damage_info');
     var costrInfo = document.getElementById('cost_info');
     var equimentINfo = document.getElementById('equiment_info');
+    var damageRoll =  document.getElementById('damage_roll');
 
     equimentInfo.textContent = name;
     weightInfo.textContent = weight;
@@ -664,6 +669,7 @@ async function printWeaponInfo(data) {
     danageInfo.textContent = "None";
     costrInfo.textContent = cost;
     equimentINfo.textContent = "None";
+    damageRoll.textContent = "None";
 }
 
 async function printInfo_One_Equiment(data) {
@@ -675,6 +681,7 @@ async function printInfo_One_Equiment(data) {
     var danageInfo = document.getElementById('damage_info');
     var costrInfo = document.getElementById('cost_info');
     var equimentINfo = document.getElementById('equiment_info');
+    var danageRoll =  document.getElementById('damage_roll');
 
     equimentInfo.textContent = name;
     weightInfo.textContent = weight;
@@ -682,6 +689,7 @@ async function printInfo_One_Equiment(data) {
     danageInfo.textContent = "None";
     costrInfo.textContent = cost;
     equimentINfo.textContent = desc;
+    danageRoll.textContent = "None"
 }
 
 async function printAblityScoreData() {
@@ -785,12 +793,33 @@ function addTotalForAbilityScore() {
     var int_total = document.getElementById('INT_total');
     var dex_total = document.getElementById('DEX_total');
 
-    str_total.textContent = (parseInt(document.getElementById("STR_bonus").textContent) + parseInt(document.getElementById("STR").textContent))
-    wis_total.textContent = (parseInt(document.getElementById("WIS_bonus").textContent) + parseInt(document.getElementById("WIS").textContent))
-    cha_total.textContent = (parseInt(document.getElementById("CHA_bonus").textContent) + parseInt(document.getElementById("CHA").textContent))
-    con_total.textContent = (parseInt(document.getElementById("CON_bonus").textContent) + parseInt(document.getElementById("CON").textContent))
-    int_total.textContent = (parseInt(document.getElementById("INT_bonus").textContent) + parseInt(document.getElementById("INT").textContent))
-    dex_total.textContent = (parseInt(document.getElementById("DEX_bonus").textContent) + parseInt(document.getElementById("DEX").textContent))
+    var str_bonus = document.getElementById('STR_bonus');
+    var wis_bonus = document.getElementById('WIS_bonus');
+    var cha_bonus = document.getElementById('CHA_bonus');
+    var con_bonus = document.getElementById('CON_bonus');
+    var int_bonus = document.getElementById('INT_bonus');
+    var dex_bonus = document.getElementById('DEX_bonus');
+
+    var str = document.getElementById('STR');
+    var wis = document.getElementById('WIS');
+    var cha = document.getElementById('CHA');
+    var con = document.getElementById('CON');
+    var int = document.getElementById('INT');
+    var dex = document.getElementById('DEX');
+
+    calcForAbilityScoreModifier(parseInt(str_bonus.textContent), parseInt(str.textContent), str_bonus);
+    calcForAbilityScoreModifier(parseInt(wis_bonus.textContent), parseInt(wis.textContent), wis_bonus);
+    calcForAbilityScoreModifier(parseInt(cha_bonus.textContent), parseInt(cha.textContent), cha_bonus);
+    calcForAbilityScoreModifier(parseInt(con_bonus.textContent), parseInt(con.textContent), con_bonus);
+    calcForAbilityScoreModifier(parseInt(int_bonus.textContent), parseInt(int.textContent), int_bonus);
+    calcForAbilityScoreModifier(parseInt(dex_bonus.textContent), parseInt(dex.textContent), dex_bonus);
+
+    str_total.textContent = (parseInt(str_bonus.textContent) + parseInt(str.textContent))
+    wis_total.textContent = (parseInt(wis_bonus.textContent) + parseInt(wis.textContent))
+    cha_total.textContent = (parseInt(cha_bonus.textContent) + parseInt(cha.textContent))
+    con_total.textContent = (parseInt(con_bonus.textContent) + parseInt(con.textContent))
+    int_total.textContent = (parseInt(int_bonus.textContent) + parseInt(int.textContent))
+    dex_total.textContent = (parseInt(dex_bonus.textContent) + parseInt(dex.textContent))
 }
 
 /// Clears all the ability score, so that the pervious scores are not still taken into effect
@@ -1082,6 +1111,53 @@ function rollsForScore() {
 
     var sum = totalRolls.reduce((a, b) => a + b, 0)
     return (sum);
+}
+
+function calcForAbilityScoreModifier(modifier, score, text) {
+    switch (score) {
+        case 3:
+            text.textContent = (modifier - 4);
+            console.log(text);
+            break;
+        case 4:
+        case 5:
+            text.textContent = (modifier - 3);
+            break;
+        case 6:
+        case 7:
+            text.textContent = (modifier - 2);
+            console.log(text);
+            break;
+        case 8:
+        case 9:
+            text.textContent = (modifier - 1);
+            console.log(text);
+            break;
+        case 10:
+        case 11:
+            text.textContent = (modifier + 0);
+            console.log(text);
+            break;
+        case 12:
+        case 13:
+            text.textContent = (modifier + 1);
+            console.log(text);
+            break;
+        case 14:
+        case 15:
+            text.textContent = (modifier + 2);
+            console.log(text);
+            break;
+        case 16:
+        case 17:
+            text.textContent = (modifier + 3);
+            console.log(text);
+            break;
+        case 18:
+            text.textContent = (modifier + 4);
+            console.log(text);
+            break;
+    }
 }
 
 /// This function checks if the link or data provided from the data is 
