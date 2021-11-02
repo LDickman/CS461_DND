@@ -1,3 +1,5 @@
+import { getListToHTML, getNames, getArrayOfNames, getArrayOfIndexs, getInfoNames, getNumberChoose, 
+    getNumberBonuses, getArrayOfNumberBonuses, getNameBonuses } from './help.js';
 const api_race = 'https://www.dnd5eapi.co/api/races/';
 const api_classes = 'https://www.dnd5eapi.co/api/classes/';
 const api_spells = '/levels/1/spells';
@@ -29,76 +31,76 @@ window.addEventListener('load', (event) => {
 });
 
 
-/* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
-function raceSelect() {
-    document.getElementById("raceDropdown").classList.toggle("show");
-    console.log("at the dropdowm bar");
-}
+// /* When the user clicks on the button,
+// toggle between hiding and showing the dropdown content */
+// function raceSelect() {
+//     document.getElementById("raceDropdown").classList.toggle("show");
+//     console.log("at the dropdowm bar");
+// }
 
-function classSelect() {
-    document.getElementById("classDropdown").classList.toggle("show");
-    console.log("at the dropdowm bar");
-}
+// function classSelect() {
+//     document.getElementById("classDropdown").classList.toggle("show");
+//     console.log("at the dropdowm bar");
+// }
 
-function backgroundSelect() {
-    document.getElementById("backgroundDropdown").classList.toggle("show");
-    console.log("at the dropdowm bar");
-}
+// function backgroundSelect() {
+//     document.getElementById("backgroundDropdown").classList.toggle("show");
+//     console.log("at the dropdowm bar");
+// }
 
-function alignmentSelect() {
-    document.getElementById("alignmentDropdown").classList.toggle("show");
-    console.log("at the dropdowm bar");
-}
+// function alignmentSelect() {
+//     document.getElementById("alignmentDropdown").classList.toggle("show");
+//     console.log("at the dropdowm bar");
+// }
 
-function weaponSelect() {
-    document.getElementById("weaponDropdown").classList.toggle("show");
-    console.log("at the dropdowm bar");
-}
+// function weaponSelect() {
+//     document.getElementById("weaponDropdown").classList.toggle("show");
+//     console.log("at the dropdowm bar");
+// }
 
-function armorSelect() {
-    document.getElementById("armorDropdown").classList.toggle("show");
-    console.log("at the dropdowm bar");
-}
+// function armorSelect() {
+//     document.getElementById("armorDropdown").classList.toggle("show");
+//     console.log("at the dropdowm bar");
+// }
 
-function shieldSelect() {
-    document.getElementById("shieldDropdown").classList.toggle("show");
-    console.log("at the dropdowm bar");
-}
+// function shieldSelect() {
+//     document.getElementById("shieldDropdown").classList.toggle("show");
+//     console.log("at the dropdowm bar");
+// }
 
-function kitSelect() {
-    document.getElementById("kitDropdown").classList.toggle("show");
-    console.log("at the dropdowm bar");
-}
+// function kitSelect() {
+//     document.getElementById("kitDropdown").classList.toggle("show");
+//     console.log("at the dropdowm bar");
+// }
 
-function spellSelect() {
-    document.getElementById("spellDropdown").classList.toggle("show");
-    console.log("at the dropdowm bar");
-}
+// function spellSelect() {
+//     document.getElementById("spellDropdown").classList.toggle("show");
+//     console.log("at the dropdowm bar");
+// }
 
-function skillSelect() {
-    document.getElementById("skillDropdown").classList.toggle("show");
-    console.log("at the dropdowm bar");
-}
+// function skillSelect() {
+//     document.getElementById("skillDropdown").classList.toggle("show");
+//     console.log("at the dropdowm bar");
+// }
 
-function skill2Select() {
-    document.getElementById("skill2Dropdown").classList.toggle("show");
-    console.log("at the dropdowm bar");
-}
+// function skill2Select() {
+//     document.getElementById("skill2Dropdown").classList.toggle("show");
+//     console.log("at the dropdowm bar");
+// }
 
-// Close the dropdown menu if the user clicks outside of it
-window.onclick = function (event) {
-    if (!event.target.matches('.dropbtn')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        var i;
-        for (i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
-            }
-        }
-    }
-}
+// // Close the dropdown menu if the user clicks outside of it
+// window.onclick = function (event) {
+//     if (!event.target.matches('.dropbtn')) {
+//         var dropdowns = document.getElementsByClassName("dropdown-content");
+//         var i;
+//         for (i = 0; i < dropdowns.length; i++) {
+//             var openDropdown = dropdowns[i];
+//             if (openDropdown.classList.contains('show')) {
+//                 openDropdown.classList.remove('show');
+//             }
+//         }
+//     }
+// }
 
 async function setupPage1() {
     console.log("starting");
@@ -146,7 +148,7 @@ function clickOnDropDownMenu(ul, func, button) {
     console.log(items);
     //console.log(items[0].textContent);   // knows that textcontext works
     ul.addEventListener("click", function (e) {
-        for (i = 0; i < items.length; i++) {
+        for (var i = 0; i < items.length; i++) {
             if (e.target == items[i]) {
                 console.log(items[i].textContent);
                 func(items[i].textContent);
@@ -358,7 +360,7 @@ async function printRaceData(data) {
     if (starting_proficiency_options == undefined) {
         document.querySelector("#race-skill").textContent = "None";
     } else {
-        proficiency_options_Array = starting_proficiency_options.from.map(function (el) {
+        var proficiency_options_Array = starting_proficiency_options.from.map(function (el) {
             return el.name;
         });
         document.querySelector("#race-skill").textContent = proficiency_options_Array.join(',     ');
@@ -770,16 +772,22 @@ async function printBonusData(data) {
     for (var i = 0; i < array_BounusName.length; i++) {
         if (array_BounusName[i] == "CON") {
             document.getElementById("CON_bonus").textContent = array_Bounus[i];
+            document.getElementById("CON_bonus").value = array_Bounus[i];
         } else if (array_BounusName[i] == "CHA") {
             document.getElementById("CHA_bonus").textContent = array_Bounus[i];
+            document.getElementById("CHA_bonus").value = array_Bounus[i];
         } else if (array_BounusName[i] == "DEX") {
             document.getElementById("DEX_bonus").textContent = array_Bounus[i];
+            document.getElementById("DEX_bonus").value = array_Bounus[i];
         } else if (array_BounusName[i] == "STR") {
             document.getElementById("STR_bonus").textContent = array_Bounus[i];
+            document.getElementById("STR_bonus").value = array_Bounus[i];
         } else if (array_BounusName[i] == "INT") {
             document.getElementById("INT_bonus").textContent = array_Bounus[i];
+            document.getElementById("INT_bonus").value = array_Bounus[i];
         } else if (array_BounusName[i] == "WIS") {
             document.getElementById("WIS_bonus").textContent = array_Bounus[i];
+            document.getElementById("WIS_bonus").value = array_Bounus[i];
         }
     }
     addTotalForAbilityScore();
@@ -807,12 +815,18 @@ function addTotalForAbilityScore() {
     var int = document.getElementById('INT');
     var dex = document.getElementById('DEX');
 
-    calcForAbilityScoreModifier(parseInt(str_bonus.textContent), parseInt(str.textContent), str_bonus);
-    calcForAbilityScoreModifier(parseInt(wis_bonus.textContent), parseInt(wis.textContent), wis_bonus);
-    calcForAbilityScoreModifier(parseInt(cha_bonus.textContent), parseInt(cha.textContent), cha_bonus);
-    calcForAbilityScoreModifier(parseInt(con_bonus.textContent), parseInt(con.textContent), con_bonus);
-    calcForAbilityScoreModifier(parseInt(int_bonus.textContent), parseInt(int.textContent), int_bonus);
-    calcForAbilityScoreModifier(parseInt(dex_bonus.textContent), parseInt(dex.textContent), dex_bonus);
+    // calcForAbilityScoreModifier(parseInt(str_bonus.textContent), parseInt(str.textContent), str_bonus);
+    // calcForAbilityScoreModifier(parseInt(wis_bonus.textContent), parseInt(wis.textContent), wis_bonus);
+    // calcForAbilityScoreModifier(parseInt(cha_bonus.textContent), parseInt(cha.textContent), cha_bonus);
+    // calcForAbilityScoreModifier(parseInt(con_bonus.textContent), parseInt(con.textContent), con_bonus);
+    // calcForAbilityScoreModifier(parseInt(int_bonus.textContent), parseInt(int.textContent), int_bonus);
+    // calcForAbilityScoreModifier(parseInt(dex_bonus.textContent), parseInt(dex.textContent), dex_bonus);
+    calcForAbilityScoreModifier(str_bonus.value, parseInt(str.textContent), str_bonus);
+    calcForAbilityScoreModifier(wis_bonus.value, parseInt(wis.textContent), wis_bonus);
+    calcForAbilityScoreModifier(cha_bonus.value, parseInt(cha.textContent), cha_bonus);
+    calcForAbilityScoreModifier(con_bonus.value, parseInt(con.textContent), con_bonus);
+    calcForAbilityScoreModifier(int_bonus.value, parseInt(int.textContent), int_bonus);
+    calcForAbilityScoreModifier(dex_bonus.value, parseInt(dex.textContent), dex_bonus);
 
     str_total.textContent = (parseInt(str_bonus.textContent) + parseInt(str.textContent))
     wis_total.textContent = (parseInt(wis_bonus.textContent) + parseInt(wis.textContent))
@@ -963,141 +977,141 @@ async function createListOfProficiencyOptions(array, list) {
     getListToHTML(skill_names, list);
 }
 
-/// Creates the list for the dropdown menue in the HTML
-function getListToHTML(array, list) {
-    array.forEach((item) => {
-        let li = document.createElement("li");
-        li.innerText = item;
-        list.appendChild(li);
-    })
-}
+// /// Creates the list for the dropdown menue in the HTML
+// function getListToHTML(array, list) {
+//     array.forEach((item) => {
+//         let li = document.createElement("li");
+//         li.innerText = item;
+//         list.appendChild(li);
+//     })
+// }
+//
+// /// Function that gets the names within the object Array 
+// /// within the free API access DND e5 documentation and have it converted to a string
+// function getNames(link) {
+//     var empty = "None";
+//     if (dataValid(link)) {
+//         var array = link.map(function (el) {
+//             return el.name;
+//         });
+//         return array.join(',     ');
+//     } else {
+//         return empty;
+//     }
+// }
 
-/// Function that gets the names within the object Array 
-/// within the free API access DND e5 documentation and have it converted to a string
-function getNames(link) {
-    var empty = "None";
-    if (dataValid(link)) {
-        var array = link.map(function (el) {
-            return el.name;
-        });
-        return array.join(',     ');
-    } else {
-        return empty;
-    }
-}
+// /// Function that gets the names within the object Array 
+// /// within the free API access DND e5 documentation and have it converted to a Array, 
+// // This function is to help to create the list of options with JS instead within the HTML section
+// function getArrayOfNames(link) {
+//     var empty = "None";
+//     if (dataValid(link)) {
+//         var array = link.map(function (el) {
+//             return el.name;
+//         });
+//         return array;//.join(',     ');
+//     } else {
+//         return empty;
+//     }
+// }
 
-/// Function that gets the names within the object Array 
-/// within the free API access DND e5 documentation and have it converted to a Array, 
-// This function is to help to create the list of options with JS instead within the HTML section
-function getArrayOfNames(link) {
-    var empty = "None";
-    if (dataValid(link)) {
-        var array = link.map(function (el) {
-            return el.name;
-        });
-        return array;//.join(',     ');
-    } else {
-        return empty;
-    }
-}
-
-/// Function that gets the index within the object Array 
-/// within the free API access DND e5 documentation and have it converted to a Array, 
-// This function is to help to create the list of options with JS instead within the HTML section
-function getArrayOfIndexs(link) {
-    var empty = "None";
-    if (dataValid(link)) {
-        var array = link.map(function (el) {
-            return el.index;
-        });
-        return array;//.join(',     ');
-    } else {
-        return empty;
-    }
-}
-
-
-/// Function that gets the name within the object Array called info
-/// within the free API access DND e5 documentation and have it converted to a string 
-function getInfoNames(link) {
-    var empty = "None";
-    if (dataValid(link)) {
-        var array = link.info.map(function (el) {
-            return el.name;
-        });
-        return array.join(',     ');
-    } else {
-        return empty;
-    }
-}
+// /// Function that gets the index within the object Array 
+// /// within the free API access DND e5 documentation and have it converted to a Array, 
+// // This function is to help to create the list of options with JS instead within the HTML section
+// function getArrayOfIndexs(link) {
+//     var empty = "None";
+//     if (dataValid(link)) {
+//         var array = link.map(function (el) {
+//             return el.index;
+//         });
+//         return array;//.join(',     ');
+//     } else {
+//         return empty;
+//     }
+// }
 
 
-/// Function that gets the chooses within the object Array
-/// within the free API access DND e5 documentation and have it converted to a String 
-function getNumberChoose(link) {
-    var empty = "None";
-    if (dataValid(link)) {
-        var array = link.map(function (el) {
-            return el.choose;
-        });
-        return array.join(',     ');
-    } else {
-        return empty;
-    }
-}
+// /// Function that gets the name within the object Array called info
+// /// within the free API access DND e5 documentation and have it converted to a string 
+// function getInfoNames(link) {
+//     var empty = "None";
+//     if (dataValid(link)) {
+//         var array = link.info.map(function (el) {
+//             return el.name;
+//         });
+//         return array.join(',     ');
+//     } else {
+//         return empty;
+//     }
+// }
 
-/// Function that gets the bonus within the object Array called info
-/// within the free API access DND e5 documentation and have it converted to a string 
-function getNumberBonuses(link) {
-    var empty = "None";
-    if (dataValid(link)) {
-        var array = link.map(function (el) {
-            return el.bonus;
-        });
-        return array.join(',     ');
-    } else {
-        return empty;
-    }
-}
 
-/// Function that gets the bonuses within the object Array 
-/// within the free API access DND e5 documentation and have it converted to a Array, 
-// This function is to help to create the list of options with JS instead within the HTML section
-function getArrayOfNumberBonuses(link) {
-    var empty = "None";
-    var emptyArray = new Array;
-    if (dataValid(link)) {
-        var array = link.map(function (el) {
-            return el.bonus;
-        });
-        return array;//.join(',     ');
-    } else {
-        emptyArray.push(empty);
-        return emptyArray;
-    }
-}
+// /// Function that gets the chooses within the object Array
+// /// within the free API access DND e5 documentation and have it converted to a String 
+// function getNumberChoose(link) {
+//     var empty = "None";
+//     if (dataValid(link)) {
+//         var array = link.map(function (el) {
+//             return el.choose;
+//         });
+//         return array.join(',     ');
+//     } else {
+//         return empty;
+//     }
+// }
 
-/// Function that gets the ability_score within the object Array 
-/// within the free API access DND e5 documentation and have it converted to a Array, 
-// This function is to help to create the list of options with JS instead within the HTML section
-function getNameBonuses(link) {
-    var empty = "None";
-    var emptyArray = new Array;
-    if (dataValid(link)) {
-        var array = link.map(function (el) {
-            return el.ability_score;
-        });
-        return array;//.join(',     ');
-    } else {
-        emptyArray.push(empty);
-        return emptyArray;
-    }
-}
+// /// Function that gets the bonus within the object Array called info
+// /// within the free API access DND e5 documentation and have it converted to a string 
+// function getNumberBonuses(link) {
+//     var empty = "None";
+//     if (dataValid(link)) {
+//         var array = link.map(function (el) {
+//             return el.bonus;
+//         });
+//         return array.join(',     ');
+//     } else {
+//         return empty;
+//     }
+// }
+
+// /// Function that gets the bonuses within the object Array 
+// /// within the free API access DND e5 documentation and have it converted to a Array, 
+// // This function is to help to create the list of options with JS instead within the HTML section
+// function getArrayOfNumberBonuses(link) {
+//     var empty = "None";
+//     var emptyArray = new Array;
+//     if (dataValid(link)) {
+//         var array = link.map(function (el) {
+//             return el.bonus;
+//         });
+//         return array;//.join(',     ');
+//     } else {
+//         emptyArray.push(empty);
+//         return emptyArray;
+//     }
+// }
+
+// /// Function that gets the ability_score within the object Array 
+// /// within the free API access DND e5 documentation and have it converted to a Array, 
+// // This function is to help to create the list of options with JS instead within the HTML section
+// function getNameBonuses(link) {
+//     var empty = "None";
+//     var emptyArray = new Array;
+//     if (dataValid(link)) {
+//         var array = link.map(function (el) {
+//             return el.ability_score;
+//         });
+//         return array;//.join(',     ');
+//     } else {
+//         emptyArray.push(empty);
+//         return emptyArray;
+//     }
+// }
 
 // This generates 1 roll for the 6 sided dice that has possible to roll from numbers 1 - 6
 function rollOneDice() {
-    min = Math.ceil(1);
-    max = Math.floor(6);
+    let min = Math.ceil(1);
+    let max = Math.floor(6);
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
@@ -1160,12 +1174,12 @@ function calcForAbilityScoreModifier(modifier, score, text) {
     }
 }
 
-/// This function checks if the link or data provided from the data is 
-// undefined or not
-function dataValid(data) {
-    if (data == undefined) {
-        return false;
-    } else if (data != undefined) {
-        return true;
-    }
-}
+// /// This function checks if the link or data provided from the data is 
+// // undefined or not
+// function dataValid(data) {
+//     if (data == undefined) {
+//         return false;
+//     } else if (data != undefined) {
+//         return true;
+//     }
+// }

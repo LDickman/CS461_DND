@@ -6,6 +6,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <title>DND Character Sheet Demo</title>
 </head>
+<script type= "module" src="./DND_Code.js"></script>
+<script type= "module" src="./help.js"></script>
 
 <body>
   <div class="header">
@@ -30,64 +32,64 @@
   <!------------------Races------------------------->
   <div id="page_1" class="tabcontent">
     <!-- <div class="access" style="display:none"> -->
-      <h2>Race:</h2>
-      <br />
-      <p>Chose your character race from below</p>
-      <div class="dropdown">
-        <button onclick="raceSelect()" id='race_option' class="dropbtn">Race
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <div id="raceDropdown" class="dropdown-content">
-          <ul id="raceList">
-            <li value="dragonborn">dragonborn</li>
-            <li value="dwarf">dwarf</li>
-            <li value="elf">elf</li>
-            <li value="gnome">gnome</li>
-            <li value="half-elf">half-elf</li>
-            <li value="half-orc">half-orc</li>
-            <li value="halfling">halfling</li>
-            <li value="human">human</li>
-            <li value="tiefling">tiefling</li>
-          </ul>
-        </div>
+    <h2>Race:</h2>
+    <br />
+    <p>Chose your character race from below</p>
+    <div class="dropdown">
+      <button onclick=raceSelect() id='race_option' class="dropbtn">Race
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div id="raceDropdown" class="dropdown-content">
+        <ul id="raceList">
+          <li value="dragonborn">dragonborn</li>
+          <li value="dwarf">dwarf</li>
+          <li value="elf">elf</li>
+          <li value="gnome">gnome</li>
+          <li value="half-elf">half-elf</li>
+          <li value="half-orc">half-orc</li>
+          <li value="halfling">halfling</li>
+          <li value="human">human</li>
+          <li value="tiefling">tiefling</li>
+        </ul>
       </div>
-      <br />
-      <br />
+    </div>
+    <br />
+    <br />
 
-      <div id="info_1" class="section" style="border-style:solid">
-        <p>Race:</p>
-        <label id="name"> </label>
-        <br />
-        <p>Race Speed:</p>
-        <label id="speed_race"> </label>
-        <br />
-        <p>Race Description:</p>
-        <label id="race-age"> </label>
-        <br />
-        <p>Race Alignment:</p>
-        <label id="race-alignment"> </label>
-        <br />
-        <p>Trait Names:</p>
-        <label id="results">Results </label>
-        <br />
-        <p>Race Size:</p>
-        <label id="size"> </label>
-        <br />
-        <p>Race Languages:</p>
-        <label id="language"> </label>
-        <br />
-        <p>Race Weapons:</p>
-        <label id="weapon"> None </label>
-        <br />
-        <p>Race Skills:</p>
-        <label id="race-skill"> </label>
-        <br />
-        <p>Race Ability Bonuses:</p>
-        <label id="bonuses"> </label>
-        <br />
-        <p>Subraces:</p>
-        <label id="subraces"> </label>
-      </div>
+    <div id="info_1" class="section" style="border-style:solid">
+      <p>Race:</p>
+      <label id="name"> </label>
+      <br />
+      <p>Race Speed:</p>
+      <label id="speed_race"> </label>
+      <br />
+      <p>Race Description:</p>
+      <label id="race-age"> </label>
+      <br />
+      <p>Race Alignment:</p>
+      <label id="race-alignment"> </label>
+      <br />
+      <p>Trait Names:</p>
+      <label id="results">Results </label>
+      <br />
+      <p>Race Size:</p>
+      <label id="size"> </label>
+      <br />
+      <p>Race Languages:</p>
+      <label id="language"> </label>
+      <br />
+      <p>Race Weapons:</p>
+      <label id="weapon"> None </label>
+      <br />
+      <p>Race Skills:</p>
+      <label id="race-skill"> </label>
+      <br />
+      <p>Race Ability Bonuses:</p>
+      <label id="bonuses"> </label>
+      <br />
+      <p>Subraces:</p>
+      <label id="subraces"> </label>
+    </div>
     <!-- </div> -->
   </div>
 
@@ -95,122 +97,122 @@
 
   <div id="page_2" class="tabcontent">
     <!-- <div class="access" style="display:none"> -->
-      <h2>Class:</h2>
+    <h2>Class:</h2>
+    <br />
+    <p>Chose your character class from below</p>
+    <p class="des_class"> A character class is a fundamental part of the identity and
+      nature of characters in the Dungeons & Dragons role-playing game. A character's capabilities,
+      strengths, and weaknesses are largely defined by its class. A character's class affects a character's
+      available skills and abilities</p>
+    <div class="dropdown">
+      <button onclick="classSelect()" id='class_option' class="dropbtn">Class
+        <i class="fa fa-caret-down"></i>
+      </button>
       <br />
-      <p>Chose your character class from below</p>
-      <p class="des_class"> A character class is a fundamental part of the identity and
-        nature of characters in the Dungeons & Dragons role-playing game. A character's capabilities,
-        strengths, and weaknesses are largely defined by its class. A character's class affects a character's
-        available skills and abilities</p>
-      <div class="dropdown">
-        <button onclick="classSelect()" id='class_option' class="dropbtn">Class
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <br />
-        <div id="classDropdown" class="dropdown-content">
-          <ul id="classList">
-            <li value="barbarian">barbarian</li>
-            <li value="bard">bard</li>
-            <li value="cleric">cleric</li>
-            <li value="druid">druid</li>
-            <li value="fighter">fighter</li>
-            <li value="monk">monk</li>
-            <li value="paladin">paladin</li>
-            <li value="ranger">ranger</li>
-            <li value="rogue">rogue</li>
-            <li value="sorcerer">sorcerer</li>
-            <li value="warlock">warlock</li>
-            <li value="wizard">wizard</li>
-          </ul>
-        </div>
+      <div id="classDropdown" class="dropdown-content">
+        <ul id="classList">
+          <li value="barbarian">barbarian</li>
+          <li value="bard">bard</li>
+          <li value="cleric">cleric</li>
+          <li value="druid">druid</li>
+          <li value="fighter">fighter</li>
+          <li value="monk">monk</li>
+          <li value="paladin">paladin</li>
+          <li value="ranger">ranger</li>
+          <li value="rogue">rogue</li>
+          <li value="sorcerer">sorcerer</li>
+          <li value="warlock">warlock</li>
+          <li value="wizard">wizard</li>
+        </ul>
       </div>
+    </div>
+    <br />
+    <div id="info_2" class="section" style="border-style:solid">
+      <p>Class:</p>
+      <label id="class_name"></label>
       <br />
-      <div id="info_2" class="section" style="border-style:solid">
-        <p>Class:</p>
-        <label id="class_name"></label>
-        <br />
-        <p>Hit Die:</p>
-        <label id="hit"></label>
-        <br />
-        <p>Saving Throw:</p>
-        <label id="throws"></label>
-        <br />
-        <!-- <p>Starting Skills:</p>
+      <p>Hit Die:</p>
+      <label id="hit"></label>
+      <br />
+      <p>Saving Throw:</p>
+      <label id="throws"></label>
+      <br />
+      <!-- <p>Starting Skills:</p>
         <label id="start_skills"> </label> -->
-        <p>Number of Skills One can Have:</p>
-        <label id="skills"> </label>
-        <br />
-        <!-- <p>Starter Equiment:</p>
+      <p>Number of Skills One can Have:</p>
+      <label id="skills"> </label>
+      <br />
+      <!-- <p>Starter Equiment:</p>
         <label id="equiment">  </label>
         <br /> -->
-        <p>Recommended Equiment:</p>
-        <label id="preffer_equiment"> </label>
-        <br />
-        <!-- <p>Equiment Options:</p>
+      <p>Recommended Equiment:</p>
+      <label id="preffer_equiment"> </label>
+      <br />
+      <!-- <p>Equiment Options:</p>
         <label id="equiment_option">  </label>
         <br /> -->
-        <p>Starting Spells:</p>
-        <label id="spells"> None </label>
-        <br />
-        <p>Spellcasting:</p>
-        <label id="spellscasting"> None </label>
-        <br />
-        <p>Subclasses:</p>
-        <label id="subclasses"> </label>
-        <br />
-      </div>
+      <p>Starting Spells:</p>
+      <label id="spells"> None </label>
+      <br />
+      <p>Spellcasting:</p>
+      <label id="spellscasting"> None </label>
+      <br />
+      <p>Subclasses:</p>
+      <label id="subclasses"> </label>
+      <br />
+    </div>
     <!-- </div> -->
   </div>
 
   <!------------------Background------------------------->
   <div id="page_3" class="tabcontent">
-      <!-- <div class="access" style="display:none"> -->
-      <h2>Background:</h2>
+    <!-- <div class="access" style="display:none"> -->
+    <h2>Background:</h2>
+    <br />
+    <p>Chose your character background from below</p>
+    <div class="dropdown">
+      <button onclick="backgroundSelect()" id='background_option' class="dropbtn">Background
+        <i class="fa fa-caret-down"></i>
+      </button>
       <br />
-      <p>Chose your character background from below</p>
-      <div class="dropdown">
-        <button onclick="backgroundSelect()" id='background_option' class="dropbtn">Background
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <br />
-        <div id="backgroundDropdown" class="dropdown-content">
-          <ul id="backgroundList">
-            <li value="acolyte">acolyte</li>
-            <li value="criminal">criminal</li>
-            <li value="folk-hero">folk-hero</li>
-            <li value="noble">noble</li>
-            <li value="sage">sage</li>
-            <li value="soldier">soldier</li>
-          </ul>
-        </div>
+      <div id="backgroundDropdown" class="dropdown-content">
+        <ul id="backgroundList">
+          <li value="acolyte">acolyte</li>
+          <li value="criminal">criminal</li>
+          <li value="folk-hero">folk-hero</li>
+          <li value="noble">noble</li>
+          <li value="sage">sage</li>
+          <li value="soldier">soldier</li>
+        </ul>
       </div>
+    </div>
+    <br />
+    <p>Choose your character Alignment</p>
+    <p class="alignment_info"> Alignment is a combination of
+      two factors: one identifies morality (good, evil, or neutral),
+      and the other describes attitudes toward society and order (lawful, chaotic, or neutral)</p>
+    <br />
+    <div class="dropdown">
+      <button onclick="alignmentSelect()" id='alignment_option' class="dropbtn">Alignment
+        <i class="fa fa-caret-down"></i>
+      </button>
       <br />
-      <p>Choose your character Alignment</p>
-      <p class="alignment_info"> Alignment is a combination of
-        two factors: one identifies morality (good, evil, or neutral),
-        and the other describes attitudes toward society and order (lawful, chaotic, or neutral)</p>
-      <br />
-      <div class="dropdown">
-        <button onclick="alignmentSelect()" id='alignment_option' class="dropbtn">Alignment
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <br />
-        <div id="alignmentDropdown" class="dropdown-content">
-          <ul id="alignmentList">
-            <li value="chaotic-evil">chaotic-evil</li>
-            <li value="chaotic-good">chaotic-good</li>
-            <li value="chaotic-neutral">chaotic-neutral</li>
-            <li value="lawful-evil">lawful-evil</li>
-            <li value="lawful-good">lawful-good</li>
-            <li value="lawful-neutral">lawful-neutral</li>
-            <li value="neutral">neutral</li>
-            <li value="neutral-evil">neutral-evil</li>
-            <li value="neutral-good">neutral-good</li>
-            <li value="none">None</li>
-          </ul>
-        </div>
+      <div id="alignmentDropdown" class="dropdown-content">
+        <ul id="alignmentList">
+          <li value="chaotic-evil">chaotic-evil</li>
+          <li value="chaotic-good">chaotic-good</li>
+          <li value="chaotic-neutral">chaotic-neutral</li>
+          <li value="lawful-evil">lawful-evil</li>
+          <li value="lawful-good">lawful-good</li>
+          <li value="lawful-neutral">lawful-neutral</li>
+          <li value="neutral">neutral</li>
+          <li value="neutral-evil">neutral-evil</li>
+          <li value="neutral-good">neutral-good</li>
+          <li value="none">None</li>
+        </ul>
       </div>
-      <!-- <p>Choose your character personality:</p>
+    </div>
+    <!-- <p>Choose your character personality:</p>
       <input id="person" value=""> </input>
       <p class="person_info"> Give your character two personality traits. Personality
         traits are small, simple ways to help you set your character apart from every other character</p>
@@ -237,90 +239,90 @@
         someone else could exploit to bring you to ruin or cause you to act against
         your best interests.</p>
       <br /> -->
-      <div id="info_3" class="section" style="border-style:solid">
-        <p>Required Skills:</p>
-        <label id="skills_needed"></label>
-        <br />
-        <p>Languages to Choice From:</p>
-        <label id="languages_options"></label>
-        <p>Background Description:</p>
-        <label id="background_des"></label>
-        <br />
-        <p>Alignment:</p>
-        <label id="alignment_choice"> </label>
-      </div>
+    <div id="info_3" class="section" style="border-style:solid">
+      <p>Required Skills:</p>
+      <label id="skills_needed"></label>
+      <br />
+      <p>Languages to Choice From:</p>
+      <label id="languages_options"></label>
+      <p>Background Description:</p>
+      <label id="background_des"></label>
+      <br />
+      <p>Alignment:</p>
+      <label id="alignment_choice"> </label>
+    </div>
     <!-- </div> -->
   </div>
 
   <!------------------Ability Scores------------------------->
   <div id="page_4" class="tabcontent">
-      <!-- <div class="access" style="display:none"> -->
-      <h2>Ability Score:</h2>
-      <br />
-      <h2>Level:</h2>
-      <p>1</p>
-      <p>All beginner players begin at level 1.</p>
-      <br />
-      <table>
-        <tr>
-          <th>Ability</th>
-          <th>Score</th>
-          <th>Bonus</th>
-          <th>Description</th>
-          <th>Important For</th>
-          <th>Total</th>
-        </tr>
-        <tr>
-          <td>STR:</td>
-          <td><label id="STR"> 0</label></td>
-          <td><label id="STR_bonus"> 0</label></td>
-          <td><label id="STR_des"></label></td>
-          <td><label id="STR_info"></label></td>
-          <td><label id="STR_total"></label></td>
-        </tr>
-        <tr>
-          <td>DEX:</td>
-          <td><label id="DEX"> 0</label></td>
-          <td><label id="DEX_bonus"> 0</label></td>
-          <td><label id="DEX_des"></label></td>
-          <td><label id="DEX_info"></label></td>
-          <td><label id="DEX_total"></label></td>
-        </tr>
-        <tr>
-          <td>CON:</td>
-          <td><label id="CON"> 0</label></td>
-          <td><label id="CON_bonus"> 0</label></td>
-          <td><label id="CON_des"></label></td>
-          <td><label id="CON_info"></label></td>
-          <td><label id="CON_total"></label></td>
-        </tr>
-        <tr>
-          <td>INT:</td>
-          <td><label id="INT"> 0</label></td>
-          <td><label id="INT_bonus"> 0</label></td>
-          <td><label id="INT_des"></label></td>
-          <td><label id="INT_info"></label></td>
-          <td><label id="INT_total"></label></td>
-        </tr>
-        <tr>
-          <td>WIS:</td>
-          <td><label id="WIS"> 0</label></td>
-          <td><label id="WIS_bonus"> 0</label></td>
-          <td><label id="WIS_des"></label></td>
-          <td><label id="WIS_info"></label></td>
-          <td><label id="WIS_total"></label></td>
-        </tr>
-        <tr>
-          <td>CHA:</td>
-          <td><label id="CHA"> 0</label></td>
-          <td><label id="CHA_bonus"> 0</label></td>
-          <td><label id="CHA_des"></label></td>
-          <td><label id="CHA_info"></label></td>
-          <td><label id="CHA_total"></label></td>
-        </tr>
-      </table>
-      <br/>
-      <button id="roll">Roll</button>
+    <!-- <div class="access" style="display:none"> -->
+    <h2>Ability Score:</h2>
+    <br />
+    <h2>Level:</h2>
+    <p>1</p>
+    <p>All beginner players begin at level 1.</p>
+    <br />
+    <table>
+      <tr>
+        <th>Ability</th>
+        <th>Score</th>
+        <th>Bonus</th>
+        <th>Description</th>
+        <th>Important For</th>
+        <th>Total</th>
+      </tr>
+      <tr>
+        <td>STR:</td>
+        <td><label id="STR"> 0</label></td>
+        <td><label id="STR_bonus" value=0> 0</label></td>
+        <td><label id="STR_des"></label></td>
+        <td><label id="STR_info"></label></td>
+        <td><label id="STR_total"></label></td>
+      </tr>
+      <tr>
+        <td>DEX:</td>
+        <td><label id="DEX"> 0</label></td>
+        <td><label id="DEX_bonus" value=0> 0</label></td>
+        <td><label id="DEX_des"></label></td>
+        <td><label id="DEX_info"></label></td>
+        <td><label id="DEX_total"></label></td>
+      </tr>
+      <tr>
+        <td>CON:</td>
+        <td><label id="CON"> 0</label></td>
+        <td><label id="CON_bonus" value=0> 0</label></td>
+        <td><label id="CON_des"></label></td>
+        <td><label id="CON_info"></label></td>
+        <td><label id="CON_total"></label></td>
+      </tr>
+      <tr>
+        <td>INT:</td>
+        <td><label id="INT"> 0</label></td>
+        <td><label id="INT_bonus" value=0> 0</label></td>
+        <td><label id="INT_des"></label></td>
+        <td><label id="INT_info"></label></td>
+        <td><label id="INT_total"></label></td>
+      </tr>
+      <tr>
+        <td>WIS:</td>
+        <td><label id="WIS"> 0</label></td>
+        <td><label id="WIS_bonus" value=0> 0</label></td>
+        <td><label id="WIS_des"></label></td>
+        <td><label id="WIS_info"></label></td>
+        <td><label id="WIS_total"></label></td>
+      </tr>
+      <tr>
+        <td>CHA:</td>
+        <td><label id="CHA"> 0</label></td>
+        <td><label id="CHA_bonus" value=0> 0</label></td>
+        <td><label id="CHA_des"></label></td>
+        <td><label id="CHA_info"></label></td>
+        <td><label id="CHA_total"></label></td>
+      </tr>
+    </table>
+    <br />
+    <button id="roll">Roll</button>
     <!-- </div> -->
   </div>
 
@@ -328,166 +330,166 @@
   <!------------------Skills------------------------->
   <div id="page_5" class="tabcontent">
     <!-- <div class="access" style="display:none"> -->
-      <h2>Proficiencies:</h2>
-      <p>Choose the character's skills and languages.</p>
+    <h2>Proficiencies:</h2>
+    <p>Choose the character's skills and languages.</p>
+    <br />
+    <p>Pick your character's language from below</p>
+    <div id="speech_options">
+      <input type="checkbox" id="language1" name="language1" value="">
+      <label for="language1"> abyssal</label><br>
+      <input type="checkbox" id="language2" name="language2" value="">
+      <label for="language2"> celestial</label><br>
+      <input type="checkbox" id="language3" name="language3" value="">
+      <label for="language3"> common</label><br>
+      <input type="checkbox" id="language4" name="language4" value="">
+      <label for="language4"> deep-speech</label><br>
+      <input type="checkbox" id="language5" name="language5" value="">
+      <label for="language5"> draconic</label><br>
+      <input type="checkbox" id="language6" name="language6" value="">
+      <label for="language6"> dwarvish</label><br>
+      <input type="checkbox" id="language7" name="language7" value="">
+      <label for="language7"> elvish</label><br>
+      <input type="checkbox" id="language8" name="language8" value="">
+      <label for="language8"> giant</label><br>
+      <input type="checkbox" id="language9" name="language9" value="">
+      <label for="language9"> gnomish</label><br>
+      <input type="checkbox" id="language10" name="language10" value="">
+      <label for="language10"> goblin</label><br>
+      <input type="checkbox" id="language11" name="language11" value="">
+      <label for="language11"> halfling</label><br>
+      <input type="checkbox" id="language12" name="language12" value="">
+      <label for="language12"> infernal</label><br>
+      <input type="checkbox" id="language13" name="language13" value="">
+      <label for="language13"> orc</label><br>
+      <input type="checkbox" id="language14" name="language14" value="">
+      <label for="language14"> primordial</label><br>
+      <input type="checkbox" id="language15" name="language15" value="">
+      <label for="language15"> sylvan</label><br>
+      <input type="checkbox" id="language16" name="language16" value="">
+      <label for="language16"> undercommon</label><br>
+    </div>
+    <br />
+    <p>Pick your character's class skills from below</p>
+    <div class="dropdown">
+      <button onclick="skillSelect()" id='skill_option' class="dropbtn"> Skill
+        <i class="fa fa-caret-down"></i>
+      </button>
       <br />
-      <p>Pick your character's language from below</p>
-      <div id="speech_options">
-        <input type="checkbox" id="language1" name="language1" value="">
-        <label for="language1"> abyssal</label><br>
-        <input type="checkbox" id="language2" name="language2" value="">
-        <label for="language2"> celestial</label><br>
-        <input type="checkbox" id="language3" name="language3" value="">
-        <label for="language3"> common</label><br>
-        <input type="checkbox" id="language4" name="language4" value="">
-        <label for="language4"> deep-speech</label><br>
-        <input type="checkbox" id="language5" name="language5" value="">
-        <label for="language5"> draconic</label><br>
-        <input type="checkbox" id="language6" name="language6" value="">
-        <label for="language6"> dwarvish</label><br>
-        <input type="checkbox" id="language7" name="language7" value="">
-        <label for="language7"> elvish</label><br>
-        <input type="checkbox" id="language8" name="language8" value="">
-        <label for="language8"> giant</label><br>
-        <input type="checkbox" id="language9" name="language9" value="">
-        <label for="language9"> gnomish</label><br>
-        <input type="checkbox" id="language10" name="language10" value="">
-        <label for="language10"> goblin</label><br>
-        <input type="checkbox" id="language11" name="language11" value="">
-        <label for="language11"> halfling</label><br>
-        <input type="checkbox" id="language12" name="language12" value="">
-        <label for="language12"> infernal</label><br>
-        <input type="checkbox" id="language13" name="language13" value="">
-        <label for="language13"> orc</label><br>
-        <input type="checkbox" id="language14" name="language14" value="">
-        <label for="language14"> primordial</label><br>
-        <input type="checkbox" id="language15" name="language15" value="">
-        <label for="language15"> sylvan</label><br>
-        <input type="checkbox" id="language16" name="language16" value="">
-        <label for="language16"> undercommon</label><br>
+      <div id="skillDropdown" class="dropdown-content">
+        <ul id="skillList"> </ul>
       </div>
-      <br />
-      <p>Pick your character's class skills from below</p>
-      <div class="dropdown">
-        <button onclick="skillSelect()" id='skill_option' class="dropbtn"> Skill
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <br />
-        <div id="skillDropdown" class="dropdown-content">
-          <ul id="skillList"> </ul>
-        </div>
-      </div>
+    </div>
 
-      <div class="dropdown">
-        <button onclick="skill2Select()" id='skill_option2' class="dropbtn"> Skill
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <br />
-        <div id="skill2Dropdown" class="dropdown-content">
-          <ul id="skill2List"> </ul>
-        </div>
+    <div class="dropdown">
+      <button onclick="skill2Select()" id='skill_option2' class="dropbtn"> Skill
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <br />
+      <div id="skill2Dropdown" class="dropdown-content">
+        <ul id="skill2List"> </ul>
       </div>
-      <div id="info_5" class="section" style="border-style:solid">
-        <p>Skill Name:</p>
-        <label id="Pro_name"></label>
-        <br />
-        <p>Skill Information:</p>
-        <label id="Pro_info"></label>
-        <p>Skill Required Based on Background:</p>
-        <label id="background_Skill_info"></label>
-      </div>
+    </div>
+    <div id="info_5" class="section" style="border-style:solid">
+      <p>Skill Name:</p>
+      <label id="Pro_name"></label>
+      <br />
+      <p>Skill Information:</p>
+      <label id="Pro_info"></label>
+      <p>Skill Required Based on Background:</p>
+      <label id="background_Skill_info"></label>
+    </div>
     <!-- </div> -->
   </div>
 
   <!------------------Spells------------------------->
   <div id="page_6" class="tabcontent">
     <!-- <div class="access" style="display:none"> -->
-      <h2>Known Spells:</h2>
-      <p>Choose your Character's Spells.
-        (If any.)</p>
+    <h2>Known Spells:</h2>
+    <p>Choose your Character's Spells.
+      (If any.)</p>
+    <br />
+    <p>Pick your character's spells from below</p>
+    <div class="dropdown">
+      <button onclick="spellSelect()" id='spell_option' class="dropbtn">Spell
+        <i class="fa fa-caret-down"></i>
+      </button>
       <br />
-      <p>Pick your character's spells from below</p>
-      <div class="dropdown">
-        <button onclick="spellSelect()" id='spell_option' class="dropbtn">Spell
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <br />
-        <div id="spellDropdown" class="dropdown-content">
-          <ul id="spellList"> </ul>
-        </div>
+      <div id="spellDropdown" class="dropdown-content">
+        <ul id="spellList"> </ul>
       </div>
+    </div>
 
-      <div id="info_6" class="section" style="border-style:solid">
-        <p>Spell:</p>
-        <label id="spell_name"></label>
-        <br />
-        <p>Spell Information:</p>
-        <label id="spell_info"></label>
-        <br />
-        <p>Spell Range:</p>
-        <label id="spell_range"></label>
-        <br />
-      </div>
+    <div id="info_6" class="section" style="border-style:solid">
+      <p>Spell:</p>
+      <label id="spell_name"></label>
+      <br />
+      <p>Spell Information:</p>
+      <label id="spell_info"></label>
+      <br />
+      <p>Spell Range:</p>
+      <label id="spell_range"></label>
+      <br />
+    </div>
     <!-- </div> -->
   </div>
 
   <!------------------Fighting------------------------->
   <div id="page_7" class="tabcontent">
     <!-- <div class="access" style="display:none"> -->
-      <h2>Equiment:</h2>
-      <p>Choose the character's weapons, aromor, and pack.</p>
+    <h2>Equiment:</h2>
+    <p>Choose the character's weapons, aromor, and pack.</p>
+    <br />
+    <p>Set your character's allowance below</p>
+    <input id="money" value=""> </input>
+    <br />
+    <p>Pick your character's weapon from below</p>
+    <div class="dropdown">
+      <button onclick="weaponSelect()" id='weapon_option' class="dropbtn">Weapon
+        <i class="fa fa-caret-down"></i>
+      </button>
       <br />
-      <p>Set your character's allowance below</p>
-      <input id="money" value=""> </input>
-      <br />
-      <p>Pick your character's weapon from below</p>
-      <div class="dropdown">
-        <button onclick="weaponSelect()" id='weapon_option' class="dropbtn">Weapon
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <br />
-        <div id="weaponDropdown" class="dropdown-content">
-          <ul id="weaponList"> </ul>
-        </div>
+      <div id="weaponDropdown" class="dropdown-content">
+        <ul id="weaponList"> </ul>
       </div>
+    </div>
+    <br />
+    <p>Pick your character's Armor from below</p>
+    <div class="dropdown">
+      <button onclick="armorSelect()" id='armor_option' class="dropbtn">Armor
+        <i class="fa fa-caret-down"></i>
+      </button>
       <br />
-      <p>Pick your character's Armor from below</p>
-      <div class="dropdown">
-        <button onclick="armorSelect()" id='armor_option' class="dropbtn">Armor
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <br />
-        <div id="armorDropdown" class="dropdown-content">
-          <ul id="armorList"> </ul>
-        </div>
+      <div id="armorDropdown" class="dropdown-content">
+        <ul id="armorList"> </ul>
       </div>
+    </div>
+    <br />
+    <p>Pick your character's shield from below</p>
+    <div class="dropdown">
+      <button onclick="shieldSelect()" id='shield_option' class="dropbtn">Shields
+        <i class="fa fa-caret-down"></i>
+      </button>
       <br />
-      <p>Pick your character's shield from below</p>
-      <div class="dropdown">
-        <button onclick="shieldSelect()" id='shield_option' class="dropbtn">Shields
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <br />
-        <div id="shieldDropdown" class="dropdown-content">
-          <ul id="shieldList"> </ul>
-        </div>
+      <div id="shieldDropdown" class="dropdown-content">
+        <ul id="shieldList"> </ul>
       </div>
+    </div>
+    <br />
+    <p>Pick your character's kit from below</p>
+    <div class="dropdown">
+      <button onclick="kitSelect()" id='kit_option' class="dropbtn">Kits
+        <i class="fa fa-caret-down"></i>
+      </button>
       <br />
-      <p>Pick your character's kit from below</p>
-      <div class="dropdown">
-        <button onclick="kitSelect()" id='kit_option' class="dropbtn">Kits
-          <i class="fa fa-caret-down"></i>
-        </button>
-        <br />
-        <div id="kitDropdown" class="dropdown-content">
-          <ul id="kitList"> </ul>
-        </div>
+      <div id="kitDropdown" class="dropdown-content">
+        <ul id="kitList"> </ul>
       </div>
-      <br />
-      <!-- <p>Pick your character's armor from below</p>
+    </div>
+    <br />
+    <!-- <p>Pick your character's armor from below</p>
       <input id="armor" value=""> </input>
       <input id="sheild" value=""> </input> -->
-      <!-- <br />
+    <!-- <br />
       <p>Pick your character's pack from below</p>
       <input id="pack" value=""> </input>>
       <br />
@@ -495,38 +497,38 @@
       <input id="tool_1" value=""> </input>>
       <input id="tool_2" value=""> </input>> -->
 
-      <div id="info_7" class="section" style="border-style:solid">
-        <p>Equiment Name:</p>
-        <label id="equiment_name"></label>
-        <br />
-        <p>Wieght:</p>
-        <label id="weight"></label>
-        <br />
-        <p>Range:</p>
-        <label id="range"></label>
-        <br />
-        <p>Cost:</p>
-        <label id="cost_info"></label>
-        <br />
-        <p>Damage:</p>
-        <label id="damage_info"></label>
-        <br />
-        <p>Roll for Damage:</p>
-        <label id="damage_roll"></label>
-        <br />
-        <p>Stealth Advantage:</p>
-        <label id="stealth_info"></label>
-        <br />
-        <p>Strength Required to Weild:</p>
-        <label id="musle_info"></label>
-        <br />
-        <p>Equiment Description:</p>
-        <label id="equiment_info"></label>
-      </div>
+    <div id="info_7" class="section" style="border-style:solid">
+      <p>Equiment Name:</p>
+      <label id="equiment_name"></label>
+      <br />
+      <p>Wieght:</p>
+      <label id="weight"></label>
+      <br />
+      <p>Range:</p>
+      <label id="range"></label>
+      <br />
+      <p>Cost:</p>
+      <label id="cost_info"></label>
+      <br />
+      <p>Damage:</p>
+      <label id="damage_info"></label>
+      <br />
+      <p>Roll for Damage:</p>
+      <label id="damage_roll"></label>
+      <br />
+      <p>Stealth Advantage:</p>
+      <label id="stealth_info"></label>
+      <br />
+      <p>Strength Required to Weild:</p>
+      <label id="musle_info"></label>
+      <br />
+      <p>Equiment Description:</p>
+      <label id="equiment_info"></label>
+    </div>
     <!-- </div> -->
   </div>
 
-  <script src="./DND_Code.js"></script>
+  <!-- <script type="module" src="Helper_functions.js"></script> -->
   <script>
     function openPage(evt, pageName) {
       // Declare all variables
@@ -548,42 +550,78 @@
       document.getElementById(pageName).style.display = "block";
       evt.currentTarget.className += " active";
     }
-    // var pages = document.querySelectorAll("div.access");
-    // var pagesArr = Array.from(pages);
-    // console.log(pagesArr);
-    // var current = -1;
-    // //// This allows for the next and pevious buttons to work
-    // $(document).ready(function () {
-    //   $("#next_round").click(function () {
-    //     $(pagesArr[current]).css("display", "block");
-    //     if (current < 0) {
-    //       $(pagesArr[0]).css("display", "none");
-    //       current = 0;
-    //       $(pagesArr[current]).css("display", "block");
-    //     } else if (current >= 7) {
-    //       $(pagesArr[6]).css("display", "block");
-    //       current = 6;
-    //     } else {
-    //       $(pagesArr[current]).css("display", "none");
-    //       console.log("Current num " + current);
-    //       current++;
-    //       $(pagesArr[current]).css("display", "block");
-    //       console.log("Adding Current " + current);
-    //     }
-    //   });
-    //   $("#previous_round").click(function () {
-    //     if (current < 0) {
-    //       $(pagesArr[0]).css("display", "none");
-    //       current = 0;
-    //     } else {
-    //       console.log("Current num " + current);
-    //       $(pagesArr[current]).css("display", "none");
-    //       current--;
-    //       console.log("Subtracting Current " + current);
-    //       $(pagesArr[current]).css("display", "block");
-    //     }
-    //   });
-    // });
+  </script>
+  <script>
+    /* When the user clicks on the button,
+    toggle between hiding and showing the dropdown content */
+    function raceSelect() {
+      document.getElementById("raceDropdown").classList.toggle("show");
+      console.log("at the dropdowm bar");
+    }
+
+    function classSelect() {
+      document.getElementById("classDropdown").classList.toggle("show");
+      console.log("at the dropdowm bar");
+    }
+
+    function backgroundSelect() {
+      document.getElementById("backgroundDropdown").classList.toggle("show");
+      console.log("at the dropdowm bar");
+    }
+
+    function alignmentSelect() {
+      document.getElementById("alignmentDropdown").classList.toggle("show");
+      console.log("at the dropdowm bar");
+    }
+
+    function weaponSelect() {
+      document.getElementById("weaponDropdown").classList.toggle("show");
+      console.log("at the dropdowm bar");
+    }
+
+    function armorSelect() {
+      document.getElementById("armorDropdown").classList.toggle("show");
+      console.log("at the dropdowm bar");
+    }
+
+    function shieldSelect() {
+      document.getElementById("shieldDropdown").classList.toggle("show");
+      console.log("at the dropdowm bar");
+    }
+
+    function kitSelect() {
+      document.getElementById("kitDropdown").classList.toggle("show");
+      console.log("at the dropdowm bar");
+    }
+
+    function spellSelect() {
+      document.getElementById("spellDropdown").classList.toggle("show");
+      console.log("at the dropdowm bar");
+    }
+
+    function skillSelect() {
+      document.getElementById("skillDropdown").classList.toggle("show");
+      console.log("at the dropdowm bar");
+    }
+
+    function skill2Select() {
+      document.getElementById("skill2Dropdown").classList.toggle("show");
+      console.log("at the dropdowm bar");
+    }
+
+    // Close the dropdown menu if the user clicks outside of it
+    window.onclick = function (event) {
+      if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
   </script>
 </body>
 
