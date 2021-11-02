@@ -1,10 +1,12 @@
-import { getListToHTML, getNames, getArrayOfNames, getArrayOfIndexs, getInfoNames, getNumberChoose, 
-    getNumberBonuses, getArrayOfNumberBonuses, getNameBonuses } from './help.js';
-const api_race = 'https://www.dnd5eapi.co/api/races/';
+import { fetchDataFromAPI, clickOnDropDownMenu, getListToHTML, getNames, getArrayOfNames, getArrayOfIndexs, getInfoNames, getNumberChoose,
+    getNumberBonuses, getArrayOfNumberBonuses, getNameBonuses, settingValueOfScore, clearAllFromList} from './help.js';
+import {setupPage1} from './race_code.js';
+import {setupPage4, printBonusData, clearAbilityScoreBonuses } from './ability_score_code.js';
+//const api_race = 'https://www.dnd5eapi.co/api/races/';
 const api_classes = 'https://www.dnd5eapi.co/api/classes/';
 const api_spells = '/levels/1/spells';
 const api_proficiencies = '/proficiencies/'
-const api_scores = 'https://www.dnd5eapi.co/api/ability-scores/';
+//const api_scores = 'https://www.dnd5eapi.co/api/ability-scores/';
 const api_alignment = 'https://www.dnd5eapi.co/api/alignments/';
 const api_background = 'https://www.dnd5eapi.co/api/backgrounds/';
 const api_language = 'https://www.dnd5eapi.co/api/languages';
@@ -102,10 +104,10 @@ window.addEventListener('load', (event) => {
 //     }
 // }
 
-async function setupPage1() {
-    console.log("starting");
-    raceChoice();
-}
+// async function setupPage1() {
+//     console.log("starting");
+//     raceChoice();
+// }
 
 async function setupPage2() {
     console.log("starting 2");
@@ -118,13 +120,13 @@ async function setupPage3() {
     alignmentChoice();
 }
 
-async function setupPage4() {
-    printAblityScoreInfo();
-    var button = document.querySelector('#roll');
-    button.addEventListener('click', (event) => {
-        printAblityScoreData();
-    });
-}
+// async function setupPage4() {
+//     printAblityScoreInfo();
+//     var button = document.querySelector('#roll');
+//     button.addEventListener('click', (event) => {
+//         printAblityScoreData();
+//     });
+// }
 
 // async function setupPage5() {
 //     console.log("starting 5");
@@ -142,28 +144,28 @@ async function setupPage7() {
     // armorChoice();
 }
 
-function clickOnDropDownMenu(ul, func, button) {
-    var items = ul.getElementsByTagName('li');
-    console.log(button.textContent);
-    console.log(items);
-    //console.log(items[0].textContent);   // knows that textcontext works
-    ul.addEventListener("click", function (e) {
-        for (var i = 0; i < items.length; i++) {
-            if (e.target == items[i]) {
-                console.log(items[i].textContent);
-                func(items[i].textContent);
-                button.textContent = items[i].textContent;
-            }
-        }
-    });
-}
+// function clickOnDropDownMenu(ul, func, button) {
+//     var items = ul.getElementsByTagName('li');
+//     console.log(button.textContent);
+//     console.log(items);
+//     //console.log(items[0].textContent);   // knows that textcontext works
+//     ul.addEventListener("click", function (e) {
+//         for (var i = 0; i < items.length; i++) {
+//             if (e.target == items[i]) {
+//                 console.log(items[i].textContent);
+//                 func(items[i].textContent);
+//                 button.textContent = items[i].textContent;
+//             }
+//         }
+//     });
+// }
 
-function raceChoice() {
-    var ul = document.getElementById('raceList');
-    var button = document.getElementById('race_option');
-    console.log(ul);
-    clickOnDropDownMenu(ul, raceAsk, button);
-}
+// function raceChoice() {
+//     var ul = document.getElementById('raceList');
+//     var button = document.getElementById('race_option');
+//     console.log(ul);
+//     clickOnDropDownMenu(ul, raceAsk, button);
+// }
 
 function classChoice() {
     var ul = document.getElementById('classList');
@@ -226,21 +228,21 @@ function spellChoice() {
     clickOnDropDownMenu(ul, certianSpellsAsk, button);
 }
 
-/// Function that returns the from API
-async function fetchDataFromAPI(url) {
-    const response = await fetch(url);
-    const data = await response.json();
-    console.log(data);
-    return data;
-}
+// /// Function that returns the from API
+// async function fetchDataFromAPI(url) {
+//     const response = await fetch(url);
+//     const data = await response.json();
+//     console.log(data);
+//     return data;
+// }
 
-async function raceAsk(input) {
-    console.log("Race: " + input);
-    var url = api_race + input;
-    console.log(url);
-    const data = await fetchDataFromAPI(url);
-    printRaceData(data);
-}
+// async function raceAsk(input) {
+//     console.log("Race: " + input);
+//     var url = api_race + input;
+//     console.log(url);
+//     const data = await fetchDataFromAPI(url);
+//     printRaceData(data);
+// }
 
 async function classAsk(input) {
     console.log("Class: " + input);
@@ -342,45 +344,45 @@ async function weaponAsk(input) {
     printWeaponInfo(data);
 }
 
-async function abilityAsk(input) {
-    console.log("Ability for: " + input);
-    var url = api_scores + input;
-    const data = await fetchDataFromAPI(url);
-    getAblityScore(data, input);
-}
+// async function abilityAsk(input) {
+//     console.log("Ability for: " + input);
+//     var url = api_scores + input;
+//     const data = await fetchDataFromAPI(url);
+//     getAblityScore(data, input);
+// }
 
 
-async function printRaceData(data) {
-    clearAbilityScoreBonuses();
-    console.log(data);
-    const { name, speed, ability_bonuses, alignment, age, size_description, starting_proficiencies,
-        starting_proficiency_options, language_desc, traits, subraces } = data;
+// async function printRaceData(data) {
+//     clearAbilityScoreBonuses();
+//     console.log(data);
+//     const { name, speed, ability_bonuses, alignment, age, size_description, starting_proficiencies,
+//         starting_proficiency_options, language_desc, traits, subraces } = data;
 
 
-    if (starting_proficiency_options == undefined) {
-        document.querySelector("#race-skill").textContent = "None";
-    } else {
-        var proficiency_options_Array = starting_proficiency_options.from.map(function (el) {
-            return el.name;
-        });
-        document.querySelector("#race-skill").textContent = proficiency_options_Array.join(',     ');
-    }
+//     if (starting_proficiency_options == undefined) {
+//         document.querySelector("#race-skill").textContent = "None";
+//     } else {
+//         var proficiency_options_Array = starting_proficiency_options.from.map(function (el) {
+//             return el.name;
+//         });
+//         document.querySelector("#race-skill").textContent = proficiency_options_Array.join(',     ');
+//     }
 
-    console.log("Name " + name);
+//     console.log("Name " + name);
 
-    document.querySelector("#results").textContent = getNames(traits);
-    document.querySelector('#name').textContent = name;
-    document.querySelector('#speed_race').textContent = speed;
-    document.querySelector('#size').textContent = size_description;
-    document.querySelector('#race-age').textContent = age;
-    document.querySelector('#race-alignment').textContent = alignment;
-    document.querySelector('#language').textContent = language_desc;
-    document.querySelector("#weapon").textContent = getNames(starting_proficiencies);
-    document.querySelector("#subraces").textContent = getNames(subraces);
-    document.querySelector("#bonuses").textContent = getNumberBonuses(ability_bonuses);
-    printBonusData(ability_bonuses);
-    console.log("printing");
-}
+//     document.querySelector("#results").textContent = getNames(traits);
+//     document.querySelector('#name').textContent = name;
+//     document.querySelector('#speed_race').textContent = speed;
+//     document.querySelector('#size').textContent = size_description;
+//     document.querySelector('#race-age').textContent = age;
+//     document.querySelector('#race-alignment').textContent = alignment;
+//     document.querySelector('#language').textContent = language_desc;
+//     document.querySelector("#weapon").textContent = getNames(starting_proficiencies);
+//     document.querySelector("#subraces").textContent = getNames(subraces);
+//     document.querySelector("#bonuses").textContent = getNumberBonuses(ability_bonuses);
+//     printBonusData(ability_bonuses);
+//     console.log("printing");
+// }
 
 async function printClassData(data) {
     let spell_list = document.getElementById("spellList")
@@ -615,7 +617,7 @@ async function printArmorInfo(data) {
     var equimentINfo = document.getElementById('equiment_info');
     var stealth_info = document.getElementById('stealth_info');
     var str_needed = document.getElementById('musle_info');
-    var damageRoll =  document.getElementById('damage_roll');
+    var damageRoll = document.getElementById('damage_roll');
 
     equimentInfo.textContent = name;
     weightInfo.textContent = weight;
@@ -640,7 +642,7 @@ async function printSheildInfo(data) {
     var equimentINfo = document.getElementById('equiment_info');
     var stealth_info = document.getElementById('stealth_info');
     var str_needed = document.getElementById('musle_info');
-    var damageRoll =  document.getElementById('damage_roll');
+    var damageRoll = document.getElementById('damage_roll');
 
     equimentInfo.textContent = name;
     weightInfo.textContent = weight;
@@ -663,7 +665,7 @@ async function printWeaponInfo(data) {
     var danageInfo = document.getElementById('damage_info');
     var costrInfo = document.getElementById('cost_info');
     var equimentINfo = document.getElementById('equiment_info');
-    var damageRoll =  document.getElementById('damage_roll');
+    var damageRoll = document.getElementById('damage_roll');
 
     equimentInfo.textContent = name;
     weightInfo.textContent = weight;
@@ -683,7 +685,7 @@ async function printInfo_One_Equiment(data) {
     var danageInfo = document.getElementById('damage_info');
     var costrInfo = document.getElementById('cost_info');
     var equimentINfo = document.getElementById('equiment_info');
-    var danageRoll =  document.getElementById('damage_roll');
+    var danageRoll = document.getElementById('damage_roll');
 
     equimentInfo.textContent = name;
     weightInfo.textContent = weight;
@@ -694,162 +696,256 @@ async function printInfo_One_Equiment(data) {
     danageRoll.textContent = "None"
 }
 
-async function printAblityScoreData() {
+// async function printAblityScoreData() {
 
-    document.getElementById("STR").textContent = rollsForScore();
-    document.getElementById('INT').textContent = rollsForScore();
-    document.getElementById('WIS').textContent = rollsForScore();
-    document.getElementById('CON').textContent = rollsForScore();
-    document.getElementById("DEX").textContent = rollsForScore();
-    document.getElementById('CHA').textContent = rollsForScore();
-    addTotalForAbilityScore();
-    console.log("results");
-}
+//     document.getElementById("STR").textContent = rollsForScore();
+//     document.getElementById('INT').textContent = rollsForScore();
+//     document.getElementById('WIS').textContent = rollsForScore();
+//     document.getElementById('CON').textContent = rollsForScore();
+//     document.getElementById("DEX").textContent = rollsForScore();
+//     document.getElementById('CHA').textContent = rollsForScore();
+//     addTotalForAbilityScore();
+//     console.log("results");
+// }
 
-async function printAblityScoreInfo() {
-    var wis_output
-    var cha_output;
-    var con_output;
-    var int_output;
-    var dex_output;
-    var str_output;
+// async function printAblityScoreInfo() {
+//     var wis_output
+//     var cha_output;
+//     var con_output;
+//     var int_output;
+//     var dex_output;
+//     var str_output;
 
-    str_output = await abilityAsk('str');
-    wis_output = await abilityAsk('wis');
-    cha_output = await abilityAsk('cha');
-    int_output = await abilityAsk('int');
-    dex_output = await abilityAsk('dex');
-    con_output = await abilityAsk('con');
-}
+//     str_output = await abilityAsk('str');
+//     wis_output = await abilityAsk('wis');
+//     cha_output = await abilityAsk('cha');
+//     int_output = await abilityAsk('int');
+//     dex_output = await abilityAsk('dex');
+//     con_output = await abilityAsk('con');
+// }
 
-async function getAblityScore(data, input) {
-    const { desc, skills } = data;
+// async function getAblityScore(data, input) {
+//     const { desc, skills } = data;
 
-    var str_des = document.getElementById('STR_des');
-    var wis_des = document.getElementById('WIS_des');
-    var cha_des = document.getElementById('CHA_des');
-    var con_des = document.getElementById('CON_des');
-    var int_des = document.getElementById('INT_des');
-    var dex_des = document.getElementById('DEX_des');
+//     var str_des = document.getElementById('STR_des');
+//     var wis_des = document.getElementById('WIS_des');
+//     var cha_des = document.getElementById('CHA_des');
+//     var con_des = document.getElementById('CON_des');
+//     var int_des = document.getElementById('INT_des');
+//     var dex_des = document.getElementById('DEX_des');
 
-    var str_info = document.getElementById('STR_info');
-    var wis_info = document.getElementById('WIS_info');
-    var cha_info = document.getElementById('CHA_info');
-    var con_info = document.getElementById('CON_info');
-    var int_info = document.getElementById('INT_info');
-    var dex_info = document.getElementById('DEX_info');
+//     var str_info = document.getElementById('STR_info');
+//     var wis_info = document.getElementById('WIS_info');
+//     var cha_info = document.getElementById('CHA_info');
+//     var con_info = document.getElementById('CON_info');
+//     var int_info = document.getElementById('INT_info');
+//     var dex_info = document.getElementById('DEX_info');
 
-    if (input == 'str') {
-        str_des.textContent = desc;
-        str_info.textContent = getNames(skills);
-    } else if (input == 'wis') {
-        wis_des.textContent = desc;
-        wis_info.textContent = getNames(skills);
-    } else if (input == 'int') {
-        int_des.textContent = desc;
-        int_info.textContent = getNames(skills);
-    } else if (input == 'cha') {
-        cha_des.textContent = desc;
-        cha_info.textContent = getNames(skills);
-    } else if (input == 'dex') {
-        dex_des.textContent = desc;
-        dex_info.textContent = getNames(skills);
-    } else if (input == 'con') {
-        con_des.textContent = desc;
-        con_info.textContent = "For Everything";
-    }
-}
+//     if (input == 'str') {
+//         str_des.textContent = desc;
+//         str_info.textContent = getNames(skills);
+//     } else if (input == 'wis') {
+//         wis_des.textContent = desc;
+//         wis_info.textContent = getNames(skills);
+//     } else if (input == 'int') {
+//         int_des.textContent = desc;
+//         int_info.textContent = getNames(skills);
+//     } else if (input == 'cha') {
+//         cha_des.textContent = desc;
+//         cha_info.textContent = getNames(skills);
+//     } else if (input == 'dex') {
+//         dex_des.textContent = desc;
+//         dex_info.textContent = getNames(skills);
+//     } else if (input == 'con') {
+//         con_des.textContent = desc;
+//         con_info.textContent = "For Everything";
+//     }
+// }
 
-async function printBonusData(data) {
-    console.log(data);
-    var array = getNameBonuses(data);
-    console.log(array[0]);
-    var array_BounusName = getArrayOfNames(array);
-    console.log(array_BounusName[0]);
-    var array_Bounus = getArrayOfNumberBonuses(data);
-    console.log("Bonus " + array_BounusName);
-    console.log("Number Bonus " + array_Bounus);
-    for (var i = 0; i < array_BounusName.length; i++) {
-        if (array_BounusName[i] == "CON") {
-            document.getElementById("CON_bonus").textContent = array_Bounus[i];
-            document.getElementById("CON_bonus").value = array_Bounus[i];
-        } else if (array_BounusName[i] == "CHA") {
-            document.getElementById("CHA_bonus").textContent = array_Bounus[i];
-            document.getElementById("CHA_bonus").value = array_Bounus[i];
-        } else if (array_BounusName[i] == "DEX") {
-            document.getElementById("DEX_bonus").textContent = array_Bounus[i];
-            document.getElementById("DEX_bonus").value = array_Bounus[i];
-        } else if (array_BounusName[i] == "STR") {
-            document.getElementById("STR_bonus").textContent = array_Bounus[i];
-            document.getElementById("STR_bonus").value = array_Bounus[i];
-        } else if (array_BounusName[i] == "INT") {
-            document.getElementById("INT_bonus").textContent = array_Bounus[i];
-            document.getElementById("INT_bonus").value = array_Bounus[i];
-        } else if (array_BounusName[i] == "WIS") {
-            document.getElementById("WIS_bonus").textContent = array_Bounus[i];
-            document.getElementById("WIS_bonus").value = array_Bounus[i];
-        }
-    }
-    addTotalForAbilityScore();
-}
+// async function printBonusData(data) {
+//     console.log(data);
+//     var array = getNameBonuses(data);
+//     console.log(array[0]);
+//     var array_BounusName = getArrayOfNames(array);
+//     console.log(array_BounusName[0]);
+//     var array_Bounus = getArrayOfNumberBonuses(data);
+//     console.log("Bonus " + array_BounusName);
+//     console.log("Number Bonus " + array_Bounus);
+//     for (var i = 0; i < array_BounusName.length; i++) {
+//         if (array_BounusName[i] == "CON") {
+//             document.getElementById("CON_bonus").textContent = array_Bounus[i];
+//             document.getElementById("CON_bonus").value = array_Bounus[i];
+//         } else if (array_BounusName[i] == "CHA") {
+//             document.getElementById("CHA_bonus").textContent = array_Bounus[i];
+//             document.getElementById("CHA_bonus").value = array_Bounus[i];
+//         } else if (array_BounusName[i] == "DEX") {
+//             document.getElementById("DEX_bonus").textContent = array_Bounus[i];
+//             document.getElementById("DEX_bonus").value = array_Bounus[i];
+//         } else if (array_BounusName[i] == "STR") {
+//             document.getElementById("STR_bonus").textContent = array_Bounus[i];
+//             document.getElementById("STR_bonus").value = array_Bounus[i];
+//         } else if (array_BounusName[i] == "INT") {
+//             document.getElementById("INT_bonus").textContent = array_Bounus[i];
+//             document.getElementById("INT_bonus").value = array_Bounus[i];
+//         } else if (array_BounusName[i] == "WIS") {
+//             document.getElementById("WIS_bonus").textContent = array_Bounus[i];
+//             document.getElementById("WIS_bonus").value = array_Bounus[i];
+//         }
+//     }
+//     addTotalForAbilityScore();
+// }
 
-function addTotalForAbilityScore() {
-    var str_total = document.getElementById('STR_total');
-    var wis_total = document.getElementById('WIS_total');
-    var cha_total = document.getElementById('CHA_total');
-    var con_total = document.getElementById('CON_total');
-    var int_total = document.getElementById('INT_total');
-    var dex_total = document.getElementById('DEX_total');
+// async function printBonusData(data) {
+//     console.log(data);
+//     var array = getNameBonuses(data);
+//     console.log(array[0]);
+//     var array_BounusName = getArrayOfNames(array);
+//     console.log(array_BounusName[0]);
+//     var array_Bounus = getArrayOfNumberBonuses(data);
+//     console.log("Bonus " + array_BounusName);
+//     console.log("Number Bonus " + array_Bounus);
+//     for (var i = 0; i < array_BounusName.length; i++) {
+//         if (array_BounusName[i] == "CON") {
+//             if (isNaN(array_Bounus[i])) {
+//                 document.getElementById("CON_bonus").textContent = 0;
+//                 document.getElementById("CON_bonus").value = 0;
+//             } else {
+//                 document.getElementById("CON_bonus").textContent = array_Bounus[i];
+//                 document.getElementById("CON_bonus").value = array_Bounus[i];
+//             }
+//         } else if (array_BounusName[i] == "CHA") {
+//             if (isNaN(array_Bounus[i])) {
+//                 document.getElementById("CHA_bonus").textContent = 0;
+//                 document.getElementById("CHA_bonus").value = 0;
+//             } else {
+//                 document.getElementById("CHA_bonus").textContent = array_Bounus[i];
+//                 document.getElementById("CHA_bonus").value = array_Bounus[i];
+//             }
+//         } else if (array_BounusName[i] == "DEX") {
+//             if (isNaN(array_Bounus[i])) {
+//                 document.getElementById("DEX_bonus").textContent = 0;
+//                 document.getElementById("DEX_bonus").value = 0;
+//             } else {
+//                 document.getElementById("DEX_bonus").textContent = array_Bounus[i];
+//                 document.getElementById("DEX_bonus").value = array_Bounus[i];
+//             }
+//         } else if (array_BounusName[i] == "STR") {
+//             if (isNaN(array_Bounus[i])) {
+//                 document.getElementById("STR_bonus").textContent = 0;
+//                 document.getElementById("STR_bonus").value = 0;
+//             } else {
+//                 document.getElementById("STR_bonus").textContent = array_Bounus[i];
+//                 document.getElementById("STR_bonus").value = array_Bounus[i];
+//             }
+//         } else if (array_BounusName[i] == "INT") {
+//             if (isNaN(array_Bounus[i])) {
+//                 document.getElementById("INT_bonus").textContent = 0;
+//                 document.getElementById("INT_bonus").value = 0;
+//             } else {
+//                 document.getElementById("INT_bonus").textContent = array_Bounus[i];
+//                 document.getElementById("INT_bonus").value = array_Bounus[i];
+//             }
+//         } else if (array_BounusName[i] == "WIS") {
+//             if (isNaN(array_Bounus[i])) {
+//                 document.getElementById("WIS_bonus").textContent = 0;
+//                 document.getElementById("WIS_bonus").value = 0;
+//             } else {
+//                 document.getElementById("WIS_bonus").textContent = array_Bounus[i];
+//                 document.getElementById("WIS_bonus").value = array_Bounus[i];
+//             }
+//         }
+//     }
+//     addTotalForAbilityScore();
+// }
 
-    var str_bonus = document.getElementById('STR_bonus');
-    var wis_bonus = document.getElementById('WIS_bonus');
-    var cha_bonus = document.getElementById('CHA_bonus');
-    var con_bonus = document.getElementById('CON_bonus');
-    var int_bonus = document.getElementById('INT_bonus');
-    var dex_bonus = document.getElementById('DEX_bonus');
+// function addTotalForAbilityScore() {
+//     var str_total = document.getElementById('STR_total');
+//     var wis_total = document.getElementById('WIS_total');
+//     var cha_total = document.getElementById('CHA_total');
+//     var con_total = document.getElementById('CON_total');
+//     var int_total = document.getElementById('INT_total');
+//     var dex_total = document.getElementById('DEX_total');
 
-    var str = document.getElementById('STR');
-    var wis = document.getElementById('WIS');
-    var cha = document.getElementById('CHA');
-    var con = document.getElementById('CON');
-    var int = document.getElementById('INT');
-    var dex = document.getElementById('DEX');
+//     var str_bonus = document.getElementById('STR_bonus');
+//     var wis_bonus = document.getElementById('WIS_bonus');
+//     var cha_bonus = document.getElementById('CHA_bonus');
+//     var con_bonus = document.getElementById('CON_bonus');
+//     var int_bonus = document.getElementById('INT_bonus');
+//     var dex_bonus = document.getElementById('DEX_bonus');
+   
+//     console.log("str_bonus.textContent");
+//     console.log(str_bonus.textContent);
 
-    // calcForAbilityScoreModifier(parseInt(str_bonus.textContent), parseInt(str.textContent), str_bonus);
-    // calcForAbilityScoreModifier(parseInt(wis_bonus.textContent), parseInt(wis.textContent), wis_bonus);
-    // calcForAbilityScoreModifier(parseInt(cha_bonus.textContent), parseInt(cha.textContent), cha_bonus);
-    // calcForAbilityScoreModifier(parseInt(con_bonus.textContent), parseInt(con.textContent), con_bonus);
-    // calcForAbilityScoreModifier(parseInt(int_bonus.textContent), parseInt(int.textContent), int_bonus);
-    // calcForAbilityScoreModifier(parseInt(dex_bonus.textContent), parseInt(dex.textContent), dex_bonus);
-    calcForAbilityScoreModifier(str_bonus.value, parseInt(str.textContent), str_bonus);
-    calcForAbilityScoreModifier(wis_bonus.value, parseInt(wis.textContent), wis_bonus);
-    calcForAbilityScoreModifier(cha_bonus.value, parseInt(cha.textContent), cha_bonus);
-    calcForAbilityScoreModifier(con_bonus.value, parseInt(con.textContent), con_bonus);
-    calcForAbilityScoreModifier(int_bonus.value, parseInt(int.textContent), int_bonus);
-    calcForAbilityScoreModifier(dex_bonus.value, parseInt(dex.textContent), dex_bonus);
+//     console.log("str_bonus.value");
+//     console.log(str_bonus.value);
 
-    str_total.textContent = (parseInt(str_bonus.textContent) + parseInt(str.textContent))
-    wis_total.textContent = (parseInt(wis_bonus.textContent) + parseInt(wis.textContent))
-    cha_total.textContent = (parseInt(cha_bonus.textContent) + parseInt(cha.textContent))
-    con_total.textContent = (parseInt(con_bonus.textContent) + parseInt(con.textContent))
-    int_total.textContent = (parseInt(int_bonus.textContent) + parseInt(int.textContent))
-    dex_total.textContent = (parseInt(dex_bonus.textContent) + parseInt(dex.textContent))
-}
+//     // if (str_bonus.value == undefined) {
+//     //     str_bonus.textContent = 0;
+//     //     str_bonus.value = 0;
+//     // }  
+//     settingValueOfScore(str_bonus);
+//     settingValueOfScore(wis_bonus);
+//     settingValueOfScore(con_bonus);
+//     settingValueOfScore(cha_bonus);
+//     settingValueOfScore(dex_bonus);
+//     settingValueOfScore(int_bonus);
+//     // if (wis_bonus.value ==  undefined) {
+//     //     wis_bonus.textContent = 0;
+//     //     wis_bonus.value = 0;
+//     // } 
+//     // if (cha_bonus.value ==  undefined) {
+//     //     cha_bonus.textContent = 0;
+//     //     cha_bonus.value = 0;
+//     // } 
+//     // if (con_bonus.value ==  undefined) {
+//     //     con_bonus.textContent = 0;
+//     //     con_bonus.value = 0;
+//     // } 
+//     // if (dex_bonus.value ==  undefined) {
+//     //     dex_bonus.textContent = 0;
+//     //     dex_bonus.value = 0;
+//     // } 
+//     // if (int_bonus.value ==  undefined) {
+//     //     int_bonus.textContent = 0;
+//     //     int_bonus.value = 0;
+//     // }
+
+//     var str = document.getElementById('STR');
+//     var wis = document.getElementById('WIS');
+//     var cha = document.getElementById('CHA');
+//     var con = document.getElementById('CON');
+//     var int = document.getElementById('INT');
+//     var dex = document.getElementById('DEX');
+
+//     calcForAbilityScoreModifier(str_bonus.value, parseInt(str.textContent), str_bonus);
+//     calcForAbilityScoreModifier(wis_bonus.value, parseInt(wis.textContent), wis_bonus);
+//     calcForAbilityScoreModifier(cha_bonus.value, parseInt(cha.textContent), cha_bonus);
+//     calcForAbilityScoreModifier(con_bonus.value, parseInt(con.textContent), con_bonus);
+//     calcForAbilityScoreModifier(int_bonus.value, parseInt(int.textContent), int_bonus);
+//     calcForAbilityScoreModifier(dex_bonus.value, parseInt(dex.textContent), dex_bonus);
+
+//     str_total.textContent = (parseInt(str_bonus.textContent) + parseInt(str.textContent))
+//     wis_total.textContent = (parseInt(wis_bonus.textContent) + parseInt(wis.textContent))
+//     cha_total.textContent = (parseInt(cha_bonus.textContent) + parseInt(cha.textContent))
+//     con_total.textContent = (parseInt(con_bonus.textContent) + parseInt(con.textContent))
+//     int_total.textContent = (parseInt(int_bonus.textContent) + parseInt(int.textContent))
+//     dex_total.textContent = (parseInt(dex_bonus.textContent) + parseInt(dex.textContent))
+// }
 
 /// Clears all the ability score, so that the pervious scores are not still taken into effect
-function clearAbilityScoreBonuses() {
-    document.getElementById("CON_bonus").textContent = 0;
-    document.getElementById("CHA_bonus").textContent = 0;
-    document.getElementById("DEX_bonus").textContent = 0;
-    document.getElementById("STR_bonus").textContent = 0;
-    document.getElementById("INT_bonus").textContent = 0;
-    document.getElementById("WIS_bonus").textContent = 0;
-}
+// function clearAbilityScoreBonuses() {
+//     document.getElementById("CON_bonus").textContent = 0;
+//     document.getElementById("CHA_bonus").textContent = 0;
+//     document.getElementById("DEX_bonus").textContent = 0;
+//     document.getElementById("STR_bonus").textContent = 0;
+//     document.getElementById("INT_bonus").textContent = 0;
+//     document.getElementById("WIS_bonus").textContent = 0;
+// }
 
-/// Used to clear the list from pervious selection
-function clearAllFromList(ul) {
-    while (ul.firstChild) ul.removeChild(ul.firstChild);
-}
+// /// Used to clear the list from pervious selection
+// function clearAllFromList(ul) {
+//     while (ul.firstChild) ul.removeChild(ul.firstChild);
+// }
 
 /// Instead of having a long listed created in HTML, this generates the list in 
 /// JavaScript of the Spells options, depending on the class selected
@@ -976,6 +1072,13 @@ async function createListOfProficiencyOptions(array, list) {
     }
     getListToHTML(skill_names, list);
 }
+
+// function settingValueOfScore(score) {
+//     if (score.value == undefined) {
+//         score.textContent = 0;
+//         score.value = 0;
+//     }
+// }
 
 // /// Creates the list for the dropdown menue in the HTML
 // function getListToHTML(array, list) {

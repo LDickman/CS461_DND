@@ -1,3 +1,27 @@
+/// Function that returns the from API
+export async function fetchDataFromAPI(url) {
+    const response = await fetch(url);
+    const data = await response.json();
+    console.log(data);
+    return data;
+}
+
+export function clickOnDropDownMenu(ul, func, button) {
+    var items = ul.getElementsByTagName('li');
+    console.log(button.textContent);
+    console.log(items);
+    //console.log(items[0].textContent);   // knows that textcontext works
+    ul.addEventListener("click", function (e) {
+        for (var i = 0; i < items.length; i++) {
+            if (e.target == items[i]) {
+                console.log(items[i].textContent);
+                func(items[i].textContent);
+                button.textContent = items[i].textContent;
+            }
+        }
+    });
+}
+
 /// Creates the list for the dropdown menue in the HTML
 export function getListToHTML(array, list) {
     array.forEach((item) => {
@@ -137,4 +161,17 @@ function dataValid(data) {
     } else if (data != undefined) {
         return true;
     }
+}
+
+/// Sets the value of the score, so that nothing is undefined
+export function settingValueOfScore(score) {
+    if (score.value == undefined) {
+        score.textContent = 0;
+        score.value = 0;
+    }
+}
+
+/// Used to clear the list from pervious selection
+export function clearAllFromList(ul) {
+    while (ul.firstChild) ul.removeChild(ul.firstChild);
 }
