@@ -22,8 +22,8 @@ export function clickOnDropDownMenu(ul, func, button) {
     });
 }
 
-/// Creates the list for the dropdown menue in the HTML
-export function getListToHTML(array, list) {
+// Creates the list for the dropdown menue in the HTML
+export async function getListToHTML(array, list) {
     array.forEach((item) => {
         let li = document.createElement("li");
         li.innerText = item;

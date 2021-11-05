@@ -1,13 +1,13 @@
-import { fetchDataFromAPI, clickOnDropDownMenu, getListToHTML, getNames, getArrayOfNames, getArrayOfIndexs, getInfoNames, getNumberChoose,
+import { fetchDataFromAPI, clickOnDropDownMenu, getNames, getListToHTML, getArrayOfNames, getArrayOfIndexs, getInfoNames, getNumberChoose,
     getNumberBonuses, getArrayOfNumberBonuses, getNameBonuses, settingValueOfScore, clearAllFromList} from './help.js';
 import {setupPage1} from './race_code.js';
 import {setupPage4, printBonusData, clearAbilityScoreBonuses } from './ability_score_code.js';
 const api_classes = 'https://www.dnd5eapi.co/api/classes/';
 const api_spells = '/levels/1/spells';
+// const api_language = 'https://www.dnd5eapi.co/api/languages/';
 const api_proficiencies = '/proficiencies/'
 const api_alignment = 'https://www.dnd5eapi.co/api/alignments/';
 const api_background = 'https://www.dnd5eapi.co/api/backgrounds/';
-const api_language = 'https://www.dnd5eapi.co/api/languages';
 const api_OneSpell = 'https://www.dnd5eapi.co/api/spells/';
 const api_equiment = 'https://www.dnd5eapi.co/api/equipment-categories/';
 const api_skill = 'https://www.dnd5eapi.co/api/skills/';
@@ -99,6 +99,16 @@ function weaponChoice() {
 //     clickOnDropDownMenu(ul, armorAsk, button);
 // }
 
+// function languageChoice() {
+//     var ul = document.getElementById('languageList');
+//     var ul2 = document.getElementById('language2List');
+//     var button = document.getElementById('language_option');
+//     var button2 = document.getElementById('language_option2');
+//     console.log(ul);
+//     clickOnDropDownMenu(ul2, languageAsk, button2);
+//     clickOnDropDownMenu(ul, languageAsk, button);
+// }
+
 function skillChoice() {
     var ul = document.getElementById('skillList');
     var ul2 = document.getElementById('skill2List');
@@ -126,6 +136,15 @@ async function classAsk(input) {
     proficiencyAsk(input);
     skillChoice();
 }
+
+// async function languageAsk(input) {
+//     console.log("languge: " + input);
+//     var url = api_language + input;
+//     console.log(url);
+//     const data = await fetchDataFromAPI(url);
+//     printLanguageData(data)
+//         (data);
+// }
 
 async function backgroundAsk(input) {
     if (input != "acolyte") {
@@ -250,8 +269,8 @@ async function printClassData(data) {
         array_Skill_Names.push(getArrayOfIndexs(array_skills[i]));
     }
 
-    createListOfProficiencyOptions(array_Skill_Names, skill_list_1);
-    createListOfProficiencyOptions(array_Skill_Names, skill_list_2);
+    await createListOfProficiencyOptions(array_Skill_Names, skill_list_1);
+    await createListOfProficiencyOptions(array_Skill_Names, skill_list_2);
 
     var className = document.getElementById("class_name");
     var die = document.getElementById('hit');
@@ -275,6 +294,28 @@ async function printClassData(data) {
     console.log("printing page 2");
 }
 
+// async function printLanguageData(data) {
+//     var list = document.getElementById("spellList");
+//     const { count, results } = data;
+
+//     var spellsAllowed = document.getElementById('spells');
+
+//     spellsAllowed.textContent = getNames(results);
+
+//     var spellRange = document.getElementById('spell_range');
+//     var spellInfo = document.getElementById('spell_info');
+//     var spellName = document.getElementById('spell_name');
+
+//     if (count != 0) {
+//         createListOfSpellOptions(results, list);
+//     } else {
+//         createListOfSpellOptions("None", list);
+//         spellName.textContent = "None";
+//         spellInfo.textContent = "None";
+//         spellRange.textContent = "None";
+//     }
+// }
+
 async function printSpellsData(data) {
     var list = document.getElementById("spellList");
     const { count, results } = data;
@@ -288,9 +329,9 @@ async function printSpellsData(data) {
     var spellName = document.getElementById('spell_name');
 
     if (count != 0) {
-        createListOfSpellOptions(results, list);
+        await createListOfSpellOptions(results, list);
     } else {
-        createListOfSpellOptions("None", list);
+        await createListOfSpellOptions("None", list);
         spellName.textContent = "None";
         spellInfo.textContent = "None";
         spellRange.textContent = "None";
@@ -445,6 +486,7 @@ async function printArmorInfo(data) {
     var equimentInfo = document.getElementById('equiment_name');
     var weightInfo = document.getElementById('weight');
     var rangeInfo = document.getElementById('range');
+    var range_CAT = document.getElementById('range_cat');
     var danageInfo = document.getElementById('damage_info');
     var costrInfo = document.getElementById('cost_info');
     var equimentINfo = document.getElementById('equiment_info');
@@ -455,8 +497,9 @@ async function printArmorInfo(data) {
     equimentInfo.textContent = name;
     weightInfo.textContent = weight;
     rangeInfo.textContent = "None";
+    range_CAT.textContent = "None";
     danageInfo.textContent = "None";
-    costrInfo.textContent = cost;
+    costrInfo.textContent = "" + cost["quantity"] + " "+ cost["unit"] +"";
     equimentINfo.textContent = "None";
     stealth_info.textContent = stealth_disadvantage;
     str_needed.textContent = str_minimum;
@@ -481,7 +524,7 @@ async function printSheildInfo(data) {
     weightInfo.textContent = weight;
     rangeInfo.textContent = "None";
     danageInfo.textContent = "None";
-    costrInfo.textContent = cost;
+    costrInfo.textContent = "" + cost["quantity"] + " "+ cost["unit"] +"";
     equimentINfo.textContent = "None";
     stealth_info.textContent = stealth_disadvantage;
     str_needed.textContent = str_minimum;
@@ -491,20 +534,25 @@ async function printSheildInfo(data) {
 async function printWeaponInfo(data) {
     const { index, name, equipment_category, weapon_category,
         category_range, cost, damage, range, weight } = data;
-
+    
+    console.log("cost");
+    console.log(cost);
     var equimentInfo = document.getElementById('equiment_name');
     var weightInfo = document.getElementById('weight');
     var rangeInfo = document.getElementById('range');
+    var range_CAT = document.getElementById('range_cat');
     var danageInfo = document.getElementById('damage_info');
     var costrInfo = document.getElementById('cost_info');
     var equimentINfo = document.getElementById('equiment_info');
     var damageRoll = document.getElementById('damage_roll');
-
+    
     equimentInfo.textContent = name;
     weightInfo.textContent = weight;
-    rangeInfo.textContent = "None";
+    rangeInfo.textContent =  "" + range["normal"] + " feet. Long is "+ range["long"] +"";
+    range_CAT.textContent = category_range;
     danageInfo.textContent = "None";
-    costrInfo.textContent = cost;
+    console.log(cost["quantity"]);
+    costrInfo.textContent = "" + cost["quantity"] + " "+ cost["unit"] +"";
     equimentINfo.textContent = "None";
     damageRoll.textContent = "None";
 }
@@ -515,16 +563,18 @@ async function printInfo_One_Equiment(data) {
     var equimentInfo = document.getElementById('equiment_name');
     var weightInfo = document.getElementById('weight');
     var rangeInfo = document.getElementById('range');
+    var range_CAT = document.getElementById('range_cat');
     var danageInfo = document.getElementById('damage_info');
     var costrInfo = document.getElementById('cost_info');
     var equimentINfo = document.getElementById('equiment_info');
     var danageRoll = document.getElementById('damage_roll');
-
+    
     equimentInfo.textContent = name;
     weightInfo.textContent = weight;
     rangeInfo.textContent = "None";
+    range_CAT.textContent = "None";
     danageInfo.textContent = "None";
-    costrInfo.textContent = cost;
+    costrInfo.textContent = "" + cost["quantity"] + " "+ cost["unit"] +"";
     equimentINfo.textContent = desc;
     danageRoll.textContent = "None"
 }
@@ -602,11 +652,11 @@ async function createListOfEquimentOptions(data, list, list_2, list_3, list_4) {
     ///let kit_names = await creatingListofArrayForEquiment(array_kit);
 
     //console.log("array_weapons " + array_weapon)
-    getListToHTML(idex_names_weapons, list);
-    getListToHTML(armor_names, list_2);
+    await getListToHTML(idex_names_weapons, list);
+    await getListToHTML(armor_names, list_2);
     //getListToHTML(array_armor, list_2);
-    getListToHTML(shield_names, list_3);
-    getListToHTML(array_kit, list_4);
+    await getListToHTML(shield_names, list_3);
+    await getListToHTML(array_kit, list_4);
 }
 
 async function creatingListofArrayForEquiment(array) {
@@ -631,14 +681,16 @@ async function creatingListofArrayForEquiment(array) {
 /// Instead of having a long listed created in HTML, this generates the list in 
 /// JavaScript of the Spells options, depending on the class selected
 async function createListOfSpellOptions(data, list) {
-    var array_spells;
+    let array_spells;
     if (data == "None") {
         array_spells = ["None"];
     } else {
         array_spells = getArrayOfIndexs(data);
     }
-    console.log("array_spells " + array_spells)
-    getListToHTML(array_spells, list);
+    //array_spells.push("None");
+    console.log("array_spells ");
+    console.log(array_spells);
+    await getListToHTML(array_spells, list);
 }
 
 /// Instead of having a long listed created in HTML, this generates the list in 
@@ -652,5 +704,5 @@ async function createListOfProficiencyOptions(array, list) {
             skill_names.push(items[i].replace("skill-", ""));
         }
     }
-    getListToHTML(skill_names, list);
+    await getListToHTML(skill_names, list);
 }
