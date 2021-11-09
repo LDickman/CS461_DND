@@ -1,14 +1,13 @@
 import { fetchDataFromAPI, clickOnDropDownMenu, getNames, getListToHTML, getArrayOfNames, getArrayOfIndexs, getInfoNames, getNumberChoose,
     getNumberBonuses, getListCheckBoxes, getArrayOfNumberBonuses, getNameBonuses, settingValueOfScore, clearAllFromList} from './help.js';
 import {setupPage1} from './race_code.js';
+import {setupPage6, spellsAsk} from './spell_code.js';
 import {setupPage4, printBonusData, clearAbilityScoreBonuses } from './ability_score_code.js';
+
 const api_classes = 'https://www.dnd5eapi.co/api/classes/';
-const api_spells = '/levels/1/spells';
-// const api_language = 'https://www.dnd5eapi.co/api/languages/';
 const api_proficiencies = '/proficiencies/'
 const api_alignment = 'https://www.dnd5eapi.co/api/alignments/';
 const api_background = 'https://www.dnd5eapi.co/api/backgrounds/';
-const api_OneSpell = 'https://www.dnd5eapi.co/api/spells/';
 const api_equiment = 'https://www.dnd5eapi.co/api/equipment-categories/';
 const api_skill = 'https://www.dnd5eapi.co/api/skills/';
 const api_OneEquiment = 'https://www.dnd5eapi.co/api/equipment/'
@@ -43,10 +42,10 @@ async function setupPage3() {
 }
 
 
-async function setupPage6() {
-    console.log("starting 6");
-    spellChoice();
-}
+// async function setupPage6() {
+//     console.log("starting 6");
+//     spellChoice();
+// }
 
 async function setupPage7() {
     console.log("starting 7");
@@ -92,23 +91,6 @@ function weaponChoice() {
     clickOnDropDownMenu(ul4, certianEquimentsAsk, button4);
 }
 
-// function armorChoice() {
-//     var ul = document.getElementById('armorList');
-//     var button = document.getElementById('armor_option');
-//     console.log(ul);
-//     clickOnDropDownMenu(ul, armorAsk, button);
-// }
-
-// function languageChoice() {
-//     var ul = document.getElementById('languageList');
-//     var ul2 = document.getElementById('language2List');
-//     var button = document.getElementById('language_option');
-//     var button2 = document.getElementById('language_option2');
-//     console.log(ul);
-//     clickOnDropDownMenu(ul2, languageAsk, button2);
-//     clickOnDropDownMenu(ul, languageAsk, button);
-// }
-
 function skillChoice() {
     var ul = document.getElementById('skillList');
     var ul2 = document.getElementById('skill2List');
@@ -118,14 +100,6 @@ function skillChoice() {
     clickOnDropDownMenu(ul2, skillAsk, button2);
     clickOnDropDownMenu(ul, skillAsk, button);
 }
-
-function spellChoice() {
-    var ul = document.getElementById('spellList');
-    var button = document.getElementById('spell_option');
-    console.log(ul);
-    clickOnDropDownMenu(ul, certianSpellsAsk, button);
-}
-
 
 async function classAsk(input) {
     console.log("Class: " + input);
@@ -137,14 +111,6 @@ async function classAsk(input) {
     skillChoice();
 }
 
-// async function languageAsk(input) {
-//     console.log("languge: " + input);
-//     var url = api_language + input;
-//     console.log(url);
-//     const data = await fetchDataFromAPI(url);
-//     printLanguageData(data)
-//         (data);
-// }
 
 async function backgroundAsk(input) {
     if (input != "acolyte") {
@@ -169,26 +135,12 @@ async function alignmentAsk(input) {
     }
 }
 
-async function spellsAsk(input) {
-    console.log("Spells for: " + input);
-    var url = api_classes + input + api_spells;
-    const data = await fetchDataFromAPI(url);
-    printSpellsData(data);
-}
-
 async function proficiencyAsk(input) {
     var url = api_classes + input + api_proficiencies;
     const data = await fetchDataFromAPI(url);
     console.log("proficiencies for: " + input);
     console.log(data);
     getProficiencyData(data);
-}
-
-async function certianSpellsAsk(input) {
-    console.log("Spells: " + input);
-    var url = api_OneSpell + input;
-    const data = await fetchDataFromAPI(url);
-    printInfo_One_Spell(data);
 }
 
 async function skillAsk(input) {
@@ -294,50 +246,6 @@ async function printClassData(data) {
     console.log("printing page 2");
 }
 
-// async function printLanguageData(data) {
-//     var list = document.getElementById("spellList");
-//     const { count, results } = data;
-
-//     var spellsAllowed = document.getElementById('spells');
-
-//     spellsAllowed.textContent = getNames(results);
-
-//     var spellRange = document.getElementById('spell_range');
-//     var spellInfo = document.getElementById('spell_info');
-//     var spellName = document.getElementById('spell_name');
-
-//     if (count != 0) {
-//         createListOfSpellOptions(results, list);
-//     } else {
-//         createListOfSpellOptions("None", list);
-//         spellName.textContent = "None";
-//         spellInfo.textContent = "None";
-//         spellRange.textContent = "None";
-//     }
-// }
-
-async function printSpellsData(data) {
-    var list = document.getElementById("spellList");
-    const { count, results } = data;
-
-    var spellsAllowed = document.getElementById('spells');
-
-    spellsAllowed.textContent = getNames(results);
-
-    var spellRange = document.getElementById('spell_range');
-    var spellInfo = document.getElementById('spell_info');
-    var spellName = document.getElementById('spell_name');
-
-    if (count != 0) {
-        await createListOfSpellOptions(results, list);
-    } else {
-        await createListOfSpellOptions("None", list);
-        spellName.textContent = "None";
-        spellInfo.textContent = "None";
-        spellRange.textContent = "None";
-    }
-}
-
 async function getProficiencyData(data) {
     let weapon_list = document.getElementById("weaponList");
     let armor_list = document.getElementById("armorList");
@@ -357,20 +265,6 @@ async function printSkillsData(data) {
     skill_name.textContent = name
     skill_info.textContent = desc;
 
-}
-
-async function printInfo_One_Spell(data) {
-    console.log(data);
-    const { name, desc, range } = data;
-
-    console.log(name);
-    var spellRange = document.getElementById('spell_range');
-    var spellInfo = document.getElementById('spell_info');
-    var spellName = document.getElementById('spell_name');
-
-    spellName.textContent = name;
-    spellInfo.textContent = desc;
-    spellRange.textContent = range;
 }
 
 async function printAlignmentData(data) {
@@ -677,20 +571,6 @@ async function creatingListofArrayForEquiment(array) {
         equiment_names.push(items[i]);
     }
     return equiment_names;
-}
-/// Instead of having a long listed created in HTML, this generates the list in 
-/// JavaScript of the Spells options, depending on the class selected
-async function createListOfSpellOptions(data, list) {
-    let array_spells;
-    if (data == "None") {
-        array_spells = ["None"];
-    } else {
-        array_spells = getArrayOfIndexs(data);
-    }
-    //array_spells.push("None");
-    console.log("array_spells ");
-    console.log(array_spells);
-    await getListToHTML(array_spells, list);
 }
 
 /// Instead of having a long listed created in HTML, this generates the list in 
