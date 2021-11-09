@@ -175,3 +175,48 @@ export function settingValueOfScore(score) {
 export function clearAllFromList(ul) {
     while (ul.firstChild) ul.removeChild(ul.firstChild);
 }
+
+/// creates list of langanges in checkbox format
+export function getListCheckBoxes(array, list){
+    console.log("Array");
+    console.log(array);
+    for (var i = 0; i < array.length; i++) {
+            var checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.id = array[i];
+            checkbox.name = 'language';
+            checkbox.value = array[i];
+            checkbox.onclick = checkboxSlecetion();
+
+            var label = document.createElement('label')
+            label.htmlFor = array[i];
+            label.appendChild(document.createTextNode(array[i]));
+
+            var br = document.createElement('br');
+
+            list.appendChild(checkbox);
+            list.appendChild(label);
+            list.appendChild(br);
+    }
+}
+
+function checkboxSlecetion() {
+    var Languagelist = document.getElementById("languageList");
+    // Get the checkbox
+    var checkBox = Languagelist.getElementsByTagName('input');
+    //setting limit of number of selected languages
+    var limit = 2;
+    for (var i = 0; i < checkBox.length; i++) {
+        checkBox[i].onclick = function() {
+            var checkedcount = 0;
+            for (var i = 0; i < checkBox.length; i++) {
+                checkedcount += (checkBox[i].checked) ? 1 : 0;
+            }
+            if (checkedcount > limit) {
+                console.log("You can select maximum of " + limit + " checkboxes.");
+                alert("You can select maximum of " + limit + " checkboxes.");                       
+                this.checked = false;
+            }
+        }
+    }
+  }

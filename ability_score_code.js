@@ -1,5 +1,5 @@
 import {fetchDataFromAPI, clickOnDropDownMenu, getListToHTML, getNames, getArrayOfNames, getArrayOfIndexs, getInfoNames, getNumberChoose, 
-    getNumberBonuses, getArrayOfNumberBonuses, getNameBonuses, settingValueOfScore } from './help.js';
+    getNumberBonuses, getListCheckBoxes, getArrayOfNumberBonuses, getNameBonuses, settingValueOfScore } from './help.js';
 const api_scores = 'https://www.dnd5eapi.co/api/ability-scores/';
 
 export async function setupPage4() {

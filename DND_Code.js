@@ -1,5 +1,5 @@
 import { fetchDataFromAPI, clickOnDropDownMenu, getNames, getListToHTML, getArrayOfNames, getArrayOfIndexs, getInfoNames, getNumberChoose,
-    getNumberBonuses, getArrayOfNumberBonuses, getNameBonuses, settingValueOfScore, clearAllFromList} from './help.js';
+    getNumberBonuses, getListCheckBoxes, getArrayOfNumberBonuses, getNameBonuses, settingValueOfScore, clearAllFromList} from './help.js';
 import {setupPage1} from './race_code.js';
 import {setupPage4, printBonusData, clearAbilityScoreBonuses } from './ability_score_code.js';
 const api_classes = 'https://www.dnd5eapi.co/api/classes/';
