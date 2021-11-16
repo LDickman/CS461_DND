@@ -1,6 +1,7 @@
-import { fetchDataFromAPI, clickOnDropDownMenu, getNames, getListToHTML, getArrayOfNames, getArrayOfIndexs, getInfoNames, getNumberChoose,
-    getNumberBonuses, getListCheckBoxes, getArrayOfNumberBonuses, getNameBonuses, settingValueOfScore, clearAllFromList} from './help.js';
+import { fetchDataFromAPI, clickOnDropDownMenu, creatingListofArrayForEquiment, createListOfEquimentOptions, getNames, getListToHTML, getArrayOfNames, createListOfProficiencyOptions, getArrayOfIndexs, getInfoNames, getNumberChoose,
+    getNumberBonuses, getListCheckBoxes, getArrayOfNumberBonuses, getNameBonuses, settingValueOfScore, clearAllFromList, getEquimentListData} from './help.js';
 import {setupPage1} from './race_code.js';
+import {setupPage7, equimentCategoryAsk } from './equiment_code.js';
 import {setupPage6, spellsAsk} from './spell_code.js';
 import {setupPage4, printBonusData, clearAbilityScoreBonuses } from './ability_score_code.js';
 
@@ -8,9 +9,8 @@ const api_classes = 'https://www.dnd5eapi.co/api/classes/';
 const api_proficiencies = '/proficiencies/'
 const api_alignment = 'https://www.dnd5eapi.co/api/alignments/';
 const api_background = 'https://www.dnd5eapi.co/api/backgrounds/';
-const api_equiment = 'https://www.dnd5eapi.co/api/equipment-categories/';
 const api_skill = 'https://www.dnd5eapi.co/api/skills/';
-const api_OneEquiment = 'https://www.dnd5eapi.co/api/equipment/'
+
 
 // const race_input;
 // const background_input;
@@ -41,61 +41,32 @@ async function setupPage3() {
     alignmentChoice();
 }
 
-
-// async function setupPage6() {
-//     console.log("starting 6");
-//     spellChoice();
-// }
-
-async function setupPage7() {
-    console.log("starting 7");
-    weaponChoice();
-    // armorChoice();
-}
-
-
 function classChoice() {
-    var ul = document.getElementById('classList');
-    var button = document.getElementById('class_option');
+    let ul = document.getElementById('classList');
+    let button = document.getElementById('class_option');
     console.log(ul);
     clickOnDropDownMenu(ul, classAsk, button);
 }
 
 function backgroundChoice() {
-    var ul = document.getElementById('backgroundList');
-    var button = document.getElementById('background_option');
+    let ul = document.getElementById('backgroundList');
+    let button = document.getElementById('background_option');
     console.log(ul);
     clickOnDropDownMenu(ul, backgroundAsk, button);
 }
 
 function alignmentChoice() {
-    var ul = document.getElementById('alignmentList');
-    var button = document.getElementById('alignment_option');
+    let ul = document.getElementById('alignmentList');
+    let button = document.getElementById('alignment_option');
     console.log(ul);
     clickOnDropDownMenu(ul, alignmentAsk, button);
 }
 
-function weaponChoice() {
-    var ul = document.getElementById('weaponList');
-    var button = document.getElementById('weapon_option');
-    var ul2 = document.getElementById('armorList');
-    var button2 = document.getElementById('armor_option');
-    var ul3 = document.getElementById('shieldList');
-    var button3 = document.getElementById('shield_option');
-    var ul4 = document.getElementById('kitList');
-    var button4 = document.getElementById('kit_option');
-    console.log(ul);
-    clickOnDropDownMenu(ul, weaponAsk, button);
-    clickOnDropDownMenu(ul2, armorAsk, button2);
-    clickOnDropDownMenu(ul3, sheildAsk, button3);
-    clickOnDropDownMenu(ul4, certianEquimentsAsk, button4);
-}
-
 function skillChoice() {
-    var ul = document.getElementById('skillList');
-    var ul2 = document.getElementById('skill2List');
-    var button = document.getElementById('skill_option');
-    var button2 = document.getElementById('skill_option2');
+    let ul = document.getElementById('skillList');
+    let ul2 = document.getElementById('skill2List');
+    let button = document.getElementById('skill_option');
+    let button2 = document.getElementById('skill_option2');
     console.log(ul);
     clickOnDropDownMenu(ul2, skillAsk, button2);
     clickOnDropDownMenu(ul, skillAsk, button);
@@ -103,7 +74,7 @@ function skillChoice() {
 
 async function classAsk(input) {
     console.log("Class: " + input);
-    var url = api_classes + input;
+    let url = api_classes + input;
     const data = await fetchDataFromAPI(url);
     printClassData(data);
     spellsAsk(input);
@@ -111,13 +82,12 @@ async function classAsk(input) {
     skillChoice();
 }
 
-
 async function backgroundAsk(input) {
     if (input != "acolyte") {
         printExtraBackgroundData(input);
     } else if (input == "acolyte") {
         console.log("Class: " + input);
-        var url = api_background + input;
+        let url = api_background + input;
         console.log(url);
         const data = await fetchDataFromAPI(url);
         printBackgroundData(data);
@@ -129,14 +99,14 @@ async function alignmentAsk(input) {
     if (input == "None") {
         document.getElementById("alignment_choice").textContent = "None";
     } else {
-        var url = api_alignment + input;
+        let url = api_alignment + input;
         const data = await fetchDataFromAPI(url);
         printAlignmentData(data);
     }
 }
 
 async function proficiencyAsk(input) {
-    var url = api_classes + input + api_proficiencies;
+    let url = api_classes + input + api_proficiencies;
     const data = await fetchDataFromAPI(url);
     console.log("proficiencies for: " + input);
     console.log(data);
@@ -145,47 +115,10 @@ async function proficiencyAsk(input) {
 
 async function skillAsk(input) {
     console.log("Skill: " + input);
-    var url = api_skill + input;
+    let url = api_skill + input;
     console.log(url);
     const data = await fetchDataFromAPI(url);
     printSkillsData(data);
-}
-
-async function equimentCategoryAsk(input) {
-    ///console.log("Equiment for: " + input);
-    var url = api_equiment + input;
-    //var url = api_OneEquiment + input;
-    const data = await fetchDataFromAPI(url);
-    return await getEquimentListData(data);
-    //getListofEquimentCategory(data)
-}
-
-async function certianEquimentsAsk(input) {
-    console.log("Equiment for: " + input);
-    var url = api_OneEquiment + input;
-    const data = await fetchDataFromAPI(url);
-    printInfo_One_Equiment(data);
-}
-
-async function armorAsk(input) {
-    console.log("Equiment for: " + input);
-    var url = api_OneEquiment + input;
-    const data = await fetchDataFromAPI(url);
-    printArmorInfo(data);
-}
-
-async function sheildAsk(input) {
-    console.log("Equiment for: " + input);
-    var url = api_OneEquiment + input;
-    const data = await fetchDataFromAPI(url);
-    printSheildInfo(data);
-}
-
-async function weaponAsk(input) {
-    console.log("Equiment for: " + input);
-    var url = api_OneEquiment + input;
-    const data = await fetchDataFromAPI(url);
-    printWeaponInfo(data);
 }
 
 async function printClassData(data) {
@@ -211,27 +144,27 @@ async function printClassData(data) {
     console.log(hit_die);
 
     console.log(proficiency_choices);
-    var array_skills = proficiency_choices.map(function (el) {
+    let array_skills = proficiency_choices.map(function (el) {
         return el.from;
     });
 
 
-    var array_Skill_Names = new Array;
-    for (var i = 0; i < array_skills.length; i++) {
+    let array_Skill_Names = new Array;
+    for (let i = 0; i < array_skills.length; i++) {
         array_Skill_Names.push(getArrayOfIndexs(array_skills[i]));
     }
 
     await createListOfProficiencyOptions(array_Skill_Names, skill_list_1);
     await createListOfProficiencyOptions(array_Skill_Names, skill_list_2);
 
-    var className = document.getElementById("class_name");
-    var die = document.getElementById('hit');
-    var throwHits = document.getElementById('throws');
+    let className = document.getElementById("class_name");
+    let die = document.getElementById('hit');
+    let throwHits = document.getElementById('throws');
 
-    var wantedEquiment = document.getElementById("preffer_equiment")
-    var casting = document.getElementById('spellscasting');
-    var otherClasses = document.getElementById("subclasses");
-    var skillsNum = document.getElementById("skills");
+    let wantedEquiment = document.getElementById("preffer_equiment")
+    let casting = document.getElementById('spellscasting');
+    let otherClasses = document.getElementById("subclasses");
+    let skillsNum = document.getElementById("skills");
 
     className.textContent = name;
     die.textContent = hit_die;
@@ -260,8 +193,8 @@ async function printSkillsData(data) {
     console.log(data);
     const { name, desc } = data;
 
-    var skill_info = document.getElementById('Pro_info');
-    var skill_name = document.getElementById('Pro_name');
+    let skill_info = document.getElementById('Pro_info');
+    let skill_name = document.getElementById('Pro_name');
     skill_name.textContent = name
     skill_info.textContent = desc;
 
@@ -279,12 +212,12 @@ async function printBackgroundData(data) {
         starting_equipment_options, personality_traits, ideals, bonds, flaws } = data;
 
 
-    var beginnerSkills = document.getElementById('skills_needed');
-    var wantedLanguages = document.getElementById("languages_options")
-    var background_info = document.getElementById('background_des');
-    var background_Skill_info = document.getElementById('background_Skill_info')
+    let beginnerSkills = document.getElementById('skills_needed');
+    let wantedLanguages = document.getElementById("languages_options")
+    let background_info = document.getElementById('background_des');
+    let background_Skill_info = document.getElementById('background_Skill_info')
 
-    var language_Array;
+    let language_Array;
 
     if (language_options == undefined) {
         wantedLanguages.textContent = "None";
@@ -296,13 +229,13 @@ async function printBackgroundData(data) {
         wantedLanguages.textContent = language_Array.join(',     ');
     }
 
-    var Skill_array = getNames(starting_proficiencies);
+    let Skill_array = getNames(starting_proficiencies);
     background_info.textContent = feature.desc;
     beginnerSkills.textContent = Skill_array;
 
-    var items = Skill_array.toString().split(",");
-    var skill_names = new Array;
-    for (var i = 0, j = items.length; i < j; i++) {
+    let items = Skill_array.toString().split(",");
+    let skill_names = new Array;
+    for (let i = 0, j = items.length; i < j; i++) {
         skill_names.push(items[i].replace("Skill:", ""));
     }
 
@@ -313,10 +246,10 @@ async function printBackgroundData(data) {
 async function printExtraBackgroundData(input) {
     console.log("background" + input);
 
-    var beginnerSkills = document.getElementById('skills_needed');
-    var wantedLanguages = document.getElementById("languages_options")
-    var background_info = document.getElementById('background_des');
-    var background_Skill_info = document.getElementById('background_Skill_info')
+    let beginnerSkills = document.getElementById('skills_needed');
+    let wantedLanguages = document.getElementById("languages_options")
+    let background_info = document.getElementById('background_des');
+    let background_Skill_info = document.getElementById('background_Skill_info')
 
     if (input == "criminal") {
         beginnerSkills.textContent = "Deception, Stealth";
@@ -358,231 +291,4 @@ async function printExtraBackgroundData(input) {
         background_Skill_info.textContent = "Athletics, Intimidation";
     }
     console.log("printing page 3");
-}
-
-/// Creates the list of all the indexs within the weapons/armor/sheilds/kits equiment-catergoy API
-async function getEquimentListData(data) {
-    const { index, name, equipment } = data;
-    console.log("Within getEquimentListData")
-
-    let equiment_options_Array = equipment.map(function (el) {
-        return el.index;
-    });
-    console.log("equiment_options_Array");
-    console.log(equiment_options_Array);
-    return equiment_options_Array;
-}
-
-async function printArmorInfo(data) {
-    const { name, index, equipment_category, armor_category,
-        armor_class, str_minimum, stealth_disadvantage, weight, cost } = data;
-
-    var equimentInfo = document.getElementById('equiment_name');
-    var weightInfo = document.getElementById('weight');
-    var rangeInfo = document.getElementById('range');
-    var range_CAT = document.getElementById('range_cat');
-    var danageInfo = document.getElementById('damage_info');
-    var costrInfo = document.getElementById('cost_info');
-    var equimentINfo = document.getElementById('equiment_info');
-    var stealth_info = document.getElementById('stealth_info');
-    var str_needed = document.getElementById('musle_info');
-    var damageRoll = document.getElementById('damage_roll');
-
-    equimentInfo.textContent = name;
-    weightInfo.textContent = weight;
-    rangeInfo.textContent = "None";
-    range_CAT.textContent = "None";
-    danageInfo.textContent = "None";
-    costrInfo.textContent = "" + cost["quantity"] + " "+ cost["unit"] +"";
-    equimentINfo.textContent = "None";
-    stealth_info.textContent = stealth_disadvantage;
-    str_needed.textContent = str_minimum;
-    damageRoll.textContent = "None";
-}
-
-async function printSheildInfo(data) {
-    const { name, index, equipment_category, armor_category,
-        armor_class, str_minimum, stealth_disadvantage, weight, cost } = data;
-
-    var equimentInfo = document.getElementById('equiment_name');
-    var weightInfo = document.getElementById('weight');
-    var rangeInfo = document.getElementById('range');
-    var danageInfo = document.getElementById('damage_info');
-    var costrInfo = document.getElementById('cost_info');
-    var equimentINfo = document.getElementById('equiment_info');
-    var stealth_info = document.getElementById('stealth_info');
-    var str_needed = document.getElementById('musle_info');
-    var damageRoll = document.getElementById('damage_roll');
-
-    equimentInfo.textContent = name;
-    weightInfo.textContent = weight;
-    rangeInfo.textContent = "None";
-    danageInfo.textContent = "None";
-    costrInfo.textContent = "" + cost["quantity"] + " "+ cost["unit"] +"";
-    equimentINfo.textContent = "None";
-    stealth_info.textContent = stealth_disadvantage;
-    str_needed.textContent = str_minimum;
-    damageRoll.textContent = "None";
-}
-
-async function printWeaponInfo(data) {
-    const { index, name, equipment_category, weapon_category,
-        category_range, cost, damage, range, weight } = data;
-    
-    console.log("cost");
-    console.log(cost);
-    var equimentInfo = document.getElementById('equiment_name');
-    var weightInfo = document.getElementById('weight');
-    var rangeInfo = document.getElementById('range');
-    var range_CAT = document.getElementById('range_cat');
-    var danageInfo = document.getElementById('damage_info');
-    var costrInfo = document.getElementById('cost_info');
-    var equimentINfo = document.getElementById('equiment_info');
-    var damageRoll = document.getElementById('damage_roll');
-    
-    equimentInfo.textContent = name;
-    weightInfo.textContent = weight;
-    rangeInfo.textContent =  "" + range["normal"] + " feet. Long is "+ range["long"] +"";
-    range_CAT.textContent = category_range;
-    danageInfo.textContent = "None";
-    console.log(cost["quantity"]);
-    costrInfo.textContent = "" + cost["quantity"] + " "+ cost["unit"] +"";
-    equimentINfo.textContent = "None";
-    damageRoll.textContent = "None";
-}
-
-async function printInfo_One_Equiment(data) {
-    const { index, name, cost, weight, desc } = data;
-
-    var equimentInfo = document.getElementById('equiment_name');
-    var weightInfo = document.getElementById('weight');
-    var rangeInfo = document.getElementById('range');
-    var range_CAT = document.getElementById('range_cat');
-    var danageInfo = document.getElementById('damage_info');
-    var costrInfo = document.getElementById('cost_info');
-    var equimentINfo = document.getElementById('equiment_info');
-    var danageRoll = document.getElementById('damage_roll');
-    
-    equimentInfo.textContent = name;
-    weightInfo.textContent = weight;
-    rangeInfo.textContent = "None";
-    range_CAT.textContent = "None";
-    danageInfo.textContent = "None";
-    costrInfo.textContent = "" + cost["quantity"] + " "+ cost["unit"] +"";
-    equimentINfo.textContent = desc;
-    danageRoll.textContent = "None"
-}
-
-/// Instead of having a long listed created in HTML, this generates the list in 
-/// JavaScript of the Spells options, depending on the class selected
-async function createListOfEquimentOptions(data, list, list_2, list_3, list_4) {
-    console.log("Equiment");
-    console.log(data);
-    var array_equiment = getArrayOfIndexs(data);
-    let array_armor = new Array;
-    let array_weapon = new Array;
-    let All_weapon_indexs = new Array
-    let array_shield = new Array;
-    let array_kit = new Array;
-    for (var i = 0; i < array_equiment.length; i++) {
-        if (array_equiment[i].includes("armor")) {
-            array_armor.push(array_equiment[i]);
-        } else if (array_equiment[i].includes("shields")) {
-            array_shield.push(array_equiment[i]);
-        } else if (array_equiment[i].includes("kit")) {
-            array_kit.push(array_equiment[i]);
-        } else {
-            array_weapon.push(array_equiment[i]);
-        }
-    }
-
-    console.log("array_weapon");
-    console.log(array_weapon);
-
-    for (var i = 0; i < array_weapon.length; i++) {
-        if (array_weapon[i].includes("-weapons")) {
-            console.log("Array index: " + array_weapon[i]);
-            let data = await equimentCategoryAsk(array_weapon[i]);
-            console.log("All_weapon_indexs");
-            All_weapon_indexs.push(data);
-            array_weapon.splice(i, 1);
-            i--;
-        } else if (array_weapon[i].includes("saving-throw")) {
-            array_weapon.splice(i, 1);
-            i--;
-        }
-    }
-    console.log("After Removing certian elements from array_weapon");
-    for (var i = 0; i < array_weapon.length; i++) {
-        let word = array_weapon[i]
-        let new_word = word.slice(0, word.length - 1);
-        array_weapon[i] = new_word;
-    }
-    console.log(array_weapon);
-
-    var string_of_indexs = All_weapon_indexs.toString().split(",");
-    var idex_names_weapons = new Array;
-
-    for (var i = 0, j = string_of_indexs.length; i < j; i++) {
-        idex_names_weapons.push(string_of_indexs[i]);
-    }
-    console.log("idex_names");
-    console.log(idex_names_weapons);
-    // // All_weapon_indexs.push(array_weapon);
-    // console.log("All_weapon_indexs")
-    // console.log(All_weapon_indexs);
-
-    let items = array_weapon.toString().split(",");
-    for (var i = 0, j = items.length; i < j; i++) {
-        idex_names_weapons.push(items[i]);
-    }
-
-    console.log("array_armor");
-    console.log(array_armor);
-    let armor_names = await creatingListofArrayForEquiment(array_armor);
-    console.log("armor names");
-    console.log(armor_names);
-    let shield_names = await creatingListofArrayForEquiment(array_shield);
-    ///let kit_names = await creatingListofArrayForEquiment(array_kit);
-
-    //console.log("array_weapons " + array_weapon)
-    await getListToHTML(idex_names_weapons, list);
-    await getListToHTML(armor_names, list_2);
-    //getListToHTML(array_armor, list_2);
-    await getListToHTML(shield_names, list_3);
-    await getListToHTML(array_kit, list_4);
-}
-
-async function creatingListofArrayForEquiment(array) {
-    let new_array = new Array;
-    for (var i = 0; i < array.length; i++) {
-        console.log("Array index: " + array[i]);
-        let data = await equimentCategoryAsk(array[i]);
-        console.log("creatingListofArrayForEquiment");
-        //console.log(array);
-        //console.log(data);
-        new_array.push(data);
-    }
-
-    var items = new_array.toString().split(",");
-    var equiment_names = new Array;
-
-    for (var i = 0, j = items.length; i < j; i++) {
-        equiment_names.push(items[i]);
-    }
-    return equiment_names;
-}
-
-/// Instead of having a long listed created in HTML, this generates the list in 
-/// JavaScript of the skill options
-async function createListOfProficiencyOptions(array, list) {
-    var items = array.toString().split(",");
-    var skill_names = new Array;
-
-    for (var i = 0, j = items.length; i < j; i++) {
-        if (items[i].includes("skill-")) {
-            skill_names.push(items[i].replace("skill-", ""));
-        }
-    }
-    await getListToHTML(skill_names, list);
 }

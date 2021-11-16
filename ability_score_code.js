@@ -1,5 +1,5 @@
-import {fetchDataFromAPI, clickOnDropDownMenu, getListToHTML, getNames, getArrayOfNames, getArrayOfIndexs, getInfoNames, getNumberChoose, 
-    getNumberBonuses, getListCheckBoxes, getArrayOfNumberBonuses, getNameBonuses, settingValueOfScore } from './help.js';
+import { fetchDataFromAPI, clickOnDropDownMenu, creatingListofArrayForEquiment, createListOfEquimentOptions, getNames, getListToHTML, getArrayOfNames, createListOfProficiencyOptions, getArrayOfIndexs, getInfoNames, getNumberChoose,
+    getNumberBonuses, getListCheckBoxes, getArrayOfNumberBonuses, getNameBonuses, settingValueOfScore, clearAllFromList, getEquimentListData} from './help.js';
 const api_scores = 'https://www.dnd5eapi.co/api/ability-scores/';
 
 export async function setupPage4() {
@@ -137,37 +137,13 @@ function addTotalForAbilityScore() {
     console.log("str_bonus.value");
     console.log(str_bonus.value);
 
-    // if (str_bonus.value == undefined) {
-    //     str_bonus.textContent = 0;
-    //     str_bonus.value = 0;
-    // }  
     settingValueOfScore(str_bonus);
     settingValueOfScore(wis_bonus);
     settingValueOfScore(con_bonus);
     settingValueOfScore(cha_bonus);
     settingValueOfScore(dex_bonus);
     settingValueOfScore(int_bonus);
-    // if (wis_bonus.value ==  undefined) {
-    //     wis_bonus.textContent = 0;
-    //     wis_bonus.value = 0;
-    // } 
-    // if (cha_bonus.value ==  undefined) {
-    //     cha_bonus.textContent = 0;
-    //     cha_bonus.value = 0;
-    // } 
-    // if (con_bonus.value ==  undefined) {
-    //     con_bonus.textContent = 0;
-    //     con_bonus.value = 0;
-    // } 
-    // if (dex_bonus.value ==  undefined) {
-    //     dex_bonus.textContent = 0;
-    //     dex_bonus.value = 0;
-    // } 
-    // if (int_bonus.value ==  undefined) {
-    //     int_bonus.textContent = 0;
-    //     int_bonus.value = 0;
-    // }
-
+    
     var str = document.getElementById('STR');
     var wis = document.getElementById('WIS');
     var cha = document.getElementById('CHA');

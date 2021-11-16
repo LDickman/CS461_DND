@@ -406,9 +406,23 @@
     <p>Choose the character's weapons, aromor, and pack.</p>
     <br />
     <p>Set your character's allowance below</p>
-    <input id="money" value=""> </input>
+    <input id="money" value="0"></input>
+    <div class="dropdown">
+      <button onclick=moneySelect() id='money_option' class="dropbtn">Currency
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div id="moneyDropdown" class="dropdown-content">
+        <ul id="moneyList">
+          <li value="cp">Copper (cp)</li>
+          <li value="sp">Silver (sp)</li>
+          <li value="ep">Electrum (ep)</li>
+          <li value="gp">Gold (gp)</li>
+          <li value="pp">Platinum (pp)</li>
+        </ul>
+      </div>
+    </div>
     <p>New Total:</p>
-    <lable id="money_left" value=""></lable>
+    <lable id="money_left" value="0">0</lable>
     <br />
     <p>Pick your character's weapon from below</p>
     <div class="dropdown">
@@ -543,6 +557,11 @@
       console.log("at the dropdowm bar");
     }
 
+    function moneySelect() {
+      document.getElementById("moneyDropdown").classList.toggle("show");
+      console.log("at the dropdowm bar");
+    }
+
     function weaponSelect() {
       document.getElementById("weaponDropdown").classList.toggle("show");
       console.log("at the dropdowm bar");
@@ -595,6 +614,7 @@
   <script type= "module" src="./DND_Code.js" defer></script>
   <script type= "module" src="./help.js" defer></script>
   <script type= "module" src="./race_code.js" defer></script>
+  <script type= "module" src="./equiment_code.js" defer></script>
   <script type= "module" src="./spell_code.js" defer></script>
   <script type= "module" src="./ability_score_code.js" defer></script>
 </body>
