@@ -5,10 +5,9 @@ import {setupPage7, equimentCategoryAsk } from './equiment_code.js';
 import {setupPage6, spellsAsk} from './spell_code.js';
 import {setupPage3} from './background.js';
 import {setupPage4, printBonusData, clearAbilityScoreBonuses } from './ability_score_code.js';
+import {proficiencyAsk, skillChoice} from './skill_code.js';
 
 const api_classes = 'https://www.dnd5eapi.co/api/classes/';
-const api_proficiencies = '/proficiencies/'
-const api_skill = 'https://www.dnd5eapi.co/api/skills/';
 
 window.addEventListener('load', (event) => {
     console.log("page is loaded");
@@ -33,17 +32,6 @@ function classChoice() {
     clickOnDropDownMenu(ul, classAsk, button);
 }
 
-
-function skillChoice() {
-    let ul = document.getElementById('skillList');
-    let ul2 = document.getElementById('skill2List');
-    let button = document.getElementById('skill_option');
-    let button2 = document.getElementById('skill_option2');
-    console.log(ul);
-    clickOnDropDownMenu(ul2, skillAsk, button2);
-    clickOnDropDownMenu(ul, skillAsk, button);
-}
-
 async function classAsk(input) {
     console.log("Class: " + input);
     let url = api_classes + input;
@@ -54,22 +42,6 @@ async function classAsk(input) {
     skillChoice();
 }
 
-
-async function proficiencyAsk(input) {
-    let url = api_classes + input + api_proficiencies;
-    const data = await fetchDataFromAPI(url);
-    console.log("proficiencies for: " + input);
-    console.log(data);
-    getProficiencyData(data);
-}
-
-async function skillAsk(input) {
-    console.log("Skill: " + input);
-    let url = api_skill + input;
-    console.log(url);
-    const data = await fetchDataFromAPI(url);
-    printSkillsData(data);
-}
 
 async function printClassData(data) {
     let spell_list = document.getElementById("spellList")
@@ -127,25 +99,4 @@ async function printClassData(data) {
     otherClasses.textContent = getNames(subclasses);
 
     console.log("printing page 2");
-}
-
-async function getProficiencyData(data) {
-    let weapon_list = document.getElementById("weaponList");
-    let armor_list = document.getElementById("armorList");
-    let shield_list = document.getElementById("shieldList");
-    let kit_list = document.getElementById("kitList");
-    const { count, results } = data;
-
-    createListOfEquimentOptions(results, weapon_list, armor_list, shield_list, kit_list);
-}
-
-async function printSkillsData(data) {
-    console.log(data);
-    const { name, desc } = data;
-
-    let skill_info = document.getElementById('Pro_info');
-    let skill_name = document.getElementById('Pro_name');
-    skill_name.textContent = name
-    skill_info.textContent = desc;
-
 }
