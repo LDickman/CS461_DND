@@ -74,6 +74,17 @@ async function printSpellsData(data) {
     }
 }
 
+async function printSpellCastingData(data) {
+    var list = document.getElementById("extra_spells");
+    const { level, spellcasting_ability, info } = data;
+
+    var spellsAbility = document.getElementById('spell_ability');
+
+    spellsAbility.textContent = spellcasting_ability.name;
+    let array_spellcasting = getArrayOfNames(info);
+    await getListToHTML(array_spellcasting, list);
+}
+
 /// Instead of having a long listed created in HTML, this generates the list in 
 /// JavaScript of the Spells options, depending on the class selected
 async function createListOfSpellOptions(data, list) {

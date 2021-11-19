@@ -6,6 +6,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <title>DND Character Sheet Demo</title>
 </head>
+
 <body>
   <!-- <script type= "module" src="./DND_Code.js" defer></script>
   <script type= "module" src="./help.js" defer></script>
@@ -341,9 +342,9 @@
     <p>Choose the character's skills and languages.</p>
     <br />
     <p>Pick your character's language from below</p>
-      <div id="Languages">
-        <ul id="languageList"> </ul>
-      </div>
+    <div id="Languages">
+      <ul id="languageList"> </ul>
+    </div>
     <br />
     <p>Pick your character's class skills from below</p>
     <div class="dropdown">
@@ -379,34 +380,43 @@
 
   <!------------------Spells------------------------->
   <div id="page_6" class="tabcontent">
-    <!-- <div class="access" style="display:none"> -->
-    <h2>Known Spells:</h2>
-    <p>Choose your Character's Spells.
-      (If any.)</p>
-    <br />
-    <p>Pick your character's spells from below</p>
-    <div class="dropdown">
-      <button onclick="spellSelect()" id='spell_option' class="dropbtn">Spell
-        <i class="fa fa-caret-down"></i>
-      </button>
-      <br />
-      <div id="spellDropdown" class="dropdown-content">
-        <ul id="spellList"> </ul>
+    <div class="sidenav">
+      <ul id="extra_spells"> </ul>
+      <div id="extra_spell_info">
+        <p>Ability Score Needed for Spells:</p>
+        <label id="spell_ability"></label>
+        <p>Description of Spellcasting:</p>
+        <label id="spell_ability_info"></label>
       </div>
     </div>
-
-    <div id="info_6" class="section" style="border-style:solid">
-      <p>Spell:</p>
-      <label id="spell_name"></label>
+    <div class="main">
+      <!-- <div class="access" style="display:none"> -->
+      <h2>Known Spells:</h2>
+      <p>Choose your Character's Spells.
+        (If any.)</p>
       <br />
-      <p>Spell Information:</p>
-      <label id="spell_info"></label>
-      <br />
-      <p>Spell Range:</p>
-      <label id="spell_range"></label>
-      <br />
+      <p>Pick your character's spells from below</p>
+      <div class="dropdown">
+        <button onclick="spellSelect()" id='spell_option' class="dropbtn">Spell
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <br />
+        <div id="spellDropdown" class="dropdown-content">
+          <ul id="spellList"> </ul>
+        </div>
+      </div>
+      <div id="info_6" class="section" style="border-style:solid">
+        <p>Spell:</p>
+        <label id="spell_name"></label>
+        <br />
+        <p>Spell Information:</p>
+        <label id="spell_info"></label>
+        <br />
+        <p>Spell Range:</p>
+        <label id="spell_range"></label>
+        <br />
+      </div>
     </div>
-    <!-- </div> -->
   </div>
 
   <!------------------equiment------------------------->
@@ -527,7 +537,7 @@
   <div id="page_8" class="tabcontent">
     <!-- <div class="access" style="display:none"> -->
     <h2>Sheet Fromat:</h2>
-    
+
   </div>
 
   <!------------------Code------------------------->
@@ -629,15 +639,15 @@
       }
     }
   </script>
-  <script type= "module" src="./DND_Code.js" ></script>
-  <script type= "module" src="./help.js" defer></script>
-  <script type= "module" src="./race_code.js" defer></script>
-  <script type= "module" src="./class_code.js" defer></script>
-  <script type= "module" src="./skill_code.js" defer></script>
-  <script type= "module" src="./equiment_code.js" defer></script>
-  <script type= "module" src="./spell_code.js" defer></script>
-  <script type= "module" src="./ability_score_code.js" defer></script>
-  <script type= "module" src="./background.js" defer></script>
+  <script type="module" src="./DND_Code.js"></script>
+  <script type="module" src="./help.js" defer></script>
+  <script type="module" src="./race_code.js" defer></script>
+  <script type="module" src="./class_code.js" defer></script>
+  <script type="module" src="./skill_code.js" defer></script>
+  <script type="module" src="./equiment_code.js" defer></script>
+  <script type="module" src="./spell_code.js" defer></script>
+  <script type="module" src="./ability_score_code.js" defer></script>
+  <script type="module" src="./background.js" defer></script>
 </body>
 
 </html>
