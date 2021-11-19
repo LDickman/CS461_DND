@@ -3,6 +3,7 @@ import { fetchDataFromAPI, clickOnDropDownMenu, creatingListofArrayForEquiment, 
 const api_OneSpell = 'https://www.dnd5eapi.co/api/spells/';
 const api_spells = '/levels/1/spells';
 const api_classes = 'https://www.dnd5eapi.co/api/classes/';
+const api_spellcasting = '/spellcasting';
 
 export async function setupPage6() {
     console.log("starting 6");
@@ -14,6 +15,13 @@ export async function spellsAsk(input) {
     var url = api_classes + input + api_spells;
     const data = await fetchDataFromAPI(url);
     printSpellsData(data);
+}
+
+export async function spellCastingAsk(input) {
+    console.log("SpellCasting for: " + input);
+    var url = api_classes + input + api_spellcasting;
+    const data = await fetchDataFromAPI(url);
+    printSpellCastingData(data);
 }
 
 function spellChoice() {
