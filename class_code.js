@@ -30,7 +30,8 @@ async function classAsk(input) {
 
 
 async function printClassData(data) {
-    let spell_list = document.getElementById("spellList")
+    let spell_list = document.getElementById("spellList");
+    var spellCasting_list = document.getElementById("extra_spells");
     let weapon_list = document.getElementById("weaponList");
     let armor_list = document.getElementById("armorList");
     let shield_list = document.getElementById("shieldList");
@@ -38,6 +39,7 @@ async function printClassData(data) {
     let skill_list_1 = document.getElementById("skillList");
     let skill_list_2 = document.getElementById("skill2List");
     clearAllFromList(spell_list);
+    clearAllFromList(spellCasting_list);
     clearAllFromList(weapon_list);
     clearAllFromList(armor_list);
     clearAllFromList(shield_list);

@@ -17,6 +17,12 @@ function moneyChoice() {
     let ul = document.getElementById('moneyList');
     let button = document.getElementById('money_option');
     console.log(ul);
+        let spending_money = document.getElementById("money");
+    console.log("spending_money");
+    console.log(spending_money.value);
+    let money_leftover = document.getElementById("money_left");
+    money_leftover.textContent = spending_money.value;
+    money_leftover.value = spending_money.value;
     clickOnDropDownMenu(ul, getValueofCurrency, button);
 }
 
@@ -102,8 +108,8 @@ async function printArmorInfo(data) {
     console.log("spending_money");
     console.log(spending_money.value);
     let money_leftover = document.getElementById("money_left");
-    money_leftover.textContent = spending_money.value;
-    money_leftover.value = spending_money.value;
+    // money_leftover.textContent = spending_money.value;
+    // money_leftover.value = spending_money.value;
     console.log("money_leftover");
     console.log(money_leftover.textContent);
 
@@ -139,8 +145,8 @@ async function printSheildInfo(data) {
     console.log("spending_money");
     console.log(spending_money.value);
     let money_leftover = document.getElementById("money_left");
-    money_leftover.textContent = spending_money.value;
-    money_leftover.value = spending_money.value;
+    //money_leftover.textContent = spending_money.value;
+    //money_leftover.value = spending_money.value;
     console.log("money_leftover");
     console.log(money_leftover.textContent);
     let equimentInfo = document.getElementById('equiment_name');
@@ -175,8 +181,8 @@ async function printWeaponInfo(data) {
     console.log("spending_money");
     console.log(spending_money.value);
     let money_leftover = document.getElementById("money_left");
-    money_leftover.textContent = spending_money.value;
-    money_leftover.value = spending_money.value;
+    //money_leftover.textContent = spending_money.value;
+    //money_leftover.value = spending_money.value;
     console.log("money_leftover");
     console.log(money_leftover.textContent);
     let equimentInfo = document.getElementById('equiment_name');
@@ -207,8 +213,8 @@ async function printInfo_One_Equiment(data) {
     console.log("spending_money");
     console.log(spending_money.value);
     let money_leftover = document.getElementById("money_left");
-    money_leftover.textContent = spending_money.value;
-    money_leftover.value = spending_money.value;
+    //money_leftover.textContent = spending_money.value;
+    //money_leftover.value = spending_money.value;
     console.log("money_leftover");
     console.log(money_leftover.textContent);
 
