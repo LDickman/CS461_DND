@@ -34,7 +34,7 @@
     <button class="tablinks" onclick="openPage(event, 'page_5')">Skills</button>
     <button class="tablinks" onclick="openPage(event, 'page_6')">Spells</button>
     <button class="tablinks" onclick="openPage(event, 'page_7')">Equiment</button>
-    <button class="tablinks" onclick="openPage(event, 'page_8')">Character Features</button>
+    <!-- <button class="tablinks" onclick="openPage(event, 'page_8')">Character Features</button> -->
     <button class="tablinks" onclick="openPage(event, 'page_9')">Finished</button>
   </div>
 
@@ -442,8 +442,11 @@
         </ul>
       </div>
     </div>
-    <p>New Total:</p>
-    <lable id="money_left" value=0>0</lable>
+    <p>Weapon Total Spent: <lable id="money_weapon" value="0">0</lable></p>
+    <p>Kit Total spent: <lable id="money_kit" value="0">0</lable></p>
+    <p>Armor Total Spent: <lable id="money_armor" value="0">0</lable></p>
+    <p>Sheild Total spent: <lable id="money_sheild" value="0">0</lable></p>
+    <p>New Total: <lable id="money_left" value="0">0</lable></p>
     <br />
     <p>Pick your character's weapon from below</p>
     <div class="dropdown">
@@ -539,12 +542,12 @@
     <!-- <div class="access" style="display:none"> -->
     <h2>Character Features:</h2>
     <br />
-    <p>Name: </p>  <input id="char_name" type="text"></input>
-    <p>Age: </p>  <input id="char_age" type="number"></input>
-    <p>Height: </p>  <input id="char_height" type="number"></input>
-    <p>Eyes: </p>  <input id="char_eyes" type="text"></input>
-    <p>Skin: </p>  <input id="char_skin" type="text"></input>
-    <p>Hair: </p>  <input id="char_hair" type="text"></input>
+    <p>Name: <input id="char_name" type="text"></input></p>
+    <p>Age: <input id="char_age" type="number"></input></p>
+    <p>Height:  <input id="char_height" type="number"></input></p>
+    <p>Eyes: <input id="char_eyes" type="text"></input></p>
+    <p>Skin: <input id="char_skin" type="text"></input></p>
+    <p>Hair: <input id="char_hair" type="text"></input></p>
 
   </div>
 
@@ -553,7 +556,6 @@
     <!-- <div class="access" style="display:none"> -->
     <h2>Sheet Fromat:</h2>
 
-    <!-- <a href="https://media.wizards.com/2016/dnd/downloads/5E_CharacterSheet_Fillable.pdf">DND 5E Character Sheet</a> -->
     <iframe src="https://media.wizards.com/2016/dnd/downloads/5E_CharacterSheet_Fillable.pdf" width="100%" height="3200px">
     </iframe>
   </div>
