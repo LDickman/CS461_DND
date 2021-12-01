@@ -1,5 +1,5 @@
 import { fetchDataFromAPI, clickOnDropDownMenu, creatingListofArrayForEquiment, createListOfEquimentOptions, getNames, getListToHTML, getArrayOfNames, createListOfProficiencyOptions, getArrayOfIndexs, getInfoNames, getNumberChoose,
-    getNumberBonuses, getListCheckBoxes, getArrayOfNumberBonuses, getNameBonuses, settingValueOfScore, clearAllFromList, getEquimentListData} from './help.js';
+    getNumberBonuses, getListCheckBoxes, getArrayOfNumberBonuses, getNameBonuses, settingValueOfScore, getArrayDescription, clearAllFromList, getEquimentListData} from './help.js';
 const api_OneSpell = 'https://www.dnd5eapi.co/api/spells/';
 const api_spells = '/levels/1/spells';
 const api_classes = 'https://www.dnd5eapi.co/api/classes/';
@@ -75,14 +75,39 @@ async function printSpellsData(data) {
 }
 
 async function printSpellCastingData(data) {
-    var list = document.getElementById("extra_spells");
+    let list = document.getElementById("extra_spells");
     const { level, spellcasting_ability, info } = data;
 
-    var spellsAbility = document.getElementById('spell_ability');
+    let spellsAbility = document.getElementById('spell_ability');
+    let spell_descirtion = document.getElementById('spell_ability_info');
+    let extra_spell_descrition = document.getElementById('extra_spell_ability_info');
 
     spellsAbility.textContent = spellcasting_ability.name;
     let array_spellcasting = getArrayOfNames(info);
+    let array_spellcasting_info =  getArrayDescription(info);
+    console.log(array_spellcasting_info);
     await getListToHTML(array_spellcasting, list);
+    list.onclick = function (event) {
+        let target = event.target; // Getting which <li> was clicked
+        let id = target.parentNode.id; // Getting the value of the li that was clicked
+        console.log(id);
+        if (id.value == "Cantrips"); {
+            spell_descirtion.textContent = array_spellcasting_info[0][0];
+            extra_spell_descrition.textContent = array_spellcasting_info[1];
+        }
+        if (id == "Preparing and Casting Spells"){
+            spell_descirtion.textContent = array_spellcasting_info[2];
+        }
+        if (id == "Spellcasting Ability"){
+            spell_descirtion.textContent = array_spellcasting_info[3];
+        }
+        if (id == "Ritual Casting"){
+            spell_descirtion.textContent = array_spellcasting_info[4];
+        }
+        if (id == "Spellcasting Focus"){
+            spell_descirtion.textContent = array_spellcasting_info[4];
+        }
+    }
 }
 
 /// Instead of having a long listed created in HTML, this generates the list in 

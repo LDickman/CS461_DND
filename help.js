@@ -28,6 +28,7 @@ export async function getListToHTML(array, list) {
     array.forEach((item) => {
         let li = document.createElement("li");
         li.innerText = item;
+        li.value = item;
         list.appendChild(li);
     })
 }
@@ -41,6 +42,18 @@ export function getNames(link) {
             return el.name;
         });
         return array.join(',     ');
+    } else {
+        return empty;
+    }
+}
+
+export function getArrayDescription(link) {
+    var empty = "None";
+    if (dataValid(link)) {
+        var array = link.map(function (el) {
+            return el.desc;
+        });
+        return array;//.join(',     ');
     } else {
         return empty;
     }

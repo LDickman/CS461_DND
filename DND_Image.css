@@ -23,7 +23,7 @@
   
 /* Dropdown Button */
 .dropbtn {
-  background-color: #3498DB;
+  background-color: #ff0000;
   color: white;
   padding: 16px;
   font-size: 16px;
@@ -33,7 +33,7 @@
 
 /* Dropdown button on hover & focus */
 .dropbtn:hover, .dropbtn:focus {
-  background-color: #2980B9;
+  background-color: #b80028;
 }
 
 /* The container <div> - needed to position the dropdown content */
@@ -136,18 +136,17 @@ th, td {
   z-index: 1; /* Stay on top */
   top: 180px; /* Stay at the top */
   left: 0;
-  background-color: #111; /* Black */
-  overflow-y: scroll;
-  /* overflow-x: hidden; Disable horizontal scroll */
+  background-color: #450a03; /* dark red */
+  overflow-x: hidden; /*Disable horizontal scroll */
   padding-top: 20px;
 }
 
 /* The navigation menu links */
-.sidenav li, #extra_spell_info{
+.sidenav, .sidenav li, #extra_spell_info{
   padding: 6px 8px 6px 16px;
   text-decoration: none;
-  font-size: 25px;
-  color: #818181;
+  font-size: 20px;
+  color: #ffffff;
   display: block;
 }
 
