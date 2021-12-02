@@ -45,14 +45,7 @@ async function printRaceData(data) {
         starting_proficiency_options, languages, language_desc, traits, subraces } = data;
 
 
-    if (starting_proficiency_options == undefined) {
-        document.querySelector("#race-skill").textContent = "None";
-    } else {
-        var proficiency_options_Array = starting_proficiency_options.from.map(function (el) {
-            return el.name;
-        });
-        document.querySelector("#race-skill").textContent = proficiency_options_Array.join(',     ');
-    }
+    await gettingSkillsDataOfRace(starting_proficiency_options);
 
     console.log("Name " + name);
     race_laguages = getArrayOfNames(languages);
@@ -104,4 +97,15 @@ async function createListOfLaguageOptions(array, list) {
     console.log(items);
 
     getListCheckBoxes(items, list);
+}
+
+async function gettingSkillsDataOfRace(starting_proficiency_options) {
+    if (starting_proficiency_options == undefined) {
+        document.querySelector("#race-skill").textContent = "None";
+    } else {
+        var proficiency_options_Array = starting_proficiency_options.from.map(function (el) {
+            return el.name;
+        });
+        document.querySelector("#race-skill").textContent = proficiency_options_Array.join(',     ');
+    }
 }
