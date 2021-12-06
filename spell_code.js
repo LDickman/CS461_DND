@@ -87,25 +87,56 @@ async function printSpellCastingData(data) {
     let array_spellcasting_info =  getArrayDescription(info);
     console.log(array_spellcasting_info);
     await getListToHTML(array_spellcasting, list);
+    let array_size = array_spellcasting_info.length;
+    console.log(array_size);
     list.onclick = function (event) {
         let target = event.target; // Getting which <li> was clicked
-        let id = target.parentNode.id; // Getting the value of the li that was clicked
+        let id = target.id; // Getting the value of the li that was clicked
         console.log(id);
-        if (id.value == "Cantrips"); {
+        
+        if (id == "Cantrips"); {
             spell_descirtion.textContent = array_spellcasting_info[0][0];
             extra_spell_descrition.textContent = array_spellcasting_info[1];
         }
-        if (id == "Preparing and Casting Spells"){
+        if (id == "Spell Slots"){
             spell_descirtion.textContent = array_spellcasting_info[2];
+            extra_spell_descrition.textContent = "";
+        } 
+        if (id == "Spells Known of 1st Level and Higher"){
+            spell_descirtion.textContent = array_spellcasting_info[2];
+            extra_spell_descrition.textContent = "";
+        }
+        if (id == "Preparing and Casting Spells"){
+            extra_spell_descrition.textContent = "";
+            if (array_size == 6) {
+                spell_descirtion.textContent = array_spellcasting_info[3].values();
+            } else {
+                spell_descirtion.textContent = array_spellcasting_info[array_size-3];
+            }
         }
         if (id == "Spellcasting Ability"){
-            spell_descirtion.textContent = array_spellcasting_info[3];
+            if (array_size == 6) {
+                spell_descirtion.textContent = array_spellcasting_info[4].values();
+            } else {
+                spell_descirtion.textContent = array_spellcasting_info[array_size-2];
+            }
+            extra_spell_descrition.textContent = "";
         }
         if (id == "Ritual Casting"){
-            spell_descirtion.textContent = array_spellcasting_info[4];
+            if (array_size == 6) {
+                spell_descirtion.textContent = array_spellcasting_info[5].values();
+            } else {
+                spell_descirtion.textContent = array_spellcasting_info[array_size-1];
+            }
+            extra_spell_descrition.textContent = "";
         }
         if (id == "Spellcasting Focus"){
-            spell_descirtion.textContent = array_spellcasting_info[4];
+            if (array_size == 6) {
+                spell_descirtion.textContent = array_spellcasting_info[5].values();
+            } else {
+                spell_descirtion.textContent = array_spellcasting_info[array_size-1];
+            }
+            extra_spell_descrition.textContent ="";
         }
     }
 }

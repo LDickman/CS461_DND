@@ -29,6 +29,7 @@ export async function getListToHTML(array, list) {
         let li = document.createElement("li");
         li.innerText = item;
         li.value = item;
+        li.id = item;
         list.appendChild(li);
     })
 }

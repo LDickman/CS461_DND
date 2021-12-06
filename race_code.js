@@ -99,11 +99,11 @@ async function createListOfLaguageOptions(array, list) {
     getListCheckBoxes(items, list);
 }
 
-async function gettingSkillsDataOfRace(starting_proficiency_options) {
-    if (starting_proficiency_options == undefined) {
+async function gettingSkillsDataOfRace(data) {
+    if (data == undefined) {
         document.querySelector("#race-skill").textContent = "None";
     } else {
-        var proficiency_options_Array = starting_proficiency_options.from.map(function (el) {
+        var proficiency_options_Array = data.from.map(function (el) {
             return el.name;
         });
         document.querySelector("#race-skill").textContent = proficiency_options_Array.join(',     ');
