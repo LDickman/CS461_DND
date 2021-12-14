@@ -1,17 +1,17 @@
-import { fetchDataFromAPI, clickOnDropDownMenu, creatingListofArrayForEquiment, createListOfEquimentOptions, getNames, getListToHTML, getArrayOfNames, createListOfProficiencyOptions, getArrayOfIndexs, getInfoNames, getNumberChoose,
-    getNumberBonuses, getListCheckBoxes, getArrayOfNumberBonuses, getNameBonuses, settingValueOfScore, clearAllFromList, getEquimentListData} from './help.js';
+import {
+    fetchDataFromAPI, clickOnDropDownMenu, creatingListofArrayForEquiment, createListOfEquimentOptions, getNames, getListToHTML, getArrayOfNames, createListOfProficiencyOptions, getArrayOfIndexs, getInfoNames, getNumberChoose,
+    getNumberBonuses, getListCheckBoxes, getArrayOfNumberBonuses, getNameBonuses, settingValueOfScore, clearAllFromList, getEquimentListData
+} from './help.js';
 import { setupPage4, printBonusData, clearAbilityScoreBonuses } from './ability_score_code.js';
-import { setupLastPage, printUserInput } from './print_code.js';
 const api_race = 'https://www.dnd5eapi.co/api/races/';
 const api_language = 'https://www.dnd5eapi.co/api/languages';
 let race_input;
 let race_laguages;
+let race_input_speed;
 
 export async function setupPage1() {
     console.log("starting");
     raceChoice();
-   //setupLastPage();
-   //printUserInput();
 }
 
 function raceChoice() {
@@ -23,13 +23,11 @@ function raceChoice() {
 
 async function raceAsk(input) {
     console.log("Race: " + input);
-    setUserInputRace(input);
     var url = api_race + input;
     console.log(url);
     const data = await fetchDataFromAPI(url);
     getLanuage();
     printRaceData(data);
-    printUserInput();
 }
 
 async function getLanuage() {
@@ -37,12 +35,23 @@ async function getLanuage() {
     console.log(url);
     const data = await fetchDataFromAPI(url);
     printLangaugeList(data);
-    printUserInput();
 }
 
 
 async function printRaceData(data) {
-    var Languagelist = document.getElementById("languageList");
+    let raceName = document.getElementById('char_race');
+    let userSpeed = document.getElementById("char_speed");
+    let race_page1_reults = document.querySelector("#results");
+    let race_page1_name = document.querySelector('#name');
+    let race_page1_speed = document.querySelector('#speed_race');
+    let race_page1_size = document.querySelector('#size');
+    let race_page1_age = document.querySelector('#race-age');
+    let race_page1_aligemnt = document.querySelector('#race-alignment');
+    let race_page1_language = document.querySelector('#language');
+    let race_page1_weapon = document.querySelector("#weapon");
+    let race_page1_subraces = document.querySelector("#subraces");
+    let race_page1_bonuses = document.querySelector("#bonuses");
+    let Languagelist = document.getElementById("languageList");
     clearAbilityScoreBonuses();
     clearAllFromList(Languagelist);
     console.log(data);
@@ -57,26 +66,20 @@ async function printRaceData(data) {
     console.log("race_laguages");
     console.log(race_laguages);
     //createBoxes(getArrayOfNames(languages));
-    document.querySelector("#results").textContent = getNames(traits);
-    document.querySelector('#name').textContent = name;
-    document.querySelector('#speed_race').textContent = speed;
-    document.querySelector('#size').textContent = size_description;
-    document.querySelector('#race-age').textContent = age;
-    document.querySelector('#race-alignment').textContent = alignment;
-    document.querySelector('#language').textContent = language_desc;
-    document.querySelector("#weapon").textContent = getNames(starting_proficiencies);
-    document.querySelector("#subraces").textContent = getNames(subraces);
-    document.querySelector("#bonuses").textContent = getNumberBonuses(ability_bonuses);
+    race_page1_reults.textContent = getNames(traits);
+    race_page1_name.textContent = name;
+    raceName.textContent = name;
+    race_page1_speed.textContent = speed;
+    userSpeed.textContent = speed + " ft";
+    race_page1_size.textContent = size_description;
+    race_page1_age.textContent = age;
+    race_page1_aligemnt.textContent = alignment;
+    race_page1_language.textContent = language_desc;
+    race_page1_weapon.textContent = getNames(starting_proficiencies);
+    race_page1_subraces.textContent = getNames(subraces);
+    race_page1_bonuses.textContent = getNumberBonuses(ability_bonuses);
     printBonusData(ability_bonuses);
     console.log("printing");
-}
-
-function setUserInputRace(input) {
-    race_input = input;
-}
-
-export function getRaceInput() {
-    return race_input;
 }
 
 async function printLangaugeList(data) {

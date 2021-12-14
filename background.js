@@ -1,6 +1,5 @@
 import { fetchDataFromAPI, clickOnDropDownMenu, creatingListofArrayForEquiment, createListOfEquimentOptions, getNames, getListToHTML, getArrayOfNames, createListOfProficiencyOptions, getArrayOfIndexs, getInfoNames, getNumberChoose,
     getNumberBonuses, getListCheckBoxes, getArrayOfNumberBonuses, getNameBonuses, settingValueOfScore, clearAllFromList, getEquimentListData} from './help.js';
-
 const api_alignment = 'https://www.dnd5eapi.co/api/alignments/';
 const api_background = 'https://www.dnd5eapi.co/api/backgrounds/';
 
@@ -37,6 +36,8 @@ async function backgroundAsk(input) {
 }
 
 async function alignmentAsk(input) {
+    let userAlignment = document.getElementById("char_alignment");
+    userAlignment.textContent = input;
     console.log("alignment: " + input);
     if (input == "None") {
         document.getElementById("alignment_choice").textContent = "None";
@@ -60,6 +61,7 @@ async function printBackgroundData(data) {
 
 
     let beginnerSkills = document.getElementById('skills_needed');
+    let userBackground = document.getElementById('char_background');
     let wantedLanguages = document.getElementById("languages_options")
     let background_info = document.getElementById('background_des');
     let background_Skill_info = document.getElementById('background_Skill_info')
@@ -85,18 +87,19 @@ async function printBackgroundData(data) {
     for (let i = 0, j = items.length; i < j; i++) {
         skill_names.push(items[i].replace("Skill:", ""));
     }
-
+    userBackground.textContent = name;
     background_Skill_info.textContent = skill_names;
     console.log("printing page 3");
 }
 
 async function printExtraBackgroundData(input) {
     console.log("background" + input);
-
+    let userBackground = document.getElementById('char_background');
     let beginnerSkills = document.getElementById('skills_needed');
-    let wantedLanguages = document.getElementById("languages_options")
+    let wantedLanguages = document.getElementById("languages_options");
     let background_info = document.getElementById('background_des');
-    let background_Skill_info = document.getElementById('background_Skill_info')
+    let background_Skill_info = document.getElementById('background_Skill_info');
+    userBackground.textContent = input;
 
     if (input == "criminal") {
         beginnerSkills.textContent = "Deception, Stealth";

@@ -1,11 +1,3 @@
-import { getRaceInput } from './race_code.js';
-import { getUserInputClass } from './class_code.js';
-
-export async function setupLastPage() {
-    console.log("final");
-    await printUserInput();
-}
-
 
 export async function printUserInput() {
     let className = document.getElementById("char_class");
@@ -22,6 +14,12 @@ export async function printUserInput() {
     let userCHAR = document.getElementById("char_CHAR");
     let userINT = document.getElementById("char_INT")
     let userCON = document.getElementById('char_CON');
+    let userSTR_skill = document.getElementById("char_STR_skill")
+    let userDEX_skill = document.getElementById('char_DEX_skill');
+    let userWIS_sill = document.getElementById("char_WIS_skill");
+    let userCHAR_skill = document.getElementById("char_CHAR_skill");
+    let userINT_skill = document.getElementById("char_INT_skill")
+    let userCON_skill = document.getElementById('char_CON_skill');
     let userInitative = document.getElementById("char_init");
     let userSkill = document.getElementById("char_skills");
     let userWeapon = document.getElementById("char_weapon")
@@ -34,11 +32,6 @@ export async function printUserInput() {
     let userDice = document.getElementById("char_DC");
     let userSpellBonus = document.getElementById("char_spell_bonus");
     let userSpells = document.getElementById("char_spells");
-
-    console.log("User Class choice")
-    console.log(getUserInputClass());
-    className.textContent = getUserInputClass();
-    raceName.textContent = getRaceInput();
 
     console.log("printing last page");
 }

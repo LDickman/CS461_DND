@@ -1,6 +1,20 @@
-import { fetchDataFromAPI, clickOnDropDownMenu, creatingListofArrayForEquiment, createListOfEquimentOptions, getNames, getListToHTML, getArrayOfNames, createListOfProficiencyOptions, getArrayOfIndexs, getInfoNames, getNumberChoose,
-    getNumberBonuses, getListCheckBoxes, getArrayOfNumberBonuses, getNameBonuses, settingValueOfScore, clearAllFromList, getEquimentListData} from './help.js';
+import {
+    fetchDataFromAPI, clickOnDropDownMenu, creatingListofArrayForEquiment, createListOfEquimentOptions, getNames, getListToHTML, getArrayOfNames, createListOfProficiencyOptions, getArrayOfIndexs, getInfoNames, getNumberChoose,
+    getNumberBonuses, getListCheckBoxes, getArrayOfNumberBonuses, getNameBonuses, settingValueOfScore, clearAllFromList, getEquimentListData
+} from './help.js';
 const api_scores = 'https://www.dnd5eapi.co/api/ability-scores/';
+let userSTR = document.getElementById("char_STR")
+let userDEX = document.getElementById('char_DEX');
+let userWIS = document.getElementById("char_WIS");
+let userCHAR = document.getElementById("char_CHAR");
+let userINT = document.getElementById("char_INT")
+let userCON = document.getElementById('char_CON');
+let userSTR_skill = document.getElementById("char_STR_skill")
+let userDEX_skill = document.getElementById('char_DEX_skill');
+let userWIS_skill = document.getElementById("char_WIS_skill");
+let userCHAR_skill = document.getElementById("char_CHAR_skill");
+let userINT_skill = document.getElementById("char_INT_skill")
+let userCON_skill = document.getElementById('char_CON_skill');
 
 export async function setupPage4() {
     printAblityScoreInfo();
@@ -27,6 +41,18 @@ async function printAblityScoreData() {
     document.getElementById('CHA').textContent = rollsForScore();
     addTotalForAbilityScore();
     console.log("results");
+    userSTR_skill.textContent = document.getElementById("STR_bonus").textContent;
+    userDEX_skill.textContent = document.getElementById("DEX_bonus").textContent;
+    userWIS_skill.textContent = document.getElementById("WIS_bonus").textContent;
+    userCHAR_skill.textContent = document.getElementById("CHA_bonus").textContent;
+    userINT_skill.textContent = document.getElementById("INT_bonus").textContent;
+    userCON_skill.textContent = document.getElementById("CON_bonus").textContent;
+    userSTR.textContent = document.getElementById('STR').textContent;
+    userWIS.textContent = document.getElementById('WIS').textContent;
+    userCHAR.textContent = document.getElementById('CHA').textContent;
+    userCON.textContent = document.getElementById('CON').textContent;
+    userINT.textContent = document.getElementById('INT').textContent;
+    userDEX.textContent = document.getElementById('DEX').textContent;
 }
 
 async function printAblityScoreInfo() {
@@ -84,6 +110,12 @@ async function getAblityScore(data, input) {
 }
 
 export async function printBonusData(data) {
+    let str_bonus = document.getElementById('STR_bonus');
+    let wis_bonus = document.getElementById('WIS_bonus');
+    let cha_bonus = document.getElementById('CHA_bonus');
+    let con_bonus = document.getElementById('CON_bonus');
+    let int_bonus = document.getElementById('INT_bonus');
+    let dex_bonus = document.getElementById('DEX_bonus');
     console.log(data);
     var array = getNameBonuses(data);
     console.log(array[0]);
@@ -94,43 +126,43 @@ export async function printBonusData(data) {
     console.log("Number Bonus " + array_Bounus);
     for (var i = 0; i < array_BounusName.length; i++) {
         if (array_BounusName[i] == "CON") {
-            document.getElementById("CON_bonus").textContent = array_Bounus[i];
-            document.getElementById("CON_bonus").value = array_Bounus[i];
+            con_bonus.textContent = array_Bounus[i];
+            con_bonus.value = array_Bounus[i];
         } else if (array_BounusName[i] == "CHA") {
-            document.getElementById("CHA_bonus").textContent = array_Bounus[i];
-            document.getElementById("CHA_bonus").value = array_Bounus[i];
+            cha_bonus.textContent = array_Bounus[i];
+            cha_bonus.value = array_Bounus[i];
         } else if (array_BounusName[i] == "DEX") {
-            document.getElementById("DEX_bonus").textContent = array_Bounus[i];
-            document.getElementById("DEX_bonus").value = array_Bounus[i];
+            dex_bonus.textContent = array_Bounus[i];
+            dex_bonus.value = array_Bounus[i];
         } else if (array_BounusName[i] == "STR") {
-            document.getElementById("STR_bonus").textContent = array_Bounus[i];
-            document.getElementById("STR_bonus").value = array_Bounus[i];
+            str_bonus.textContent = array_Bounus[i];
+            str_bonus.value = array_Bounus[i];
         } else if (array_BounusName[i] == "INT") {
-            document.getElementById("INT_bonus").textContent = array_Bounus[i];
-            document.getElementById("INT_bonus").value = array_Bounus[i];
+            int_bonus.textContent = array_Bounus[i];
+            int_bonus.value = array_Bounus[i];
         } else if (array_BounusName[i] == "WIS") {
-            document.getElementById("WIS_bonus").textContent = array_Bounus[i];
-            document.getElementById("WIS_bonus").value = array_Bounus[i];
+            wis_bonus.textContent = array_Bounus[i];
+            wis_bonus.value = array_Bounus[i];
         }
     }
     addTotalForAbilityScore();
 }
 
 function addTotalForAbilityScore() {
-    var str_total = document.getElementById('STR_total');
-    var wis_total = document.getElementById('WIS_total');
-    var cha_total = document.getElementById('CHA_total');
-    var con_total = document.getElementById('CON_total');
-    var int_total = document.getElementById('INT_total');
-    var dex_total = document.getElementById('DEX_total');
+    let str_total = document.getElementById('STR_total');
+    let wis_total = document.getElementById('WIS_total');
+    let cha_total = document.getElementById('CHA_total');
+    let con_total = document.getElementById('CON_total');
+    let int_total = document.getElementById('INT_total');
+    let dex_total = document.getElementById('DEX_total');
 
-    var str_bonus = document.getElementById('STR_bonus');
-    var wis_bonus = document.getElementById('WIS_bonus');
-    var cha_bonus = document.getElementById('CHA_bonus');
-    var con_bonus = document.getElementById('CON_bonus');
-    var int_bonus = document.getElementById('INT_bonus');
-    var dex_bonus = document.getElementById('DEX_bonus');
-   
+    let str_bonus = document.getElementById('STR_bonus');
+    let wis_bonus = document.getElementById('WIS_bonus');
+    let cha_bonus = document.getElementById('CHA_bonus');
+    let con_bonus = document.getElementById('CON_bonus');
+    let int_bonus = document.getElementById('INT_bonus');
+    let dex_bonus = document.getElementById('DEX_bonus');
+
     console.log("str_bonus.textContent");
     console.log(str_bonus.textContent);
 
@@ -143,13 +175,13 @@ function addTotalForAbilityScore() {
     settingValueOfScore(cha_bonus);
     settingValueOfScore(dex_bonus);
     settingValueOfScore(int_bonus);
-    
-    var str = document.getElementById('STR');
-    var wis = document.getElementById('WIS');
-    var cha = document.getElementById('CHA');
-    var con = document.getElementById('CON');
-    var int = document.getElementById('INT');
-    var dex = document.getElementById('DEX');
+
+    let str = document.getElementById('STR');
+    let wis = document.getElementById('WIS');
+    let cha = document.getElementById('CHA');
+    let con = document.getElementById('CON');
+    let int = document.getElementById('INT');
+    let dex = document.getElementById('DEX');
 
     calcForAbilityScoreModifier(str_bonus.value, parseInt(str.textContent), str_bonus);
     calcForAbilityScoreModifier(wis_bonus.value, parseInt(wis.textContent), wis_bonus);
@@ -158,12 +190,12 @@ function addTotalForAbilityScore() {
     calcForAbilityScoreModifier(int_bonus.value, parseInt(int.textContent), int_bonus);
     calcForAbilityScoreModifier(dex_bonus.value, parseInt(dex.textContent), dex_bonus);
 
-    str_total.textContent = (parseInt(str_bonus.textContent) + parseInt(str.textContent))
-    wis_total.textContent = (parseInt(wis_bonus.textContent) + parseInt(wis.textContent))
-    cha_total.textContent = (parseInt(cha_bonus.textContent) + parseInt(cha.textContent))
-    con_total.textContent = (parseInt(con_bonus.textContent) + parseInt(con.textContent))
-    int_total.textContent = (parseInt(int_bonus.textContent) + parseInt(int.textContent))
-    dex_total.textContent = (parseInt(dex_bonus.textContent) + parseInt(dex.textContent))
+    str_total.textContent = (parseInt(str_bonus.textContent) + parseInt(str.textContent));
+    wis_total.textContent = (parseInt(wis_bonus.textContent) + parseInt(wis.textContent));
+    cha_total.textContent = (parseInt(cha_bonus.textContent) + parseInt(cha.textContent));
+    con_total.textContent = (parseInt(con_bonus.textContent) + parseInt(con.textContent));
+    int_total.textContent = (parseInt(int_bonus.textContent) + parseInt(int.textContent));
+    dex_total.textContent = (parseInt(dex_bonus.textContent) + parseInt(dex.textContent));
 }
 
 /// Clears all the ability score, so that the pervious scores are not still taken into effect

@@ -9,7 +9,6 @@ import { setupPage3 } from './background.js';
 import { setupPage4, printBonusData, clearAbilityScoreBonuses } from './ability_score_code.js';
 import { proficiencyAsk, skillChoice } from './skill_code.js';
 import { setupPage2 } from './class_code.js';
-import { setupLastPage, printUserInput } from './print_code.js';
 
 //<script>
 // function openPage(evt, pageName) {
@@ -118,6 +117,4 @@ window.addEventListener('load', (event) => {
     setupPage4();
     setupPage6();
     setupPage7();
-    //setupLastPage();
-    printUserInput();
 });

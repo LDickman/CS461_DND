@@ -1,6 +1,5 @@
 import { fetchDataFromAPI, clickOnDropDownMenu, creatingListofArrayForEquiment, createListOfEquimentOptions, getNames, getListToHTML, getArrayOfNames, createListOfProficiencyOptions, getArrayOfIndexs, getInfoNames, getNumberChoose,
     getNumberBonuses, getListCheckBoxes, getArrayOfNumberBonuses, getNameBonuses, settingValueOfScore, getArrayDescription, clearAllFromList, getEquimentListData} from './help.js';
-import { setupLastPage, printUserInput } from './print_code.js';
 const api_OneSpell = 'https://www.dnd5eapi.co/api/spells/';
 const api_spells = '/levels/1/spells';
 const api_classes = 'https://www.dnd5eapi.co/api/classes/';
@@ -9,8 +8,6 @@ const api_spellcasting = '/spellcasting';
 export async function setupPage6() {
     console.log("starting 6");
     spellChoice();
-    //setupLastPage();
-    //printUserInput();
 }
 
 export async function spellsAsk(input) {
@@ -18,7 +15,6 @@ export async function spellsAsk(input) {
     var url = api_classes + input + api_spells;
     const data = await fetchDataFromAPI(url);
     printSpellsData(data);
-    printUserInput();
 }
 
 export async function spellCastingAsk(input) {
@@ -26,7 +22,6 @@ export async function spellCastingAsk(input) {
     var url = api_classes + input + api_spellcasting;
     const data = await fetchDataFromAPI(url);
     printSpellCastingData(data);
-    printUserInput();
 }
 
 function spellChoice() {
@@ -41,7 +36,6 @@ async function certianSpellsAsk(input) {
     var url = api_OneSpell + input;
     const data = await fetchDataFromAPI(url);
     printInfo_One_Spell(data);
-    printUserInput();
 }
 
 async function printInfo_One_Spell(data) {
