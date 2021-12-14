@@ -5,9 +5,8 @@ import {
 import { setupPage4, printBonusData, clearAbilityScoreBonuses } from './ability_score_code.js';
 const api_race = 'https://www.dnd5eapi.co/api/races/';
 const api_language = 'https://www.dnd5eapi.co/api/languages';
-let race_input;
 let race_laguages;
-let race_input_speed;
+let userOtherProficieces = document.getElementById("char_other_proficiences");
 
 export async function setupPage1() {
     console.log("starting");
@@ -80,6 +79,7 @@ async function printRaceData(data) {
     race_page1_aligemnt.textContent = alignment;
     race_page1_language.textContent = language_desc;
     race_page1_weapon.textContent = getNames(starting_proficiencies);
+    userOtherProficieces.textContent = getNames(starting_proficiencies);
     race_page1_subraces.textContent = getNames(subraces);
     race_page1_bonuses.textContent = getNumberBonuses(ability_bonuses);
     printBonusData(ability_bonuses);

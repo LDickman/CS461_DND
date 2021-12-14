@@ -5,10 +5,8 @@ import {setupPage6, spellsAsk, spellCastingAsk} from './spell_code.js';
 
 const api_classes = 'https://www.dnd5eapi.co/api/classes/';
 let option3_skillList = document.getElementById("skillOptions3");
-let userOtherProficieces = document.getElementById("char_other_proficiences");
 let userHitDie =  document.getElementById('char_die_hit');
-// let skillArray = [document.getElementById('skill_option').textContent, document.getElementById('skill_option2').textContent, document.getElementById('skill_option3').textContent];
-// let char_skill_list = document.getElementById("char_skills");
+let userEquiment = document.getElementById('char_equiment');
 
 export async function setupPage2() {
     console.log("starting 2");
@@ -100,7 +98,7 @@ async function printClassData(data) {
         option3_skillList.style.visibility = 'visible';
     }
     wantedEquiment.textContent = getNames(proficiencies);
-    userOtherProficieces.textContent = getNames(proficiencies);
+    userEquiment.textContent = getNames(proficiencies);
     console.log(spellcasting);
     casting.textContent = getInfoNames(spellcasting);
     otherClasses.textContent = getNames(subclasses);
