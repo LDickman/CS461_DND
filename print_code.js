@@ -26,7 +26,7 @@ export async function printUserInput() {
     let userSheild = document.getElementById('char_sheild');
     let userKit = document.getElementById("char_kit");
     let userLanguage = document.getElementById("char_language");
-    let userOtherProficieces = document.getElementById("char_other_proficiences")
+    let userOtherProficieces = document.getElementById("char_other_proficiences");
     let userSpellCasting = document.getElementById('char_casting');
     let userSpellAbility = document.getElementById("char_ability");
     let userDice = document.getElementById("char_DC");

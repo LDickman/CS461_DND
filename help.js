@@ -1,4 +1,6 @@
 import {setupPage7, equimentCategoryAsk } from './equiment_code.js';
+let char_skill_list = document.getElementById("char_skills");
+
 /// Function that returns the from API
 export async function fetchDataFromAPI(url) {
     const response = await fetch(url);
@@ -18,6 +20,8 @@ export function clickOnDropDownMenu(ul, func, button) {
                 console.log(items[i].textContent);
                 func(items[i].textContent);
                 button.textContent = items[i].textContent;
+                let skillArray = [document.getElementById('skill_option').textContent, document.getElementById('skill_option2').textContent, document.getElementById('skill_option3').textContent];
+                char_skill_list.textContent = skillArray.join(',     ');
             }
         }
     });
@@ -119,6 +123,16 @@ export function getNumberChoose(link) {
         return empty;
     }
 }
+ export function getArrayNumberChooses(link) {
+    if (dataValid(link)) {
+        let array = link.map(function (el) {
+            return el.choose;
+        });
+        return array;
+    } else {
+        return 0;
+    }
+ }
 
 /// Function that gets the bonus within the object Array called info
 /// within the free API access DND e5 documentation and have it converted to a string 
@@ -191,7 +205,7 @@ export function clearAllFromList(ul) {
     while (ul.firstChild) ul.removeChild(ul.firstChild);
 }
 
-/// creates list of langanges in checkbox format
+/// creates list of items in checkbox format
 export function getListCheckBoxes(array, list){
     console.log("Array");
     console.log(array);
@@ -201,7 +215,7 @@ export function getListCheckBoxes(array, list){
             checkbox.id = array[i];
             checkbox.name = 'language';
             checkbox.value = array[i];
-            checkbox.onclick = checkboxSlecetion();
+            checkbox.onclick = checkboxSlecetion(list, settingLimitLanguageCheckBox());
 
             let label = document.createElement('label')
             label.htmlFor = array[i];
@@ -215,12 +229,12 @@ export function getListCheckBoxes(array, list){
     }
 }
 
-function checkboxSlecetion() {
-    let Languagelist = document.getElementById("languageList");
+function checkboxSlecetion(list, limit) {
+    //let list = document.getElementById("languageList");
     // Get the checkbox
-    let checkBox = Languagelist.getElementsByTagName('input');
+    let checkBox = list.getElementsByTagName('input');
     //setting limit of number of selected languages
-    let limit = settingLimitLanguageCheckBox();
+    //let limit = settingLimitLanguageCheckBox();
     for (let i = 0; i < checkBox.length; i++) {
         checkBox[i].onclick = function() {
             let checkedcount = 0;
@@ -238,10 +252,12 @@ function checkboxSlecetion() {
 
 function settingLimitLanguageCheckBox(){
     let wantedLanguages = document.getElementById("languages_options");
-    let number = 1;
+    let number;
     if (wantedLanguages.textContent == "None"){
         number = 0;
-    } 
+    } else {
+        number = 1;
+    }
     return number;
 }
 

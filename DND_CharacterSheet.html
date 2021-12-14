@@ -341,6 +341,17 @@
         <ul id="skill2List"> </ul>
       </div>
     </div>
+
+    <div id="skillOptions3" class="dropdown" style="visibility:hidden">
+      <button onclick="skill3Select()" id='skill_option3' class="dropbtn"> Skill
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <br />
+      <div id="skill3Dropdown" class="dropdown-content">
+        <ul id="skill3List"> </ul>
+      </div>
+    </div>
+
     <div id="info_5" class="section" style="border-style:solid">
       <p>Skill Name:</p>
       <label id="Pro_name"></label>
@@ -554,6 +565,7 @@
     <label id="char_saving_throws" type="text"></label>
     <p>Fill in the bubbles for the following Skills</p>
     <label id="char_skills" type="text"></label>
+    <label id="char_background_skills" type="text"></label>
     </br>
     </br>
     <p>Saving Throws & Skills:</p>
@@ -575,10 +587,14 @@
     <p>Medicine: <label id="char_medicine" type="text"></label></p>
     <p>Nature: <label id="char_nature" type="text"></label></p> -->
     </br>
+    <p>Hit Die: <label id="char_die_hit" type="text"></label></p>
+    </br>
     <p>Hit Points:</p>
     <p>Hit Points Maximum  (Die hit + CON Modifier): <label id="char_max_hit" type="text"></label></p>
     <p>Current Hit Points: <label id="char_hit" type="text"></label></p>
     </br>
+    <p>Equiment:</p>
+    <p>Armor: <label id="char_armor" type="text"></label></p>
     <p>Weapon: <label id="char_weapon" type="text"></label></p>
     <p>Shield: <label id="char_sheild" type="text"></label></p>
     <p>Kit: <label id="char_kit" type="text"></label></p>
@@ -683,6 +699,11 @@
 
     function skill2Select() {
       document.getElementById("skill2Dropdown").classList.toggle("show");
+      console.log("at the dropdowm bar");
+    }
+
+    function skill3Select() {
+      document.getElementById("skill3Dropdown").classList.toggle("show");
       console.log("at the dropdowm bar");
     }
 

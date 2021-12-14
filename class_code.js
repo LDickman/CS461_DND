@@ -1,10 +1,14 @@
 import { fetchDataFromAPI, clickOnDropDownMenu, creatingListofArrayForEquiment, createListOfEquimentOptions, getNames, getListToHTML, getArrayOfNames, createListOfProficiencyOptions, getArrayOfIndexs, getInfoNames, getNumberChoose,
-    getNumberBonuses, getListCheckBoxes, getArrayOfNumberBonuses, getNameBonuses, settingValueOfScore, clearAllFromList, getEquimentListData} from './help.js';
+    getNumberBonuses, getListCheckBoxes, getArrayNumberChooses, getArrayOfNumberBonuses, getNameBonuses, settingValueOfScore, clearAllFromList, getEquimentListData} from './help.js';
 import {proficiencyAsk, skillChoice} from './skill_code.js';
 import {setupPage6, spellsAsk, spellCastingAsk} from './spell_code.js';
 
 const api_classes = 'https://www.dnd5eapi.co/api/classes/';
-let user_class;
+let option3_skillList = document.getElementById("skillOptions3");
+let userOtherProficieces = document.getElementById("char_other_proficiences");
+let userHitDie =  document.getElementById('char_die_hit');
+// let skillArray = [document.getElementById('skill_option').textContent, document.getElementById('skill_option2').textContent, document.getElementById('skill_option3').textContent];
+// let char_skill_list = document.getElementById("char_skills");
 
 export async function setupPage2() {
     console.log("starting 2");
@@ -27,6 +31,7 @@ async function classAsk(input) {
     spellCastingAsk(input);
     proficiencyAsk(input);
     skillChoice();
+    // char_skill_list.textContent = skillArray.join(',     ');
 }
 
 
@@ -39,6 +44,7 @@ async function printClassData(data) {
     let kit_list = document.getElementById("kitList");
     let skill_list_1 = document.getElementById("skillList");
     let skill_list_2 = document.getElementById("skill2List");
+    let skill_list_3 = document.getElementById("skill3List");
     clearAllFromList(spell_list);
     clearAllFromList(spellCasting_list);
     clearAllFromList(weapon_list);
@@ -47,6 +53,7 @@ async function printClassData(data) {
     clearAllFromList(kit_list);
     clearAllFromList(skill_list_1);
     clearAllFromList(skill_list_2);
+    clearAllFromList(skill_list_3);
     console.log(data);
     const { index, name, hit_die, proficiency_choices, starting_equipment_options, proficiencies, saving_throws, starting_equipment,
         class_levels, multi_classing, subclasses, spellcasting, spells } = data;
@@ -67,6 +74,7 @@ async function printClassData(data) {
 
     await createListOfProficiencyOptions(array_Skill_Names, skill_list_1);
     await createListOfProficiencyOptions(array_Skill_Names, skill_list_2);
+    await createListOfProficiencyOptions(array_Skill_Names, skill_list_3);
 
     let className = document.getElementById("class_name");
     let userClassName = document.getElementById("char_class");
@@ -82,11 +90,17 @@ async function printClassData(data) {
     className.textContent = name;
     userClassName.textContent = name;
     die.textContent = hit_die;
+    userHitDie.textContent = hit_die;
     throwHits.textContent = getNames(saving_throws);
     userSavingThrows.textContent = getNames(saving_throws);
 
-    skillsNum.textContent = getNumberChoose(proficiency_choices);
+    let arrSkillNumber = getArrayNumberChooses(proficiency_choices);
+    skillsNum.textContent = arrSkillNumber[0];//getNumberChoose(proficiency_choices);
+    if (arrSkillNumber[0] == 3) {
+        option3_skillList.style.visibility = 'visible';
+    }
     wantedEquiment.textContent = getNames(proficiencies);
+    userOtherProficieces.textContent = getNames(proficiencies);
     console.log(spellcasting);
     casting.textContent = getInfoNames(spellcasting);
     otherClasses.textContent = getNames(subclasses);

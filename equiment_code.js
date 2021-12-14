@@ -118,6 +118,8 @@ async function printArmorInfo(data) {
         armor_class, str_minimum, stealth_disadvantage, weight, cost } = data;
 
     let spending_money = document.getElementById("money");
+    let userArmor = document.getElementById("char_armor");
+    userArmor.textContent = name;
     console.log("spending_money");
     console.log(spending_money.value);
     let money_leftover = document.getElementById("money_left");
@@ -170,6 +172,8 @@ async function printSheildInfo(data) {
     console.log("money_leftover");
     console.log(money_leftover.value);
     let money_sheild = document.getElementById("money_sheild");
+    let userShield = document.getElementById("char_sheild");
+    userShield.textContent = name;
 
     let equimentInfo = document.getElementById('equiment_name');
     let weightInfo = document.getElementById('weight');
@@ -212,6 +216,8 @@ async function printWeaponInfo(data) {
     console.log("money_leftover");
     console.log(money_leftover.value);
     let money_weapon = document.getElementById("money_weapon");
+    let userWeapon = document.getElementById("char_weapon");
+    userWeapon.textContent = name;
     
     let equimentInfo = document.getElementById('equiment_name');
     let weightInfo = document.getElementById('weight');
@@ -251,6 +257,8 @@ async function printInfo_One_Equiment(data) {
     console.log("money_leftover");
     console.log(money_leftover.value);
     let money_kit = document.getElementById("money_kit");
+    let userKit = document.getElementById("char_kit");
+    userKit.textContent = name;
 
     let equimentInfo = document.getElementById('equiment_name');
     let weightInfo = document.getElementById('weight');

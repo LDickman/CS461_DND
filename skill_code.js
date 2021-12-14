@@ -4,15 +4,18 @@ import { fetchDataFromAPI, clickOnDropDownMenu, creatingListofArrayForEquiment, 
 const api_proficiencies = '/proficiencies/'
 const api_skill = 'https://www.dnd5eapi.co/api/skills/';
 const api_classes = 'https://www.dnd5eapi.co/api/classes/';
-
+  
 export function skillChoice() {
     let ul = document.getElementById('skillList');
     let ul2 = document.getElementById('skill2List');
+    let ul3 = document.getElementById('skill3List');
     let button = document.getElementById('skill_option');
     let button2 = document.getElementById('skill_option2');
+    let button3 = document.getElementById('skill_option3');
     console.log(ul);
     clickOnDropDownMenu(ul2, skillAsk, button2);
     clickOnDropDownMenu(ul, skillAsk, button);
+    clickOnDropDownMenu(ul3, skillAsk, button3);
 }
 
 export async function proficiencyAsk(input) {
