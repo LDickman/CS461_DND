@@ -51,7 +51,9 @@ async function printRaceData(data) {
     let race_page1_weapon = document.querySelector("#weapon");
     let race_page1_subraces = document.querySelector("#subraces");
     let race_page1_bonuses = document.querySelector("#bonuses");
+    let userRaceTraits = document.getElementById("char_traits");
     let Languagelist = document.getElementById("languageList");
+    let userRaceLanguages = document.getElementById("char_language");
     clearAbilityScoreBonuses();
     clearAllFromList(Languagelist);
     console.log(data);
@@ -63,10 +65,12 @@ async function printRaceData(data) {
 
     console.log("Name " + name);
     race_laguages = getArrayOfNames(languages);
+    userRaceLanguages.textContent =  getNames(languages);
     console.log("race_laguages");
     console.log(race_laguages);
     //createBoxes(getArrayOfNames(languages));
     race_page1_reults.textContent = getNames(traits);
+    userRaceTraits.textContent = getNames(traits);
     race_page1_name.textContent = name;
     raceName.textContent = name;
     race_page1_speed.textContent = speed;

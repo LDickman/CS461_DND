@@ -72,6 +72,7 @@ async function printClassData(data) {
     let userClassName = document.getElementById("char_class");
     let die = document.getElementById('hit');
     let throwHits = document.getElementById('throws');
+    let userSavingThrows = document.getElementById('char_saving_throws');
 
     let wantedEquiment = document.getElementById("preffer_equiment")
     let casting = document.getElementById('spellscasting');
@@ -82,6 +83,7 @@ async function printClassData(data) {
     userClassName.textContent = name;
     die.textContent = hit_die;
     throwHits.textContent = getNames(saving_throws);
+    userSavingThrows.textContent = getNames(saving_throws);
 
     skillsNum.textContent = getNumberChoose(proficiency_choices);
     wantedEquiment.textContent = getNames(proficiencies);
