@@ -15,6 +15,9 @@ let userWIS_skill = document.getElementById("char_WIS_skill");
 let userCHAR_skill = document.getElementById("char_CHAR_skill");
 let userINT_skill = document.getElementById("char_INT_skill")
 let userCON_skill = document.getElementById('char_CON_skill');
+let die = document.getElementById('hit');
+let userHit = document.getElementById('char_hit');
+let userMaxHit = document.getElementById('char_max_hit');
 
 export async function setupPage4() {
     printAblityScoreInfo();
@@ -53,6 +56,8 @@ async function printAblityScoreData() {
     userCON.textContent = document.getElementById('CON').textContent;
     userINT.textContent = document.getElementById('INT').textContent;
     userDEX.textContent = document.getElementById('DEX').textContent;
+    userMaxHit.textContent =  " "+ die.textContent + " + " + document.getElementById("CON_bonus").textContent +"";
+    userHit.textContent =  parseInt(die.textContent) + parseInt(document.getElementById("CON_bonus").textContent);
 }
 
 async function printAblityScoreInfo() {
