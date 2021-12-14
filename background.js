@@ -62,7 +62,7 @@ async function printBackgroundData(data) {
 
     let beginnerSkills = document.getElementById('skills_needed');
     let userBackground = document.getElementById('char_background');
-    let wantedLanguages = document.getElementById("languages_options")
+    let wantedLanguages = document.getElementById("languages_options");
     let background_info = document.getElementById('background_des');
     let background_Skill_info = document.getElementById('background_Skill_info')
 

@@ -15,15 +15,15 @@ export async function setupPage1() {
 }
 
 function raceChoice() {
-    var ul = document.getElementById('raceList');
-    var button = document.getElementById('race_option');
+    let ul = document.getElementById('raceList');
+    let button = document.getElementById('race_option');
     console.log(ul);
     clickOnDropDownMenu(ul, raceAsk, button);
 }
 
 async function raceAsk(input) {
     console.log("Race: " + input);
-    var url = api_race + input;
+    let url = api_race + input;
     console.log(url);
     const data = await fetchDataFromAPI(url);
     getLanuage();
@@ -31,7 +31,7 @@ async function raceAsk(input) {
 }
 
 async function getLanuage() {
-    var url = api_language;
+    let url = api_language;
     console.log(url);
     const data = await fetchDataFromAPI(url);
     printLangaugeList(data);
@@ -87,20 +87,20 @@ async function printRaceData(data) {
 }
 
 async function printLangaugeList(data) {
-    var list = document.getElementById("languageList");
+    let list = document.getElementById("languageList");
     const { count, results } = data;
     let names = getArrayOfNames(results)
     await createListOfLaguageOptions(names, list);
 }
 
 async function createListOfLaguageOptions(array, list) {
-    var items = array;
-    //var language_names = new Array;
+    let items = array;
+    //let language_names = new Array;
     console.log("createListOfLaguageOptions");
     console.log(array);
     console.log(race_laguages);
-    for (var j = 0; j < items.length; j++) {
-        for (var i = 0; i < race_laguages.length; i++) {
+    for (let j = 0; j < items.length; j++) {
+        for (let i = 0; i < race_laguages.length; i++) {
             if (items[j] === race_laguages[i]) {
                 //language_names.push(items[j]);
                 items.splice(j, 1);
@@ -119,7 +119,7 @@ async function gettingSkillsDataOfRace(data) {
     if (data == undefined) {
         document.querySelector("#race-skill").textContent = "None";
     } else {
-        var proficiency_options_Array = data.from.map(function (el) {
+        let proficiency_options_Array = data.from.map(function (el) {
             return el.name;
         });
         document.querySelector("#race-skill").textContent = proficiency_options_Array.join(',     ');

@@ -8,12 +8,12 @@ export async function fetchDataFromAPI(url) {
 }
 
 export function clickOnDropDownMenu(ul, func, button) {
-    var items = ul.getElementsByTagName('li');
+    let items = ul.getElementsByTagName('li');
     console.log(button.textContent);
     console.log(items);
     //console.log(items[0].textContent);   // knows that textcontext works
     ul.addEventListener("click", function (e) {
-        for (var i = 0; i < items.length; i++) {
+        for (let i = 0; i < items.length; i++) {
             if (e.target == items[i]) {
                 console.log(items[i].textContent);
                 func(items[i].textContent);
@@ -37,9 +37,9 @@ export async function getListToHTML(array, list) {
 /// Function that gets the names within the object Array 
 /// within the free API access DND e5 documentation and have it converted to a string
 export function getNames(link) {
-    var empty = "None";
+    let empty = "None";
     if (dataValid(link)) {
-        var array = link.map(function (el) {
+        let array = link.map(function (el) {
             return el.name;
         });
         return array.join(',     ');
@@ -49,9 +49,9 @@ export function getNames(link) {
 }
 
 export function getArrayDescription(link) {
-    var empty = "None";
+    let empty = "None";
     if (dataValid(link)) {
-        var array = link.map(function (el) {
+        let array = link.map(function (el) {
             return el.desc;
         });
         return array;//.join(',     ');
@@ -64,9 +64,9 @@ export function getArrayDescription(link) {
 /// within the free API access DND e5 documentation and have it converted to a Array, 
 // This function is to help to create the list of options with JS instead within the HTML section
 export function getArrayOfNames(link) {
-    var empty = "None";
+    let empty = "None";
     if (dataValid(link)) {
-        var array = link.map(function (el) {
+        let array = link.map(function (el) {
             return el.name;
         });
         return array;//.join(',     ');
@@ -79,9 +79,9 @@ export function getArrayOfNames(link) {
 /// within the free API access DND e5 documentation and have it converted to a Array, 
 // This function is to help to create the list of options with JS instead within the HTML section
 export function getArrayOfIndexs(link) {
-    var empty = "None";
+    let empty = "None";
     if (dataValid(link)) {
-        var array = link.map(function (el) {
+        let array = link.map(function (el) {
             return el.index;
         });
         return array;//.join(',     ');
@@ -94,9 +94,9 @@ export function getArrayOfIndexs(link) {
 /// Function that gets the name within the object Array called info
 /// within the free API access DND e5 documentation and have it converted to a string 
 export function getInfoNames(link) {
-    var empty = "None";
+    let empty = "None";
     if (dataValid(link)) {
-        var array = link.info.map(function (el) {
+        let array = link.info.map(function (el) {
             return el.name;
         });
         return array.join(',     ');
@@ -109,9 +109,9 @@ export function getInfoNames(link) {
 /// Function that gets the chooses within the object Array
 /// within the free API access DND e5 documentation and have it converted to a String 
 export function getNumberChoose(link) {
-    var empty = "None";
+    let empty = "None";
     if (dataValid(link)) {
-        var array = link.map(function (el) {
+        let array = link.map(function (el) {
             return el.choose;
         });
         return array.join(',     ');
@@ -123,9 +123,9 @@ export function getNumberChoose(link) {
 /// Function that gets the bonus within the object Array called info
 /// within the free API access DND e5 documentation and have it converted to a string 
 export function getNumberBonuses(link) {
-    var empty = "None";
+    let empty = "None";
     if (dataValid(link)) {
-        var array = link.map(function (el) {
+        let array = link.map(function (el) {
             return el.bonus;
         });
         return array.join(',     ');
@@ -138,10 +138,10 @@ export function getNumberBonuses(link) {
 /// within the free API access DND e5 documentation and have it converted to a Array, 
 // This function is to help to create the list of options with JS instead within the HTML section
 export function getArrayOfNumberBonuses(link) {
-    var empty = "None";
-    var emptyArray = new Array;
+    let empty = "None";
+    let emptyArray = new Array;
     if (dataValid(link)) {
-        var array = link.map(function (el) {
+        let array = link.map(function (el) {
             return el.bonus;
         });
         return array;//.join(',     ');
@@ -155,10 +155,10 @@ export function getArrayOfNumberBonuses(link) {
 /// within the free API access DND e5 documentation and have it converted to a Array, 
 // This function is to help to create the list of options with JS instead within the HTML section
 export function getNameBonuses(link) {
-    var empty = "None";
-    var emptyArray = new Array;
+    let empty = "None";
+    let emptyArray = new Array;
     if (dataValid(link)) {
-        var array = link.map(function (el) {
+        let array = link.map(function (el) {
             return el.ability_score;
         });
         return array;//.join(',     ');
@@ -195,19 +195,19 @@ export function clearAllFromList(ul) {
 export function getListCheckBoxes(array, list){
     console.log("Array");
     console.log(array);
-    for (var i = 0; i < array.length; i++) {
-            var checkbox = document.createElement('input');
+    for (let i = 0; i < array.length; i++) {
+            let checkbox = document.createElement('input');
             checkbox.type = 'checkbox';
             checkbox.id = array[i];
             checkbox.name = 'language';
             checkbox.value = array[i];
             checkbox.onclick = checkboxSlecetion();
 
-            var label = document.createElement('label')
+            let label = document.createElement('label')
             label.htmlFor = array[i];
             label.appendChild(document.createTextNode(array[i]));
 
-            var br = document.createElement('br');
+            let br = document.createElement('br');
 
             list.appendChild(checkbox);
             list.appendChild(label);
@@ -216,15 +216,15 @@ export function getListCheckBoxes(array, list){
 }
 
 function checkboxSlecetion() {
-    var Languagelist = document.getElementById("languageList");
+    let Languagelist = document.getElementById("languageList");
     // Get the checkbox
-    var checkBox = Languagelist.getElementsByTagName('input');
+    let checkBox = Languagelist.getElementsByTagName('input');
     //setting limit of number of selected languages
-    var limit = 2;
-    for (var i = 0; i < checkBox.length; i++) {
+    let limit = settingLimitLanguageCheckBox();
+    for (let i = 0; i < checkBox.length; i++) {
         checkBox[i].onclick = function() {
-            var checkedcount = 0;
-            for (var i = 0; i < checkBox.length; i++) {
+            let checkedcount = 0;
+            for (let i = 0; i < checkBox.length; i++) {
                 checkedcount += (checkBox[i].checked) ? 1 : 0;
             }
             if (checkedcount > limit) {
@@ -235,6 +235,15 @@ function checkboxSlecetion() {
         }
     }
   }
+
+function settingLimitLanguageCheckBox(){
+    let wantedLanguages = document.getElementById("languages_options");
+    let number = 1;
+    if (wantedLanguages.textContent == "None"){
+        number = 0;
+    } 
+    return number;
+}
 
   /// Creates the list of all the indexs within the weapons/armor/sheilds/kits equiment-catergoy API
 export async function getEquimentListData(data) {
