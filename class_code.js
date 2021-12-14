@@ -2,12 +2,15 @@ import { fetchDataFromAPI, clickOnDropDownMenu, creatingListofArrayForEquiment, 
     getNumberBonuses, getListCheckBoxes, getArrayOfNumberBonuses, getNameBonuses, settingValueOfScore, clearAllFromList, getEquimentListData} from './help.js';
 import {proficiencyAsk, skillChoice} from './skill_code.js';
 import {setupPage6, spellsAsk, spellCastingAsk} from './spell_code.js';
+import { setupLastPage, printUserInput } from './print_code.js';
 
 const api_classes = 'https://www.dnd5eapi.co/api/classes/';
+let user_class;
 
 export async function setupPage2() {
     console.log("starting 2");
     classChoice();
+    //printUserInput();
 }
 
 function classChoice() {
@@ -20,12 +23,22 @@ function classChoice() {
 async function classAsk(input) {
     console.log("Class: " + input);
     let url = api_classes + input;
+    setUserInputClass(input);
     const data = await fetchDataFromAPI(url);
     printClassData(data);
     spellsAsk(input);
     spellCastingAsk(input);
     proficiencyAsk(input);
     skillChoice();
+    printUserInput();
+}
+
+function setUserInputClass(input) {
+    user_class = input;
+}
+
+export function getUserInputClass() {
+    return user_class;
 }
 
 

@@ -2,6 +2,7 @@ import {
     fetchDataFromAPI, clickOnDropDownMenu, creatingListofArrayForEquiment, createListOfEquimentOptions, getNames, getListToHTML, getArrayOfNames, createListOfProficiencyOptions, getArrayOfIndexs, getInfoNames, getNumberChoose,
     getNumberBonuses, getListCheckBoxes, getArrayOfNumberBonuses, getNameBonuses, settingValueOfScore, clearAllFromList, getEquimentListData
 } from './help.js';
+import { setupLastPage, printUserInput } from './print_code.js';
 
 const api_equiment = 'https://www.dnd5eapi.co/api/equipment-categories/';
 const api_OneEquiment = 'https://www.dnd5eapi.co/api/equipment/';
@@ -11,6 +12,8 @@ export async function setupPage7() {
     console.log("starting 7");
     weaponChoice();
     moneyChoice();
+    //setupLastPage();
+    // printUserInput();
 }
 
 function moneyChoice() {
@@ -41,6 +44,7 @@ export async function equimentCategoryAsk(input) {
     let url = api_equiment + input;
     //let url = api_OneEquiment + input;
     const data = await fetchDataFromAPI(url);
+    printUserInput();
     return await getEquimentListData(data);
     //getListofEquimentCategory(data)
 }
@@ -50,6 +54,7 @@ async function certianEquimentsAsk(input) {
     let url = api_OneEquiment + input;
     const data = await fetchDataFromAPI(url);
     printInfo_One_Equiment(data);
+    printUserInput();
 }
 
 async function armorAsk(input) {
@@ -57,6 +62,7 @@ async function armorAsk(input) {
     let url = api_OneEquiment + input;
     const data = await fetchDataFromAPI(url);
     printArmorInfo(data);
+    printUserInput();
 }
 
 async function sheildAsk(input) {
@@ -64,6 +70,7 @@ async function sheildAsk(input) {
     let url = api_OneEquiment + input;
     const data = await fetchDataFromAPI(url);
     printSheildInfo(data);
+    printUserInput();
 }
 
 async function weaponAsk(input) {
@@ -71,6 +78,7 @@ async function weaponAsk(input) {
     let url = api_OneEquiment + input;
     const data = await fetchDataFromAPI(url);
     printWeaponInfo(data);
+    printUserInput();
 }
 
 function getValueofCurrency(input) {

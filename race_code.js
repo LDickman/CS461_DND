@@ -1,6 +1,7 @@
 import { fetchDataFromAPI, clickOnDropDownMenu, creatingListofArrayForEquiment, createListOfEquimentOptions, getNames, getListToHTML, getArrayOfNames, createListOfProficiencyOptions, getArrayOfIndexs, getInfoNames, getNumberChoose,
     getNumberBonuses, getListCheckBoxes, getArrayOfNumberBonuses, getNameBonuses, settingValueOfScore, clearAllFromList, getEquimentListData} from './help.js';
 import { setupPage4, printBonusData, clearAbilityScoreBonuses } from './ability_score_code.js';
+import { setupLastPage, printUserInput } from './print_code.js';
 const api_race = 'https://www.dnd5eapi.co/api/races/';
 const api_language = 'https://www.dnd5eapi.co/api/languages';
 let race_input;
@@ -9,6 +10,8 @@ let race_laguages;
 export async function setupPage1() {
     console.log("starting");
     raceChoice();
+   //setupLastPage();
+   //printUserInput();
 }
 
 function raceChoice() {
@@ -20,12 +23,13 @@ function raceChoice() {
 
 async function raceAsk(input) {
     console.log("Race: " + input);
-    race_input = input;
+    setUserInputRace(input);
     var url = api_race + input;
     console.log(url);
     const data = await fetchDataFromAPI(url);
     getLanuage();
     printRaceData(data);
+    printUserInput();
 }
 
 async function getLanuage() {
@@ -33,6 +37,7 @@ async function getLanuage() {
     console.log(url);
     const data = await fetchDataFromAPI(url);
     printLangaugeList(data);
+    printUserInput();
 }
 
 
@@ -64,6 +69,10 @@ async function printRaceData(data) {
     document.querySelector("#bonuses").textContent = getNumberBonuses(ability_bonuses);
     printBonusData(ability_bonuses);
     console.log("printing");
+}
+
+function setUserInputRace(input) {
+    race_input = input;
 }
 
 export function getRaceInput() {
