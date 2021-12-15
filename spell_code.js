@@ -4,6 +4,13 @@ const api_OneSpell = 'https://www.dnd5eapi.co/api/spells/';
 const api_spells = '/levels/1/spells';
 const api_classes = 'https://www.dnd5eapi.co/api/classes/';
 const api_spellcasting = '/spellcasting';
+let userAbilitySpell = document.getElementById('char_ability');
+let userAbilitySpellBonus = document.getElementById('char_spell_bonus');
+let userSpellDC = document.getElementById('char_DC');
+let userWIS_skill = document.getElementById("WIS_bonus");
+let userCHAR_skill = document.getElementById("CHA_bonus");
+let userINT_skill = document.getElementById("INT_bonus");
+let userDieRoll = document.getElementById('hit');
 
 export async function setupPage6() {
     console.log("starting 6");
@@ -83,6 +90,8 @@ async function printSpellCastingData(data) {
     let extra_spell_descrition = document.getElementById('extra_spell_ability_info');
 
     spellsAbility.textContent = spellcasting_ability.name;
+    userAbilitySpell.textContent = spellcasting_ability.name;
+    calculatingSpellBonuses(spellcasting_ability.name, parseInt(userDieRoll.textContent));
     let array_spellcasting = getArrayOfNames(info);
     let array_spellcasting_info =  getArrayDescription(info);
     console.log(array_spellcasting_info);
@@ -154,4 +163,20 @@ async function createListOfSpellOptions(data, list) {
     console.log("array_spells ");
     console.log(array_spells);
     await getListToHTML(array_spells, list);
+}
+
+function calculatingSpellBonuses(ability, hit){
+    if (ability == "WIS") {
+        userAbilitySpellBonus.textContent = parseInt(userWIS_skill.textContent);
+        userSpellDC = hit + parseInt(userCHAR_skill.textContent);
+    } 
+    if (ability == "CHA"){
+        userAbilitySpellBonus.textContent = parseInt(userCHAR_skill.textContent); 
+        userSpellDC.textContent = hit + parseInt(userCHAR_skill.textContent);
+        parseInt(userCHAR_skill)
+    }
+    if (ability == "INT"){
+        userAbilitySpellBonus.textContent = parseInt(userINT_skill.textContent);
+        userSpellDC.textContent = hit + parseInt(userINT_skill.textContent);
+    }
 }
