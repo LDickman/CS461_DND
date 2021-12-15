@@ -5,8 +5,10 @@ import {setupPage6, spellsAsk, spellCastingAsk} from './spell_code.js';
 
 const api_classes = 'https://www.dnd5eapi.co/api/classes/';
 let option3_skillList = document.getElementById("skillOptions3");
+let page_6_Display = document.getElementById('page_6_button');
 let userHitDie =  document.getElementById('char_die_hit');
 let userEquiment = document.getElementById('char_equiment');
+let userSpellCasterClass = document.getElementById('char_casting');
 
 export async function setupPage2() {
     console.log("starting 2");
@@ -85,6 +87,12 @@ async function printClassData(data) {
     let otherClasses = document.getElementById("subclasses");
     let skillsNum = document.getElementById("skills");
 
+    if (spellcasting != undefined) {
+        userSpellCasterClass.textContent = name;
+        page_6_Display.style.visibility = 'visible';
+    } else {
+        page_6_Display.style.visibility = 'hidden';
+    }
     className.textContent = name;
     userClassName.textContent = name;
     die.textContent = hit_die;
