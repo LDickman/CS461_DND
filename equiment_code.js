@@ -226,7 +226,7 @@ async function printWeaponInfo(data) {
     let money_weapon = document.getElementById("money_weapon");
     let userWeapon = document.getElementById("char_weapon");
     let attackBonus = 2 + parseInt(userSTR.textContent);
-    userWeapon.textContent = name + "Attack Bonus: "+ attackBonus+" Damage Type: "+ damage.damage_dice +" "+ damage.damage_type.name;
+    userWeapon.textContent = name + "      Attack Bonus: "+ attackBonus+"      Damage Type: "+ damage.damage_dice +" "+ damage.damage_type.name;
     
     let equimentInfo = document.getElementById('equiment_name');
     let weightInfo = document.getElementById('weight');
