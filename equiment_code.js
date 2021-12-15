@@ -7,6 +7,7 @@ const api_equiment = 'https://www.dnd5eapi.co/api/equipment-categories/';
 const api_OneEquiment = 'https://www.dnd5eapi.co/api/equipment/';
 let userArmorProtect = document.getElementById("char_armor_class");
 let userDex = document.getElementById("DEX_bonus");
+let userSTR = document.getElementById("STR_bonus");
 let money_value = "";
 
 export async function setupPage7() {
@@ -39,12 +40,9 @@ function weaponChoice() {
 }
 
 export async function equimentCategoryAsk(input) {
-    ///console.log("Equiment for: " + input);
     let url = api_equiment + input;
-    //let url = api_OneEquiment + input;
     const data = await fetchDataFromAPI(url);
     return await getEquimentListData(data);
-    //getListofEquimentCategory(data)
 }
 
 async function certianEquimentsAsk(input) {
@@ -227,7 +225,8 @@ async function printWeaponInfo(data) {
     console.log(money_leftover.value);
     let money_weapon = document.getElementById("money_weapon");
     let userWeapon = document.getElementById("char_weapon");
-    userWeapon.textContent = name;
+    let attackBonus = 2 + parseInt(userSTR.textContent);
+    userWeapon.textContent = name + "Attack Bonus: "+ attackBonus+" Damage Type: "+ damage.damage_dice +" "+ damage.damage_type.name;
     
     let equimentInfo = document.getElementById('equiment_name');
     let weightInfo = document.getElementById('weight');
@@ -242,11 +241,11 @@ async function printWeaponInfo(data) {
     weightInfo.textContent = weight;
     rangeInfo.textContent = "" + range["normal"] + " feet. Long is " + range["long"] + "";
     range_CAT.textContent = category_range;
-    danageInfo.textContent = "None";
+    danageInfo.textContent = damage.damage_type.name;
     console.log(cost["quantity"]);
     costrInfo.textContent = "" + cost["quantity"] + " " + cost["unit"] + "";
     equimentINfo.textContent = "None";
-    damageRoll.textContent = "None";
+    damageRoll.textContent = damage.damage_dice;
     money_weapon.textContent = calculateMoneySpent(spending_money, money_leftover, cost["quantity"], cost["unit"]);
     money_weapon.value = calculateMoneySpent(spending_money, money_leftover, cost["quantity"], cost["unit"]);
     let armor = document.getElementById("money_armor");
