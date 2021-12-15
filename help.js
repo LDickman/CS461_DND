@@ -14,7 +14,6 @@ export function clickOnDropDownMenu(ul, func, button) {
     let items = ul.getElementsByTagName('li');
     console.log(button.textContent);
     console.log(items);
-    //console.log(items[0].textContent);   // knows that textcontext works
     ul.addEventListener("click", function (e) {
         for (let i = 0; i < items.length; i++) {
             if (e.target == items[i]) {
@@ -91,7 +90,7 @@ export function getArrayOfIndexs(link) {
         let array = link.map(function (el) {
             return el.index;
         });
-        return array;//.join(',     ');
+        return array;
     } else {
         return empty;
     }
@@ -161,7 +160,7 @@ export function getArrayOfNumberBonuses(link) {
         let array = link.map(function (el) {
             return el.bonus;
         });
-        return array;//.join(',     ');
+        return array;
     } else {
         emptyArray.push(empty);
         return emptyArray;
@@ -359,12 +358,9 @@ export async function createListOfEquimentOptions(data, list, list_2, list_3, li
     console.log("armor names");
     console.log(armor_names);
     let shield_names = await creatingListofArrayForEquiment(array_shield);
-    ///let kit_names = await creatingListofArrayForEquiment(array_kit);
 
-    //console.log("array_weapons " + array_weapon)
     await getListToHTML(idex_names_weapons, list);
     await getListToHTML(armor_names, list_2);
-    //getListToHTML(array_armor, list_2);
     await getListToHTML(shield_names, list_3);
     await getListToHTML(array_kit, list_4);
 }
@@ -375,8 +371,6 @@ export async function creatingListofArrayForEquiment(array) {
         console.log("Array index: " + array[i]);
         let data = await equimentCategoryAsk(array[i]);
         console.log("creatingListofArrayForEquiment");
-        //console.log(array);
-        //console.log(data);
         new_array.push(data);
     }
 
