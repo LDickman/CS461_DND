@@ -34,8 +34,17 @@ export async function spellCastingAsk(input) {
 function spellChoice() {
     let ul = document.getElementById('spellList');
     let button = document.getElementById('spell_option');
+    let ul2 = document.getElementById('spellList2');
+    let button2 = document.getElementById('spell_option2');
+    let ul3 = document.getElementById('spellList3');
+    let button3 = document.getElementById('spell_option3');
+    let ul4 = document.getElementById('spellList4');
+    let button4 = document.getElementById('spell_option4');
     console.log(ul);
     clickOnDropDownMenu(ul, certianSpellsAsk, button);
+    clickOnDropDownMenu(ul2, certianSpellsAsk, button2);
+    clickOnDropDownMenu(ul3, certianSpellsAsk, button3);
+    clickOnDropDownMenu(ul4, certianSpellsAsk, button4);
 }
 
 async function certianSpellsAsk(input) {
@@ -61,6 +70,9 @@ async function printInfo_One_Spell(data) {
 
 async function printSpellsData(data) {
     let list = document.getElementById("spellList");
+    let list2 = document.getElementById("spellList2");
+    let list3 = document.getElementById("spellList3");
+    let list4 = document.getElementById("spellList4");
     const { count, results } = data;
 
     let spellsAllowed = document.getElementById('spells');
@@ -73,8 +85,14 @@ async function printSpellsData(data) {
 
     if (count != 0) {
         await createListOfSpellOptions(results, list);
+        await createListOfSpellOptions(results, list2);
+        await createListOfSpellOptions(results, list3);
+        await createListOfSpellOptions(results, list4);
     } else {
         await createListOfSpellOptions("None", list);
+        await createListOfSpellOptions("None", list2);
+        await createListOfSpellOptions("None", list3);
+        await createListOfSpellOptions("None", list4);
         spellName.textContent = "None";
         spellInfo.textContent = "None";
         spellRange.textContent = "None";

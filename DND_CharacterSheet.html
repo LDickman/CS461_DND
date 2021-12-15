@@ -393,6 +393,36 @@
           <ul id="spellList"> </ul>
         </div>
       </div>
+
+      <div class="dropdown">
+        <button onclick="spellSelect2()" id='spell_option2' class="dropbtn">Spell
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <br />
+        <div id="spellDropdown2" class="dropdown-content">
+          <ul id="spellList2"> </ul>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button onclick="spellSelect3()" id='spell_option3' class="dropbtn">Spell
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <br />
+        <div id="spellDropdown3" class="dropdown-content">
+          <ul id="spellList3"> </ul>
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button onclick="spellSelect4()" id='spell_option4' class="dropbtn">Spell
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <br />
+        <div id="spellDropdown4" class="dropdown-content">
+          <ul id="spellList4"> </ul>
+        </div>
+      </div>
       <div id="info_6" class="section" style="border-style:solid">
         <p>Spell:</p>
         <label id="spell_name"></label>
@@ -659,6 +689,21 @@
 
     function spellSelect() {
       document.getElementById("spellDropdown").classList.toggle("show");
+      console.log("at the dropdowm bar");
+    }
+
+    function spellSelect2() {
+      document.getElementById("spellDropdown2").classList.toggle("show");
+      console.log("at the dropdowm bar");
+    }
+
+    function spellSelect3() {
+      document.getElementById("spellDropdown3").classList.toggle("show");
+      console.log("at the dropdowm bar");
+    }
+
+    function spellSelect4() {
+      document.getElementById("spellDropdown4").classList.toggle("show");
       console.log("at the dropdowm bar");
     }
 

@@ -1,5 +1,6 @@
 import {setupPage7, equimentCategoryAsk } from './equiment_code.js';
 let char_skill_list = document.getElementById("char_skills");
+let char_spell_list = document.getElementById("char_spells");
 
 /// Function that returns the from API
 export async function fetchDataFromAPI(url) {
@@ -20,6 +21,8 @@ export function clickOnDropDownMenu(ul, func, button) {
                 console.log(items[i].textContent);
                 func(items[i].textContent);
                 button.textContent = items[i].textContent;
+                let spellArray = [document.getElementById('spell_option').textContent, document.getElementById('spell_option2').textContent, document.getElementById('spell_option3').textContent, document.getElementById('spell_option4').textContent];
+                char_spell_list.textContent = spellArray.join(',     ');
                 let skillArray = [document.getElementById('skill_option').textContent, document.getElementById('skill_option2').textContent, document.getElementById('skill_option3').textContent];
                 char_skill_list.textContent = skillArray.join(',     ');
             }

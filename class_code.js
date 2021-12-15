@@ -101,7 +101,7 @@ async function printClassData(data) {
     userSavingThrows.textContent = getNames(saving_throws);
 
     let arrSkillNumber = getArrayNumberChooses(proficiency_choices);
-    skillsNum.textContent = arrSkillNumber[0];//getNumberChoose(proficiency_choices);
+    skillsNum.textContent = arrSkillNumber[0];
     if (arrSkillNumber[0] == 3) {
         option3_skillList.style.visibility = 'visible';
     }
