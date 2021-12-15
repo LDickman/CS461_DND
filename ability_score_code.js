@@ -18,6 +18,7 @@ let userCON_skill = document.getElementById('char_CON_skill');
 let die = document.getElementById('hit');
 let userHit = document.getElementById('char_hit');
 let userMaxHit = document.getElementById('char_max_hit');
+let userIntinative =  document.getElementById('char_init');
 
 export async function setupPage4() {
     printAblityScoreInfo();
@@ -58,6 +59,7 @@ async function printAblityScoreData() {
     userDEX.textContent = document.getElementById('DEX').textContent;
     userMaxHit.textContent =  " "+ die.textContent + " + " + document.getElementById("CON_bonus").textContent +"";
     userHit.textContent =  parseInt(die.textContent) + parseInt(document.getElementById("CON_bonus").textContent);
+    userIntinative.textContent = document.getElementById("DEX_bonus").textContent
 }
 
 async function printAblityScoreInfo() {

@@ -230,11 +230,7 @@ export function getListCheckBoxes(array, list){
 }
 
 function checkboxSlecetion(list, limit) {
-    //let list = document.getElementById("languageList");
-    // Get the checkbox
     let checkBox = list.getElementsByTagName('input');
-    //setting limit of number of selected languages
-    //let limit = settingLimitLanguageCheckBox();
     for (let i = 0; i < checkBox.length; i++) {
         checkBox[i].onclick = function() {
             let checkedcount = 0;
@@ -289,7 +285,7 @@ export async function createListOfProficiencyOptions(array, list) {
 }
 
 /// Instead of having a long listed created in HTML, this generates the list in 
-/// JavaScript of the Spells options, depending on the class selected
+/// JavaScript of the equiment options, depending on the class selected
 export async function createListOfEquimentOptions(data, list, list_2, list_3, list_4) {
     console.log("Equiment");
     console.log(data);
@@ -300,7 +296,9 @@ export async function createListOfEquimentOptions(data, list, list_2, list_3, li
     let array_shield = new Array;
     let array_kit = new Array;
     for (let i = 0; i < array_equiment.length; i++) {
-        if (array_equiment[i].includes("armor")) {
+        if (array_equiment[i].includes("all-armor")) {
+            array_armor.push("armor");
+        } else if (array_equiment[i].includes("armor")) {
             array_armor.push(array_equiment[i]);
         } else if (array_equiment[i].includes("shields")) {
             array_shield.push(array_equiment[i]);

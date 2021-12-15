@@ -5,6 +5,8 @@ import {
 
 const api_equiment = 'https://www.dnd5eapi.co/api/equipment-categories/';
 const api_OneEquiment = 'https://www.dnd5eapi.co/api/equipment/';
+let userArmorProtect = document.getElementById("char_armor_class");
+let userDex = document.getElementById("DEX_bonus");
 let money_value = "";
 
 export async function setupPage7() {
@@ -117,6 +119,7 @@ async function printArmorInfo(data) {
     const { name, index, equipment_category, armor_category,
         armor_class, str_minimum, stealth_disadvantage, weight, cost } = data;
 
+    
     let spending_money = document.getElementById("money");
     let userArmor = document.getElementById("char_armor");
     userArmor.textContent = name;
@@ -130,6 +133,7 @@ async function printArmorInfo(data) {
     let armor_money = document.getElementById('money_armor');
 
     let equimentInfo = document.getElementById('equiment_name');
+    let equimentPortect = document.getElementById("armor_prot");
     let weightInfo = document.getElementById('weight');
     let rangeInfo = document.getElementById('range');
     let range_CAT = document.getElementById('range_cat');
@@ -142,6 +146,9 @@ async function printArmorInfo(data) {
 
     equimentInfo.textContent = name;
     weightInfo.textContent = weight;
+    equimentPortect.textContent = armor_class.base;
+    userArmorProtect.textContent = parseInt(equimentPortect.textContent) + parseInt(userDex.textContent);
+    userArmorProtect.value = parseInt(armor_class) + parseInt(userDex.textContent);
     rangeInfo.textContent = "None";
     range_CAT.textContent = "None";
     danageInfo.textContent = "None";
@@ -176,6 +183,7 @@ async function printSheildInfo(data) {
     userShield.textContent = name;
 
     let equimentInfo = document.getElementById('equiment_name');
+    let equimentPortect = document.getElementById("armor_prot");
     let weightInfo = document.getElementById('weight');
     let rangeInfo = document.getElementById('range');
     let danageInfo = document.getElementById('damage_info');
@@ -187,6 +195,8 @@ async function printSheildInfo(data) {
 
     equimentInfo.textContent = name;
     weightInfo.textContent = weight;
+    equimentPortect.textContent = armor_class.base;
+    userArmorProtect.textContent = parseInt(equimentPortect.textContent) + userArmorProtect.value;
     rangeInfo.textContent = "None";
     danageInfo.textContent = "None";
     costrInfo.textContent = "" + cost["quantity"] + " " + cost["unit"] + "";

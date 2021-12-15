@@ -88,7 +88,7 @@ async function printClassData(data) {
     className.textContent = name;
     userClassName.textContent = name;
     die.textContent = hit_die;
-    userHitDie.textContent = hit_die;
+    userHitDie.textContent = "1d"+ hit_die;
     throwHits.textContent = getNames(saving_throws);
     userSavingThrows.textContent = getNames(saving_throws);
 
