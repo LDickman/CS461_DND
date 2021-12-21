@@ -1,5 +1,3 @@
-import { myReduce, addItems } from "./code";
-
 function isValidUrl(_string) {
     let url_string; 
     try {
