@@ -67,7 +67,6 @@ async function printRaceData(data) {
     userRaceLanguages.textContent =  getNames(languages);
     console.log("race_laguages");
     console.log(race_laguages);
-    //createBoxes(getArrayOfNames(languages));
     race_page1_reults.textContent = getNames(traits);
     userRaceTraits.textContent = getNames(traits);
     race_page1_name.textContent = name;
@@ -95,14 +94,12 @@ async function printLangaugeList(data) {
 
 async function createListOfLaguageOptions(array, list) {
     let items = array;
-    //let language_names = new Array;
     console.log("createListOfLaguageOptions");
     console.log(array);
     console.log(race_laguages);
     for (let j = 0; j < items.length; j++) {
         for (let i = 0; i < race_laguages.length; i++) {
             if (items[j] === race_laguages[i]) {
-                //language_names.push(items[j]);
                 items.splice(j, 1);
                 i--;
                 j--;

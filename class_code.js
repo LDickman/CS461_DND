@@ -31,7 +31,6 @@ async function classAsk(input) {
     spellCastingAsk(input);
     proficiencyAsk(input);
     skillChoice();
-    // char_skill_list.textContent = skillArray.join(',     ');
 }
 
 

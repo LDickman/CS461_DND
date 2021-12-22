@@ -9,6 +9,7 @@ import { setupPage3 } from './background.js';
 import { setupPage4, printBonusData, clearAbilityScoreBonuses } from './ability_score_code.js';
 import { proficiencyAsk, skillChoice } from './skill_code.js';
 import { setupPage2 } from './class_code.js';
+let page_image = document.getElementsByTagName('img');
 
 //<script>
 // function openPage(evt, pageName) {

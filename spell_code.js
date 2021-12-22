@@ -177,7 +177,6 @@ async function createListOfSpellOptions(data, list) {
     } else {
         array_spells = getArrayOfIndexs(data);
     }
-    //array_spells.push("None");
     console.log("array_spells ");
     console.log(array_spells);
     await getListToHTML(array_spells, list);
