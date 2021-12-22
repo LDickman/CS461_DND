@@ -1,8 +1,6 @@
 .header {
-  /* background-color: #ff0000; */
   background-image: url("https://www.cnet.com/a/img/ZaO2fOssah6aUST4aB5HEzDq41M=/1092x0/2019/07/31/91b20b36-b2e1-4d71-9e7d-5594cbbe403a/dungeons.jpg");
   background-size: 100%;
-  /* opacity: 0.3; */
   padding:none;
   color: white;
 }
@@ -11,6 +9,35 @@ body {
   background-color: rgba(107, 0, 0);
   color:white;
 }
+
+/* Setting text sytle and coloring for the boxed section for each tab */
+label {
+  font-weight: normal;
+  text-transform: none;
+}
+
+.info_section {
+  background-color: hsla(347, 100%, 41%, 0.637);
+  color:white;
+  padding-left: 5px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+/* Final Page formating */
+section {
+  /* flex-wrap: wrap; */
+  position: relative;
+  left: 10px;
+  top: inherit;
+  /* position: relative; */
+  /* width: 400px;
+  height: 200px;
+  flex-direction: row;
+  float: inherit; */
+  font-weight: bold;
+}
+/* Ending Final Page formating */
 
 /* Dropdown Button */
 .dropbtn, #roll {
@@ -60,8 +87,9 @@ body {
 /* Style the tab */
 .tab {
   overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
+  color: white;
+  border: 1px solid rgb(187, 53, 0);
+  background-color: #be273b;
 }
 
 /* Style the buttons that are used to open the tab content */
@@ -69,6 +97,7 @@ body {
   background-color: inherit;
   float: left;
   border: none;
+  color: white;
   outline: none;
   cursor: pointer;
   padding: 14px 16px;
@@ -77,19 +106,22 @@ body {
 
 /* Change background color of buttons on hover */
 .tab button:hover {
-  background-color: #ddd;
+  color: rgb(82, 0, 0);
+  background-color: rgb(255, 115, 115);
 }
 
 /* Create an active/current tablink class */
 .tab button.active {
-  background-color: #ccc;
+  color: white;
+  background-color: rgb(247, 59, 59);
 }
 
 /* Style the tab content */
 .tabcontent {
   display: none;
+  background-color: rgba(148, 5, 5, 0.678);
   padding: 6px 12px;
-  border: 1px solid #ccc;
+  border: 1px solid rgb(255, 0, 0);
   border-top: none;
 }
 
@@ -105,8 +137,18 @@ body {
 
 /* Table border */
 table, th, td {
-  border: 1px solid black;
+  border: 1px solid red;
   border-collapse: collapse;
+}
+
+/* Table coloring */
+td {
+  background-color: #be273b;
+  color:white;
+}
+th {
+  background-color:rgb(255, 115, 115);
+  color: black;
 }
 
 /* Table padding */

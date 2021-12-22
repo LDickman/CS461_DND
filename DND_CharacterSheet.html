@@ -31,7 +31,8 @@
     <button class="tablinks" onclick="openPage(event, 'page_3')">Background</button>
     <button class="tablinks" onclick="openPage(event, 'page_4')">Ability Score</button>
     <button class="tablinks" onclick="openPage(event, 'page_5')">Skills</button>
-    <button id="page_6_button" class="tablinks" onclick="openPage(event, 'page_6')" style="visibility:hidden">Spells</button>
+    <button id="page_6_button" class="tablinks" onclick="openPage(event, 'page_6')"
+      style="visibility:hidden">Spells</button>
     <button class="tablinks" onclick="openPage(event, 'page_7')">Equiment</button>
     <!-- <button class="tablinks" onclick="openPage(event, 'page_8')">Character Features</button> -->
     <button class="tablinks" onclick="openPage(event, 'page_9')">Finished</button>
@@ -41,7 +42,6 @@
   <div id="page_1" class="tabcontent">
     <!-- <div class="access" style="display:none"> -->
     <h2>Race:</h2>
-    <br />
     <p>Chose your character race from below</p>
     <div class="dropdown">
       <button onclick=raceSelect() id='race_option' class="dropbtn">Race
@@ -64,7 +64,7 @@
     <br />
     <br />
 
-    <div id="info_1" class="section" style="border-style:solid">
+    <div id="info_1" class="info_section" style="border-style:solid">
       <p>Race:</p>
       <label id="name"> </label>
       <br />
@@ -106,7 +106,6 @@
   <div id="page_2" class="tabcontent">
     <!-- <div class="access" style="display:none"> -->
     <h2>Class:</h2>
-    <br />
     <p>Chose your character class from below</p>
     <p class="des_class"> A character class is a fundamental part of the identity and
       nature of characters in the Dungeons & Dragons role-playing game. A character's capabilities,
@@ -135,7 +134,7 @@
       </div>
     </div>
     <br />
-    <div id="info_2" class="section" style="border-style:solid">
+    <div id="info_2" class="info_section" style="border-style:solid">
       <p>Class:</p>
       <label id="class_name"></label>
       <br />
@@ -221,7 +220,7 @@
       </div>
     </div>
 
-    <div id="info_3" class="section" style="border-style:solid">
+    <div id="info_3" class="info_section" style="border-style:solid">
       <p>Required Skills:</p>
       <label id="skills_needed"></label>
       <br />
@@ -351,7 +350,7 @@
       </div>
     </div>
 
-    <div id="info_5" class="section" style="border-style:solid">
+    <div id="info_5" class="info_section" style="border-style:solid">
       <p>Skill Name:</p>
       <label id="Pro_name"></label>
       <br />
@@ -422,7 +421,7 @@
           <ul id="spellList4"> </ul>
         </div>
       </div>
-      <div id="info_6" class="section" style="border-style:solid">
+      <div id="info_6" class="info_section" style="border-style:solid">
         <p>Spell:</p>
         <label id="spell_name"></label>
         <br />
@@ -458,11 +457,16 @@
         </ul>
       </div>
     </div>
-    <p>Weapon Total Spent: <lable id="money_weapon" value="0">0</lable></p>
-    <p>Kit Total spent: <lable id="money_kit" value="0">0</lable></p>
-    <p>Armor Total Spent: <lable id="money_armor" value="0">0</lable></p>
-    <p>Sheild Total spent: <lable id="money_sheild" value="0">0</lable></p>
-    <p>New Total: <lable id="money_left" value="0">0</lable></p>
+    <p>Weapon Total Spent: <lable id="money_weapon" value="0">0</lable>
+    </p>
+    <p>Kit Total spent: <lable id="money_kit" value="0">0</lable>
+    </p>
+    <p>Armor Total Spent: <lable id="money_armor" value="0">0</lable>
+    </p>
+    <p>Sheild Total spent: <lable id="money_sheild" value="0">0</lable>
+    </p>
+    <p>New Total: <lable id="money_left" value="0">0</lable>
+    </p>
     <br />
     <p>Pick your character's weapon from below</p>
     <div class="dropdown">
@@ -508,7 +512,7 @@
       </div>
     </div>
     <br />
-    <div id="info_7" class="section" style="border-style:solid">
+    <div id="info_7" class="info_section" style="border-style:solid">
       <p>Equiment Name:</p>
       <label id="equiment_name"></label>
       <br />
@@ -549,71 +553,85 @@
   <div id="page_9" class="tabcontent">
     <!-- <div class="access" style="display:none"> -->
     <h2>Sheet Fromat:</h2>
-    <p>Race: <label id="char_race" type="text"></label></p>
-    <p>Class: <label id="char_class" type="text"></label></p>
-    <p>Level: <label id="char_level" type="text">1</label></p>
-    <p>Experince Points: <label id="char_exp" type="text">0</label></p>
-    <p>Background:  <label id="char_background" type="text"></label></p>
-    <p>Alignment: <label id="char_alignment" type="text"></label></p>
+    <section>
+      <p>Race: <label id="char_race" type="text"></label></p>
+      <p>Class: <label id="char_class" type="text"></label></p>
+      <p>Level: <label id="char_level" type="text">1</label></p>
+      <p>Experince Points: <label id="char_exp" type="text">0</label></p>
+      <p>Background: <label id="char_background" type="text"></label></p>
+      <p>Alignment: <label id="char_alignment" type="text"></label></p>
+      </br>
+      <p>Armor Class: <label id="char_armor_class" type="text"></label></p>
+      <p>Initative: <label id="char_init" type="text"></label></p>
+      <p>Speed: <label id="char_speed" type="text"></label></p>
+    </section>
     </br>
-    <p>Armor Class: <label id="char_armor_class" type="text"></label></p>
-    <p>Initative: <label id="char_init" type="text"></label></p>
-    <p>Speed: <label id="char_speed" type="text"></label></p>
-    </br>
-    <section>Ability Score:</section>
-    <p>Strength: <label id="char_STR" type="text"></label></p>
-    <p>Dexterity: <label id="char_DEX" type="text"></label></p>
-    <p>Constitution: <label id="char_CON" type="text"></label></p>
-    <p>Intelligence: <label id="char_INT" type="text"></label></p>
-    <p>Wisdom: <label id="char_WIS" type="text"></label></p>
-    <p>Charisma: <label id="char_CHAR" type="text"></label></p>
+    <section>Ability Score:
+      <p>Strength: <label id="char_STR" type="text"></label></p>
+      <p>Dexterity: <label id="char_DEX" type="text"></label></p>
+      <p>Constitution: <label id="char_CON" type="text"></label></p>
+      <p>Intelligence: <label id="char_INT" type="text"></label></p>
+      <p>Wisdom: <label id="char_WIS" type="text"></label></p>
+      <p>Charisma: <label id="char_CHAR" type="text"></label></p>
+    </section>
     </br>
     <p>Proficiency Bonus: <label id="char_bonus" type="text">+2</label></p>
-    <section>Fill in the bubbles for the following Saving Throws:</section>
-    <label id="char_saving_throws" type="text"></label>
-    <section>Fill in the bubbles for the following Skills:</section>
-    <label id="char_skills" type="text"></label>
-    <label id="char_background_skills" type="text"></label>
+    <section>Fill in the bubbles for the following Saving Throws:
+      <label id="char_saving_throws" type="text"></label>
+      </br>
+      <p>Fill in the bubbles for the following Skills:
+      <p>
+        <label id="char_skills" type="text"></label>
+        <label id="char_background_skills" type="text"></label>
+    </section>
     </br>
     </br>
-    <section>Saving Throws & Skills:</section>
-    <p>Strength & (Str): <label id="char_STR_skill" type="text"></label></p>
-    <p>Dexterity & (Dex): <label id="char_DEX_skill" type="text"></label></p>
-    <p>Constitution & (Con): <label id="char_CON_skill" type="text"></label></p>
-    <p>Intelligence & (Int): <label id="char_INT_skill" type="text"></label></p>
-    <p>Wisdom & (Wis): <label id="char_WIS_skill" type="text"></label></p>
-    <p>Charisma & (Cha): <label id="char_CHAR_skill" type="text"></label></p>
+    <section>Saving Throws & Skills:
+      <p>Strength & (Str): <label id="char_STR_skill" type="text"></label></p>
+      <p>Dexterity & (Dex): <label id="char_DEX_skill" type="text"></label></p>
+      <p>Constitution & (Con): <label id="char_CON_skill" type="text"></label></p>
+      <p>Intelligence & (Int): <label id="char_INT_skill" type="text"></label></p>
+      <p>Wisdom & (Wis): <label id="char_WIS_skill" type="text"></label></p>
+      <p>Charisma & (Cha): <label id="char_CHAR_skill" type="text"></label></p>
+      </br>
+      <p>Hit Die: <label id="char_die_hit" type="text"></label></p>
+      </br>
+    </section>
+    <section>Hit Points:
+      <p>Hit Points Maximum (Die hit + CON Modifier): <label id="char_max_hit" type="text"></label></p>
+      <p>Current Hit Points: <label id="char_hit" type="text"></label></p>
+    </section>
     </br>
-    <p>Hit Die: <label id="char_die_hit" type="text"></label></p>
+    <section>Attack and SpellCasting:
+      <p>Armor: <label id="char_armor" type="text"></label></p>
+      <p>Weapon: <label id="char_weapon" type="text"></label></p>
+      <p>Shield: <label id="char_sheild" type="text"></label></p>
+      <p>Kit: <label id="char_kit" type="text"></label></p>
+      </br>
+      <p>Equiment: <label id="char_equiment" type="text"></label></p>
+    </section>
     </br>
-    <section>Hit Points:</section>
-    <p>Hit Points Maximum  (Die hit + CON Modifier): <label id="char_max_hit" type="text"></label></p>
-    <p>Current Hit Points: <label id="char_hit" type="text"></label></p>
+    <section>Other Proficiences & Languages:
+      <p>Languages: <label id="char_language" type="text"></label></p>
+      <label id="char_other_languages" type="text"></label>
+      <p>Proficiences: <label id="char_other_proficiences" type="text"></label></p>
+    </section>
     </br>
-    <section>Attack and SpellCasting:</section>
-    <p>Armor: <label id="char_armor" type="text"></label></p>
-    <p>Weapon: <label id="char_weapon" type="text"></label></p>
-    <p>Shield: <label id="char_sheild" type="text"></label></p>
-    <p>Kit: <label id="char_kit" type="text"></label></p>
+    <section>Features & Traits:
+      <p>Traits: <label id="char_traits" type="text"></label></p>
+    </section>
     </br>
-    <p>Equiment: <label id="char_equiment" type="text"></label></p>
-    </br>
-    <section>Other Proficiences & Languages:</section>
-    <p>Languages: <label id="char_language" type="text"></label></p>
-    <label id="char_other_languages" type="text"></label>
-    <p>Proficiences: <label id="char_other_proficiences" type="text"></label></p>
-    </br>
-    <section>Features & Traits:</section>
-    <p>Traits: <label id="char_traits" type="text"></label></p>
-    </br>
-    <section>Page 3 Spells:</section>
-    <p>Spellcasting Class: <label id="char_casting" type="text"></label></p>
-    <p>Spellcasting Ability: <label id="char_ability" type="text"></label></p>
-    <p>Spell Save DC: <label id="char_DC" type="text"></label></p>
-    <p>Spell Bonus: <label id="char_spell_bonus" type="text"></label></p>
-    <p>Level 1 Spells: <label id="char_spells" type="text"></label></p>
+    <h2>Page 3 Spells:</h2>
+    <section>
+      <p>Spellcasting Class: <label id="char_casting" type="text"></label></p>
+      <p>Spellcasting Ability: <label id="char_ability" type="text"></label></p>
+      <p>Spell Save DC: <label id="char_DC" type="text"></label></p>
+      <p>Spell Bonus: <label id="char_spell_bonus" type="text"></label></p>
+      <p>Level 1 Spells: <label id="char_spells" type="text"></label></p>
+    </section>
 
-    <iframe src="https://media.wizards.com/2016/dnd/downloads/5E_CharacterSheet_Fillable.pdf" width="100%" height="3200px">
+    <iframe src="https://media.wizards.com/2016/dnd/downloads/5E_CharacterSheet_Fillable.pdf" width="100%"
+      height="3200px">
     </iframe>
   </div>
 
