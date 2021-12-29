@@ -2,6 +2,7 @@ import {
     fetchDataFromAPI, clickOnDropDownMenu, creatingListofArrayForEquiment, createListOfEquimentOptions, getNames, getListToHTML, getArrayOfNames, createListOfProficiencyOptions, getArrayOfIndexs, getInfoNames, getNumberChoose,
     getNumberBonuses, getListCheckBoxes, getArrayOfNumberBonuses, getNameBonuses, settingValueOfScore, clearAllFromList, getEquimentListData
 } from './help.js';
+
 const api_scores = 'https://www.dnd5eapi.co/api/ability-scores/';
 let userSTR = document.getElementById("char_STR")
 let userDEX = document.getElementById('char_DEX');
@@ -216,7 +217,7 @@ export function clearAbilityScoreBonuses() {
 }
 
 // This generates 1 roll for the 6 sided dice that has possible to roll from numbers 1 - 6
-function rollOneDice() {
+export function rollOneDice() {
     let min = Math.ceil(1);
     let max = Math.floor(6);
     return Math.floor(Math.random() * (max - min + 1) + min);
@@ -224,7 +225,7 @@ function rollOneDice() {
 
 // This generates all 3 rolls of a 6-sided dice for 1 ability score
 // EX: rolls: 1, 3, 4   Ability score is 8
-function rollsForScore() {
+export function rollsForScore() {
     var totalRolls = [];
     for (var i = 0; i <= 2; i++) {
         totalRolls.push(rollOneDice())
