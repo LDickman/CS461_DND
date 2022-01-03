@@ -1,44 +1,20 @@
 const chai = window.chai;
 const expect = chai.expect;
-import {
-  fetchDataFromAPI, clickOnDropDownMenu, creatingListofArrayForEquiment, createListOfEquimentOptions, getNames, getListToHTML, getArrayOfNames, createListOfProficiencyOptions, getArrayOfIndexs, getInfoNames, getNumberChoose,
-  getNumberBonuses, getListCheckBoxes, getArrayOfNumberBonuses, getNameBonuses, settingValueOfScore, clearAllFromList, getEquimentListData
-} from '../help.js';
-import {proficiencyAsk, skillChoice} from '../skill_code.js';
-import {setupPage6, spellsAsk, spellCastingAsk} from '../spell_code.js';
-import {rollOneDice, rollsForScore} from '../ability_score_code.js';
-import {isValidUrl} from './example_problems.js';
-
-// describe("A test", () => {
-//   test("should be true", () => {
-//     expect(true).toEqual(true);
-//   });
-// });
 
 describe("isValidUrl: Verifying that API feching is true", () => {
   it("returns True when API link is valid", () => {
-    expect(isValidUrl('https://www.dnd5eapi.co/api/classes/bard')).toEqual(true);
-    expect(isValidUrl('https://www.dnd5eapi.co/api/classes/monk')).toEqual(true);
-    expect(isValidUrl('https://www.dnd5eapi.co/api/races/human')).toEqual(true);
-    expect(isValidUrl('https://www.dnd5eapi.co/api/races/elf')).toEqual(true);
+    expect()
+    expect(isValidUrl('https://www.dnd5eapi.co/api/classes/bard'), true).toEqual(true);
+    expect(isValidUrl('https://www.dnd5eapi.co/api/classes/monk'), true).toEqual(true);
+    expect(isValidUrl('https://www.dnd5eapi.co/api/races/human'), true).toEqual(true);
+    expect(isValidUrl('https://www.dnd5eapi.co/api/races/elf'), true).toEqual(true);
   });
   it("returns False when API link is invalid", () => {
-    expect(isValidUrl()).toEqual(false);
+    expect(isValidUrl('https://www.dnd5eapi.co/api/equipment/all-armor'), false).toEqual(false);
   });
 });
-rian
-bard
-eric
-ruid
-hter
-monk
-adin
-nger
-ogue
-erer
-lock
-zard
-  
+
+
 //   it("Array of one element, that returns that elemnt", () => {
 //     expect(myReduce([10], (x,y) => x+y)).toEqual(10);
 //   });
