@@ -1,8 +1,7 @@
 import {
-    fetchDataFromAPI, clickOnDropDownMenu, creatingListofArrayForEquiment, createListOfEquimentOptions, getNames, getListToHTML, getArrayOfNames, createListOfProficiencyOptions, getArrayOfIndexs, getInfoNames, getNumberChoose,
-    getNumberBonuses, getListCheckBoxes, getArrayOfNumberBonuses, getNameBonuses, settingValueOfScore, clearAllFromList, getEquimentListData
-} from './help.js';
-import { setupPage4, printBonusData, clearAbilityScoreBonuses } from './ability_score_code.js';
+    fetchDataFromAPI, clickOnDropDownMenu, getNames, getArrayOfNames,
+    getNumberBonuses, getListCheckBoxes, clearAllFromList} from './help.js';
+import { printBonusData, clearAbilityScoreBonuses } from './ability_score_code.js';
 const api_race = 'https://www.dnd5eapi.co/api/races/';
 const api_language = 'https://www.dnd5eapi.co/api/languages';
 let race_laguages;

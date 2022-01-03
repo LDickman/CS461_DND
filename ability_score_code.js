@@ -1,7 +1,4 @@
-import {
-    fetchDataFromAPI, clickOnDropDownMenu, creatingListofArrayForEquiment, createListOfEquimentOptions, getNames, getListToHTML, getArrayOfNames, createListOfProficiencyOptions, getArrayOfIndexs, getInfoNames, getNumberChoose,
-    getNumberBonuses, getListCheckBoxes, getArrayOfNumberBonuses, getNameBonuses, settingValueOfScore, clearAllFromList, getEquimentListData
-} from './help.js';
+import { fetchDataFromAPI, getNames, getArrayOfNames, getArrayOfNumberBonuses, getNameBonuses, settingValueOfScore} from './help.js';
 
 const api_scores = 'https://www.dnd5eapi.co/api/ability-scores/';
 let userSTR = document.getElementById("char_STR")

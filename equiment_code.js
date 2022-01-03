@@ -1,7 +1,4 @@
-import {
-    fetchDataFromAPI, clickOnDropDownMenu, creatingListofArrayForEquiment, createListOfEquimentOptions, getNames, getListToHTML, getArrayOfNames, createListOfProficiencyOptions, getArrayOfIndexs, getInfoNames, getNumberChoose,
-    getNumberBonuses, getListCheckBoxes, getArrayOfNumberBonuses, getNameBonuses, settingValueOfScore, clearAllFromList, getEquimentListData
-} from './help.js';
+import { fetchDataFromAPI, clickOnDropDownMenu, getEquimentListData} from './help.js';
 
 const api_equiment = 'https://www.dnd5eapi.co/api/equipment-categories/';
 const api_OneEquiment = 'https://www.dnd5eapi.co/api/equipment/';
@@ -254,6 +251,7 @@ async function printWeaponInfo(data) {
     TotalMoneySpent(money_leftover, armor, sheild, money_weapon, kit);
 }
 
+//// Prints information about the equiment that is not armor, a sheild, or a weapon
 async function printInfo_One_Equiment(data) {
     const { index, name, cost, weight, desc } = data;
 
@@ -294,6 +292,9 @@ async function printInfo_One_Equiment(data) {
     TotalMoneySpent(money_leftover, armor, sheild, weapon, money_kit);
 }
 
+/// Converts the cost of the item to what the player set as thier limit 
+// Such as: play has 500 sp, but the weapon costs 30 gp so this functions,
+// converts what the 30 gp equals to in sp
 function calculateMoneySpent(spending_money, money_leftover, cost, cost_value) {
     let total = 0;
     let currecny = money_value;
@@ -304,96 +305,71 @@ function calculateMoneySpent(spending_money, money_leftover, cost, cost_value) {
     if (currecny == 'cp') {
         if (cost_value == 'sp') {
             total = (parseInt(spending_money.value) - (parseInt(cost) / 10));
-            // money_leftover.textContent = (parseInt(spending_money.value) - (parseInt(cost)/10));
         } else if (cost_value == 'ep') {
             total = (parseInt(spending_money.value) - (parseInt(cost) / 50));
-            // money_leftover.textContent = (parseInt(spending_money.value) - (parseInt(cost)/50));
         } else if (cost_value == 'gp') {
             total = (parseInt(spending_money.value) - (parseInt(cost) / 100));
-            // money_leftover.textContent = (parseInt(spending_money.value) - (parseInt(cost)/100));
         } else if (cost_value == 'pp') {
             total = (parseInt(spending_money.value) - (parseInt(cost) / 1000));
-            // money_leftover.textContent = (parseInt(spending_money.value) - (parseInt(cost)/1000));
         } else {
-            // money_leftover.textContent = (parseInt(spending_money.value) - parseInt(cost));
             total = (parseInt(spending_money.value) - parseInt(cost));
         }
     } else if (currecny == 'sp') {
         if (cost_value == 'cp') {
-            // money_leftover.textContent = (parseInt(spending_money.value) - (parseInt(cost)*10));
             total = (parseInt(spending_money.value) - (parseInt(cost) * 10));
         } else if (cost_value == 'ep') {
-            // money_leftover.textContent = (parseInt(spending_money.value) - (parseInt(cost)/5));
             total = (parseInt(spending_money.value) - (parseInt(cost) / 5));
         } else if (cost_value == 'gp') {
-            // money_leftover.textContent = (parseInt(spending_money.value) - (parseInt(cost)/10));
             total = (parseInt(spending_money.value) - (parseInt(cost) / 10));
         } else if (cost_value == 'pp') {
-            // money_leftover.textContent = (parseInt(spending_money.value) - (parseInt(cost)/100));
             total = (parseInt(spending_money.value) - (parseInt(cost) / 100));
         } else {
-            // money_leftover.textContent = (parseInt(spending_money.value) - parseInt(cost));
             total = (parseInt(spending_money.value) - parseInt(cost));;
         }
     } else if (currecny == 'ep') {
         if (cost_value == 'sp') {
-            // money_leftover.textContent = (parseInt(spending_money.value) - (parseInt(cost)*5));
             total = (parseInt(spending_money.value) - (parseInt(cost) * 5));
         } else if (cost_value == 'cp') {
-            // money_leftover.textContent = (parseInt(spending_money.value) - (parseInt(cost)*50));
             total = (parseInt(spending_money.value) - (parseInt(cost) * 50));
         } else if (cost_value == 'gp') {
-            // money_leftover.textContent = (parseInt(spending_money.value) - (parseInt(cost)/2));
             total = (parseInt(spending_money.value) - (parseInt(cost) / 2));
         } else if (cost_value == 'pp') {
-            // money_leftover.textContent = (parseInt(spending_money.value) - (parseInt(cost)/20));
             total = (parseInt(spending_money.value) - (parseInt(cost) / 20));
         } else {
-            // money_leftover.textContent = (parseInt(spending_money.value) - parseInt(cost));
             total = (parseInt(spending_money.value) - parseInt(cost));
         }
     } else if (currecny == 'gp') {
         if (cost_value == 'sp') {
-            // money_leftover.textContent = (parseInt(spending_money.value) - (parseInt(cost)*10));
             total = (parseInt(spending_money.value) - (parseInt(cost) * 10));
         } else if (cost_value == 'ep') {
-            // money_leftover.textContent = (parseInt(spending_money.value) - (parseInt(cost)*2));
             total = (parseInt(spending_money.value) - (parseInt(cost) * 2));
         } else if (cost_value == 'cp') {
-            // money_leftover.textContent = (parseInt(spending_money.value) - (parseInt(cost)*100));
             total = (parseInt(spending_money.value) - (parseInt(cost) * 100));
         } else if (cost_value == 'pp') {
-            // money_leftover.textContent = (parseInt(spending_money.value) - (parseInt(cost)/10));
             total = (parseInt(spending_money.value) - (parseInt(cost) / 10));
         } else {
-            // money_leftover.textContent = (parseInt(spending_money.value) - parseInt(cost));
             total = (parseInt(spending_money.value) - (parseInt(cost) / 10));
         }
     } else if (currecny == 'pp') {
         if (cost_value == 'sp') {
             total = (parseInt(spending_money.value) - (parseInt(cost) * 100));
-            //money_leftover.textContent = (parseInt(spending_money.value) - (parseInt(cost)*100));
         } else if (cost_value == 'ep') {
             total = (parseInt(spending_money.value) - (parseInt(cost) * 20));
-            //money_leftover.textContent = (parseInt(spending_money.value) - (parseInt(cost)*20));
         } else if (cost_value == 'gp') {
             total = (parseInt(spending_money.value) - (parseInt(cost) * 10));
-            //money_leftover.textContent = (parseInt(spending_money.value) - (parseInt(cost)*10));
         } else if (cost_value == 'cp') {
             total = (parseInt(spending_money.value) - (parseInt(cost) * 1000));
-            //money_leftover.textContent = (parseInt(spending_money.value) - (parseInt(cost)*1000));
         } else {
             total = (parseInt(spending_money.value) - parseInt(cost));
-            // money_leftover.textContent = (parseInt(spending_money.value) - parseInt(cost));
         }
     }
-    // console.log("money_leftover");
-    // console.log(money_leftover.textContent);
     console.log("total");
     console.log(total);
     return total;
 }
 
+////Takes all the money spend on certian items and add it together. Then subtact that total with 
+// the intial limit amount the user set
 function TotalMoneySpent(money_leftover, armor, shield, weapon, kit) {
     let money_total = 0;
     let money_total_armor = 0;

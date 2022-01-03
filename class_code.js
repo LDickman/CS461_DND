@@ -1,7 +1,7 @@
-import { fetchDataFromAPI, clickOnDropDownMenu, creatingListofArrayForEquiment, createListOfEquimentOptions, getNames, getListToHTML, getArrayOfNames, createListOfProficiencyOptions, getArrayOfIndexs, getInfoNames, getNumberChoose,
-    getNumberBonuses, getListCheckBoxes, getArrayNumberChooses, getArrayOfNumberBonuses, getNameBonuses, settingValueOfScore, clearAllFromList, getEquimentListData} from './help.js';
+import { fetchDataFromAPI, clickOnDropDownMenu, getNames, createListOfProficiencyOptions, getArrayOfIndexs, getInfoNames,
+    getArrayNumberChooses, clearAllFromList} from './help.js';
 import {proficiencyAsk, skillChoice} from './skill_code.js';
-import {setupPage6, spellsAsk, spellCastingAsk} from './spell_code.js';
+import {spellsAsk, spellCastingAsk} from './spell_code.js';
 
 const api_classes = 'https://www.dnd5eapi.co/api/classes/';
 let option3_skillList = document.getElementById("skillOptions3");
