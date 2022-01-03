@@ -1,6 +1,8 @@
-import {setupPage7, equimentCategoryAsk } from './equiment_code.js';
+import { equimentCategoryAsk } from './equiment_code.js';
 let char_skill_list = document.getElementById("char_skills");
 let char_spell_list = document.getElementById("char_spells");
+let extra_laugunage = document.getElementById("extra_languages");
+let lanuages_slection = new Array;
 
 /// Function that returns the from API
 export async function fetchDataFromAPI(url) {
@@ -125,7 +127,7 @@ export function getNumberChoose(link) {
         return empty;
     }
 }
- export function getArrayNumberChooses(link) {
+export function getArrayNumberChooses(link) {
     if (dataValid(link)) {
         let array = link.map(function (el) {
             return el.choose;
@@ -134,7 +136,7 @@ export function getNumberChoose(link) {
     } else {
         return 0;
     }
- }
+}
 
 /// Function that gets the bonus within the object Array called info
 /// within the free API access DND e5 documentation and have it converted to a string 
@@ -177,7 +179,7 @@ export function getNameBonuses(link) {
         let array = link.map(function (el) {
             return el.ability_score;
         });
-        return array;//.join(',     ');
+        return array;
     } else {
         emptyArray.push(empty);
         return emptyArray;
@@ -208,50 +210,54 @@ export function clearAllFromList(ul) {
 }
 
 /// creates list of items in checkbox format
-export function getListCheckBoxes(array, list){
+export function getListCheckBoxes(array, list) {
     console.log("Array");
     console.log(array);
     for (let i = 0; i < array.length; i++) {
-            let checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.id = array[i];
-            checkbox.name = 'language';
-            checkbox.value = array[i];
-            checkbox.onclick = checkboxSlecetion(list, settingLimitLanguageCheckBox());
+        let checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.id = array[i];
+        checkbox.name = 'language';
+        checkbox.value = array[i];
+        checkbox.onclick = checkboxSlecetion(list, settingLimitLanguageCheckBox());
 
-            let label = document.createElement('label')
-            label.htmlFor = array[i];
-            label.appendChild(document.createTextNode(array[i]));
+        let label = document.createElement('label')
+        label.htmlFor = array[i];
+        label.appendChild(document.createTextNode(array[i]));
 
-            let br = document.createElement('br');
+        let br = document.createElement('br');
 
-            list.appendChild(checkbox);
-            list.appendChild(label);
-            list.appendChild(br);
+        list.appendChild(checkbox);
+        list.appendChild(label);
+        list.appendChild(br);
     }
 }
 
 function checkboxSlecetion(list, limit) {
     let checkBox = list.getElementsByTagName('input');
     for (let i = 0; i < checkBox.length; i++) {
-        checkBox[i].onclick = function() {
+        checkBox[i].onclick = function () {
             let checkedcount = 0;
             for (let i = 0; i < checkBox.length; i++) {
                 checkedcount += (checkBox[i].checked) ? 1 : 0;
+                if (checkBox[i].checked) {
+                    lanuages_slection.push(checkBox[i].value);
+                    extra_laugunage.textContent = lanuages_slection.join(',     ');
+                }
             }
             if (checkedcount > limit) {
                 console.log("You can select maximum of " + limit + " checkboxes.");
-                alert("You can select maximum of " + limit + " checkboxes.");                       
+                alert("You can select maximum of " + limit + " checkboxes.");
                 this.checked = false;
             }
         }
     }
-  }
+}
 
-function settingLimitLanguageCheckBox(){
+function settingLimitLanguageCheckBox() {
     let wantedLanguages = document.getElementById("languages_options");
     let number;
-    if (wantedLanguages.textContent == "None"){
+    if (wantedLanguages.textContent == "None") {
         number = 0;
     } else {
         number = 1;
@@ -259,7 +265,7 @@ function settingLimitLanguageCheckBox(){
     return number;
 }
 
-  /// Creates the list of all the indexs within the weapons/armor/sheilds/kits equiment-catergoy API
+/// Creates the list of all the indexs within the weapons/armor/sheilds/kits equiment-catergoy API
 export async function getEquimentListData(data) {
     const { index, name, equipment } = data;
     console.log("Within getEquimentListData")
