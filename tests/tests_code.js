@@ -1,18 +1,28 @@
 const chai = window.chai;
 const expect = chai.expect;
 
-describe("isValidUrl: Verifying that API feching is true", () => {
-  it("returns True when API link is valid", () => {
-    expect()
-    expect(isValidUrl('https://www.dnd5eapi.co/api/classes/bard'), true).toEqual(true);
-    expect(isValidUrl('https://www.dnd5eapi.co/api/classes/monk'), true).toEqual(true);
-    expect(isValidUrl('https://www.dnd5eapi.co/api/races/human'), true).toEqual(true);
-    expect(isValidUrl('https://www.dnd5eapi.co/api/races/elf'), true).toEqual(true);
+describe("Verifying that strings are actual web app links and the links are available", () => {
+  it("returns True when https: is in the link", () => {
+    expect(isValidUrl("https://www.dnd5eapi.co/api/classes/bard")).to.be.true;
+    expect(isValidUrl("https://www.dnd5eapi.co/api/classes/monk")).to.be.true;
+    expect(isValidUrl("https://www.dnd5eapi.co/api/races/human")).to.be.true;
+    expect(isValidUrl("https://www.dnd5eapi.co/api/races/elf")).to.be.true;
   });
-  it("returns False when API link is invalid", () => {
-    expect(isValidUrl('https://www.dnd5eapi.co/api/equipment/all-armor'), false).toEqual(false);
+  it("returns False when link does not have https:", () => {
+    expect(isValidUrl("dnd5eapi.co/api/equipment/all-armor")).to.be.false;
+  });
+  it("returns True if the url exists", () => {
+    expect(ifUrlExist("https://www.dnd5eapi.co/api/classes/bard")).to.be.true;
+    expect(ifUrlExist("https://www.dnd5eapi.co/api/classes/monk")).to.be.true;
+    expect(ifUrlExist("https://www.dnd5eapi.co/api/races/human")).to.be.true;
+    expect(ifUrlExist("https://www.dnd5eapi.co/api/races/elf")).to.be.true;
+  });
+  it("returns False when the 404 Error occurs", () => {
+    expect(ifUrlExist("https://www.dnd5eapi.co/api/equipment/all-armor")).to.be.false;
   });
 });
+
+
 
 
 //   it("Array of one element, that returns that elemnt", () => {
