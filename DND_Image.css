@@ -27,18 +27,8 @@ label {
 }
 
 /* Final Page formating */
-section {
-  /* flex-wrap: wrap; */
-  position: relative;
-  left: 10px;
-  top: inherit;
-  /* position: relative; */
-  /* width: 400px;
-  height: 200px;
-  flex-direction: row;
-  float: inherit; */
-  font-weight: bold;
-}
+.indent-1 {float: left; padding-left:12px;}
+.indent-1 section {width: 70%; float: left; padding-left:12px;}
 /* Ending Final Page formating */
 
 /* Dropdown Button */

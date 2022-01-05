@@ -12,7 +12,7 @@
     <h1>Character Builder</h1>
     <p>D&D 5 Character Creator/Generator</p>
   </div>
- 
+
   <!-- Tab links -->
   <div class="tab">
     <button class="tablinks" onclick="openPage(event, 'page_1')">Race</button>
@@ -530,85 +530,101 @@
   <!------------------Print------------------------->
   <div id="page_9" class="tabcontent">
     <h2>Sheet Fromat:</h2>
-    <section>
-      <p>Race: <label id="char_race" type="text"></label></p>
-      <p>Class: <label id="char_class" type="text"></label></p>
-      <p>Level: <label id="char_level" type="text">1</label></p>
-      <p>Experince Points: <label id="char_exp" type="text">0</label></p>
-      <p>Background: <label id="char_background" type="text"></label></p>
-      <p>Alignment: <label id="char_alignment" type="text"></label></p>
-      </br>
-      <p>Armor Class: <label id="char_armor_class" type="text"></label></p>
-      <p>Initative: <label id="char_init" type="text"></label></p>
-      <p>Speed: <label id="char_speed" type="text"></label></p>
-    </section>
-    </br>
-    <section>Ability Score:
-      <p>Strength: <label id="char_STR" type="text"></label></p>
-      <p>Dexterity: <label id="char_DEX" type="text"></label></p>
-      <p>Constitution: <label id="char_CON" type="text"></label></p>
-      <p>Intelligence: <label id="char_INT" type="text"></label></p>
-      <p>Wisdom: <label id="char_WIS" type="text"></label></p>
-      <p>Charisma: <label id="char_CHAR" type="text"></label></p>
-    </section>
-    </br>
-    <p>Proficiency Bonus: <label id="char_bonus" type="text">+2</label></p>
-    <section>
-      <p>Fill in the bubbles for the following Saving Throws:</p>
-      <label id="char_saving_throws" type="text"></label>
-      </br>
-      <p>Fill in the bubbles for the following Skills:<p>
-        <label id="char_skills" type="text"></label>
-        <label id="char_background_skills" type="text"></label>
-    </section>
-    </br>
-    </br>
-    <section>Saving Throws & Skills:
-      <p>Strength & (Str): <label id="char_STR_skill" type="text"></label></p>
-      <p>Dexterity & (Dex): <label id="char_DEX_skill" type="text"></label></p>
-      <p>Constitution & (Con): <label id="char_CON_skill" type="text"></label></p>
-      <p>Intelligence & (Int): <label id="char_INT_skill" type="text"></label></p>
-      <p>Wisdom & (Wis): <label id="char_WIS_skill" type="text"></label></p>
-      <p>Charisma & (Cha): <label id="char_CHAR_skill" type="text"></label></p>
-      </br>
-      <p>Hit Die: <label id="char_die_hit" type="text"></label></p>
-      </br>
-    </section>
-    <section>Hit Points:
-      <p>Hit Points Maximum (Die hit + CON Modifier): <label id="char_max_hit" type="text"></label></p>
-      <p>Current Hit Points: <label id="char_hit" type="text"></label></p>
-    </section>
-    </br>
-    <section>Attack and SpellCasting:
-      <p>Armor: <label id="char_armor" type="text"></label></p>
-      <p>Weapon: <label id="char_weapon" type="text"></label></p>
-      <p>Shield: <label id="char_sheild" type="text"></label></p>
-      <p>Kit: <label id="char_kit" type="text"></label></p>
-      </br>
-      <p>Equiment: <label id="char_equiment" type="text"></label></p>
-    </section>
-    </br>
-    <section>Other Proficiences & Languages:
-      <p>Languages: <label id="char_language" type="text"></label></p>
-      <label id="char_other_languages" type="text"></label>
-      <label id="extra_languages" type="text"></label>
-      <p>Proficiences: <label id="char_other_proficiences" type="text"></label></p>
-    </section>
-    </br>
-    <section>
-      <p>Features & Traits:</p>
-      <p>Traits: <label id="char_traits" type="text"></label></p>
-    </section>
-    </br>
-    <h2>Page 3 Spells:</h2>
-    <section>
-      <p>Spellcasting Class: <label id="char_casting" type="text"></label></p>
-      <p>Spellcasting Ability: <label id="char_ability" type="text"></label></p>
-      <p>Spell Save DC: <label id="char_DC" type="text"></label></p>
-      <p>Spell Bonus: <label id="char_spell_bonus" type="text"></label></p>
-      <p>Level 1 Spells: <label id="char_spells" type="text"></label></p>
-    </section>
+    <section class="indent-1">
+      <section>
+        <p>Race: <label id="char_race" type="text"></label></p>
+        <p>Class: <label id="char_class" type="text"></label></p>
+        <p>Level: <label id="char_level" type="text">1</label></p>
+        <p>Experince Points: <label id="char_exp" type="text">0</label></p>
+        <p>Background: <label id="char_background" type="text"></label></p>
+        <p>Alignment: <label id="char_alignment" type="text"></label></p>
+      </section>
 
+      <section>
+        <p>Armor Class: <label id="char_armor_class" type="text"></label></p>
+        <p>Initative: <label id="char_init" type="text"></label></p>
+        <p>Speed: <label id="char_speed" type="text"></label></p>
+      </section>
+    </section>
+    
+    <section class="indent-1">
+      <section>
+        <h1>Score:</h1>
+        <p>Strength: <label id="char_STR" type="text"></label></p>
+        <p>Dexterity: <label id="char_DEX" type="text"></label></p>
+        <p>Constitution: <label id="char_CON" type="text"></label></p>
+        <p>Intelligence: <label id="char_INT" type="text"></label></p>
+        <p>Wisdom: <label id="char_WIS" type="text"></label></p>
+        <p>Charisma: <label id="char_CHAR" type="text"></label></p>
+      </section>
+
+      <section>
+        <h1>Saving Throws & Skills:</h1>
+        <p>Strength & (Str): <label id="char_STR_skill" type="text"></label></p>
+        <p>Dexterity & (Dex): <label id="char_DEX_skill" type="text"></label></p>
+        <p>Constitution & (Con): <label id="char_CON_skill" type="text"></label></p>
+        <p>Intelligence & (Int): <label id="char_INT_skill" type="text"></label></p>
+        <p>Wisdom & (Wis): <label id="char_WIS_skill" type="text"></label></p>
+        <p>Charisma & (Cha): <label id="char_CHAR_skill" type="text"></label></p>
+      </section>
+    </section>
+    
+    <section class="indent-1">
+      <section>
+        <p>Proficiency Bonus: <label id="char_bonus" type="text">+2</label></p>
+        <p>Fill in the bubbles for the following Saving Throws:</p>
+        <label id="char_saving_throws" type="text"></label>
+        </br>
+        <p>Fill in the bubbles for the following Skills:
+        <p>
+          <label id="char_skills" type="text"></label>
+          <label id="char_background_skills" type="text"></label>
+      </section>
+
+      <section>
+        <h1>Hit Points:</h1>
+        <p>Hit Die: <label id="char_die_hit" type="text"></label></p>
+        <p>Hit Points Maximum (Die hit + CON Modifier): <label id="char_max_hit" type="text"></label></p>
+        <p>Current Hit Points: <label id="char_hit" type="text"></label></p>
+      </section>
+    </section>
+    
+    <section class="indent-1">
+      <section>
+        <h1>Attack and SpellCasting:</h1>
+        <p>Armor: <label id="char_armor" type="text"></label></p>
+        <p>Weapon: <label id="char_weapon" type="text"></label></p>
+        <p>Shield: <label id="char_sheild" type="text"></label></p>
+        <p>Kit: <label id="char_kit" type="text"></label></p>
+        </br>
+        <p>Equiment: <label id="char_equiment" type="text"></label></p>
+      </section>
+      
+      <section>
+        <h1>Other Proficiences & Languages:</h1>
+        <p>Languages: <label id="char_language" type="text"></label></p>
+        <label id="char_other_languages" type="text"></label>
+        <label id="extra_languages" type="text"></label>
+        <p>Proficiences: <label id="char_other_proficiences" type="text"></label></p>
+      </section>
+    </section>
+    
+    <section class="indent-1">
+      <section>
+        <h1>Features & Traits:</h1>
+        <p>Traits: <label id="char_traits" type="text"></label></p>
+      </section>
+      
+      <section>
+        <h2>Page 3 Spells:</h2>
+        <p>Spellcasting Class: <label id="char_casting" type="text"></label></p>
+        <p>Spellcasting Ability: <label id="char_ability" type="text"></label></p>
+        <p>Spell Save DC: <label id="char_DC" type="text"></label></p>
+        <p>Spell Bonus: <label id="char_spell_bonus" type="text"></label></p>
+        <p>Level 1 Spells: <label id="char_spells" type="text"></label></p>
+      </section>
+    </section>
+    
     <iframe src="https://media.wizards.com/2016/dnd/downloads/5E_CharacterSheet_Fillable.pdf" width="100%"
       height="3200px">
     </iframe>
