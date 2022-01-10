@@ -6,25 +6,34 @@
   color: white;
 }
 
+/* Overall style of the Web App */
 body {
   background-color: rgba(107, 0, 0);
   color:white;
 }
 
+/* p {
+  line-height: 1.6;
+} */
+/* End of overall style of the Web App */
+
 /* Setting text sytle and coloring for the boxed section for each tab */
 label {
   font-weight: normal;
   text-transform: none;
+  line-height: 1.6;
+  text-indent: 50%;
   color:rgb(255, 196, 0)
 }
 
 .info_section {
   background-color: hsla(347, 100%, 41%, 0.637);
   color:white;
-  padding-left: 5px;
+  padding-left: 12px;
   text-transform: uppercase;
   font-weight: bold;
 }
+/* End of Setting text sytle and coloring for the boxed section for each tab */
 
 /* Final Page formating */
 .indent-1 {float: left; padding-left:12px;}
