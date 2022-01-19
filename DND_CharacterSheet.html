@@ -33,7 +33,7 @@
     <h2>Race:</h2>
     <p>Chose your character race from below</p>
     <div class="dropdown">
-      <button onclick=raceSelect() id='race_option' class="dropbtn">Race
+      <button onclick="selectionButton('raceDropdown')" id='race_option' class="dropbtn">Race
         <i class="fa fa-caret-down"></i>
       </button>
       <div id="raceDropdown" class="dropdown-content">
@@ -99,7 +99,7 @@
       strengths, and weaknesses are largely defined by its class. A character's class affects a character's
       available skills and abilities</p>
     <div class="dropdown">
-      <button onclick="classSelect()" id='class_option' class="dropbtn">Class
+      <button onclick="selectionButton('classDropdown')" id='class_option' class="dropbtn">Class
         <i class="fa fa-caret-down"></i>
       </button>
       <br />
@@ -163,7 +163,7 @@
     <br />
     <p>Chose your character background from below</p>
     <div class="dropdown">
-      <button onclick="backgroundSelect()" id='background_option' class="dropbtn">Background
+      <button onclick="selectionButton('backgroundDropdown')" id='background_option' class="dropbtn">Background
         <i class="fa fa-caret-down"></i>
       </button>
       <br />
@@ -185,7 +185,7 @@
       and the other describes attitudes toward society and order (lawful, chaotic, or neutral)</p>
     <br />
     <div class="dropdown">
-      <button onclick="alignmentSelect()" id='alignment_option' class="dropbtn">Alignment
+      <button onclick="selectionButton('alignmentDropdown')" id='alignment_option' class="dropbtn">Alignment
         <i class="fa fa-caret-down"></i>
       </button>
       <br />
@@ -302,7 +302,7 @@
     <br />
     <p>Pick your character's class skills from below</p>
     <div class="dropdown">
-      <button onclick="skillSelect()" id='skill_option' class="dropbtn"> Skill
+      <button onclick="selectionButton('skillDropdown')" id='skill_option' class="dropbtn"> Skill
         <i class="fa fa-caret-down"></i>
       </button>
       <br />
@@ -312,7 +312,7 @@
     </div>
 
     <div class="dropdown">
-      <button onclick="skill2Select()" id='skill_option2' class="dropbtn"> Skill
+      <button onclick="selectionButton('skill2Dropdown')" id='skill_option2' class="dropbtn"> Skill
         <i class="fa fa-caret-down"></i>
       </button>
       <br />
@@ -322,7 +322,7 @@
     </div>
 
     <div id="skillOptions3" class="dropdown" style="visibility:hidden">
-      <button onclick="skill3Select()" id='skill_option3' class="dropbtn"> Skill
+      <button onclick="selectionButton('skill3Dropdown')" id='skill_option3' class="dropbtn"> Skill
         <i class="fa fa-caret-down"></i>
       </button>
       <br />
@@ -363,7 +363,7 @@
       <br />
       <p>Pick your character's spells from below</p>
       <div class="dropdown">
-        <button onclick="spellSelect()" id='spell_option' class="dropbtn">Spell
+        <button onclick="selectionButton('spellDropdown')" id='spell_option' class="dropbtn">Spell
           <i class="fa fa-caret-down"></i>
         </button>
         <br />
@@ -373,7 +373,7 @@
       </div>
 
       <div class="dropdown">
-        <button onclick="spellSelect2()" id='spell_option2' class="dropbtn">Spell
+        <button onclick="selectionButton('spellDropdown2')" id='spell_option2' class="dropbtn">Spell
           <i class="fa fa-caret-down"></i>
         </button>
         <br />
@@ -383,7 +383,7 @@
       </div>
 
       <div class="dropdown">
-        <button onclick="spellSelect3()" id='spell_option3' class="dropbtn">Spell
+        <button onclick="selectionButton('spellDropdown3')" id='spell_option3' class="dropbtn">Spell
           <i class="fa fa-caret-down"></i>
         </button>
         <br />
@@ -393,7 +393,7 @@
       </div>
 
       <div class="dropdown">
-        <button onclick="spellSelect4()" id='spell_option4' class="dropbtn">Spell
+        <button onclick="selectionButton('spellDropdown4')" id='spell_option4' class="dropbtn">Spell
           <i class="fa fa-caret-down"></i>
         </button>
         <br />
@@ -423,7 +423,7 @@
     <p>Set your character's allowance below</p>
     <input id="money" type="number"></input>
     <div class="dropdown">
-      <button onclick=moneySelect() id='money_option' class="dropbtn">Currency
+      <button onclick="selectionButton('moneyDropdown')" id='money_option' class="dropbtn">Currency
         <i class="fa fa-caret-down"></i>
       </button>
       <div id="moneyDropdown" class="dropdown-content">
@@ -449,7 +449,7 @@
     <br />
     <p>Pick your character's weapon from below</p>
     <div class="dropdown">
-      <button onclick="weaponSelect()" id='weapon_option' class="dropbtn">Weapon
+      <button onclick="selectionButton('weaponDropdown')" id='weapon_option' class="dropbtn">Weapon
         <i class="fa fa-caret-down"></i>
       </button>
       <br />
@@ -460,7 +460,7 @@
     <br />
     <p>Pick your character's Armor from below</p>
     <div class="dropdown">
-      <button onclick="armorSelect()" id='armor_option' class="dropbtn">Armor
+      <button onclick="selectionButton('armorDropdown')" id='armor_option' class="dropbtn">Armor
         <i class="fa fa-caret-down"></i>
       </button>
       <br />
@@ -471,7 +471,7 @@
     <br />
     <p>Pick your character's shield from below</p>
     <div class="dropdown">
-      <button onclick="shieldSelect()" id='shield_option' class="dropbtn">Shields
+      <button onclick="selectionButton('shieldDropdown')" id='shield_option' class="dropbtn">Shields
         <i class="fa fa-caret-down"></i>
       </button>
       <br />
@@ -482,7 +482,7 @@
     <br />
     <p>Pick your character's kit from below</p>
     <div class="dropdown">
-      <button onclick="kitSelect()" id='kit_option' class="dropbtn">Kits
+      <button onclick="selectionButton('kitDropdown')" id='kit_option' class="dropbtn">Kits
         <i class="fa fa-caret-down"></i>
       </button>
       <br />
@@ -655,83 +655,8 @@
 
     /* When the user clicks on the button,
     toggle between hiding and showing the dropdown content */
-    function raceSelect() {
-      document.getElementById("raceDropdown").classList.toggle("show");
-      console.log("at the dropdowm bar");
-    }
-
-    function classSelect() {
-      document.getElementById("classDropdown").classList.toggle("show");
-      console.log("at the dropdowm bar");
-    }
-
-    function backgroundSelect() {
-      document.getElementById("backgroundDropdown").classList.toggle("show");
-      console.log("at the dropdowm bar");
-    }
-
-    function alignmentSelect() {
-      document.getElementById("alignmentDropdown").classList.toggle("show");
-      console.log("at the dropdowm bar");
-    }
-
-    function moneySelect() {
-      document.getElementById("moneyDropdown").classList.toggle("show");
-      console.log("at the dropdowm bar");
-    }
-
-    function weaponSelect() {
-      document.getElementById("weaponDropdown").classList.toggle("show");
-      console.log("at the dropdowm bar");
-    }
-
-    function armorSelect() {
-      document.getElementById("armorDropdown").classList.toggle("show");
-      console.log("at the dropdowm bar");
-    }
-
-    function shieldSelect() {
-      document.getElementById("shieldDropdown").classList.toggle("show");
-      console.log("at the dropdowm bar");
-    }
-
-    function kitSelect() {
-      document.getElementById("kitDropdown").classList.toggle("show");
-      console.log("at the dropdowm bar");
-    }
-
-    function spellSelect() {
-      document.getElementById("spellDropdown").classList.toggle("show");
-      console.log("at the dropdowm bar");
-    }
-
-    function spellSelect2() {
-      document.getElementById("spellDropdown2").classList.toggle("show");
-      console.log("at the dropdowm bar");
-    }
-
-    function spellSelect3() {
-      document.getElementById("spellDropdown3").classList.toggle("show");
-      console.log("at the dropdowm bar");
-    }
-
-    function spellSelect4() {
-      document.getElementById("spellDropdown4").classList.toggle("show");
-      console.log("at the dropdowm bar");
-    }
-
-    function skillSelect() {
-      document.getElementById("skillDropdown").classList.toggle("show");
-      console.log("at the dropdowm bar");
-    }
-
-    function skill2Select() {
-      document.getElementById("skill2Dropdown").classList.toggle("show");
-      console.log("at the dropdowm bar");
-    }
-
-    function skill3Select() {
-      document.getElementById("skill3Dropdown").classList.toggle("show");
+    function selectionButton(dropdownButton) {
+      document.getElementById(dropdownButton).classList.toggle("show");
       console.log("at the dropdowm bar");
     }
 
