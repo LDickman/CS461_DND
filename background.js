@@ -64,16 +64,7 @@ async function printAlignmentData(data) {
 
 async function printBackgroundData(data) {
     console.log("background" + data);
-    const { name, language_options, starting_proficiencies, starting_equipment, feature,
-        starting_equipment_options, personality_traits, ideals, bonds, flaws } = data;
-
-
-    // let beginnerSkills = document.getElementById('skills_needed');
-    // let userBackground = document.getElementById('char_background');
-    // let wantedLanguages = document.getElementById("languages_options");
-    // let background_info = document.getElementById('background_des');
-    // let background_Skill_info = document.getElementById('background_Skill_info');
-    // let language_Array;
+    const { name, language_options, starting_proficiencies, feature } = data;
 
     if (language_options == undefined) {
         wantedLanguages.textContent = "None";
@@ -102,11 +93,6 @@ async function printBackgroundData(data) {
 
 async function printExtraBackgroundData(input) {
     console.log("background" + input);
-    // let userBackground = document.getElementById('char_background');
-    // let beginnerSkills = document.getElementById('skills_needed');
-    // let wantedLanguages = document.getElementById("languages_options");
-    // let background_info = document.getElementById('background_des');
-    // let background_Skill_info = document.getElementById('background_Skill_info');
     userBackground.textContent = input;
 
     if (input == "criminal") {
