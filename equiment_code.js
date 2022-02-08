@@ -32,6 +32,12 @@ let stealth_info = document.getElementById('stealth_info');
 let str_needed = document.getElementById('musle_info');
 let damageRoll = document.getElementById('damage_roll');
 
+let money_total = 0;
+let money_total_armor = 0;
+let money_total_sheild = 0;
+let money_total_kit = 0;
+let money_total_weapon = 0;
+
 export async function setupPage7() {
     console.log("starting 7");
     weaponChoice();
@@ -342,11 +348,6 @@ function calculateMoneySpent(spending_money, money_leftover_total, cost, cost_va
 }
 
 function TotalMoneySpent(money_leftover_total, armor_price, shield_price, weapon_price, kit_price) {
-    let money_total = 0;
-    let money_total_armor = 0;
-    let money_total_sheild = 0;
-    let money_total_kit = 0;
-    let money_total_weapon = 0;
     if (armor_price.value == 0) {
         armor_price.value = 0;
     } else {
@@ -367,14 +368,6 @@ function TotalMoneySpent(money_leftover_total, armor_price, shield_price, weapon
     } else {
         money_total_kit = parseInt(money_leftover_total.value) - kit_price.value;
     }
-    console.log("armor_value");
-    console.log(armor_price.value);
-    console.log("sheild_value");
-    console.log(shield_price.value);
-    console.log("weapon_value");
-    console.log(weapon_price.value);
-    console.log("kit_value");
-    console.log(kit_price.value);
     money_total = parseInt(money_leftover_total.value) - (money_total_kit + money_total_sheild + money_total_weapon + money_total_armor);
     money_leftover_total.textContent = money_total;
 }
