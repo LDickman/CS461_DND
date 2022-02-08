@@ -60,31 +60,47 @@ export async function equimentCategoryAsk(input) {
 }
 
 async function certianEquimentsAsk(input) {
-    console.log("Equiment for: " + input);
-    let url = api_OneEquiment + input;
-    const data = await fetchDataFromAPI(url);
-    printInfo_One_Equiment(data);
+    if (input == "None"){
+        descriptionIsSetToNone();
+    } else {
+        console.log("Equiment for: " + input);
+        let url = api_OneEquiment + input;
+        const data = await fetchDataFromAPI(url);
+        printInfo_One_Equiment(data);
+    }
 }
 
 async function armorAsk(input) {
-    console.log("Equiment for: " + input);
-    let url = api_OneEquiment + input;
-    const data = await fetchDataFromAPI(url);
-    printArmorInfo(data);
+    if (input == "None") {
+        descriptionIsSetToNone();
+    } else {
+        console.log("Equiment for: " + input);
+        let url = api_OneEquiment + input;
+        const data = await fetchDataFromAPI(url);
+        printArmorInfo(data);
+    }
 }
 
 async function sheildAsk(input) {
-    console.log("Equiment for: " + input);
-    let url = api_OneEquiment + input;
-    const data = await fetchDataFromAPI(url);
-    printSheildInfo(data);
+    if (input == "None") {
+        descriptionIsSetToNone();
+    } else {
+        console.log("Equiment for: " + input);
+        let url = api_OneEquiment + input;
+        const data = await fetchDataFromAPI(url);
+        printSheildInfo(data);
+    }
 }
 
 async function weaponAsk(input) {
-    console.log("Equiment for: " + input);
-    let url = api_OneEquiment + input;
-    const data = await fetchDataFromAPI(url);
-    printWeaponInfo(data);
+    if (input == "None") {
+        descriptionIsSetToNone();
+    } else {
+        console.log("Equiment for: " + input);
+        let url = api_OneEquiment + input;
+        const data = await fetchDataFromAPI(url);
+        printWeaponInfo(data);
+    }
 }
 
 function getValueofCurrency(input) {
@@ -105,16 +121,10 @@ function getValueofCurrency(input) {
         console.log("pp");
         money_value = "pp";
     }
-    //let spending_money = document.getElementById("money");
     console.log("spending_money in dropdown menue");
     console.log(spending_money.value);
-    //let money_leftover = document.getElementById("money_left");
     money_leftover.textContent = spending_money.value;
     money_leftover.value = spending_money.value;
-    // let armor = document.getElementById("money_armor");
-    // let weapon = document.getElementById("money_weapon");
-    // let kit = document.getElementById("money_kit");
-    // let shield = document.getElementById("money_sheild");
     settingValuestoZero(armor, weapon, shield, kit);
     console.log("money_value");
     console.log(money_value);
@@ -165,8 +175,7 @@ async function printArmorInfo(data) {
 }
 
 async function printSheildInfo(data) {
-    const { name, index, equipment_category, armor_category,
-        armor_class, str_minimum, stealth_disadvantage, weight, cost } = data;
+    const { name, armor_class, str_minimum, stealth_disadvantage, weight, cost } = data;
 
     console.log("spending_money");
     console.log(spending_money.value);
@@ -177,17 +186,6 @@ async function printSheildInfo(data) {
     let money_sheild = document.getElementById("money_sheild");
     let userShield = document.getElementById("char_sheild");
     userShield.textContent = name;
-
-    // let equimentInfo = document.getElementById('equiment_name');
-    // let equimentPortect = document.getElementById("armor_prot");
-    // let weightInfo = document.getElementById('weight');
-    // let rangeInfo = document.getElementById('range');
-    // let danageInfo = document.getElementById('damage_info');
-    // let costrInfo = document.getElementById('cost_info');
-    // let equimentINfo = document.getElementById('equiment_info');
-    // let stealth_info = document.getElementById('stealth_info');
-    // let str_needed = document.getElementById('musle_info');
-    // let damageRoll = document.getElementById('damage_roll');
 
     equimentInfo.textContent = name;
     weightInfo.textContent = weight;
@@ -221,15 +219,6 @@ async function printWeaponInfo(data) {
     let attackBonus = 2 + parseInt(userSTR.textContent);
     userWeapon.textContent = name + "      Attack Bonus: " + attackBonus + "      Damage Type: " + damage.damage_dice + " " + damage.damage_type.name;
 
-    let equimentInfo = document.getElementById('equiment_name');
-    let weightInfo = document.getElementById('weight');
-    let rangeInfo = document.getElementById('range');
-    let range_CAT = document.getElementById('range_cat');
-    let danageInfo = document.getElementById('damage_info');
-    let costrInfo = document.getElementById('cost_info');
-    let equimentINfo = document.getElementById('equiment_info');
-    let damageRoll = document.getElementById('damage_roll');
-
     equimentInfo.textContent = name;
     weightInfo.textContent = weight;
     rangeInfo.textContent = "" + range["normal"] + " feet. Long is " + range["long"] + "";
@@ -238,6 +227,10 @@ async function printWeaponInfo(data) {
     console.log(cost["quantity"]);
     costrInfo.textContent = "" + cost["quantity"] + " " + cost["unit"] + "";
     equimentINfo.textContent = "None";
+    stealth_info.textContent = "None"
+    str_needed.textContent = "None"
+    equimentPortect.textContent = "None";
+    userArmorProtect.textContent = "None"
     damageRoll.textContent = damage.damage_dice;
     money_weapon.textContent = calculateMoneySpent(spending_money, money_leftover, cost["quantity"], cost["unit"]);
     money_weapon.value = calculateMoneySpent(spending_money, money_leftover, cost["quantity"], cost["unit"]);
@@ -247,7 +240,6 @@ async function printWeaponInfo(data) {
     TotalMoneySpent(money_leftover, armor, sheild, money_weapon, kit);
 }
 
-//// Prints information about the equiment that is not armor, a sheild, or a weapon
 async function printInfo_One_Equiment(data) {
     const { index, name, cost, weight, desc } = data;
 
@@ -261,15 +253,6 @@ async function printInfo_One_Equiment(data) {
     let userKit = document.getElementById("char_kit");
     userKit.textContent = name;
 
-    // let equimentInfo = document.getElementById('equiment_name');
-    // let weightInfo = document.getElementById('weight');
-    // let rangeInfo = document.getElementById('range');
-    // let range_CAT = document.getElementById('range_cat');
-    // let danageInfo = document.getElementById('damage_info');
-    // let costrInfo = document.getElementById('cost_info');
-    // let equimentINfo = document.getElementById('equiment_info');
-    // let danageRoll = document.getElementById('damage_roll');
-
     equimentInfo.textContent = name;
     weightInfo.textContent = weight;
     rangeInfo.textContent = "None";
@@ -277,15 +260,14 @@ async function printInfo_One_Equiment(data) {
     danageInfo.textContent = "None";
     costrInfo.textContent = "" + cost["quantity"] + " " + cost["unit"] + "";
     equimentINfo.textContent = desc;
-    danageRoll.textContent = "None";
+    stealth_info.textContent = "None"
+    str_needed.textContent = "None"
+    damageRoll.textContent = "None";
     money_kit.textContent = calculateMoneySpent(spending_money, money_leftover, cost["quantity"], cost["unit"]);
     money_kit.value = calculateMoneySpent(spending_money, money_leftover, cost["quantity"], cost["unit"]);
     TotalMoneySpent(money_leftover, armor, sheild, weapon, money_kit);
 }
 
-/// Converts the cost of the item to what the player set as thier limit 
-// Such as: play has 500 sp, but the weapon costs 30 gp so this functions,
-// converts what the 30 gp equals to in sp
 function calculateMoneySpent(spending_money, money_leftover_total, cost, cost_value) {
     let total = 0;
     let currecny = money_value;
@@ -359,8 +341,6 @@ function calculateMoneySpent(spending_money, money_leftover_total, cost, cost_va
     return total;
 }
 
-////Takes all the money spend on certian items and add it together. Then subtact that total with 
-// the intial limit amount the user set
 function TotalMoneySpent(money_leftover_total, armor_price, shield_price, weapon_price, kit_price) {
     let money_total = 0;
     let money_total_armor = 0;
@@ -397,4 +377,21 @@ function TotalMoneySpent(money_leftover_total, armor_price, shield_price, weapon
     console.log(kit_price.value);
     money_total = parseInt(money_leftover_total.value) - (money_total_kit + money_total_sheild + money_total_weapon + money_total_armor);
     money_leftover_total.textContent = money_total;
+}
+
+function descriptionIsSetToNone() {
+    equimentInfo.textContent = "None";
+    weightInfo.textContent = "None";
+    rangeInfo.textContent = "None";
+    range_CAT.textContent = "None";
+    danageInfo.textContent = "None";
+    costrInfo.textContent = "None";
+    equimentINfo.textContent = "None";
+    stealth_info.textContent = "None"
+    str_needed.textContent = "None"
+    equimentPortect.textContent = "None";
+    userArmorProtect.textContent = "None"
+    damageRoll.textContent = "None";
+    money_weapon.textContent = "None";
+    money_weapon.value = "None"
 }

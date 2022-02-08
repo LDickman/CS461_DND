@@ -198,7 +198,6 @@ function rollForAllAbilityScores() {
     dex.textContent = rollsForScore();
 }
 
-/// Clears all the ability score, so that the pervious scores are not still taken into effect
 export function clearAbilityScoreBonuses() {
     document.getElementById("CON_bonus").textContent = 0;
     document.getElementById("CHA_bonus").textContent = 0;
@@ -208,15 +207,12 @@ export function clearAbilityScoreBonuses() {
     document.getElementById("WIS_bonus").textContent = 0;
 }
 
-// This generates 1 roll for the 6 sided dice that has possible to roll from numbers 1 - 6
 export function rollOneDice() {
     let min = Math.ceil(1);
     let max = Math.floor(6);
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-// This generates all 3 rolls of a 6-sided dice for 1 ability score
-// EX: rolls: 1, 3, 4   Ability score is 8
 export function rollsForScore() {
     var totalRolls = [];
     for (var i = 0; i <= 2; i++) {

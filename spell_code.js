@@ -12,6 +12,9 @@ let userINT_skill = document.getElementById("INT_bonus");
 let userDieRoll = document.getElementById('hit');
 let spell_descirtion = document.getElementById('spell_ability_info');
 let extra_spell_descrition = document.getElementById('extra_spell_ability_info');
+let spellRange = document.getElementById('spell_range');
+let spellInfo = document.getElementById('spell_info');
+let spellName = document.getElementById('spell_name');
 
 export async function setupPage6() {
     console.log("starting 6");
@@ -60,9 +63,9 @@ async function printInfo_One_Spell(data) {
     const { name, desc, range } = data;
 
     console.log(name);
-    let spellRange = document.getElementById('spell_range');
-    let spellInfo = document.getElementById('spell_info');
-    let spellName = document.getElementById('spell_name');
+    // let spellRange = document.getElementById('spell_range');
+    // let spellInfo = document.getElementById('spell_info');
+    // let spellName = document.getElementById('spell_name');
 
     spellName.textContent = name;
     spellInfo.textContent = desc;
@@ -80,9 +83,9 @@ async function printSpellsData(data) {
 
     spellsAllowed.textContent = getNames(results);
 
-    let spellRange = document.getElementById('spell_range');
-    let spellInfo = document.getElementById('spell_info');
-    let spellName = document.getElementById('spell_name');
+    // let spellRange = document.getElementById('spell_range');
+    // let spellInfo = document.getElementById('spell_info');
+    // let spellName = document.getElementById('spell_name');
 
     if (count != 0) {
         await createListOfSpellOptions(results, list);
@@ -119,15 +122,13 @@ async function printSpellCastingData(data) {
     let array_size = array_spellcasting_info.length;
     console.log(array_size);
     list.onclick = function (event) {
-        let target = event.target; // Getting which <li> was clicked
-        let id = target.id; // Getting the value of the li that was clicked
+        let target = event.target; 
+        let id = target.id;
         console.log(id);
         checkUserClick(id, array_size, array_spellcasting, array_spellcasting_info);
     }
 }
 
-/// Instead of having a long listed created in HTML, this generates the list in 
-/// JavaScript of the Spells options, depending on the class selected
 async function createListOfSpellOptions(data, list) {
     let array_spells;
     if (data == "None") {

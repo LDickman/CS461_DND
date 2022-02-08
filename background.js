@@ -3,6 +3,14 @@ const api_alignment = 'https://www.dnd5eapi.co/api/alignments/';
 const api_background = 'https://www.dnd5eapi.co/api/backgrounds/';
 let userBackgroundSkills = document.getElementById("char_background_skills");
 
+let beginnerSkills = document.getElementById('skills_needed');
+let userBackground = document.getElementById('char_background');
+let wantedLanguages = document.getElementById("languages_options");
+let background_info = document.getElementById('background_des');
+let background_Skill_info = document.getElementById('background_Skill_info');
+
+let language_Array;
+
 export async function setupPage3() {
     console.log("starting 3");
     backgroundChoice();
@@ -60,13 +68,12 @@ async function printBackgroundData(data) {
         starting_equipment_options, personality_traits, ideals, bonds, flaws } = data;
 
 
-    let beginnerSkills = document.getElementById('skills_needed');
-    let userBackground = document.getElementById('char_background');
-    let wantedLanguages = document.getElementById("languages_options");
-    let background_info = document.getElementById('background_des');
-    let background_Skill_info = document.getElementById('background_Skill_info')
-
-    let language_Array;
+    // let beginnerSkills = document.getElementById('skills_needed');
+    // let userBackground = document.getElementById('char_background');
+    // let wantedLanguages = document.getElementById("languages_options");
+    // let background_info = document.getElementById('background_des');
+    // let background_Skill_info = document.getElementById('background_Skill_info');
+    // let language_Array;
 
     if (language_options == undefined) {
         wantedLanguages.textContent = "None";
@@ -95,30 +102,17 @@ async function printBackgroundData(data) {
 
 async function printExtraBackgroundData(input) {
     console.log("background" + input);
-    let userBackground = document.getElementById('char_background');
-    let beginnerSkills = document.getElementById('skills_needed');
-    let wantedLanguages = document.getElementById("languages_options");
-    let background_info = document.getElementById('background_des');
-    let background_Skill_info = document.getElementById('background_Skill_info');
+    // let userBackground = document.getElementById('char_background');
+    // let beginnerSkills = document.getElementById('skills_needed');
+    // let wantedLanguages = document.getElementById("languages_options");
+    // let background_info = document.getElementById('background_des');
+    // let background_Skill_info = document.getElementById('background_Skill_info');
     userBackground.textContent = input;
 
     if (input == "criminal") {
         beginnerSkills.textContent = "Deception, Stealth";
         wantedLanguages.textContent = "None";
-        background_info.textContent = 'You are an experienced criminal with a history of' +
-            ' breaking the law. You have spent a lot of time among ' +
-            'other criminals and still have contacts within the' +
-            'criminal underworld. You’re far closer than most people ' +
-            'to the world of murder, theft, and violence that pervades ' +
-            'the underbelly of civilization, and you have survived up to ' +
-            'this point by flouting the rules and regulations of society ' +
-            'You have a reliable and trustworthy contact who acts as ' +
-            'your liaison to a network of other criminals. You know ' +
-            'how to get messages to and from your contact, even over ' +
-            'great distances; specifically, you know ' +
-            'the local messengers, corrupt caravan masters, ' +
-            'and seedy sailors who can deliver messages for you.';
-
+        background_info.textContent = 'You are an experienced criminal with a history of breaking the law. You have spent a lot of time among other criminals and still have contacts within the criminal underworld. You’re far closer than most people to the world of murder, theft, and violence that pervades the underbelly of civilization, and you have survived up to this point by flouting the rules and regulations of society. You have a reliable and trustworthy contact who acts as your liaison to a network of other criminals. You know how to get messages to and from your contact, even over great distances; specifically, you know the local messengers, corrupt caravan masters, and seedy sailors who can deliver messages for you.';
         background_Skill_info.textContent = "Deception, Stealth";
         userBackgroundSkills.textContent = "Deception, Stealth";
     } else if (input == "folk-hero") {

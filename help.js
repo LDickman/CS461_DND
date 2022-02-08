@@ -4,7 +4,6 @@ let char_spell_list = document.getElementById("char_spells");
 let extra_laugunage = document.getElementById("extra_languages");
 let lanuages_slection = new Array;
 
-/// Function that returns the from API
 export async function fetchDataFromAPI(url) {
     const response = await fetch(url);
     const data = await response.json();
@@ -31,7 +30,6 @@ export function clickOnDropDownMenu(ul, func, button) {
     });
 }
 
-// Creates the list for the dropdown menue in the HTML
 export async function getListToHTML(array, list) {
     array.forEach((item) => {
         let li = document.createElement("li");
@@ -42,8 +40,6 @@ export async function getListToHTML(array, list) {
     })
 }
 
-/// Function that gets the names within the object Array 
-/// within the free API access DND e5 documentation and have it converted to a string
 export function getNames(link) {
     let empty = "None";
     if (dataValid(link)) {
@@ -62,30 +58,24 @@ export function getArrayDescription(link) {
         let array = link.map(function (el) {
             return el.desc;
         });
-        return array;//.join(',     ');
+        return array;
     } else {
         return empty;
     }
 }
 
-/// Function that gets the names within the object Array 
-/// within the free API access DND e5 documentation and have it converted to a Array, 
-// This function is to help to create the list of options with JS instead within the HTML section
 export function getArrayOfNames(link) {
     let empty = "None";
     if (dataValid(link)) {
         let array = link.map(function (el) {
             return el.name;
         });
-        return array;//.join(',     ');
+        return array;
     } else {
         return empty;
     }
 }
 
-/// Function that gets the index within the object Array 
-/// within the free API access DND e5 documentation and have it converted to a Array, 
-// This function is to help to create the list of options with JS instead within the HTML section
 export function getArrayOfIndexs(link) {
     let empty = "None";
     if (dataValid(link)) {
@@ -98,9 +88,6 @@ export function getArrayOfIndexs(link) {
     }
 }
 
-
-/// Function that gets the name within the object Array called info
-/// within the free API access DND e5 documentation and have it converted to a string 
 export function getInfoNames(link) {
     let empty = "None";
     if (dataValid(link)) {
@@ -113,9 +100,6 @@ export function getInfoNames(link) {
     }
 }
 
-
-/// Function that gets the chooses within the object Array
-/// within the free API access DND e5 documentation and have it converted to a String 
 export function getNumberChoose(link) {
     let empty = "None";
     if (dataValid(link)) {
@@ -138,8 +122,6 @@ export function getArrayNumberChooses(link) {
     }
 }
 
-/// Function that gets the bonus within the object Array called info
-/// within the free API access DND e5 documentation and have it converted to a string 
 export function getNumberBonuses(link) {
     let empty = "None";
     if (dataValid(link)) {
@@ -152,9 +134,6 @@ export function getNumberBonuses(link) {
     }
 }
 
-/// Function that gets the bonuses within the object Array 
-/// within the free API access DND e5 documentation and have it converted to a Array, 
-// This function is to help to create the list of options with JS instead within the HTML section
 export function getArrayOfNumberBonuses(link) {
     let empty = "None";
     let emptyArray = new Array;
@@ -169,9 +148,6 @@ export function getArrayOfNumberBonuses(link) {
     }
 }
 
-/// Function that gets the ability_score within the object Array 
-/// within the free API access DND e5 documentation and have it converted to a Array, 
-// This function is to help to create the list of options with JS instead within the HTML section
 export function getNameBonuses(link) {
     let empty = "None";
     let emptyArray = new Array;
@@ -186,8 +162,6 @@ export function getNameBonuses(link) {
     }
 }
 
-/// This function checks if the link or data provided from the data is 
-// undefined or not
 function dataValid(data) {
     if (data == undefined) {
         return false;
@@ -196,7 +170,6 @@ function dataValid(data) {
     }
 }
 
-/// Sets the value of the score, so that nothing is undefined
 export function settingValueOfScore(score) {
     if (score.value == undefined) {
         score.textContent = 0;
@@ -204,12 +177,10 @@ export function settingValueOfScore(score) {
     }
 }
 
-/// Used to clear the list from pervious selection
 export function clearAllFromList(ul) {
     while (ul.firstChild) ul.removeChild(ul.firstChild);
 }
 
-/// creates list of items in checkbox format
 export function getListCheckBoxes(array, list) {
     console.log("Array");
     console.log(array);
@@ -265,7 +236,6 @@ function settingLimitLanguageCheckBox() {
     return number;
 }
 
-/// Creates the list of all the indexs within the weapons/armor/sheilds/kits equiment-catergoy API
 export async function getEquimentListData(data) {
     const { index, name, equipment } = data;
     console.log("Within getEquimentListData")
@@ -278,8 +248,6 @@ export async function getEquimentListData(data) {
     return equiment_options_Array;
 }
 
-/// Instead of having a long listed created in HTML, this generates the list in 
-/// JavaScript of the skill options
 export async function createListOfProficiencyOptions(array, list) {
     let items = array.toString().split(",");
     let skill_names = new Array;
@@ -292,8 +260,6 @@ export async function createListOfProficiencyOptions(array, list) {
     await getListToHTML(skill_names, list);
 }
 
-/// Instead of having a long listed created in HTML, this generates the list in 
-/// JavaScript of the equiment options, depending on the class selected
 export async function createListOfEquimentOptions(data, list, list_2, list_3, list_4) {
     console.log("Equiment");
     console.log(data);
@@ -302,7 +268,7 @@ export async function createListOfEquimentOptions(data, list, list_2, list_3, li
     let array_weapon = new Array;
     let All_weapon_indexs = new Array
     let array_shield = new Array;
-    let array_kit = new Array;
+    let array_kit = ["None"];
     for (let i = 0; i < array_equiment.length; i++) {
         if (array_equiment[i].includes("all-armor")) {
             array_armor.push("armor");
@@ -316,7 +282,6 @@ export async function createListOfEquimentOptions(data, list, list_2, list_3, li
             array_weapon.push(array_equiment[i]);
         }
     }
-
     console.log("array_weapon");
     console.log(array_weapon);
 
@@ -349,10 +314,7 @@ export async function createListOfEquimentOptions(data, list, list_2, list_3, li
     }
     console.log("idex_names");
     console.log(idex_names_weapons);
-    // // All_weapon_indexs.push(array_weapon);
-    // console.log("All_weapon_indexs")
-    // console.log(All_weapon_indexs);
-
+    
     let items = array_weapon.toString().split(",");
     for (let i = 0, j = items.length; i < j; i++) {
         idex_names_weapons.push(items[i]);
@@ -382,9 +344,10 @@ export async function creatingListofArrayForEquiment(array) {
 
     let items = new_array.toString().split(",");
     let equiment_names = new Array;
-
+    
     for (let i = 0, j = items.length; i < j; i++) {
         equiment_names.push(items[i]);
     }
+    equiment_names.push("None");
     return equiment_names;
 }
