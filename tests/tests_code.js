@@ -22,7 +22,7 @@ describe("Verifying that strings are actual web app links and the links are avai
   });
 });
 
-// EX: rolls: 1, 3, 4   Ability score is 8
+
 describe("Fucntions within the ability Score tab: rollsForScore, and calcForAbilityScoreModifier", () => {
   it("rollOneDice: randomly rolls a number", () => {
     expect(isValidUrl("https://www.dnd5eapi.co/api/classes/bard")).to.be.true;
@@ -57,5 +57,26 @@ describe("Fucntions within the ability Score tab: rollsForScore, and calcForAbil
     expect(calcForAbilityScoreModifier(1, 14)).to.deep.equal(3);
     expect(calcForAbilityScoreModifier(2, 16)).to.deep.equal(5);
     expect(calcForAbilityScoreModifier(1, 18)).to.deep.equal(5);
+  });
+});
+
+describe("Verifying my that my functions are getting the correct data", () => {
+  it("returns the name of the race", () => {
+    expect(printDataOfName("https://www.dnd5eapi.co/api/races/human")) === ('Human');
+    expect(printDataOfName("https://www.dnd5eapi.co/api/races/dwarf")) === ('Dwarf');
+    expect(printDataOfName("https://www.dnd5eapi.co/api/races/gnome")) === ('Gnome');
+    expect(printDataOfName("https://www.dnd5eapi.co/api/races/elf")) === ('Elf');
+  });
+
+  it("returns the name of the class", () => {
+    expect(printDataOfName("https://www.dnd5eapi.co/api/classes/monk")) === ('Monk');
+    expect(printDataOfName("https://www.dnd5eapi.co/api/classes/bard")) === ('Bard');
+  });
+
+  it("returns the list of the langaues", () => {
+    expect(printDataArray("https://www.dnd5eapi.co/api/races/human")) === ('Common, Elvish');
+    expect(printDataArray("https://www.dnd5eapi.co/api/races/dwarf")) === ('Common, Dwarvish');
+    expect(printDataArray("https://www.dnd5eapi.co/api/races/gnome")) === ('Common, Gnomish');
+    expect(printDataArray("https://www.dnd5eapi.co/api/races/elf")) === ('Common, Elvish');
   });
 });

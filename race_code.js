@@ -52,21 +52,6 @@ async function getLanuage() {
 
 
 async function printRaceData(data) {
-    // let raceName = document.getElementById('char_race');
-    // let userSpeed = document.getElementById("char_speed");
-    // let race_page1_reults = document.querySelector("#results");
-    // let race_page1_name = document.querySelector('#name');
-    // let race_page1_speed = document.querySelector('#speed_race');
-    // let race_page1_size = document.querySelector('#size');
-    // let race_page1_age = document.querySelector('#race-age');
-    // let race_page1_aligemnt = document.querySelector('#race-alignment');
-    // let race_page1_language = document.querySelector('#language');
-    // let race_page1_weapon = document.querySelector("#weapon");
-    // let race_page1_subraces = document.querySelector("#subraces");
-    // let race_page1_bonuses = document.querySelector("#bonuses");
-    // let userRaceTraits = document.getElementById("char_traits");
-    // let Languagelist = document.getElementById("languageList");
-    // let userRaceLanguages = document.getElementById("char_language");
     clearAbilityScoreBonuses();
     clearAllFromList(Languagelist);
     console.log(data);
