@@ -23,21 +23,17 @@ let Languagelist = document.getElementById("languageList");
 let userRaceLanguages = document.getElementById("char_language");
 
 export async function setupPage1() {
-    console.log("starting");
     raceChoice();
 }
 
 function raceChoice() {
     let ul = document.getElementById('raceList');
     let button = document.getElementById('race_option');
-    console.log(ul);
     clickOnDropDownMenu(ul, raceAsk, button);
 }
 
 async function raceAsk(input) {
-    console.log("Race: " + input);
     let url = api_race + input;
-    console.log(url);
     const data = await fetchDataFromAPI(url);
     getLanuage();
     printRaceData(data);
@@ -45,7 +41,6 @@ async function raceAsk(input) {
 
 async function getLanuage() {
     let url = api_language;
-    console.log(url);
     const data = await fetchDataFromAPI(url);
     printLangaugeList(data);
 }
@@ -54,18 +49,14 @@ async function getLanuage() {
 async function printRaceData(data) {
     clearAbilityScoreBonuses();
     clearAllFromList(Languagelist);
-    console.log(data);
     const { name, speed, ability_bonuses, alignment, age, size_description, starting_proficiencies,
         starting_proficiency_options, languages, language_desc, traits, subraces } = data;
 
 
     await gettingSkillsDataOfRace(starting_proficiency_options);
 
-    console.log("Name " + name);
     race_laguages = getArrayOfNames(languages);
     userRaceLanguages.textContent =  getNames(languages);
-    console.log("race_laguages");
-    console.log(race_laguages);
     race_page1_reults.textContent = getNames(traits);
     userRaceTraits.textContent = getNames(traits);
     race_page1_name.textContent = name;
@@ -81,7 +72,6 @@ async function printRaceData(data) {
     race_page1_subraces.textContent = getNames(subraces);
     race_page1_bonuses.textContent = getNumberBonuses(ability_bonuses);
     printBonusData(ability_bonuses);
-    console.log("printing");
 }
 
 async function printLangaugeList(data) {
@@ -93,9 +83,6 @@ async function printLangaugeList(data) {
 
 async function createListOfLaguageOptions(array, list) {
     let items = array;
-    console.log("createListOfLaguageOptions");
-    console.log(array);
-    console.log(race_laguages);
     for (let j = 0; j < items.length; j++) {
         for (let i = 0; i < race_laguages.length; i++) {
             if (items[j] === race_laguages[i]) {
@@ -105,9 +92,6 @@ async function createListOfLaguageOptions(array, list) {
             }
         }
     }
-    console.log("language_names");
-    console.log(items);
-
     getListCheckBoxes(items, list);
 }
 

@@ -7,18 +7,14 @@ let lanuages_slection = new Array;
 export async function fetchDataFromAPI(url) {
     const response = await fetch(url);
     const data = await response.json();
-    console.log(data);
     return data;
 }
 
 export function clickOnDropDownMenu(ul, func, button) {
     let items = ul.getElementsByTagName('li');
-    console.log(button.textContent);
-    console.log(items);
     ul.addEventListener("click", function (e) {
         for (let i = 0; i < items.length; i++) {
             if (e.target == items[i]) {
-                console.log(items[i].textContent);
                 func(items[i].textContent);
                 button.textContent = items[i].textContent;
                 let spellArray = [document.getElementById('spell_option').textContent, document.getElementById('spell_option2').textContent, document.getElementById('spell_option3').textContent, document.getElementById('spell_option4').textContent];
@@ -182,8 +178,6 @@ export function clearAllFromList(ul) {
 }
 
 export function getListCheckBoxes(array, list) {
-    console.log("Array");
-    console.log(array);
     for (let i = 0; i < array.length; i++) {
         let checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
@@ -217,7 +211,6 @@ function checkboxSlecetion(list, limit) {
                 }
             }
             if (checkedcount > limit) {
-                console.log("You can select maximum of " + limit + " checkboxes.");
                 alert("You can select maximum of " + limit + " checkboxes.");
                 this.checked = false;
             }
@@ -238,13 +231,9 @@ function settingLimitLanguageCheckBox() {
 
 export async function getEquimentListData(data) {
     const { index, name, equipment } = data;
-    console.log("Within getEquimentListData")
-
     let equiment_options_Array = equipment.map(function (el) {
         return el.index;
     });
-    console.log("equiment_options_Array");
-    console.log(equiment_options_Array);
     return equiment_options_Array;
 }
 
@@ -261,8 +250,6 @@ export async function createListOfProficiencyOptions(array, list) {
 }
 
 export async function createListOfEquimentOptions(data, list, list_2, list_3, list_4) {
-    console.log("Equiment");
-    console.log(data);
     let array_equiment = getArrayOfIndexs(data);
     let array_armor = new Array;
     let array_weapon = new Array;
@@ -282,14 +269,10 @@ export async function createListOfEquimentOptions(data, list, list_2, list_3, li
             array_weapon.push(array_equiment[i]);
         }
     }
-    console.log("array_weapon");
-    console.log(array_weapon);
 
     for (let i = 0; i < array_weapon.length; i++) {
         if (array_weapon[i].includes("-weapons")) {
-            console.log("Array index: " + array_weapon[i]);
             let data = await equimentCategoryAsk(array_weapon[i]);
-            console.log("All_weapon_indexs");
             All_weapon_indexs.push(data);
             array_weapon.splice(i, 1);
             i--;
@@ -298,13 +281,12 @@ export async function createListOfEquimentOptions(data, list, list_2, list_3, li
             i--;
         }
     }
-    console.log("After Removing certian elements from array_weapon");
+
     for (let i = 0; i < array_weapon.length; i++) {
         let word = array_weapon[i]
         let new_word = word.slice(0, word.length - 1);
         array_weapon[i] = new_word;
     }
-    console.log(array_weapon);
 
     let string_of_indexs = All_weapon_indexs.toString().split(",");
     let idex_names_weapons = new Array;
@@ -312,19 +294,13 @@ export async function createListOfEquimentOptions(data, list, list_2, list_3, li
     for (let i = 0, j = string_of_indexs.length; i < j; i++) {
         idex_names_weapons.push(string_of_indexs[i]);
     }
-    console.log("idex_names");
-    console.log(idex_names_weapons);
     
     let items = array_weapon.toString().split(",");
     for (let i = 0, j = items.length; i < j; i++) {
         idex_names_weapons.push(items[i]);
     }
 
-    console.log("array_armor");
-    console.log(array_armor);
     let armor_names = await creatingListofArrayForEquiment(array_armor);
-    console.log("armor names");
-    console.log(armor_names);
     let shield_names = await creatingListofArrayForEquiment(array_shield);
 
     await getListToHTML(idex_names_weapons, list);
@@ -336,9 +312,7 @@ export async function createListOfEquimentOptions(data, list, list_2, list_3, li
 export async function creatingListofArrayForEquiment(array) {
     let new_array = new Array;
     for (let i = 0; i < array.length; i++) {
-        console.log("Array index: " + array[i]);
         let data = await equimentCategoryAsk(array[i]);
-        console.log("creatingListofArrayForEquiment");
         new_array.push(data);
     }
 

@@ -11,7 +11,6 @@ export function skillChoice() {
     let button = document.getElementById('skill_option');
     let button2 = document.getElementById('skill_option2');
     let button3 = document.getElementById('skill_option3');
-    console.log(ul);
     clickOnDropDownMenu(ul2, skillAsk, button2);
     clickOnDropDownMenu(ul, skillAsk, button);
     clickOnDropDownMenu(ul3, skillAsk, button3);
@@ -20,15 +19,11 @@ export function skillChoice() {
 export async function proficiencyAsk(input) {
     let url = api_classes + input + api_proficiencies;
     const data = await fetchDataFromAPI(url);
-    console.log("proficiencies for: " + input);
-    console.log(data);
     getProficiencyData(data);
 }
 
 async function skillAsk(input) {
-    console.log("Skill: " + input);
     let url = api_skill + input;
-    console.log(url);
     const data = await fetchDataFromAPI(url);
     printSkillsData(data);
 }
@@ -44,12 +39,10 @@ async function getProficiencyData(data) {
 }
 
 async function printSkillsData(data) {
-    console.log(data);
     const { name, desc } = data;
 
     let skill_info = document.getElementById('Pro_info');
     let skill_name = document.getElementById('Pro_name');
     skill_name.textContent = name
     skill_info.textContent = desc;
-
 }

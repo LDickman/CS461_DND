@@ -12,7 +12,6 @@ let background_Skill_info = document.getElementById('background_Skill_info');
 let language_Array;
 
 export async function setupPage3() {
-    console.log("starting 3");
     backgroundChoice();
     alignmentChoice();
 }
@@ -20,14 +19,12 @@ export async function setupPage3() {
 function backgroundChoice() {
     let ul = document.getElementById('backgroundList');
     let button = document.getElementById('background_option');
-    console.log(ul);
     clickOnDropDownMenu(ul, backgroundAsk, button);
 }
 
 function alignmentChoice() {
     let ul = document.getElementById('alignmentList');
     let button = document.getElementById('alignment_option');
-    console.log(ul);
     clickOnDropDownMenu(ul, alignmentAsk, button);
 }
 
@@ -35,9 +32,7 @@ async function backgroundAsk(input) {
     if (input != "acolyte") {
         printExtraBackgroundData(input);
     } else if (input == "acolyte") {
-        console.log("Class: " + input);
         let url = api_background + input;
-        console.log(url);
         const data = await fetchDataFromAPI(url);
         printBackgroundData(data);
     }
@@ -46,7 +41,6 @@ async function backgroundAsk(input) {
 async function alignmentAsk(input) {
     let userAlignment = document.getElementById("char_alignment");
     userAlignment.textContent = input;
-    console.log("alignment: " + input);
     if (input == "None") {
         document.getElementById("alignment_choice").textContent = "None";
     } else {
@@ -57,19 +51,16 @@ async function alignmentAsk(input) {
 }
 
 async function printAlignmentData(data) {
-    console.log("Aligemnet" + data);
     const { desc } = data
     document.getElementById("alignment_choice").textContent = desc;
 }
 
 async function printBackgroundData(data) {
-    console.log("background" + data);
     const { name, language_options, starting_proficiencies, feature } = data;
 
     if (language_options == undefined) {
         wantedLanguages.textContent = "None";
     } else {
-        console.log(language_options);
         language_Array = language_options.from.map(function (el) {
             return el.name;
         });
@@ -88,11 +79,9 @@ async function printBackgroundData(data) {
     userBackground.textContent = name;
     background_Skill_info.textContent = skill_names;
     userBackgroundSkills.textContent = skill_names;
-    console.log("printing page 3");
 }
 
 async function printExtraBackgroundData(input) {
-    console.log("background" + input);
     userBackground.textContent = input;
 
     if (input == "criminal") {
@@ -126,5 +115,4 @@ async function printExtraBackgroundData(input) {
         background_Skill_info.textContent = "Athletics, Intimidation";
         userBackgroundSkills.textContent = "Athletics, Intimidation";
     }
-    console.log("printing page 3");
 }

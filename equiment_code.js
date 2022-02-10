@@ -39,7 +39,6 @@ let money_total_kit = 0;
 let money_total_weapon = 0;
 
 export async function setupPage7() {
-    console.log("starting 7");
     weaponChoice();
     moneyChoice();
 }
@@ -47,12 +46,10 @@ export async function setupPage7() {
 function moneyChoice() {
     let ul = document.getElementById('moneyList');
     let button = document.getElementById('money_option');
-    console.log(ul);
     clickOnDropDownMenu(ul, getValueofCurrency, button);
 }
 
 function weaponChoice() {
-    console.log(ul);
     clickOnDropDownMenu(ul, weaponAsk, button);
     clickOnDropDownMenu(ul2, armorAsk, button2);
     clickOnDropDownMenu(ul3, sheildAsk, button3);
@@ -69,7 +66,6 @@ async function certianEquimentsAsk(input) {
     if (input == "None"){
         descriptionIsSetToNone();
     } else {
-        console.log("Equiment for: " + input);
         let url = api_OneEquiment + input;
         const data = await fetchDataFromAPI(url);
         printInfo_One_Equiment(data);
@@ -80,7 +76,6 @@ async function armorAsk(input) {
     if (input == "None") {
         descriptionIsSetToNone();
     } else {
-        console.log("Equiment for: " + input);
         let url = api_OneEquiment + input;
         const data = await fetchDataFromAPI(url);
         printArmorInfo(data);
@@ -91,7 +86,6 @@ async function sheildAsk(input) {
     if (input == "None") {
         descriptionIsSetToNone();
     } else {
-        console.log("Equiment for: " + input);
         let url = api_OneEquiment + input;
         const data = await fetchDataFromAPI(url);
         printSheildInfo(data);
@@ -102,7 +96,6 @@ async function weaponAsk(input) {
     if (input == "None") {
         descriptionIsSetToNone();
     } else {
-        console.log("Equiment for: " + input);
         let url = api_OneEquiment + input;
         const data = await fetchDataFromAPI(url);
         printWeaponInfo(data);
@@ -110,30 +103,20 @@ async function weaponAsk(input) {
 }
 
 function getValueofCurrency(input) {
-    console.log("money value of user");
     if (input == "Copper (cp)") {
-        console.log("cp");
         money_value = "cp";
     } else if (input == "Silver (sp)") {
-        console.log("sp");
         money_value = "sp";
     } else if (input == "Electrum (ep)") {
-        console.log("ep");
         money_value = "ep";
     } else if (input == "Gold (gp)") {
-        console.log("gp");
         money_value = "gp";
     } else if (input == "Platinum (pp)") {
-        console.log("pp");
         money_value = "pp";
     }
-    console.log("spending_money in dropdown menue");
-    console.log(spending_money.value);
     money_leftover.textContent = spending_money.value;
     money_leftover.value = spending_money.value;
     settingValuestoZero(armor, weapon, shield, kit);
-    console.log("money_value");
-    console.log(money_value);
 }
 
 function settingValuestoZero(armor_price, weapon_price, shield_price, kit_price) {
@@ -153,12 +136,8 @@ async function printArmorInfo(data) {
 
     let userArmor = document.getElementById("char_armor");
     userArmor.textContent = name;
-    console.log("spending_money");
-    console.log(spending_money.value);
     money_leftover.textContent = spending_money.value;
     money_leftover.value = spending_money.value;
-    console.log("money_leftover");
-    console.log(money_leftover.value);
     let armor_money = document.getElementById('money_armor');
 
     equimentInfo.textContent = name;
@@ -170,7 +149,6 @@ async function printArmorInfo(data) {
     range_CAT.textContent = "None";
     danageInfo.textContent = "None";
     costrInfo.textContent = "" + cost["quantity"] + " " + cost["unit"] + "";
-    console.log(cost["quantity"]);
     equimentINfo.textContent = "None";
     stealth_info.textContent = stealth_disadvantage;
     str_needed.textContent = str_minimum;
@@ -183,12 +161,8 @@ async function printArmorInfo(data) {
 async function printSheildInfo(data) {
     const { name, armor_class, str_minimum, stealth_disadvantage, weight, cost } = data;
 
-    console.log("spending_money");
-    console.log(spending_money.value);
     money_leftover.textContent = spending_money.value;
     money_leftover.value = spending_money.value;
-    console.log("money_leftover");
-    console.log(money_leftover.value);
     let money_sheild = document.getElementById("money_sheild");
     let userShield = document.getElementById("char_sheild");
     userShield.textContent = name;
@@ -200,7 +174,6 @@ async function printSheildInfo(data) {
     rangeInfo.textContent = "None";
     danageInfo.textContent = "None";
     costrInfo.textContent = "" + cost["quantity"] + " " + cost["unit"] + "";
-    console.log(cost["quantity"]);
     equimentINfo.textContent = "None";
     stealth_info.textContent = stealth_disadvantage;
     str_needed.textContent = str_minimum;
@@ -214,12 +187,8 @@ async function printWeaponInfo(data) {
     const { index, name, equipment_category, weapon_category,
         category_range, cost, damage, range, weight } = data;
 
-    console.log("spending_money");
-    console.log(spending_money.value);
     money_leftover.textContent = spending_money.value;
     money_leftover.value = spending_money.value;
-    console.log("money_leftover");
-    console.log(money_leftover.value);
     let money_weapon = document.getElementById("money_weapon");
     let userWeapon = document.getElementById("char_weapon");
     let attackBonus = 2 + parseInt(userSTR.textContent);
@@ -230,7 +199,6 @@ async function printWeaponInfo(data) {
     rangeInfo.textContent = "" + range["normal"] + " feet. Long is " + range["long"] + "";
     range_CAT.textContent = category_range;
     danageInfo.textContent = damage.damage_type.name;
-    console.log(cost["quantity"]);
     costrInfo.textContent = "" + cost["quantity"] + " " + cost["unit"] + "";
     equimentINfo.textContent = "None";
     stealth_info.textContent = "None"
@@ -249,12 +217,8 @@ async function printWeaponInfo(data) {
 async function printInfo_One_Equiment(data) {
     const { index, name, cost, weight, desc } = data;
 
-    console.log("spending_money");
-    console.log(spending_money.value);
     money_leftover.textContent = spending_money.value;
     money_leftover.value = spending_money.value;
-    console.log("money_leftover");
-    console.log(money_leftover.value);
     let money_kit = document.getElementById("money_kit");
     let userKit = document.getElementById("char_kit");
     userKit.textContent = name;
@@ -277,10 +241,6 @@ async function printInfo_One_Equiment(data) {
 function calculateMoneySpent(spending_money, money_leftover_total, cost, cost_value) {
     let total = 0;
     let currecny = money_value;
-    console.log(money_leftover_total.value);
-    console.log("currecny");
-    console.log(currecny);
-    console.log(cost_value);
     if (currecny == 'cp') {
         if (cost_value == 'sp') {
             total = (parseInt(spending_money.value) - (parseInt(cost) / 10));
@@ -342,8 +302,6 @@ function calculateMoneySpent(spending_money, money_leftover_total, cost, cost_va
             total = (parseInt(spending_money.value) - parseInt(cost));
         }
     }
-    console.log("total");
-    console.log(total);
     return total;
 }
 

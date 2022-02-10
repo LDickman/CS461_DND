@@ -25,26 +25,22 @@ let ul4 = document.getElementById('spellList4');
 let button4 = document.getElementById('spell_option4');
 
 export async function setupPage6() {
-    console.log("starting 6");
     spellChoice();
 }
 
 export async function spellsAsk(input) {
-    console.log("Spells for: " + input);
     let url = api_classes + input + api_spells;
     const data = await fetchDataFromAPI(url);
     printSpellsData(data);
 }
 
 export async function spellCastingAsk(input) {
-    console.log("SpellCasting for: " + input);
     let url = api_classes + input + api_spellcasting;
     const data = await fetchDataFromAPI(url);
     printSpellCastingData(data);
 }
 
 function spellChoice() {
-    console.log(ul);
     clickOnDropDownMenu(ul, certianSpellsAsk, button);
     clickOnDropDownMenu(ul2, certianSpellsAsk, button2);
     clickOnDropDownMenu(ul3, certianSpellsAsk, button3);
@@ -52,17 +48,13 @@ function spellChoice() {
 }
 
 async function certianSpellsAsk(input) {
-    console.log("Spells: " + input);
     let url = api_OneSpell + input;
     const data = await fetchDataFromAPI(url);
     printInfo_One_Spell(data);
 }
 
 async function printInfo_One_Spell(data) {
-    console.log(data);
     const { name, desc, range } = data;
-
-    console.log(name);
 
     spellName.textContent = name;
     spellInfo.textContent = desc;
@@ -106,18 +98,12 @@ async function printSpellCastingData(data) {
     userAbilitySpell.textContent = spellcasting_ability.name;
     calculatingSpellBonuses(spellcasting_ability.name, parseInt(userDieRoll.textContent));
     let array_spellcasting = getArrayOfNames(info);
-    console.log("array_spellcasting");
-    console.log(array_spellcasting);
     let array_spellcasting_info =  getArrayDescription(info);
-    console.log("array_spellcasting_info");
-    console.log(array_spellcasting_info);
     await getListToHTML(array_spellcasting, list);
     let array_size = array_spellcasting_info.length;
-    console.log(array_size);
     list.onclick = function (event) {
         let target = event.target; 
         let id = target.id;
-        console.log(id);
         checkUserClick(id, array_size, array_spellcasting, array_spellcasting_info);
     }
 }
@@ -129,8 +115,6 @@ async function createListOfSpellOptions(data, list) {
     } else {
         array_spells = getArrayOfIndexs(data);
     }
-    console.log("array_spells ");
-    console.log(array_spells);
     await getListToHTML(array_spells, list);
 }
 

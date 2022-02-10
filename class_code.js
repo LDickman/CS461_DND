@@ -32,19 +32,16 @@ let otherClasses = document.getElementById("subclasses");
 let skillsNum = document.getElementById("skills");
 
 export async function setupPage2() {
-    console.log("starting 2");
     classChoice();
 }
 
 function classChoice() {
     let ul = document.getElementById('classList');
     let button = document.getElementById('class_option');
-    console.log(ul);
     clickOnDropDownMenu(ul, classAsk, button);
 }
 
 async function classAsk(input) {
-    console.log("Class: " + input);
     let url = api_classes + input;
     const data = await fetchDataFromAPI(url);
     printClassData(data);
@@ -65,17 +62,11 @@ async function printClassData(data) {
     clearAllFromList(skill_list_1);
     clearAllFromList(skill_list_2);
     clearAllFromList(skill_list_3);
-    console.log(data);
     const { name, hit_die, proficiency_choices, proficiencies, saving_throws, subclasses, spellcasting } = data;
 
-    console.log(name);
-    console.log(hit_die);
-
-    console.log(proficiency_choices);
     let array_skills = proficiency_choices.map(function (el) {
         return el.from;
     });
-
 
     let array_Skill_Names = new Array;
     for (let i = 0; i < array_skills.length; i++) {
@@ -86,12 +77,6 @@ async function printClassData(data) {
     await createListOfProficiencyOptions(array_Skill_Names, skill_list_2);
     await createListOfProficiencyOptions(array_Skill_Names, skill_list_3);
 
-    // if (spellcasting != undefined) {
-    //     userSpellCasterClass.textContent = name;
-    //     page_6_Display.style.visibility = 'visible';
-    // } else {
-    //     page_6_Display.style.visibility = 'hidden';
-    // }
     showSpellTab(spellcasting, name);
     className.textContent = name;
     userClassName.textContent = name;
@@ -107,11 +92,8 @@ async function printClassData(data) {
     }
     wantedEquiment.textContent = getNames(proficiencies);
     userEquiment.textContent = getNames(proficiencies);
-    console.log(spellcasting);
     casting.textContent = getInfoNames(spellcasting);
     otherClasses.textContent = getNames(subclasses);
-
-    console.log("printing page 2");
 }
 
 function showSpellTab(link, name){

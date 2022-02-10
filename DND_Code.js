@@ -6,7 +6,6 @@ import { setupPage4 } from './ability_score_code.js';
 import { setupPage2 } from './class_code.js';
 
 window.addEventListener('load', (event) => {
-    console.log("page is loaded");
     setupPage1();
     setupPage2();
     setupPage3();

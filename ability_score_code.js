@@ -69,7 +69,6 @@ export async function setupPage4() {
 }
 
 async function abilityAsk(input) {
-    console.log("Ability for: " + input);
     let url = api_scores + input;
     const data = await fetchDataFromAPI(url);
     getAblityScore(data, input);
@@ -78,7 +77,6 @@ async function abilityAsk(input) {
 async function printAblityScoreData() {
     rollForAllAbilityScores();
     addTotalForAbilityScore();
-    console.log("results");
     userSTR_skill.textContent = document.getElementById("STR_bonus").textContent;
     userDEX_skill.textContent = document.getElementById("DEX_bonus").textContent;
     userWIS_skill.textContent = document.getElementById("WIS_bonus").textContent;
@@ -130,12 +128,8 @@ async function getAblityScore(data, input) {
 
 export async function printBonusData(data) {
     let array = getNameBonuses(data);
-    console.log(array[0]);
     let array_BounusName = getArrayOfNames(array);
-    console.log(array_BounusName[0]);
     let array_Bounus = getArrayOfNumberBonuses(data);
-    console.log("Bonus " + array_BounusName);
-    console.log("Number Bonus " + array_Bounus);
     for (let i = 0; i < array_BounusName.length; i++) {
         if (array_BounusName[i] == "CON") {
             con_bonus.textContent = array_Bounus[i];
@@ -161,12 +155,6 @@ export async function printBonusData(data) {
 }
 
 function addTotalForAbilityScore() {
-    console.log("str_bonus.textContent");
-    console.log(str_bonus.textContent);
-
-    console.log("str_bonus.value");
-    console.log(str_bonus.value);
-
     settingValueOfScore(str_bonus);
     settingValueOfScore(wis_bonus);
     settingValueOfScore(con_bonus);
@@ -227,7 +215,6 @@ function calcForAbilityScoreModifier(modifier, score, text) {
     switch (score) {
         case 3:
             text.textContent = (modifier - 4);
-            console.log(text);
             break;
         case 4:
         case 5:
@@ -236,36 +223,29 @@ function calcForAbilityScoreModifier(modifier, score, text) {
         case 6:
         case 7:
             text.textContent = (modifier - 2);
-            console.log(text);
             break;
         case 8:
         case 9:
             text.textContent = (modifier - 1);
-            console.log(text);
             break;
         case 10:
         case 11:
             text.textContent = (modifier + 0);
-            console.log(text);
             break;
         case 12:
         case 13:
             text.textContent = (modifier + 1);
-            console.log(text);
             break;
         case 14:
         case 15:
             text.textContent = (modifier + 2);
-            console.log(text);
             break;
         case 16:
         case 17:
             text.textContent = (modifier + 3);
-            console.log(text);
             break;
         case 18:
             text.textContent = (modifier + 4);
-            console.log(text);
             break;
     }
 }

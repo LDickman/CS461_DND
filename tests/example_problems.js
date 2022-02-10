@@ -59,7 +59,6 @@ function calcForAbilityScoreModifier(modifier, score) {
 /// Functions from asking race_code
 async function raceAsk(input) {
   let url = input;
-  console.log(url);
   const data = await fetchDataFromAPI(url);
   printDataOfName(data);
 }
