@@ -1,8 +1,8 @@
 import { setupPage1 } from './race_code.js';
-import { setupPage7, equimentCategoryAsk } from './equiment_code.js';
-import { setupPage6, spellsAsk } from './spell_code.js';
+import { setupPage7 } from './equiment_code.js';
+import { setupPage6 } from './spell_code.js';
 import { setupPage3 } from './background.js';
-import { setupPage4, printBonusData, clearAbilityScoreBonuses } from './ability_score_code.js';
+import { setupPage4 } from './ability_score_code.js';
 import { setupPage2 } from './class_code.js';
 
 window.addEventListener('load', (event) => {

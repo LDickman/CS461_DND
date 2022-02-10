@@ -1,5 +1,4 @@
 .header {
-  /* background-image: url("https://www.cnet.com/a/img/ZaO2fOssah6aUST4aB5HEzDq41M=/1092x0/2019/07/31/91b20b36-b2e1-4d71-9e7d-5594cbbe403a/dungeons.jpg"); */
   background-image: url("https://static1.thegamerimages.com/wordpress/wp-content/uploads/2021/06/dungeons-and-dragons-no-dm.jpg?q=50&amp;fit=contain&amp;w=767&amp;h=450&amp;dpr=1.5");
   background-size: 100%;
   padding:none;
@@ -12,9 +11,6 @@ body {
   color:white;
 }
 
-/* p {
-  line-height: 1.6;
-} */
 /* End of overall style of the Web App */
 
 /* Setting text sytle and coloring for the boxed section for each tab */
@@ -162,16 +158,15 @@ th, td {
 
 /* The sidebar menu */
 .sidenav {
-  /* margin-top: 180px; */
   overflow: auto;
-  height: 100%; /* Full-height: remove this if you want "auto" height */
-  width: 300px; /* Set the width of the sidebar */
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-  z-index: 1; /* Stay on top */
-  top: 180px; /* Stay at the top */
+  height: 100%; 
+  width: 300px; 
+  position: fixed; 
+  z-index: 1; 
+  top: 180px; 
   left: 0;
-  background-color: #450a03; /* dark red */
-  overflow-x: hidden; /*Disable horizontal scroll */
+  background-color: #450a03; 
+  overflow-x: hidden; 
   padding-top: 20px;
 }
 

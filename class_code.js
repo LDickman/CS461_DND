@@ -7,6 +7,7 @@ const api_classes = 'https://www.dnd5eapi.co/api/classes/';
 
 let option3_skillList = document.getElementById("skillOptions3");
 let page_6_Display = document.getElementById('page_6_button');
+let tabsList = document.getElementsByClassName('tab');
 let userHitDie =  document.getElementById('char_die_hit');
 let userEquiment = document.getElementById('char_equiment');
 let userSpellCasterClass = document.getElementById('char_casting');
@@ -55,15 +56,6 @@ async function classAsk(input) {
 
 
 async function printClassData(data) {
-    // let spell_list = document.getElementById("spellList");
-    // let spellCasting_list = document.getElementById("extra_spells");
-    // let weapon_list = document.getElementById("weaponList");
-    // let armor_list = document.getElementById("armorList");
-    // let shield_list = document.getElementById("shieldList");
-    // let kit_list = document.getElementById("kitList");
-    // let skill_list_1 = document.getElementById("skillList");
-    // let skill_list_2 = document.getElementById("skill2List");
-    // let skill_list_3 = document.getElementById("skill3List");
     clearAllFromList(spell_list);
     clearAllFromList(spellCasting_list);
     clearAllFromList(weapon_list);
@@ -94,23 +86,13 @@ async function printClassData(data) {
     await createListOfProficiencyOptions(array_Skill_Names, skill_list_2);
     await createListOfProficiencyOptions(array_Skill_Names, skill_list_3);
 
-    // let className = document.getElementById("class_name");
-    // let userClassName = document.getElementById("char_class");
-    // let die = document.getElementById('hit');
-    // let throwHits = document.getElementById('throws');
-    // let userSavingThrows = document.getElementById('char_saving_throws');
-
-    // let wantedEquiment = document.getElementById("preffer_equiment")
-    // let casting = document.getElementById('spellscasting');
-    // let otherClasses = document.getElementById("subclasses");
-    // let skillsNum = document.getElementById("skills");
-
-    if (spellcasting != undefined) {
-        userSpellCasterClass.textContent = name;
-        page_6_Display.style.visibility = 'visible';
-    } else {
-        page_6_Display.style.visibility = 'hidden';
-    }
+    // if (spellcasting != undefined) {
+    //     userSpellCasterClass.textContent = name;
+    //     page_6_Display.style.visibility = 'visible';
+    // } else {
+    //     page_6_Display.style.visibility = 'hidden';
+    // }
+    showSpellTab(spellcasting, name);
     className.textContent = name;
     userClassName.textContent = name;
     die.textContent = hit_die;
@@ -130,4 +112,15 @@ async function printClassData(data) {
     otherClasses.textContent = getNames(subclasses);
 
     console.log("printing page 2");
+}
+
+function showSpellTab(link, name){
+    if (link != undefined) {
+        userSpellCasterClass.textContent = name;
+        page_6_Display.tabIndex = "6";
+        page_6_Display.style.visibility = 'visible';
+    } else {
+        page_6_Display.tabIndex = "0";
+        page_6_Display.style.visibility = 'hidden';
+    }
 }

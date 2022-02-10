@@ -15,6 +15,14 @@ let extra_spell_descrition = document.getElementById('extra_spell_ability_info')
 let spellRange = document.getElementById('spell_range');
 let spellInfo = document.getElementById('spell_info');
 let spellName = document.getElementById('spell_name');
+let ul = document.getElementById('spellList');
+let button = document.getElementById('spell_option');
+let ul2 = document.getElementById('spellList2');
+let button2 = document.getElementById('spell_option2');
+let ul3 = document.getElementById('spellList3');
+let button3 = document.getElementById('spell_option3');
+let ul4 = document.getElementById('spellList4');
+let button4 = document.getElementById('spell_option4');
 
 export async function setupPage6() {
     console.log("starting 6");
@@ -36,14 +44,6 @@ export async function spellCastingAsk(input) {
 }
 
 function spellChoice() {
-    let ul = document.getElementById('spellList');
-    let button = document.getElementById('spell_option');
-    let ul2 = document.getElementById('spellList2');
-    let button2 = document.getElementById('spell_option2');
-    let ul3 = document.getElementById('spellList3');
-    let button3 = document.getElementById('spell_option3');
-    let ul4 = document.getElementById('spellList4');
-    let button4 = document.getElementById('spell_option4');
     console.log(ul);
     clickOnDropDownMenu(ul, certianSpellsAsk, button);
     clickOnDropDownMenu(ul2, certianSpellsAsk, button2);
@@ -63,9 +63,6 @@ async function printInfo_One_Spell(data) {
     const { name, desc, range } = data;
 
     console.log(name);
-    // let spellRange = document.getElementById('spell_range');
-    // let spellInfo = document.getElementById('spell_info');
-    // let spellName = document.getElementById('spell_name');
 
     spellName.textContent = name;
     spellInfo.textContent = desc;
@@ -82,10 +79,6 @@ async function printSpellsData(data) {
     let spellsAllowed = document.getElementById('spells');
 
     spellsAllowed.textContent = getNames(results);
-
-    // let spellRange = document.getElementById('spell_range');
-    // let spellInfo = document.getElementById('spell_info');
-    // let spellName = document.getElementById('spell_name');
 
     if (count != 0) {
         await createListOfSpellOptions(results, list);

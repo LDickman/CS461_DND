@@ -15,17 +15,17 @@
 
   <!-- Tab links -->
   <div class="tab">
-    <button class="tablinks" onclick="openPage(event, 'page_1')">Race</button>
-    <button class="tablinks" onclick="openPage(event, 'page_2')">Class</button>
-    <button class="tablinks" onclick="openPage(event, 'page_3')">Background</button>
-    <button class="tablinks" onclick="openPage(event, 'page_4')">Ability Score</button>
-    <button class="tablinks" onclick="openPage(event, 'page_5')">Skills</button>
-    <button id="page_6_button" class="tablinks" onclick="openPage(event, 'page_6')"
-      style="visibility:hidden">Spells</button>
+    <button tabindex="0" id="page_6_button" class="tablinks" onclick="openPage(event, 'page_6')"
+      style="visibility:hidden">SPELLS</button>
+    <button tabindex="1" class="tablinks" onclick="openPage(event, 'page_1')">Race</button>
+    <button tabindex="2" class="tablinks" onclick="openPage(event, 'page_2')">Class</button>
+    <button tabindex="3" class="tablinks" onclick="openPage(event, 'page_3')">Background</button>
+    <button tabindex="4" class="tablinks" onclick="openPage(event, 'page_4')">Ability Score</button>
+    <button tabindex="5" class="tablinks" onclick="openPage(event, 'page_5')">Skills</button>
+    <!-- <button id="page_6_button" disabled="true" class="tablinks" onclick="openPage(event, 'page_6')">Spells</button> -->
     <button class="tablinks" onclick="openPage(event, 'page_7')">Equiment</button>
     <button class="tablinks" onclick="openPage(event, 'page_9')">Finished</button>
   </div>
-
   <!------------------Races------------------------->
   <div id="page_1" class="tabcontent">
     <h2>Race:</h2>
