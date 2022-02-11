@@ -64,14 +64,8 @@ async function printClassData(data) {
     clearAllFromList(skill_list_3);
     const { name, hit_die, proficiency_choices, proficiencies, saving_throws, subclasses, spellcasting } = data;
 
-    let array_skills = proficiency_choices.map(function (el) {
-        return el.from;
-    });
-
-    let array_Skill_Names = new Array;
-    for (let i = 0; i < array_skills.length; i++) {
-        array_Skill_Names.push(getArrayOfIndexs(array_skills[i]));
-    }
+    let array_skills = gettingNamesFromProficiency(proficiency_choices);
+    let array_Skill_Names = gettingNamesOfTheSkills(array_skills);
 
     await createListOfProficiencyOptions(array_Skill_Names, skill_list_1);
     await createListOfProficiencyOptions(array_Skill_Names, skill_list_2);
@@ -85,15 +79,34 @@ async function printClassData(data) {
     throwHits.textContent = getNames(saving_throws);
     userSavingThrows.textContent = getNames(saving_throws);
 
+    showingTheExtraSkillButton(proficiency_choices);
+    wantedEquiment.textContent = getNames(proficiencies);
+    userEquiment.textContent = getNames(proficiencies);
+    casting.textContent = getInfoNames(spellcasting);
+    otherClasses.textContent = getNames(subclasses);
+}
+
+function gettingNamesOfTheSkills(array_skills) {
+    let array_Skill_Names = new Array;
+    for (let i = 0; i < array_skills.length; i++) {
+        array_Skill_Names.push(getArrayOfIndexs(array_skills[i]));
+    }
+    return array_Skill_Names;
+}
+
+function showingTheExtraSkillButton(proficiency_choices) {
     let arrSkillNumber = getArrayNumberChooses(proficiency_choices);
     skillsNum.textContent = arrSkillNumber[0];
     if (arrSkillNumber[0] == 3) {
         option3_skillList.style.visibility = 'visible';
     }
-    wantedEquiment.textContent = getNames(proficiencies);
-    userEquiment.textContent = getNames(proficiencies);
-    casting.textContent = getInfoNames(spellcasting);
-    otherClasses.textContent = getNames(subclasses);
+}
+
+function gettingNamesFromProficiency(proficiency_choices) {
+    let array = proficiency_choices.map(function (el) {
+        return el.from;
+    });
+    return array
 }
 
 function showSpellTab(link, name){
