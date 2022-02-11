@@ -269,7 +269,39 @@ export async function createListOfEquimentOptions(data, list, list_2, list_3, li
             array_weapon.push(array_equiment[i]);
         }
     }
+    await sendingDataToHTML(array_weapon, All_weapon_indexs, array_armor, array_shield, list, list_2, list_3, array_kit, list_4);
+}
 
+async function sendingDataToHTML(array_weapon, All_weapon_indexs, array_armor, array_shield, list, list_2, list_3, array_kit, list_4) {
+    await getRidOfUnnecssaryWords(array_weapon, All_weapon_indexs);
+
+    let idex_names_weapons = gettingCorrectNameOfEquiment(All_weapon_indexs, array_weapon);
+
+    let armor_names = await creatingListofArrayForEquiment(array_armor);
+    let shield_names = await creatingListofArrayForEquiment(array_shield);
+
+    await getListToHTML(idex_names_weapons, list);
+    await getListToHTML(armor_names, list_2);
+    await getListToHTML(shield_names, list_3);
+    await getListToHTML(array_kit, list_4);
+}
+
+function gettingCorrectNameOfEquiment(All_weapon_indexs, array_weapon) {
+    let string_of_indexs = All_weapon_indexs.toString().split(",");
+    let idex_names_weapons = new Array;
+
+    for (let i = 0, j = string_of_indexs.length; i < j; i++) {
+        idex_names_weapons.push(string_of_indexs[i]);
+    }
+
+    let items = array_weapon.toString().split(",");
+    for (let i = 0, j = items.length; i < j; i++) {
+        idex_names_weapons.push(items[i]);
+    }
+    return idex_names_weapons;
+}
+
+async function getRidOfUnnecssaryWords(array_weapon, All_weapon_indexs) {
     for (let i = 0; i < array_weapon.length; i++) {
         if (array_weapon[i].includes("-weapons")) {
             let data = await equimentCategoryAsk(array_weapon[i]);
@@ -287,26 +319,6 @@ export async function createListOfEquimentOptions(data, list, list_2, list_3, li
         let new_word = word.slice(0, word.length - 1);
         array_weapon[i] = new_word;
     }
-
-    let string_of_indexs = All_weapon_indexs.toString().split(",");
-    let idex_names_weapons = new Array;
-
-    for (let i = 0, j = string_of_indexs.length; i < j; i++) {
-        idex_names_weapons.push(string_of_indexs[i]);
-    }
-    
-    let items = array_weapon.toString().split(",");
-    for (let i = 0, j = items.length; i < j; i++) {
-        idex_names_weapons.push(items[i]);
-    }
-
-    let armor_names = await creatingListofArrayForEquiment(array_armor);
-    let shield_names = await creatingListofArrayForEquiment(array_shield);
-
-    await getListToHTML(idex_names_weapons, list);
-    await getListToHTML(armor_names, list_2);
-    await getListToHTML(shield_names, list_3);
-    await getListToHTML(array_kit, list_4);
 }
 
 export async function creatingListofArrayForEquiment(array) {
@@ -315,10 +327,8 @@ export async function creatingListofArrayForEquiment(array) {
         let data = await equimentCategoryAsk(array[i]);
         new_array.push(data);
     }
-
     let items = new_array.toString().split(",");
     let equiment_names = new Array;
-    
     for (let i = 0, j = items.length; i < j; i++) {
         equiment_names.push(items[i]);
     }
