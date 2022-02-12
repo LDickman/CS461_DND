@@ -53,15 +53,7 @@ async function classAsk(input) {
 
 
 async function printClassData(data) {
-    clearAllFromList(spell_list);
-    clearAllFromList(spellCasting_list);
-    clearAllFromList(weapon_list);
-    clearAllFromList(armor_list);
-    clearAllFromList(shield_list);
-    clearAllFromList(kit_list);
-    clearAllFromList(skill_list_1);
-    clearAllFromList(skill_list_2);
-    clearAllFromList(skill_list_3);
+    clearAllInfomormation();
     const { name, hit_die, proficiency_choices, proficiencies, saving_throws, subclasses, spellcasting } = data;
 
     let array_skills = gettingNamesFromProficiency(proficiency_choices);
@@ -84,6 +76,18 @@ async function printClassData(data) {
     userEquiment.textContent = getNames(proficiencies);
     casting.textContent = getInfoNames(spellcasting);
     otherClasses.textContent = getNames(subclasses);
+}
+
+function clearAllInfomormation() {
+    clearAllFromList(spell_list);
+    clearAllFromList(spellCasting_list);
+    clearAllFromList(weapon_list);
+    clearAllFromList(armor_list);
+    clearAllFromList(shield_list);
+    clearAllFromList(kit_list);
+    clearAllFromList(skill_list_1);
+    clearAllFromList(skill_list_2);
+    clearAllFromList(skill_list_3);
 }
 
 function gettingNamesOfTheSkills(array_skills) {
