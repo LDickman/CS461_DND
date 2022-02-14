@@ -326,6 +326,7 @@ function checkingValueOfEquiment(price, money){
 function settingValuesToNoneAndZero(price) {
     price.textContent = 0;
     price.value = 0;
+    TotalMoneySpent(money_leftover, armor, shield, weapon, kit);
     descriptionIsSetToNone();
 }
 
