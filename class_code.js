@@ -45,8 +45,6 @@ async function classAsk(input) {
     let url = api_classes + input;
     const data = await fetchDataFromAPI(url);
     printClassData(data);
-    // spellsAsk(input);
-    // spellCastingAsk(input);
     proficiencyAsk(input);
     skillChoice();
 }
