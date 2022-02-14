@@ -131,8 +131,7 @@ function settingValuestoZero(armor_price, weapon_price, shield_price, kit_price)
 }
 
 async function printArmorInfo(data) {
-    const { name, index, equipment_category, armor_category,
-        armor_class, str_minimum, stealth_disadvantage, weight, cost } = data;
+    const { name, index, equipment_category, armor_category, armor_class, str_minimum, stealth_disadvantage, weight, cost } = data;
 
     let userArmor = document.getElementById("char_armor");
     userArmor.textContent = name;
@@ -184,8 +183,7 @@ async function printSheildInfo(data) {
 }
 
 async function printWeaponInfo(data) {
-    const { index, name, equipment_category, weapon_category,
-        category_range, cost, damage, range, weight } = data;
+    const { index, name, equipment_category, weapon_category, category_range, cost, damage, range, weight } = data;
 
     money_leftover.textContent = spending_money.value;
     money_leftover.value = spending_money.value;
