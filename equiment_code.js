@@ -64,7 +64,7 @@ export async function equimentCategoryAsk(input) {
 
 async function certianEquimentsAsk(input) {
     if (input == "None"){
-        descriptionIsSetToNone();
+        settingValuesToNoneAndZero(kit);
     } else {
         let url = api_OneEquiment + input;
         const data = await fetchDataFromAPI(url);
@@ -74,7 +74,7 @@ async function certianEquimentsAsk(input) {
 
 async function armorAsk(input) {
     if (input == "None") {
-        descriptionIsSetToNone();
+        settingValuesToNoneAndZero(armor)
     } else {
         let url = api_OneEquiment + input;
         const data = await fetchDataFromAPI(url);
@@ -84,7 +84,7 @@ async function armorAsk(input) {
 
 async function sheildAsk(input) {
     if (input == "None") {
-        descriptionIsSetToNone();
+        settingValuesToNoneAndZero(shield);
     } else {
         let url = api_OneEquiment + input;
         const data = await fetchDataFromAPI(url);
@@ -94,7 +94,7 @@ async function sheildAsk(input) {
 
 async function weaponAsk(input) {
     if (input == "None") {
-        descriptionIsSetToNone();
+        settingValuesToNoneAndZero(weapon);
     } else {
         let url = api_OneEquiment + input;
         const data = await fetchDataFromAPI(url);
@@ -307,28 +307,28 @@ function calculateMoneySpent(spending_money, money_leftover_total, cost, cost_va
 }
 
 function TotalMoneySpent(money_leftover_total, armor_price, shield_price, weapon_price, kit_price) {
-    if (armor_price.value == 0) {
-        armor_price.value = 0;
-    } else {
-        money_total_armor = parseInt(money_leftover_total.value) - armor_price.value;
-    }
-    if (shield_price.value == 0) {
-        shield_price.value = 0;
-    } else {
-        money_total_sheild = parseInt(money_leftover_total.value) - shield_price.value;
-    }
-    if (weapon_price.value == 0) {
-        weapon_price.value = 0;
-    } else {
-        money_total_weapon = parseInt(money_leftover_total.value) - weapon_price.value;
-    }
-    if (kit_price.value == 0) {
-        kit_price.value = 0;
-    } else {
-        money_total_kit = parseInt(money_leftover_total.value) - kit_price.value;
-    }
+    money_total_armor = checkingValueOfEquiment(armor_price, money_leftover_total);
+    money_total_sheild = checkingValueOfEquiment(shield_price, money_leftover_total);
+    money_total_weapon = checkingValueOfEquiment(weapon_price, money_leftover_total);
+    money_total_kit = checkingValueOfEquiment(kit_price, money_leftover_total);
     money_total = parseInt(money_leftover_total.value) - (money_total_kit + money_total_sheild + money_total_weapon + money_total_armor);
     money_leftover_total.textContent = money_total;
+}
+
+function checkingValueOfEquiment(price, money){
+    let total = 0;
+    if (price.value == 0) {
+        price.value = 0;
+    } else {
+        total = parseInt(money.value) - price.value;
+    }
+    return total;
+}
+
+function settingValuesToNoneAndZero(price) {
+    price.textContent = 0;
+    price.value = 0;
+    descriptionIsSetToNone();
 }
 
 function descriptionIsSetToNone() {
@@ -344,6 +344,4 @@ function descriptionIsSetToNone() {
     equimentPortect.textContent = "None";
     userArmorProtect.textContent = "None"
     damageRoll.textContent = "None";
-    money_weapon.textContent = "None";
-    money_weapon.value = "None"
 }
