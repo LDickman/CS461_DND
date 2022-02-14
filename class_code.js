@@ -45,8 +45,8 @@ async function classAsk(input) {
     let url = api_classes + input;
     const data = await fetchDataFromAPI(url);
     printClassData(data);
-    spellsAsk(input);
-    spellCastingAsk(input);
+    // spellsAsk(input);
+    // spellCastingAsk(input);
     proficiencyAsk(input);
     skillChoice();
 }
@@ -54,7 +54,7 @@ async function classAsk(input) {
 
 async function printClassData(data) {
     clearAllInfomormation();
-    const { name, hit_die, proficiency_choices, proficiencies, saving_throws, subclasses, spellcasting } = data;
+    const { index, name, hit_die, proficiency_choices, proficiencies, saving_throws, subclasses, spellcasting } = data;
 
     let array_skills = gettingNamesFromProficiency(proficiency_choices);
     let array_Skill_Names = gettingNamesOfTheSkills(array_skills);
@@ -63,7 +63,7 @@ async function printClassData(data) {
     await createListOfProficiencyOptions(array_Skill_Names, skill_list_2);
     await createListOfProficiencyOptions(array_Skill_Names, skill_list_3);
 
-    showSpellTab(spellcasting, name);
+    showSpellTab(spellcasting, name, index);
     className.textContent = name;
     userClassName.textContent = name;
     die.textContent = hit_die;
@@ -113,9 +113,11 @@ function gettingNamesFromProficiency(proficiency_choices) {
     return array
 }
 
-function showSpellTab(link, name){
-    if (link != undefined) {
+function showSpellTab(spells, name, index){
+    if (spells != undefined) {
         userSpellCasterClass.textContent = name;
+        spellsAsk(index);
+        spellCastingAsk(index);
         page_6_Display.tabIndex = "6";
         page_6_Display.style.visibility = 'visible';
     } else {

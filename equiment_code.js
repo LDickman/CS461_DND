@@ -221,6 +221,7 @@ async function printInfo_One_Equiment(data) {
     money_leftover.value = spending_money.value;
     let money_kit = document.getElementById("money_kit");
     let userKit = document.getElementById("char_kit");
+    let sheild = document.getElementById("money_sheild");
     userKit.textContent = name;
 
     equimentInfo.textContent = name;
