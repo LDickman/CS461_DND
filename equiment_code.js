@@ -142,7 +142,7 @@ async function printArmorInfo(data) {
     equimentInfo.textContent = name;
     weightInfo.textContent = weight;
     equimentPortect.textContent = armor_class.base;
-    userArmorProtect.textContent = parseInt(equimentPortect.textContent) + parseInt(userDex.textContent);
+    userArmorProtect.textContent = 10 + parseInt(equimentPortect.textContent) + parseInt(userDex.textContent);
     userArmorProtect.value = parseInt(armor_class) + parseInt(userDex.textContent);
     rangeInfo.textContent = "None";
     range_CAT.textContent = "None";
@@ -169,7 +169,8 @@ async function printSheildInfo(data) {
     equimentInfo.textContent = name;
     weightInfo.textContent = weight;
     equimentPortect.textContent = armor_class.base;
-    userArmorProtect.textContent = parseInt(equimentPortect.textContent) + userArmorProtect.value;
+    userArmorProtect.textContent = 10 + parseInt(equimentPortect.textContent) + userArmorProtect.value;
+    userArmorProtect.value = parseInt(armor_class) + parseInt(userDex.textContent);
     rangeInfo.textContent = "None";
     danageInfo.textContent = "None";
     costrInfo.textContent = "" + cost["quantity"] + " " + cost["unit"] + "";
@@ -202,7 +203,8 @@ async function printWeaponInfo(data) {
     stealth_info.textContent = "None"
     str_needed.textContent = "None"
     equimentPortect.textContent = "None";
-    userArmorProtect.textContent = "None"
+    userArmorProtect.textContent = 10 + parseInt(userDex.textContent);
+    userArmorProtect.value = 10 + parseInt(userDex.textContent);
     damageRoll.textContent = damage.damage_dice;
     money_weapon.textContent = calculateMoneySpent(spending_money, money_leftover, cost["quantity"], cost["unit"]);
     money_weapon.value = calculateMoneySpent(spending_money, money_leftover, cost["quantity"], cost["unit"]);
@@ -341,6 +343,7 @@ function descriptionIsSetToNone() {
     stealth_info.textContent = "None"
     str_needed.textContent = "None"
     equimentPortect.textContent = "None";
-    userArmorProtect.textContent = "None"
+    userArmorProtect.textContent = 10 + parseInt(userDex.textContent);
+    userArmorProtect.value = 10 + parseInt(userDex.textContent);
     damageRoll.textContent = "None";
 }

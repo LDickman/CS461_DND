@@ -159,15 +159,16 @@ th, td {
 /* The sidebar menu */
 .sidenav {
   overflow: auto;
-  height: 100%; 
+  height: 74.5%; 
   width: 300px; 
-  position: fixed; 
+  position: fixed;
   z-index: 1; 
-  top: 180px; 
+  top: 160px; 
   left: 0;
   background-color: #450a03; 
-  overflow-x: hidden; 
-  padding-top: 20px;
+  overflow-x: hidden;
+  padding-top: 60px; 
+  transition: 0.5s; 
 }
 
 /* The navigation menu links */

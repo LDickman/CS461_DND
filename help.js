@@ -206,11 +206,16 @@ function checkboxSlecetion(list, limit) {
             for (let i = 0; i < checkBox.length; i++) {
                 checkedcount += (checkBox[i].checked) ? 1 : 0;
                 if (checkBox[i].checked) {
-                    lanuages_slection.push(checkBox[i].value);
-                    extra_laugunage.textContent = lanuages_slection.join(',     ');
+                    if (lanuages_slection.length < limit){
+                        lanuages_slection.push(checkBox[i].value);
+                        extra_laugunage.textContent = lanuages_slection.join(',     ');
+                    } else {
+                        lanuages_slection.pop();
+                    }
                 }
             }
             if (checkedcount > limit) {
+                lanuages_slection.pop();
                 alert("You can select maximum of " + limit + " checkboxes.");
                 this.checked = false;
             }

@@ -104,7 +104,7 @@ async function printSpellCastingData(data) {
     list.onclick = function (event) {
         let target = event.target; 
         let id = target.id;
-        checkUserClick(id, array_size, array_spellcasting, array_spellcasting_info);
+        checkUserClick(id, array_size, array_spellcasting_info);
     }
 }
 
@@ -134,7 +134,7 @@ function calculatingSpellBonuses(ability, hit){
     }
 }
 
-function checkUserClick(id, array_size, array_spellcasting, array_spellcasting_info){
+function checkUserClick(id, array_size, array_spellcasting_info){
     if (id == "Cantrips"); {
         spell_descirtion.textContent = array_spellcasting_info[0][0];
         extra_spell_descrition.textContent = array_spellcasting_info[1];
@@ -150,32 +150,32 @@ function checkUserClick(id, array_size, array_spellcasting, array_spellcasting_i
     if (id == "Preparing and Casting Spells"){
         extra_spell_descrition.textContent = "";
         if (array_size == 6) {
-            spell_descirtion.textContent = array_spellcasting_info[3].values();
+            spell_descirtion.textContent = array_spellcasting_info[3][0];
         } else {
             spell_descirtion.textContent = array_spellcasting_info[array_size-3];
         }
     }
     if (id == "Spellcasting Ability"){
         if (array_size == 6) {
-            spell_descirtion.textContent = array_spellcasting_info[4].values();
+            spell_descirtion.textContent = array_spellcasting_info[3][0];
         } else {
-            spell_descirtion.textContent = array_spellcasting_info[array_size-2];
+            spell_descirtion.textContent = array_spellcasting_info[array_size-2][0];
         }
         extra_spell_descrition.textContent = "";
     }
     if (id == "Ritual Casting"){
         if (array_size == 6) {
-            spell_descirtion.textContent = array_spellcasting_info[5].values();
+            spell_descirtion.textContent = array_spellcasting_info[4][0];
         } else {
-            spell_descirtion.textContent = array_spellcasting_info[array_size-1];
+            spell_descirtion.textContent = array_spellcasting_info[array_size-1][0];
         }
         extra_spell_descrition.textContent = "";
     }
     if (id == "Spellcasting Focus"){
         if (array_size == 6) {
-            spell_descirtion.textContent = array_spellcasting_info[5].values();
+            spell_descirtion.textContent = array_spellcasting_info[5][0];
         } else {
-            spell_descirtion.textContent = array_spellcasting_info[array_size-1];
+            spell_descirtion.textContent = array_spellcasting_info[array_size-1][0];
         }
         extra_spell_descrition.textContent ="";
     }
