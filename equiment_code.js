@@ -1,8 +1,11 @@
-import { fetchDataFromAPI, clickOnDropDownMenu, getEquimentListData } from './help.js';
+import { fetchDataFromAPI, clickOnDropDownMenu, getEquimentListData, getEquimentListData_ThenSendToHTML} from './help.js';
 
 const api_equiment = 'https://www.dnd5eapi.co/api/equipment-categories/';
 const api_OneEquiment = 'https://www.dnd5eapi.co/api/equipment/';
-const api_music_equiment = 'equipment-categories/musical-instruments';
+const api_music_equiment = 'https://www.dnd5eapi.co/api/equipment-categories/musical-instruments';
+const api_holy_items = 'https://www.dnd5eapi.co/api/equipment-categories/holy-symbols';
+const api_druid_magic_items = 'https://www.dnd5eapi.co/api/equipment-categories/druidic-foci';
+const api_wizard_magic_items = 'https://www.dnd5eapi.co/api/equipment-categories/arcane-foci';
 let userArmorProtect = document.getElementById("char_armor_class");
 let userDex = document.getElementById("DEX_bonus");
 let userSTR = document.getElementById("STR_bonus");
@@ -18,6 +21,7 @@ let button4 = document.getElementById('kit_option');
 let armor = document.getElementById("money_armor");
 let weapon = document.getElementById("money_weapon");
 let kit = document.getElementById("money_kit");
+let magic_equiment = document.getElementById("money_magic");
 let shield = document.getElementById("money_sheild");
 let money_leftover = document.getElementById("money_left");
 let spending_money = document.getElementById("money");
@@ -32,14 +36,27 @@ let equimentINfo = document.getElementById('equiment_info');
 let stealth_info = document.getElementById('stealth_info');
 let str_needed = document.getElementById('musle_info');
 let damageRoll = document.getElementById('damage_roll');
+let userKit = document.getElementById("char_kit");
+let userMagic = document.getElementById("char_magic_item");
+let final_money_amount = document.getElementById("money_left_equiment");
+
+let holy_list = document.getElementById('holy_List');
+let wizard_list = document.getElementById('wizard_magic_List');
+let druid_list = document.getElementById('druid_magic_List');
+let bard_list = document.getElementById('bard_magic_List');
 
 let money_total = 0;
 let money_total_armor = 0;
 let money_total_sheild = 0;
 let money_total_kit = 0;
+let money_total_magic = 0;
 let money_total_weapon = 0;
 
 export async function setupPage7() {
+    await druidCategoryAsk()
+    await magicEquipmentCategoryAsk();
+    await holyEquipmentCategoryAsk();
+    await bardEquipmentCategoryAsk();
     weaponChoice();
     moneyChoice();
 }
@@ -63,9 +80,30 @@ export async function equimentCategoryAsk(input) {
     return await getEquimentListData(data);
 }
 
-async function certianEquimentsAsk(input) {
+export async function druidCategoryAsk() {
+    const data = await fetchDataFromAPI(api_druid_magic_items);
+    return await getEquimentListData_ThenSendToHTML(data, druid_list);
+}
+
+export async function magicEquipmentCategoryAsk() {
+    const data = await fetchDataFromAPI(api_wizard_magic_items);
+    return await getEquimentListData_ThenSendToHTML(data, wizard_list);
+}
+
+export async function holyEquipmentCategoryAsk() {
+    const data = await fetchDataFromAPI(api_holy_items);
+    return await getEquimentListData_ThenSendToHTML(data, holy_list);
+}
+
+export async function bardEquipmentCategoryAsk() {
+    const data = await fetchDataFromAPI(api_music_equiment);
+    return await getEquimentListData_ThenSendToHTML(data, bard_list);
+}
+
+export async function certianEquimentsAsk(input) {
     if (input == "None"){
         settingValuesToNoneAndZero(kit);
+        settingValuesToNoneAndZero(magic_equiment);
     } else {
         let url = api_OneEquiment + input;
         const data = await fetchDataFromAPI(url);
@@ -117,10 +155,10 @@ function getValueofCurrency(input) {
     }
     money_leftover.textContent = spending_money.value;
     money_leftover.value = spending_money.value;
-    settingValuestoZero(armor, weapon, shield, kit);
+    settingValuestoZero(armor, weapon, shield, kit, magic_equiment);
 }
 
-function settingValuestoZero(armor_price, weapon_price, shield_price, kit_price) {
+function settingValuestoZero(armor_price, weapon_price, shield_price, kit_price, magic_equiment) {
     armor_price.textContent = 0;
     weapon_price.textContent = 0;
     kit_price.textContent = 0;
@@ -129,6 +167,8 @@ function settingValuestoZero(armor_price, weapon_price, shield_price, kit_price)
     weapon_price.value = 0;
     kit_price.value = 0;
     shield_price.value = 0;
+    magic_equiment.value = 0;
+    magic_equiment.textContent = 0;
 }
 
 async function printArmorInfo(data) {
@@ -155,7 +195,7 @@ async function printArmorInfo(data) {
     damageRoll.textContent = "None";
     armor_money.textContent = calculateMoneySpent(spending_money, money_leftover, cost["quantity"], cost["unit"]);
     armor_money.value = calculateMoneySpent(spending_money, money_leftover, cost["quantity"], cost["unit"]);
-    TotalMoneySpent(money_leftover, armor_money, shield, weapon, kit);
+    TotalMoneySpent(money_leftover, armor_money, shield, weapon, kit, magic_equiment);
 }
 
 async function printSheildInfo(data) {
@@ -181,7 +221,7 @@ async function printSheildInfo(data) {
     damageRoll.textContent = "None";
     money_sheild.textContent = calculateMoneySpent(spending_money, money_leftover, cost["quantity"], cost["unit"]);
     money_sheild.value = calculateMoneySpent(spending_money, money_leftover, cost["quantity"], cost["unit"]);
-    TotalMoneySpent(money_leftover, armor, money_sheild, weapon, kit);
+    TotalMoneySpent(money_leftover, armor, money_sheild, weapon, kit, magic_equiment);
 }
 
 async function printWeaponInfo(data) {
@@ -212,7 +252,7 @@ async function printWeaponInfo(data) {
     let armor = document.getElementById("money_armor");
     let sheild = document.getElementById("money_sheild");
     let kit = document.getElementById("money_kit");
-    TotalMoneySpent(money_leftover, armor, sheild, money_weapon, kit);
+    TotalMoneySpent(money_leftover, armor, sheild, money_weapon, kit, magic_equiment);
 }
 
 async function printInfo_One_Equiment(data) {
@@ -221,10 +261,8 @@ async function printInfo_One_Equiment(data) {
     money_leftover.textContent = spending_money.value;
     money_leftover.value = spending_money.value;
     let money_kit = document.getElementById("money_kit");
-    let userKit = document.getElementById("char_kit");
     let sheild = document.getElementById("money_sheild");
-    userKit.textContent = name;
-
+    let money_magic = document.getElementById("money_magic");
     equimentInfo.textContent = name;
     weightInfo.textContent = weight;
     rangeInfo.textContent = "None";
@@ -232,12 +270,20 @@ async function printInfo_One_Equiment(data) {
     danageInfo.textContent = "None";
     costrInfo.textContent = "" + cost["quantity"] + " " + cost["unit"] + "";
     equimentINfo.textContent = desc;
-    stealth_info.textContent = "None"
-    str_needed.textContent = "None"
+    stealth_info.textContent = "None";
+    str_needed.textContent = "None";
+    equimentPortect.textContent = "None";
     damageRoll.textContent = "None";
-    money_kit.textContent = calculateMoneySpent(spending_money, money_leftover, cost["quantity"], cost["unit"]);
-    money_kit.value = calculateMoneySpent(spending_money, money_leftover, cost["quantity"], cost["unit"]);
-    TotalMoneySpent(money_leftover, armor, sheild, weapon, money_kit);
+    if (index.includes("-kit")) {
+        userKit.textContent = name;
+        money_kit.textContent = calculateMoneySpent(spending_money, money_leftover, cost["quantity"], cost["unit"]);
+        money_kit.value = calculateMoneySpent(spending_money, money_leftover, cost["quantity"], cost["unit"]);
+    } else {
+        userMagic.textContent = name;
+        money_magic.textContent = calculateMoneySpent(spending_money, money_leftover, cost["quantity"], cost["unit"]);
+        money_magic.value = calculateMoneySpent(spending_money, money_leftover, cost["quantity"], cost["unit"]);
+    }
+    TotalMoneySpent(money_leftover, armor, sheild, weapon, money_kit, money_magic);
 }
 
 function calculateMoneySpent(spending_money, money_leftover_total, cost, cost_value) {
@@ -337,13 +383,15 @@ function calculatingMoneyFor_CP_Currency(cost_value, spending_money, cost) {
     return total;
 }
 
-function TotalMoneySpent(money_leftover_total, armor_price, shield_price, weapon_price, kit_price) {
+function TotalMoneySpent(money_leftover_total, armor_price, shield_price, weapon_price, kit_price, magic_equiment_price) {
     money_total_armor = checkingValueOfEquiment(armor_price, money_leftover_total);
     money_total_sheild = checkingValueOfEquiment(shield_price, money_leftover_total);
     money_total_weapon = checkingValueOfEquiment(weapon_price, money_leftover_total);
     money_total_kit = checkingValueOfEquiment(kit_price, money_leftover_total);
-    money_total = parseInt(money_leftover_total.value) - (money_total_kit + money_total_sheild + money_total_weapon + money_total_armor);
+    money_total_magic = checkingValueOfEquiment(magic_equiment_price, money_leftover_total);
+    money_total = parseInt(money_leftover_total.value) - (money_total_kit + money_total_sheild + money_total_weapon + money_total_armor + money_total_magic);
     money_leftover_total.textContent = money_total;
+    final_money_amount.textContent = money_total;
 }
 
 function checkingValueOfEquiment(price, money){
@@ -359,7 +407,7 @@ function checkingValueOfEquiment(price, money){
 function settingValuesToNoneAndZero(price) {
     price.textContent = 0;
     price.value = 0;
-    TotalMoneySpent(money_leftover, armor, shield, weapon, kit);
+    TotalMoneySpent(money_leftover, armor, shield, weapon, kit, magic_equiment);
     descriptionIsSetToNone();
 }
 

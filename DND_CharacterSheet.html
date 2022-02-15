@@ -433,6 +433,8 @@
     </p>
     <p>Sheild Total spent: <lable id="money_sheild" value="0">0</lable>
     </p>
+    <p>Magic Item Total spent: <lable id="money_magic" value="0">0</lable>
+    </p>
     <p>New Total: <lable id="money_left" value="0">0</lable>
     </p>
     <br />
@@ -479,6 +481,59 @@
         <ul id="kitList"> </ul>
       </div>
     </div>
+
+    <div id = "durid_spell_equ" style="visibility:hidden">
+      <p>Pick your Druid's magic Equiment from below</p>
+      <div class="dropdown">
+        <button onclick="selectionButton('druid_magic_Dropdown')" id='druid_equip_option' class="dropbtn">Druid
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <br />
+        <div id="druid_magic_Dropdown" class="dropdown-content">
+          <ul id="druid_magic_List"> </ul>
+        </div>
+      </div>
+    </div>
+
+    <div id = "bard_spell_equ" style="visibility:hidden">
+      <p>Pick your Bard's music Equiment from below</p>
+      <div class="dropdown">
+        <button onclick="selectionButton('bard_magic_Dropdown')" id='bard_equip_option' class="dropbtn">Instrument
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <br />
+        <div id="bard_magic_Dropdown" class="dropdown-content">
+          <ul id="bard_magic_List"> </ul>
+        </div>
+      </div>
+    </div>
+
+    <div id = "wizard_spell_equ" style="visibility:hidden">
+      <p>Pick your Magic User's magic Equiment from below</p>
+      <div class="dropdown">
+        <button onclick="selectionButton('wizard_magic_Dropdown')" id='wizard_equip_option' class="dropbtn">Magic Equipment
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <br />
+        <div id="wizard_magic_Dropdown" class="dropdown-content">
+          <ul id="wizard_magic_List"> </ul>
+        </div>
+      </div>
+    </div>
+
+    <div id = "holy_equ" style="visibility:hidden">
+      <p>Pick your Holy Man's magic Equiment from below</p>
+      <div class="dropdown">
+        <button onclick="selectionButton('holy_Dropdown')" id='holy_equip_option' class="dropbtn">Holy Equipment
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <br />
+        <div id="holy_Dropdown" class="dropdown-content">
+          <ul id="holy_List"> </ul>
+        </div>
+      </div>
+    </div>
+
     <br />
     <div id="info_7" class="info_section" style="border-style:solid">
       <p>Equiment Name:</p>
@@ -585,8 +640,10 @@
         <p>Weapon: <label id="char_weapon" type="text"></label></p>
         <p>Shield: <label id="char_sheild" type="text"></label></p>
         <p>Kit: <label id="char_kit" type="text"></label></p>
+        <p>Magic Item: <label id="char_magic_item" type="text"></label></p>
         </br>
         <p>Equiment: <label id="char_equiment" type="text"></label></p>
+        <p>Money Remaining: <label id="money_left_equiment" type="number"></label></p>
       </section>
       
       <section>

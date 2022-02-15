@@ -2,11 +2,16 @@ import { fetchDataFromAPI, clickOnDropDownMenu, getNames, createListOfProficienc
     getArrayNumberChooses, clearAllFromList} from './help.js';
 import {proficiencyAsk, skillChoice} from './skill_code.js';
 import {spellsAsk, spellCastingAsk} from './spell_code.js';
+import {certianEquimentsAsk} from './equiment_code.js';
 
 const api_classes = 'https://www.dnd5eapi.co/api/classes/';
 
 let option3_skillList = document.getElementById("skillOptions3");
 let page_6_Display = document.getElementById('page_6_button');
+let durid_spell_equ_Dislpay = document.getElementById('durid_spell_equ');
+let bard_spell_equ_Dislpay = document.getElementById('bard_spell_equ');
+let holy_equ_Dislpay = document.getElementById('holy_equ');
+let wizard_spell_equ__Dislpay = document.getElementById('wizard_spell_equ');
 let tabsList = document.getElementsByClassName('tab');
 let userHitDie =  document.getElementById('char_die_hit');
 let userEquiment = document.getElementById('char_equiment');
@@ -116,9 +121,51 @@ function showSpellTab(spells, name, index){
     if (spells != undefined) {
         userSpellCasterClass.textContent = name;
         page_6_Display.style.visibility = 'visible';
+        displayExtraEquipButtonBasedOnClass(index);
         spellsAsk(index);
         spellCastingAsk(index);
     } else {
         page_6_Display.style.visibility = 'hidden';
+    }
+}
+
+let holy_list = document.getElementById('holy_List');
+let holy_button = document.getElementById('holy_equip_option');
+let wizard_list = document.getElementById('wizard_magic_List');
+let wizard_button = document.getElementById('wizard_equip_option');
+let druid_list = document.getElementById('druid_magic_List');
+let druid_button = document.getElementById('druid_equip_option');
+let bard_list = document.getElementById('bard_magic_List');
+let bard_button = document.getElementById('bard_equip_option');
+
+
+function displayExtraEquipButtonBasedOnClass(index){
+    if (index == "druid") {
+        durid_spell_equ_Dislpay.style.visibility = 'visible';
+        clickOnDropDownMenu(druid_list, certianEquimentsAsk, druid_button);
+        bard_spell_equ_Dislpay.style.visibility = 'hidden';
+        holy_equ_Dislpay.style.visibility = 'hidden';
+        wizard_spell_equ__Dislpay.style.visibility = 'hidden';
+    } 
+    if (index == "Sorcerer" || index == "warlock" || index == "wizard") {
+        wizard_spell_equ__Dislpay.style.visibility = 'visible';
+        clickOnDropDownMenu(wizard_list, certianEquimentsAsk, wizard_button);
+        bard_spell_equ_Dislpay.style.visibility = 'hidden';
+        holy_equ_Dislpay.style.visibility = 'hidden';
+        durid_spell_equ_Dislpay.style.visibility = 'hidden';
+    } 
+    if (index == "cleric" || index == "paladin") {
+        holy_equ_Dislpay.style.visibility = 'visible';
+        clickOnDropDownMenu(holy_list, certianEquimentsAsk, holy_button);
+        bard_spell_equ_Dislpay.style.visibility = 'hidden';
+        wizard_spell_equ__Dislpay.style.visibility = 'hidden';
+        durid_spell_equ_Dislpay.style.visibility = 'hidden';
+    } 
+    if (index == "bard") {
+        bard_spell_equ_Dislpay.style.visibility = 'visible';
+        clickOnDropDownMenu(bard_list, certianEquimentsAsk, bard_button);
+        holy_equ_Dislpay.style.visibility = 'hidden';
+        wizard_spell_equ__Dislpay.style.visibility = 'hidden';
+        durid_spell_equ_Dislpay.style.visibility = 'hidden';
     }
 }

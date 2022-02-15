@@ -242,6 +242,14 @@ export async function getEquimentListData(data) {
     return equiment_options_Array;
 }
 
+export async function getEquimentListData_ThenSendToHTML(data, list) {
+    const { index, name, equipment } = data;
+    let equiment_options_Array = equipment.map(function (el) {
+        return el.index;
+    });
+    await getListToHTML(equiment_options_Array, list);
+}
+
 export async function createListOfProficiencyOptions(array, list) {
     let items = array.toString().split(",");
     let skill_names = new Array;
