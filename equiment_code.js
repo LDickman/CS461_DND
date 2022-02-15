@@ -2,6 +2,7 @@ import { fetchDataFromAPI, clickOnDropDownMenu, getEquimentListData } from './he
 
 const api_equiment = 'https://www.dnd5eapi.co/api/equipment-categories/';
 const api_OneEquiment = 'https://www.dnd5eapi.co/api/equipment/';
+const api_music_equiment = 'equipment-categories/musical-instruments';
 let userArmorProtect = document.getElementById("char_armor_class");
 let userDex = document.getElementById("DEX_bonus");
 let userSTR = document.getElementById("STR_bonus");

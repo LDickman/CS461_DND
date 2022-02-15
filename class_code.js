@@ -65,6 +65,7 @@ async function printClassData(data) {
     className.textContent = name;
     userClassName.textContent = name;
     die.textContent = hit_die;
+    die.value = hit_die;
     userHitDie.textContent = "1d"+ hit_die;
     throwHits.textContent = getNames(saving_throws);
     userSavingThrows.textContent = getNames(saving_throws);
@@ -114,12 +115,10 @@ function gettingNamesFromProficiency(proficiency_choices) {
 function showSpellTab(spells, name, index){
     if (spells != undefined) {
         userSpellCasterClass.textContent = name;
+        page_6_Display.style.visibility = 'visible';
         spellsAsk(index);
         spellCastingAsk(index);
-        page_6_Display.tabIndex = "6";
-        page_6_Display.style.visibility = 'visible';
     } else {
-        page_6_Display.tabIndex = "0";
         page_6_Display.style.visibility = 'hidden';
     }
 }
