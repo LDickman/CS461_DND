@@ -165,6 +165,7 @@ th, td {
   z-index: 1; 
   top: 160px; 
   left: 0;
+  float: left;
   background-color: #450a03; 
   overflow-x: hidden;
   padding-top: 60px; 
@@ -187,7 +188,7 @@ th, td {
 
 /* Style page content */
 .main {
-  margin-left: 300px; /* Same as the width of the sidebar */
+  margin-left: 300px;
   padding: 0px 10px;
 }
 

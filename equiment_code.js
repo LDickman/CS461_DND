@@ -75,7 +75,7 @@ async function certianEquimentsAsk(input) {
 
 async function armorAsk(input) {
     if (input == "None") {
-        settingValuesToNoneAndZero(armor)
+        settingValuesToNoneAndZero(armor);
     } else {
         let url = api_OneEquiment + input;
         const data = await fetchDataFromAPI(url);
@@ -244,65 +244,95 @@ function calculateMoneySpent(spending_money, money_leftover_total, cost, cost_va
     let total = 0;
     let currecny = money_value;
     if (currecny == 'cp') {
-        if (cost_value == 'sp') {
-            total = (parseInt(spending_money.value) - (parseInt(cost) / 10));
-        } else if (cost_value == 'ep') {
-            total = (parseInt(spending_money.value) - (parseInt(cost) / 50));
-        } else if (cost_value == 'gp') {
-            total = (parseInt(spending_money.value) - (parseInt(cost) / 100));
-        } else if (cost_value == 'pp') {
-            total = (parseInt(spending_money.value) - (parseInt(cost) / 1000));
-        } else {
-            total = (parseInt(spending_money.value) - parseInt(cost));
-        }
+        total = calculatingMoneyFor_CP_Currency(cost_value, spending_money, cost);
     } else if (currecny == 'sp') {
-        if (cost_value == 'cp') {
-            total = (parseInt(spending_money.value) - (parseInt(cost) * 10));
-        } else if (cost_value == 'ep') {
-            total = (parseInt(spending_money.value) - (parseInt(cost) / 5));
-        } else if (cost_value == 'gp') {
-            total = (parseInt(spending_money.value) - (parseInt(cost) / 10));
-        } else if (cost_value == 'pp') {
-            total = (parseInt(spending_money.value) - (parseInt(cost) / 100));
-        } else {
-            total = (parseInt(spending_money.value) - parseInt(cost));;
-        }
+        total = calculatingMoneyFor_SP_Currency(cost_value, spending_money, cost);
     } else if (currecny == 'ep') {
-        if (cost_value == 'sp') {
-            total = (parseInt(spending_money.value) - (parseInt(cost) * 5));
-        } else if (cost_value == 'cp') {
-            total = (parseInt(spending_money.value) - (parseInt(cost) * 50));
-        } else if (cost_value == 'gp') {
-            total = (parseInt(spending_money.value) - (parseInt(cost) / 2));
-        } else if (cost_value == 'pp') {
-            total = (parseInt(spending_money.value) - (parseInt(cost) / 20));
-        } else {
-            total = (parseInt(spending_money.value) - parseInt(cost));
-        }
+        total = calculatingMoneyFor_EP_Currency(cost_value, spending_money, cost);
     } else if (currecny == 'gp') {
-        if (cost_value == 'sp') {
-            total = (parseInt(spending_money.value) - (parseInt(cost) * 10));
-        } else if (cost_value == 'ep') {
-            total = (parseInt(spending_money.value) - (parseInt(cost) * 2));
-        } else if (cost_value == 'cp') {
-            total = (parseInt(spending_money.value) - (parseInt(cost) * 100));
-        } else if (cost_value == 'pp') {
-            total = (parseInt(spending_money.value) - (parseInt(cost) / 10));
-        } else {
-            total = (parseInt(spending_money.value) - (parseInt(cost) / 10));
-        }
+        total = calculatingMoneyFor_GP_Currency(cost_value, spending_money, cost);
     } else if (currecny == 'pp') {
-        if (cost_value == 'sp') {
-            total = (parseInt(spending_money.value) - (parseInt(cost) * 100));
-        } else if (cost_value == 'ep') {
-            total = (parseInt(spending_money.value) - (parseInt(cost) * 20));
-        } else if (cost_value == 'gp') {
-            total = (parseInt(spending_money.value) - (parseInt(cost) * 10));
-        } else if (cost_value == 'cp') {
-            total = (parseInt(spending_money.value) - (parseInt(cost) * 1000));
-        } else {
-            total = (parseInt(spending_money.value) - parseInt(cost));
-        }
+        total = calculatingMoneyFor_PP_Currency(cost_value, spending_money, cost);
+    }
+    return total;
+}
+
+function calculatingMoneyFor_PP_Currency(cost_value, spending_money, cost) {
+    let total = 0
+    if (cost_value == 'sp') {
+        total = (parseInt(spending_money.value) - (parseInt(cost) * 100));
+    } else if (cost_value == 'ep') {
+        total = (parseInt(spending_money.value) - (parseInt(cost) * 20));
+    } else if (cost_value == 'gp') {
+        total = (parseInt(spending_money.value) - (parseInt(cost) * 10));
+    } else if (cost_value == 'cp') {
+        total = (parseInt(spending_money.value) - (parseInt(cost) * 1000));
+    } else {
+        total = (parseInt(spending_money.value) - parseInt(cost));
+    }
+    return total;
+}
+
+function calculatingMoneyFor_GP_Currency(cost_value, spending_money, cost) {
+    let total = 0
+    if (cost_value == 'sp') {
+        total = (parseInt(spending_money.value) - (parseInt(cost) * 10));
+    } else if (cost_value == 'ep') {
+        total = (parseInt(spending_money.value) - (parseInt(cost) * 2));
+    } else if (cost_value == 'cp') {
+        total = (parseInt(spending_money.value) - (parseInt(cost) * 100));
+    } else if (cost_value == 'pp') {
+        total = (parseInt(spending_money.value) - (parseInt(cost) / 10));
+    } else {
+        total = (parseInt(spending_money.value) - (parseInt(cost) / 10));
+    }
+    return total;
+}
+
+function calculatingMoneyFor_EP_Currency(cost_value, spending_money, cost) {
+    let total = 0
+    if (cost_value == 'sp') {
+        total = (parseInt(spending_money.value) - (parseInt(cost) * 5));
+    } else if (cost_value == 'cp') {
+        total = (parseInt(spending_money.value) - (parseInt(cost) * 50));
+    } else if (cost_value == 'gp') {
+        total = (parseInt(spending_money.value) - (parseInt(cost) / 2));
+    } else if (cost_value == 'pp') {
+        total = (parseInt(spending_money.value) - (parseInt(cost) / 20));
+    } else {
+        total = (parseInt(spending_money.value) - parseInt(cost));
+    }
+    return total;
+}
+
+function calculatingMoneyFor_SP_Currency(cost_value, spending_money, cost) {
+    let total = 0
+    if (cost_value == 'cp') {
+        total = (parseInt(spending_money.value) - (parseInt(cost) * 10));
+    } else if (cost_value == 'ep') {
+        total = (parseInt(spending_money.value) - (parseInt(cost) / 5));
+    } else if (cost_value == 'gp') {
+        total = (parseInt(spending_money.value) - (parseInt(cost) / 10));
+    } else if (cost_value == 'pp') {
+        total = (parseInt(spending_money.value) - (parseInt(cost) / 100));
+    } else {
+        total = (parseInt(spending_money.value) - parseInt(cost));;
+    }
+    return total;
+}
+
+function calculatingMoneyFor_CP_Currency(cost_value, spending_money, cost) {
+    let total = 0
+    if (cost_value == 'sp') {
+        total = (parseInt(spending_money.value) - (parseInt(cost) / 10));
+    } else if (cost_value == 'ep') {
+        total = (parseInt(spending_money.value) - (parseInt(cost) / 50));
+    } else if (cost_value == 'gp') {
+        total = (parseInt(spending_money.value) - (parseInt(cost) / 100));
+    } else if (cost_value == 'pp') {
+        total = (parseInt(spending_money.value) - (parseInt(cost) / 1000));
+    } else {
+        total = (parseInt(spending_money.value) - parseInt(cost));
     }
     return total;
 }
