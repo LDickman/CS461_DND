@@ -247,6 +247,7 @@ export async function getEquimentListData_ThenSendToHTML(data, list) {
     let equiment_options_Array = equipment.map(function (el) {
         return el.index;
     });
+    equiment_options_Array.push("None")
     await getListToHTML(equiment_options_Array, list);
 }
 

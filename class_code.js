@@ -35,6 +35,16 @@ let wantedEquiment = document.getElementById("preffer_equiment")
 let casting = document.getElementById('spellscasting');
 let otherClasses = document.getElementById("subclasses");
 let skillsNum = document.getElementById("skills");
+let magic_equiment = document.getElementById("money_magic");
+
+let holy_list = document.getElementById('holy_List');
+let holy_button = document.getElementById('holy_equip_option');
+let wizard_list = document.getElementById('wizard_magic_List');
+let wizard_button = document.getElementById('wizard_equip_option');
+let druid_list = document.getElementById('druid_magic_List');
+let druid_button = document.getElementById('druid_equip_option');
+let bard_list = document.getElementById('bard_magic_List');
+let bard_button = document.getElementById('bard_equip_option');
 
 export async function setupPage2() {
     classChoice();
@@ -56,6 +66,7 @@ async function classAsk(input) {
 
 
 async function printClassData(data) {
+    settingValueOfMagicEquipToZero();
     clearAllInfomormation();
     const { index, name, hit_die, proficiency_choices, proficiencies, saving_throws, subclasses, spellcasting } = data;
 
@@ -80,6 +91,11 @@ async function printClassData(data) {
     userEquiment.textContent = getNames(proficiencies);
     casting.textContent = getInfoNames(spellcasting);
     otherClasses.textContent = getNames(subclasses);
+}
+
+function settingValueOfMagicEquipToZero() {
+    magic_equiment.textContent = 0;
+    magic_equiment.value = 0;
 }
 
 function clearAllInfomormation() {
@@ -128,16 +144,6 @@ function showSpellTab(spells, name, index){
         page_6_Display.style.visibility = 'hidden';
     }
 }
-
-let holy_list = document.getElementById('holy_List');
-let holy_button = document.getElementById('holy_equip_option');
-let wizard_list = document.getElementById('wizard_magic_List');
-let wizard_button = document.getElementById('wizard_equip_option');
-let druid_list = document.getElementById('druid_magic_List');
-let druid_button = document.getElementById('druid_equip_option');
-let bard_list = document.getElementById('bard_magic_List');
-let bard_button = document.getElementById('bard_equip_option');
-
 
 function displayExtraEquipButtonBasedOnClass(index){
     if (index == "druid") {

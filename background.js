@@ -29,7 +29,9 @@ function alignmentChoice() {
 }
 
 async function backgroundAsk(input) {
-    if (input != "acolyte") {
+    if (input == "None") {
+        setTextContextToNone();
+    } else if (input != "acolyte") {
         printExtraBackgroundData(input);
     } else if (input == "acolyte") {
         let url = api_background + input;
@@ -117,6 +119,14 @@ function setTextContextToSage() {
     background_info.textContent = "When you attempt to learn or recall a piece of lore, if you do not know that information, you often know where and from whom you can obtain it. Usually, this information comes from a library, scriptorium, university, or a sage or other learned person or creature. Your DM might rule that the knowledge you seek is secreted away in an almost inaccessible place, or that it simply cannot be found. Unearthing the deepest secrets of the multiverse can require an adventure or even a whole campaign";
     background_Skill_info.textContent = "Arcana, History";
     userBackgroundSkills.textContent = "Arcana, History";
+}
+
+function setTextContextToNone(){
+    beginnerSkills.textContent = "None";
+    wantedLanguages.textContent = "Any";
+    background_info.textContent = "None";
+    background_Skill_info.textContent = "None";
+    userBackgroundSkills.textContent = "None";
 }
 
 function setTextContextToNoble() {
